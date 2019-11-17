@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div class="" id="root">
+
+    </div>
+    <script>
+        //内存（定义变量） 性能 （网页查询性能 id是索引）
+    // const s = document.getElementById('root');
+    // s.innerText='五岳归来不看山,要看就看岳不群的华山';
+    // s.style.color='red';
+
+    // $ 函数名
+    // function $(cssSelector) {
+    //     return document.querySelector(cssSelector)
+    // }
+    // function text(str,t) {
+    //     t.innerText=str;
+    //     return t;
+    // }
+    // function css(type,val,t){
+    //     t.style[type] = val;
+    //     return t;
+    // }
+    // css('color','red',(text( '五岳归来不看山,要看就看岳不群的华山',$('#root')));
+    class _${};
+    _$.prototype.text= function(str){
+        this.innerText=str;
+        return this;
+    }
+    _$.prototype.css=function(type,tal){
+        this.style[type]=tal;
+        return this;
+    }
+    </script>
+</body>
+</html>

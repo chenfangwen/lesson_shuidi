@@ -38,3 +38,7 @@ function Coffee(){
     boilWater   
     用沸水      茶叶 咖啡
     方法        重写
+
+
+- js的继承关系不具备血缘关系
+    Coffee.prototype = new Beverage(); //原型关系

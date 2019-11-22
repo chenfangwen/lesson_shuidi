@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    html, body{
+	    height: 100%;
+	}
+	body{
+	    background: white;
+	    margin: 0%;
+	    padding: 0%;
+	    position: relative;
+	}
+	img{
+      width: 100px;
+      height: 55px;
+	    position: absolute;
+	    left: 5%;
+	    top: 10px;
+	    /* margin-left: -50px; */
+	    /* margin-top: -28px; */
+	}
+    </style>
+</head>
+<body>
+    <img src="shuttle.jpg" alt="" class="" id="shuttle"/>
+    <script src="./gasp.min.js">
+    </script>
+    <script>
+    var shuttle = document.getElementById('shuttle');
+    // tween? js的效果 来回跳动
+    TweenMax.to(shuttle,3,{
+        top:'50%',
+        left:250,
+        delay:0,
+        //加速方式
+        ease:Back.easeOut
+    })//三分钟执行玩第一个动作，所以第二个动作三秒后执行delay:3
+    TweenMax.to(shuttle,2,{
+        left:'100%',
+        scale:.5,
+        opacity:0,
+        delay:3,
+        ease:Back.easeOut
+    })
+    </script>
+</body>
+</html>

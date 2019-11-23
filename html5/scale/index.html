@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .img{
+            position: absolute;
+            top: 2;
+            left: 2;
+            width: 100px;
+            height: 50px;
+        }
+        
+    </style>
+</head>
+
+<body>
+        <script>
+            function a(){
+                var img=document.getElementById('p');
+                
+               
+        function animation() {
+        requestAnimationFrame(function(){
+            if(img.clientWidth<=200&&img.clientHeight<100)
+            {
+                img.style.width=(img.clientWidth*1.02)+'px';
+                img.style.height=(img.clientHeight*1.03)+'px';
+                img.style.left=100+'px';
+                img.style.top=100+'px';
+            }
+           
+            
+            animation();
+        })
+    }
+    
+    animation();
+                // img.style.width=200+'px';
+                // img.style.height=100+'px';
+                // }else{
+                //     img.style.width=100+'px';
+                //     img.style.height=50+'px';
+                // }
+               
+           
+        }
+            </script>
+    
+        <img src="./shuttle.jpg" alt="" class="img" id="p" onclick="a()"/>
+        
+    
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "name": "phaser",
+  "version": "1.0.0",
+  "description": "- 游戏框架 引擎 可以帮助我们快速开发游戏\r - 精灵 Sprite",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

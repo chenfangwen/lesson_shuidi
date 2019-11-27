@@ -1,0 +1,9 @@
+<view>
+  <view class="flex bottom">
+    <view class="flex_row " bindtap="trap_index">首页</view>
+    <view class="flex_row yellow" bindtap="trap_search">查找</view>
+    <view class="flex_row" bindtap="trap_member">黑卡会员</view>
+    <view class="flex_row" bindtap="trap_newshop">新店</view>
+    <view class="flex_row" bindtap="trap_indent">订单</view>
+  </view>
+</view>

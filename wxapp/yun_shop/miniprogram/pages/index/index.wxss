@@ -1,0 +1,24 @@
+.flex{
+  margin-left: 4vw;
+  margin-right: 4vw;
+  margin-bottom: 0;
+  display: flex;
+}
+.flex_row{
+  border: 1px solid yellow;
+  
+  font-size: 10px;
+  justify-content: center;
+  height: 50px;
+  line-height: 50px;
+  display: flex;
+  width: 18vw;
+  flex-direction: row;
+}
+.yellow{
+  background-color: yellow;
+}
+.bottom{
+  position: absolute;
+  bottom: 0;
+}

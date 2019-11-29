@@ -1,43 +1,42 @@
+const db = wx.cloud.database();
+const productsCollection = db.collection("products");
 Page({
 
   /**
    * 页面的初始数据
-   */
+   */ 
+  onShareAppMessage() {
+    return {
+      title: 'swiper',
+      path: 'page/component/pages/swiper/swiper'
+    }
+  },
   data: {
-    
-  },
-  trap_index: function(){
-    wx.navigateTo({
-      url: '../index/index',
-    })
-  },
-  trap_search: function () {
-    wx.navigateTo({
-      url: '../search/search',
-    })
-  },
-  trap_member: function () {
-    wx.navigateTo({
-      url: '../member/member',
-    })
-  },
-  trap_newshop: function () {
-    wx.navigateTo({
-      url: '../newshop/newshop',
-    })
-  },
-  trap_indent: function () {
-    wx.navigateTo({
-      url: '../indent/indent',
-    })
+    products: [],
+    imgUrls:[
+      "../../images/1.jpg",
+      "../../images/2.jpg",
+      "../../images/3.jpg"
+    ],
+    background: ['demo-text-1', 'demo-text-2', 'demo-text-3'],
+    indicatorDots: true,
+    vertical: false,
+    interval: 2000,
+    duration: 500
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    
-  },
+  onLoad() {
+    productsCollection
+      .get()
+      .then(res => {
+        this.setData({
+          products: res.data
+        })
 
+      })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

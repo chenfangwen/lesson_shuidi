@@ -1,9 +1,59 @@
-<view>
-  <view class="flex bottom">
-    <view class="flex_row yellow" bindtap="trap_index">首页</view>
-    <view class="flex_row" bindtap="trap_search">查找</view>
-    <view class="flex_row" bindtap="trap_member">黑卡会员</view>
-    <view class="flex_row" bindtap="trap_newshop">新店</view>
-    <view class="flex_row" bindtap="trap_indent">订单</view>
+<view class="bodyview">
+<view class="desc"><input class="search" placeholder="今天想去哪里吃喝"></input></view>
+<view class="desc_1">
+  <view class="text1" >严选南昌%2的靠谱好店</view>
+  <view class="desc1_view">
+    <!-- <image src="{{}}"></image> -->
+    <view class="desc1_1_view">
+      <view class="thing"><image class="img2" src="../../images/food.png"></image></view>
+      <view class="thing "><image class="img2" src="../../images/beau.png"></image></view>
+      <view class="thing "><image class="img2" src="../../images/play.png"></image></view>
+      <view class="thing "><image class="img2" src="../../images/shop.png"></image></view>
+    </view>
+    <view class="desc1_2_view">
+      <view class="thing2 ">好吃的</view>
+      <view class="thing2 ">变美了</view>
+      <view class="thing2 ">出去浪</view>
+      <view class="thing2 ">捡漏专区</view>
+    </view>
+    <view class="desc1_3_view">
+      <view class="thing3 "><view class="font">每日福利</view></view>
+      <view class="thing3 "><view class="font">红包专区</view></view>
+      <view class="thing3 "><view class="font">热卖排行</view></view>
+      <view class="thing3 "><view class="font">好店入驻</view></view>
+    </view>
   </view>
+</view>
+<swiper class="desc_2" autoplay="{{true}}" interval="3000" circular="{{true}}" >
+  <block  wx:for="{{imgUrls}}"> 
+    <swiper-item class="swiper_items">
+      <image class="swiper_items" src="{{item}}"></image>
+    </swiper-item>
+  </block>
+</swiper>
+<view class="text" ><view class="text_1">热门商圈</view><view class="text_2"><image class="img_top"  src="../../images/hot1.svg"></image></view><view class="text_3">商圈排行榜 ></view></view>
+<view class="desc_3">
+<scroll-view class="scrollview"  scroll-x="{{true}}" style=" white-space:nowrap" >
+    <view class=" scroll_item_x purple"><image class="img"  src="../../images/1.jpg"></image></view>
+    <view class=" scroll_item_x blue"><image class="img" src="../../images/2.jpg"></image></view>
+    <view class=" scroll_item_x pink"><image class="img" src="../../images/3.jpg"></image>三</view>
+    <view class=" scroll_item_x blue"><image class="img" src="../../images/1.jpg"></image></view>
+    <view class=" scroll_item_x pink"><image class="img" src="../../images/2.jpg"></image></view>
+    <view class="showmore">
+      <image class="img1" src="../../images/1.png"></image>
+    </view>
+  </scroll-view>
+</view>
+<view class="text2">今日热卖</view>
+<view class="desc_4">
+<block wx:for="{{products}}">
+    <van-card
+        title="{{item.title}}"
+        desc="{{item.color}}"
+        price="{{item.price}}"
+        thumb="{{item.image}}"
+        data-id="{{item._id}}">
+    </van-card>
+</block>
+</view>
 </view>

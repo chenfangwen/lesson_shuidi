@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/goodsshow/goodsshow",
     "pages/index/index",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",
@@ -17,6 +18,7 @@
     "pages/member/member",
     "pages/newshop/newshop",
     "pages/indent/indent"
+    
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -26,23 +28,21 @@
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
-        "color": "#a9b7b7",
-        "selectedColor": "#13227a",
-        "borderStyle": "black",
-        "list": [
+    "color": "#a9b7b7",
+    "selectedColor": "#13227a",
+    "borderStyle": "black",
+    "list": [
       {
-            "selectedIconPath": "images/homes.png",
-            "iconPath": "images/home.png",
-              "pagePath": "pages/index/index",
-             "text": "首页"  
-
+        "selectedIconPath": "images/homes.png",
+        "iconPath": "images/home.png",
+        "pagePath": "pages/index/index",
+        "text": "首页"
       },
       {
-             "selectedIconPath": "images/searchs.png",
-            "iconPath": "images/search.png",
-              "pagePath": "pages/search/search",
-              "text": "查找"  
-
+        "selectedIconPath": "images/searchs.png",
+        "iconPath": "images/search.png",
+        "pagePath": "pages/search/search",
+        "text": "查找"
       },
       {
         "selectedIconPath": "images/members.png",

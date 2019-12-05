@@ -1,1 +1,47 @@
-/* miniprogram/pages/search/search.wxss */
+.desc{
+  position: relative;
+  background-color:#f4ea2a;
+  top: 0;
+  height:130rpx;
+}
+.search{
+  position: relative;
+  top:25rpx;
+  height: 80rpx;
+  border-radius: 50rpx;
+  margin-left: 30rpx;
+  margin-right:30rpx;
+  background-color: #f9f28b;
+}
+.desc1{
+   position:absolute;
+  top:130rpx;
+  margin-left: 30rpx;
+  width: 660rpx;
+  height: 45vh;
+  background-color: red;
+}
+.decs1_1{
+  display: flex;
+  position: relative;
+  top:0;
+  height: 14.28571429%;
+  background-color: blue;
+}
+.desc1_1_1{
+  position: relative;
+  top:10%;
+  width: 10rpx;
+  height: 80%;
+  left:0;
+  background-color:yellow;
+}
+.desc1_1_2{
+  position: relative;
+  top:12%;
+  display:inline-flex;
+  
+  width: 10rpx;
+  height: 76%;
+  background-color: pink;
+}

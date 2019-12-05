@@ -1,5 +1,6 @@
 //app.js
 App({
+
   onLaunch: function () {
     
     if (!wx.cloud) {
@@ -16,5 +17,9 @@ App({
     }
 
     this.globalData = {}
-  }
+  },
+  globalData:{
+    currentId: 0,
+    image:''
+  },
 })

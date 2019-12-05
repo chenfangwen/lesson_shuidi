@@ -1,14 +1,21 @@
 const db = wx.cloud.database();
 const productsCollection = db.collection("products");
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */ 
-  show: function () {
+  
+  show (e) {
     wx.navigateTo({
       url: '../goodsshow/goodsshow',
     })
+    const cur = e.currentTarget.dataset.current;
+    const curimg = e.currentTarget.dataset.image;
+     app.globalData.currentId=cur;
+    app.globalData.image=curimg;
+    
   },
   onShareAppMessage() {
     return {

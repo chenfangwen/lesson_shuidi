@@ -1,8 +1,4 @@
-.bodyview{
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-}
+
 .desc{
   position: relative;
   background-color:#f4ea2a;

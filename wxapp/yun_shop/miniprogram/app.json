@@ -1,6 +1,6 @@
 {
   "pages": [
-    "pages/goodsshow/goodsshow",
+   "pages/search/search",
     "pages/index/index",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",
@@ -14,10 +14,12 @@
     "pages/openapi/cloudid/cloudid",
     "pages/im/im",
     "pages/im/room/room",
-    "pages/search/search",
+    
     "pages/member/member",
     "pages/newshop/newshop",
-    "pages/indent/indent"
+    "pages/indent/indent",
+    "pages/goodsshow/goodsshow"
+   
     
   ],
   "window": {

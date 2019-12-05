@@ -1,3 +1,10 @@
-<view>
-  查找
+<view class="bodyview">
+ <view class="desc"><input class="search" placeholder="今天想去哪里吃喝玩乐"></input></view>
+ <view class="desc1">
+  <view class="decs1_1">
+    <view class="desc1_1_1"></view><view class="desc1_1_2"></view>
+  </view>
+  <view>
+  </view>
+ </view>
 </view>

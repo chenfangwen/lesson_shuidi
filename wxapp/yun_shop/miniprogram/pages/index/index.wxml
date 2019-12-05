@@ -46,9 +46,11 @@
 </view>
 <view class="text2">今日热卖</view>
 <view class="desc_4" >
-<block wx:for="{{products}}" >
+<block wx:for="{{products}}">
     <van-card
-   bindtap="show"
+        data-current="{{item._id}}"
+        data-image="{{item.image}}"
+        bindtap="show"
         tag="标签"
         title="{{item.title}}"
         desc="{{item.color}}"

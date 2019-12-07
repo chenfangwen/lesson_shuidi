@@ -8,7 +8,7 @@ const fs = require('fs');
 function readFile(){
     const aFile = fs.readFileSync('a.txt');
     console.log(aFile);
-    const bFile = fs.readFileSync('b.txt').toString;
+    const bFile = fs.readFileSync('b.txt');
     console.log(bFile);
     const cFile = fs.readFileSync('c.txt');
     console.log(cFile);

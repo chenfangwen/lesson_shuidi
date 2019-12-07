@@ -1,3 +1,6 @@
-<button size="mini" bindtap="navigateTo" type="primary"
- open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+<button size="mini"
+ bindtap="navigateTo" 
+ type="primary"
+ open-type="getUserInfo" 
+ bindgetuserinfo="getUserInfo">  
  +</button>

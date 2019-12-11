@@ -12,7 +12,7 @@ class UserService extends Service{
         ctx.body={
             msg:'注册成功',
             // user_id:user.user_id
-            userInfo
+            userInfo    
         }
     }
 }

@@ -3,25 +3,27 @@ let cheerio = require('cheerio');
 let fs=require('fs');
 const main = async () => {
   // 进程
+  for(let i=0;i<=225;i=i+25){
   let html = await request({
-    url: 'https://movie.douban.com/top250'
+    url: 'https://movie.douban.com/top250?start='+i+'&filter='
   });
   // console.log(html);
   // 内存中构建dom
   let $ = cheerio.load(html);
   let movieNodes = $('#content .article .grid_view').find('.item');
 //   console.log(movieNodes);
+  
   let movies = [];
   for (let i = 0; i < movieNodes.length; i++) {
     let item = cheerio.load(movieNodes[i]);
-    let titles = $('.info .hd span');
+    let titles = item('.info .hd .title').text();
     // console.log(titles, '----');
     // break;
-    titles = ([]).map.call(titles, t => {
-      return $(t).text()
-    })
+    // titles = ([]).map.call(titles, t => {
+    //   return $(t).text()
+    // })
     // console.log(titles);
-    let bd = $('.info .bd');
+    let bd = item('.info .bd');
     let info = bd.find('p').text();
     let score = bd.find('.star .rating_num').text();
     movies.push({
@@ -31,12 +33,15 @@ const main = async () => {
     })
   }
 //   console.log(movies);
-  fs.writeFile('./output.json',JSON.stringify(movies),'utf-8',err=>{
+
+  fs.appendFile('./output.json',JSON.stringify(movies)+'\r\n','utf-8',err=>{
       if(err){
           console.log('写入失败');
       }
-      console.log('生成JSON文件成功，爬取完成');
+     
   })
+}
+console.log('生成JSON文件成功，爬取完成');
 }
 
 main();

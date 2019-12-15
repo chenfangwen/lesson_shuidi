@@ -5,4 +5,4 @@ exports.getPosts=async ctx => {
 }
 exports.getRedirectPosts = async ctx => {
     ctx.redirect('/posts');
-  }
+  }         

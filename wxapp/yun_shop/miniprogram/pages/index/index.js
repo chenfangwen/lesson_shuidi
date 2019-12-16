@@ -6,7 +6,11 @@ Page({
   /**
    * 页面的初始数据
    */ 
-  
+  search(){
+    wx.navigateTo({
+      url: '../search1/search1',
+    })
+  },
   show (e) {
     wx.navigateTo({
       url: '../goodsshow/goodsshow',

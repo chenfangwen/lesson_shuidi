@@ -2,7 +2,26 @@
  <view class="desc"><input class="search" placeholder="今天想去哪里吃喝玩乐"></input></view>
  <view class="desc1">
   <view class="decs1_1">
-    <view class="desc1_1_1"></view><view class="desc1_1_2"></view>
+    <view class="desc1_1_1"></view>
+    <view class="desc1_1_2">
+      <view class="thing">全部</view><view class="thing">好吃的</view><view class="thing">变美了</view><view class="thing">出去浪</view><view class="thing">宝贝玩</view>
+    </view>
+  </view>
+  <view class="desc1_2">
+    <view class="desc1_2_1"></view>
+    <view class="desc1_2_2">
+      <view class="thing">全部</view><view class="thing">红谷滩</view><view class="thing">西湖区</view><view class="thing">东湖区</view><view class="thing">青山湖</view>
+    </view>
+  </view>
+  <view class="desc1_3">
+    <view class="desc1_3_1">
+      <view class="thing">高新区</view><view class="thing">南昌县</view><view class="thing">新建区</view><view class="thing">青云谱</view>
+    </view>
+  </view>
+  <view class="desc1_4">
+    <view class="desc1_4_1">
+      <view class="thing">湾里区</view><view class="thing">经开区</view><view class="thing">安义县</view><view class="thing">附近的</view>
+    </view>
   </view>
   <view>
   </view>

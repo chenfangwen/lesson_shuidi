@@ -1,6 +1,7 @@
 {
   "pages": [
-   "pages/search/search",
+    "pages/search/search",
+    "pages/search1/search1",
     "pages/index/index",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",
@@ -14,13 +15,13 @@
     "pages/openapi/cloudid/cloudid",
     "pages/im/im",
     "pages/im/room/room",
-    
     "pages/member/member",
     "pages/newshop/newshop",
     "pages/indent/indent",
     "pages/goodsshow/goodsshow"
    
     
+   
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

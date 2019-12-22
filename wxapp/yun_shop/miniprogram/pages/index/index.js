@@ -1,5 +1,6 @@
 const db = wx.cloud.database();
 const productsCollection = db.collection("products");
+
 const app = getApp();
 Page({
 
@@ -12,14 +13,14 @@ Page({
     })
   },
   show (e) {
-    wx.navigateTo({
-      url: '../goodsshow/goodsshow',
-    })
-    const cur = e.currentTarget.dataset.current;
-    const curimg = e.currentTarget.dataset.image;
-     app.globalData.currentId=cur;
-    app.globalData.image=curimg;
     
+    const cur = e.currentTarget.dataset.current;
+    // const curimg = e.currentTarget.dataset.image;
+    //  app.globalData.currentId=cur;
+    // app.globalData.image=curimg;
+    wx.navigateTo({
+      url: '../goodsshow/goodsshow?id='+cur,
+    })
   },
   onShareAppMessage() {
     return {
@@ -44,10 +45,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad() {
+    const that=this;
     productsCollection
       .get()
       .then(res => {
-        this.setData({
+        that.setData({
           products: res.data
         })
 

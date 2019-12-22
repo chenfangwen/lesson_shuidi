@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/search/search",
-    "pages/search1/search1",
+   
+    
     "pages/index/index",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",
@@ -18,8 +18,9 @@
     "pages/member/member",
     "pages/newshop/newshop",
     "pages/indent/indent",
-    "pages/goodsshow/goodsshow"
-   
+    "pages/goodsshow/goodsshow",
+    "pages/search/search",
+  "pages/search1/search1"   
     
    
   ],

@@ -19,7 +19,7 @@ App({
     this.globalData = {}
   },
   globalData:{
-    currentId: 0,
-    image:''
+    // currentId: 0,
+    // image:''
   },
 })

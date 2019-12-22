@@ -4,7 +4,7 @@
 <view><van-card
        
         title="{{c}}"
-        thumb="{{img}}">
+        thumb="{{product.image}}">
 </van-card></view>
 <view class="desc"><button class="btn">加入购物车</button><button class="btn">立即购买</button></view>
 

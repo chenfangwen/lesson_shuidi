@@ -1,4 +1,8 @@
-// miniprogram/pages/goodsshow/goodsshow.js
+// miniprogram/pages/goodsshow/goodsshow.jsconst db = wx.cloud.database();
+const db = wx.cloud.database();
+const _ = db.command;
+
+
 const app=getApp();
 
 Page({
@@ -8,8 +12,8 @@ Page({
    */
 
   data: {
-    c:0,
-    img:''
+    c:''
+    
   },
 
   /**
@@ -17,9 +21,19 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-     c:app.globalData.currentId,
-      img: app.globalData.image
-    })
+     c:options.id
+    });
+    const productsCollection = db.collection("products").where({
+      _id: _.eq(c)
+    });
+    const that =this;
+    productsCollection
+      .get()
+      .then(res => {
+        that.setData({
+          product: res.data
+        })
+      })
   },
 
   /**

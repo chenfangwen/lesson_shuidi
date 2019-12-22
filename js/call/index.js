@@ -7,9 +7,9 @@ function bar() {
     console.log(this);
     console.log(this.value);
 }
-bar.prototype.call=function(a){
-    this=a;
-}
+// bar.prototype.call=function(a){
+    
+// }
 //call() 指明函数this指向第一个参数
 bar.call(foo);
 bar(); //this跟函数运行函数相关

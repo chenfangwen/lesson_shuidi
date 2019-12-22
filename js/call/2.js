@@ -10,7 +10,7 @@ Function.prototype.call2 = function(a) {
     // 2.把内部的this指针指向a
     a.fn = this;
     a.fn();    //运行时this指向了a
-    // this()
+    
 }
 
 function bar(){

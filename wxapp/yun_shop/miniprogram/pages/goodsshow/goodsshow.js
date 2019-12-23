@@ -23,6 +23,7 @@ Page({
     this.setData({
      c:options.id
     });
+    // console.log(c);
     const productsCollection = db.collection("products").where({
       _id: _.eq(c)
     });

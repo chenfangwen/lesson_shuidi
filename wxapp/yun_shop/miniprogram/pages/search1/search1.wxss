@@ -26,8 +26,30 @@
 }
 .desc2{
   position: relative;
-  background-color:red;
-  top: 100;
+  /* background-color:red; */
+  top: 50rpx;
   height:400rpx;
-
+  
+}
+.content{
+  position: relative;
+  display: flex;
+  /* background-color: blue; */
+  flex-wrap: wrap;
+  
+}
+.text{
+  margin-left: 20rpx;
+}
+.content view{
+  height: 50rpx;
+  padding-top:10rpx;
+  padding-bottom:10rpx;
+  padding-left:20rpx;
+  padding-right:20rpx;
+  margin: 20rpx;
+  
+  border-radius: 25rpx;
+  text-align: center;
+  background-color: #dbdbdb;
 }

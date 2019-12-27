@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var saleOffice = {
+            name:'s'
+        } ; //发布者
+        // 发布者 售房信息
+        // 多个事件订阅时
+        saleOffice.clientList = []; //订阅者
+        saleOffice.listen = function(fn){
+            this.clientList.push(fn);
+        }
+        saleOffice.trigger  = function(){
+            for(var i = 0,fn; fn = this.clientList[i++];){
+                fn.apply(this,arguments)
+                // fn.call(this,...arguments)
+            }
+        }
+        saleOffice.listen(function(price,squareMeter){
+            console.log('小红订阅');
+            console.log('楼盘名='+ this.name);
+            console.log('价格='+ price);
+            console.log('sequareMeter='+ squareMeter)
+        })
+        saleOffice.listen(function(price,squareMeter){
+            console.log('小名订阅');
+        })
+        saleOffice.trigger(20000,88)
+        setTimeout(()=>{
+            saleOffice.trigger(30000,100)
+        },5000)
+    </script>
+</body>
+</html>

@@ -7,31 +7,7 @@ Page({
   data: {
 
   },
-  trap_index: function () {
-    wx.navigateTo({
-      url: '../index/index',
-    })
-  },
-  trap_search: function () {
-    wx.navigateTo({
-      url: '../search/search',
-    })
-  },
-  trap_member: function () {
-    wx.navigateTo({
-      url: '../member/member',
-    })
-  },
-  trap_newshop: function () {
-    wx.navigateTo({
-      url: '../newshop/newshop',
-    })
-  },
-  trap_indent: function () {
-    wx.navigateTo({
-      url: '../indent/indent',
-    })
-  },
+  
   /**
    * 生命周期函数--监听页面加载
    */

@@ -9,15 +9,22 @@ Page({
       
     })
   },
+  search(e){
+    const content = e.currentTarget.dataset.content;
+    this.setData({
+      search_content: content
+    })
+   
+  },
   data: {
-
+    search_content:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    
   },
 
   /**

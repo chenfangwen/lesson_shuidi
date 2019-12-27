@@ -1,7 +1,6 @@
 {
   "pages": [
-   
-    
+    "pages/indent/indent",
     "pages/index/index",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",
@@ -17,12 +16,10 @@
     "pages/im/room/room",
     "pages/member/member",
     "pages/newshop/newshop",
-    "pages/indent/indent",
-    "pages/goodsshow/goodsshow",
-    "pages/search/search",
-  "pages/search1/search1"   
-    
    
+    "pages/goodsshow/goodsshow",
+    "pages/search/search" ,
+    "pages/search1/search1"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

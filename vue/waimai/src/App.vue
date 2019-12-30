@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div id="app">
     <v-header :seller="seller"></v-header>
     <div class="tab border-1px">
@@ -51,7 +51,7 @@ export default {
 
 *
   margin 0
-  padding 0
+  /* padding  */
 
 .tab
   display flex
@@ -71,4 +71,4 @@ export default {
           color: rgb(240, 20, 20)
 
 
-</style>
+</style> -->

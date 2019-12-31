@@ -28,7 +28,7 @@ export default {   //模块输出
            name:'最近播放'
          }
        ],
-       currentIndex:0
+      currentIndex:0
     }
   },
   methods:{

@@ -1,19 +1,7 @@
-# waimai
-
-## Project setup
-```
-yarn install
-```
-
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- 组件化思维
+    一方面一个页面由好多组件组成、
+    页面开发可以划分任务
+    催生的式大量的团队开发
+    每个组件要解耦，不影响别人的组件
+    soped  
+    #app[data-v-12121]

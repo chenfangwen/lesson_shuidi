@@ -14,17 +14,17 @@ export default {
     switches: {
       type: Array,
       required: true
-    }
-  },
+    },
   currentIndex: {
       type: Number,
       default: 0
   },
-  method:{
+  methods:{
       switchItem(index){
           this.$emit('switch',index);
       }
   }
+}
 }
 </script>
 <style lang="stylus">

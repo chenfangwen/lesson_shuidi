@@ -35,6 +35,7 @@ Page({
       "../../images/2.jpg",
       "../../images/3.jpg"
     ],
+ 
     background: ['demo-text-1', 'demo-text-2', 'demo-text-3'],
     indicatorDots: true,
     vertical: false,

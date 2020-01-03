@@ -12,8 +12,8 @@ Page({
    */
 
   data: {
-    c:''
-    
+    c:'',
+    product:{}
   },
 
   /**
@@ -22,19 +22,22 @@ Page({
   onLoad: function (options) {
     this.setData({
      c:options.id
+    
     });
-    // console.log(c);
-    const productsCollection = db.collection("products").where({
-      _id: _.eq(c)
-    });
-    const that =this;
-    productsCollection
-      .get()
-      .then(res => {
-        that.setData({
-          product: res.data
-        })
-      })
+    console.log(this.c)
+    //  console.log(c);
+    // const productsCollection = db.collection("products").where({
+    //   _id: _.eq(c)
+    // });
+    // const that =this;
+    // productsCollection
+    //   .get()
+    //   .then(res => {
+    //     that.setData({
+    //       product: res.data
+    //     })
+    //   });
+    // console(product);
   },
 
   /**

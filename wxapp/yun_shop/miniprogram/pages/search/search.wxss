@@ -50,6 +50,11 @@
 .thing{
   font-size: 15px;
   width:130rpx;
+  /* background-color: blue; */
+}
+.active{
+  color: red;
+ 
 }
 .desc1_2{
   display: flex;
@@ -101,6 +106,7 @@
   height: 60rpx;
   
 }
+
 .desc1_4_1{
   position: relative;
   top:12%;

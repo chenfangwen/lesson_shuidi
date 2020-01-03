@@ -34,11 +34,12 @@
 <view class="text" ><view class="text_1">热门商圈</view><view class="text_2"><image class="img_top"  src="../../images/hot1.svg"></image></view><view class="text_3">商圈排行榜 ></view></view>
 <view class="desc_3">
 <scroll-view class="scrollview"  scroll-x="{{true}}" style=" white-space:nowrap" >
-    <view class=" scroll_item_x purple"><image class="img"  src="../../images/1.jpg"></image></view>
-    <view class=" scroll_item_x blue"><image class="img" src="../../images/2.jpg"></image></view>
-    <view class=" scroll_item_x pink"><image class="img" src="../../images/3.jpg"></image>三</view>
-    <view class=" scroll_item_x blue"><image class="img" src="../../images/1.jpg"></image></view>
-    <view class=" scroll_item_x pink"><image class="img" src="../../images/2.jpg"></image></view>
+    <block wx:for="{{imgUrls}}">
+      <view class=" scroll_item_x "><image class="img"  src="{{item}}"></image></view>
+    </block>
+     <block wx:for="{{imgUrls}}">
+      <view class=" scroll_item_x "><image class="img"  src="{{item}}"></image></view>
+    </block>
     <view class="showmore">
       <image class="img1" src="../../images/1.png"></image>
     </view>

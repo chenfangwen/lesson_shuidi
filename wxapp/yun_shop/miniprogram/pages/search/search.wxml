@@ -4,7 +4,7 @@
   <view class="decs1_1">
     <view class="desc1_1_1"></view>
     <view class="desc1_1_2">
-      <view class="thing">全部</view><view class="thing">好吃的</view><view class="thing">变美了</view><view class="thing">出去浪</view><view class="thing">宝贝玩</view>
+      <view class="thing">全部</view><view class="thing active">好吃的</view><view class="thing">变美了</view><view class="thing">出去浪</view><view class="thing">宝贝玩</view>
     </view>
   </view>
   <view class="desc1_2">

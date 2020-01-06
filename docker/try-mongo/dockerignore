@@ -1,0 +1,16 @@
+node_models
+
+docker bulid -t node .
+docker img 查看镜像 
+docker pull daocloud.io/library
+
+docker run -p 27017:27017 -d --name mongodb (地址)
+docker run -p 27017:27017 -v $PWD/db:data/db -d --name mongodb (地址)
+
+
+
+docker ps -a   
+docker stop $(docker ps -a -q)  停止所有容器
+docker rm $(docker ps -a -q)
+docker run -p 17017:27017 -d --name mongodb (地址)
+docker run -d --name nodeapp --link=mongodb:mongodb -p 3001:3001 --name

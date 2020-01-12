@@ -17,7 +17,34 @@ Page({
    
   },
   data: {
-    search_content:''
+    search_content:'',
+    search_thing:[
+      {
+        id:1,
+        thing:'火锅'
+      },
+      {
+        id: 2,
+        thing: '美容'
+      },
+      {
+        id: 3,
+        thing: '烤肉'
+      },
+      {
+        id: 4,
+        thing: '2-3人餐'
+      },
+      {
+        id: 5,
+        thing: '中餐'
+      },
+      {
+        id: 6,
+        thing: '世茂'
+      }
+    ]
+    
   },
 
   /**

@@ -15,11 +15,11 @@ Page({
   show (e) {
     
     const cur = e.currentTarget.dataset.current;
-    // const curimg = e.currentTarget.dataset.image;
+    const curimg = e.currentTarget.dataset.image;
     //  app.globalData.currentId=cur;
     // app.globalData.image=curimg;
     wx.navigateTo({
-      url: '../goodsshow/goodsshow?id='+cur,
+      url: '../goodsshow/goodsshow?id='+cur+'&img='+curimg,
     })
   },
   onShareAppMessage() {

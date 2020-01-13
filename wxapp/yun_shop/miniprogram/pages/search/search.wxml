@@ -1,5 +1,5 @@
 <view class="bodyview">
- <view class="desc"><input class="search" placeholder="今天想去哪里吃喝玩乐"></input></view>
+ <view class="desc" bindtap="search"><input class="search" placeholder="今天想去哪里吃喝玩乐"></input></view>
  <view class="desc1">
   <view class="decs1_1">
     <view class="desc1_1_1"></view>
@@ -34,8 +34,32 @@
         <view bindtap="showactive" class="thing {{currentIndex===item.id?'active':''}}" data-index="{{item.id}}">{{item.thing}}</view>
       </block>
     </view>
-  </view>
-  <view>
-  </view>
+  </view >
+    <!-- <view wx:for="{{product}}" hidden="{{currentIndex!==2}}"> -->
+    
+    <!-- </van-card>
+    </view> -->
+    <!-- <view wx:for="{{search_thing1}}" hidden="{{currentIndex!==item.id}}">{{item.thing}}</view> -->
  </view>
+ <view class="desc2">
+    <view hidden="{{currentIndex!==3}}">
+      <block wx:for="{{products}}" >
+    <van-card
+        data-current="{{item._id}}"
+        data-image="{{item.image}}"
+        bindtap="show"
+        tag="标签"
+        title="{{item.tags}}"
+        price="{{item.price}}"
+        thumb="{{item.image}}"
+        data-id="{{item._id}}"
+    >
+    </van-card>
+</block>
+</view>
+<view wx:for="{{search_thing2}}" hidden="{{currentIndex!==item.id}}">{{item.thing}}</view>
+    <view wx:for="{{search_thing3}}" hidden="{{currentIndex!==item.id}}">{{item.thing}}</view>
+    <view wx:for="{{search_thing4}}" hidden="{{currentIndex!==item.id}}">{{item.thing}}</view>
+ </view>
+ 
 </view>

@@ -1,10 +1,13 @@
 // miniprogram/pages/search/search.js
+const db = wx.cloud.database();
+const productsCollection = db.collection("products");
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    product:[],
     search_thing1:[
       {
         id:1,
@@ -85,7 +88,10 @@ Page({
         thing: "附近的"
       }
     ],
-    currentIndex:1
+    currentIndex:1,
+    search_thing5:[
+        
+    ]
   },
   showactive(e) {
     let index = e.target.dataset.index;
@@ -95,12 +101,37 @@ Page({
     })
     
   },
-  
+  search(){
+    wx:wx.navigateTo({
+      url: '../search1/search1',
+      success: function(res) {},
+      fail: function(res) {},
+      complete: function(res) {},
+    })
+  },
+  show(e) {
+
+    const cur = e.currentTarget.dataset.current;
+    const curimg = e.currentTarget.dataset.image;
+    //  app.globalData.currentId=cur;
+    // app.globalData.image=curimg;
+    wx.navigateTo({
+      url: '../goodsshow/goodsshow?id=' + cur + '&img=' + curimg,
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    const that = this;
+    productsCollection
+      .get()
+      .then(res => {
+        that.setData({
+          products: res.data
+        })
 
+      })
   },
 
   /**

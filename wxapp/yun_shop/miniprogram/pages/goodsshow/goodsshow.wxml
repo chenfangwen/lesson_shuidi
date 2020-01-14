@@ -1,6 +1,6 @@
 <!--miniprogram/pages/goodsshow/goodsshow.wxml-->
 
-<view>
+<view wx:for="{{product}}">
 <!-- <view><van-card
        
         title="{{c}}"
@@ -8,20 +8,20 @@
 </van-card></view>
 <view class="desc"><button class="btn">加入购物车</button><button class="btn">立即购买</button></view> -->
 <view class="banner">
-      <image src="{{i}}" class="slide-image" mode="aspectFill" bindtap="previewImage"/>
+      <image src="{{item.image}}" class="slide-image" mode="aspectFill" bindtap="previewImage"/>
 </view>
 <!--商品幻灯片 end-->
 <view class="info-price clear">
-  <view class='price'>￥949 </view>
+  <view class='price'>￥{{item.price}} </view>
   <view class='fenxiang'>
       <button class='fxbtn' open-type="share">
-        <view style='height:20px;margin-top:8px;'><image src='/img/fenxiang.png' mode="aspectFill" ></image></view>
+        <view style='height:20px;margin-top:8px;'><image src='../../images/share.png' mode="aspectFill" ></image></view>
         <view>分享</view>
       </button>
   </view>
 </view>
-<view class="info-title">
-    <text>{{c}}</text>
+<view class="info-title">  
+    <text>{{item.tags}}</text>
 </view>
  
 <view style="border-top:1px solid #F6F6F6;background: #fff; padding:5px 15px;">
@@ -40,7 +40,7 @@
         <image src="/img/ico_jt.png" class="ico_img_jt"></image>
      </view>
      <view style='float:right;font-size:12px;color:#A2A2A2;'>
-        <navigator url="pjList?id={{goods_id}}">查看全部</navigator>
+        <navigator url="pjList?id={{item._id}}">查看全部</navigator>
      </view>
      <view class='clear'></view>
     </view>

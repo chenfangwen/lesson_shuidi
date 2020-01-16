@@ -27,8 +27,8 @@
 <view style="border-top:1px solid #F6F6F6;background: #fff; padding:5px 15px;">
     <view class="clearfix flex grey gridXt">
       <text class="sub"><block wx:if='{{goods_info.goods_yunfei==0.00}}'>运费：包邮</block><block wx:else>运费：{{goods_info.goods_yunfei}}</block></text>
-      <text class="sub">库存：{{goods_info.goods_kucun}}</text>
-      <text class="sub">销量：{{goods_info.goods_xiaoliang}}</text>
+      <text class="sub">库存：{{item.kucun}}</text>
+      <text class="sub">销量：{{item.sellcount}}</text>
     </view>
 </view>
 <block wx:if="{{pjDataList!=''}}">
@@ -65,7 +65,7 @@
   </view>
   <view style='padding:10px 0px;'>
       <view class="wxParse">
-         {{goods_info.content}}
+         {{item.detial}}
       </view>
     </view>
 </view>

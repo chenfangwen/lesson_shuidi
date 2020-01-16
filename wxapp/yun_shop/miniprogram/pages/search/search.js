@@ -88,18 +88,27 @@ Page({
         thing: "附近的"
       }
     ],
-    currentIndex:1,
+    currentIndex1:1,
+    currentIndex2:6,
     search_thing5:[
         
     ]
   },
-  showactive(e) {
+  showactive1(e) {
     let index = e.target.dataset.index;
    
     this.setData({
-      currentIndex: index
+      currentIndex1: index
     })
     
+  },
+  showactive2(e) {
+    let index = e.target.dataset.index;
+
+    this.setData({
+      currentIndex2: index
+    })
+
   },
   search(){
     wx:wx.navigateTo({

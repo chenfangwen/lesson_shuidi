@@ -1,6 +1,6 @@
 // miniprogram/pages/goodsshow/goodsshow.jsconst db = wx.cloud.database();
 const db = wx.cloud.database();
-const _ = db.command;
+// const _ = db.command;
 
 
 const app=getApp();

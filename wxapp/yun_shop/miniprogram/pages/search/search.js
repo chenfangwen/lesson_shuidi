@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    product:[],
+    products:[],
     search_thing1:[
       {
         id:1,
@@ -90,25 +90,102 @@ Page({
     ],
     currentIndex1:1,
     currentIndex2:6,
-    search_thing5:[
-        
-    ]
+    currentType:'全部',
+    currentSite:'全部'
   },
   showactive1(e) {
     let index = e.target.dataset.index;
-   
+    let type = e.target.dataset.type;
     this.setData({
-      currentIndex1: index
+      currentIndex1: index,
+      currentType:type
     })
-    
+    if(type=='全部'){
+      var that = this;
+      db.collection('products').get({
+        success(res) {
+          console.log('查寻成功', res.data);
+          that.setData({
+            products: res.data
+          })
+        }
+      })
+    }
+    if (this.data.currentType !== '全部'&&this.data.currentSite=='全部'){
+      var that = this;
+      db.collection('products').where({
+        type: this.data.currentType,
+      }).get({
+        success(res) {
+          console.log('查寻成功', res.data);
+          that.setData({
+            products: res.data
+          })
+        }
+      })
+    }
+    if (this.data.currentSite !== '全部'){
+      var that = this;
+      db.collection('products').where({
+        type: this.data.currentType,
+        site: this.data.currentSite
+      }).get({
+        success(res) {
+          console.log('查寻成功', res.data);
+          that.setData({
+            products: res.data
+          })
+        }
+      })
+    }
   },
   showactive2(e) {
     let index = e.target.dataset.index;
-
+    let site = e.target.dataset.site;
     this.setData({
-      currentIndex2: index
+      currentIndex2: index,
+      currentSite: site
     })
-
+    if (site == '全部') {
+      var that = this;
+      db.collection('products').where({
+        type: this.data.currentType
+      }).get({
+        success(res) {
+          console.log('查寻成功', res.data);
+          that.setData({
+            products: res.data
+          })
+        }
+      })
+    }
+    if (this.data.currentType == '全部' && this.data.currentSite !== '全部'){
+      var that = this;
+      db.collection('products').where({
+        site: this.data.currentSite
+      }).get({
+        success(res) {
+          console.log('查寻成功', res.data);
+          that.setData({
+            products: res.data
+          })
+        }
+      })
+    }
+    if (this.data.currentType !== '全部'){
+      var that = this;
+      db.collection('products').where({
+        type: this.data.currentType,
+        site: this.data.currentSite
+      }).get({
+        success(res) {
+          console.log('查寻成功', res.data);
+          that.setData({
+            products: res.data
+          })
+        }
+      })
+    }
   },
   search(){
     wx:wx.navigateTo({

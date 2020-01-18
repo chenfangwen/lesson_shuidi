@@ -146,7 +146,7 @@ Page({
       currentIndex2: index,
       currentSite: site
     })
-    if (site == '全部') {
+    if (this.data.currentSite == '全部') {
       var that = this;
       db.collection('products').where({
         type: this.data.currentType
@@ -172,7 +172,7 @@ Page({
         }
       })
     }
-    if (this.data.currentType !== '全部'){
+    if (this.data.currentType !== '全部' && this.data.currentSite !== '全部'){
       var that = this;
       db.collection('products').where({
         type: this.data.currentType,

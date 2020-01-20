@@ -17,6 +17,8 @@ Page({
                 tags: 'LMTNZD牛仔外套男士日系复古春秋水洗宽松韩版潮流修身',
                 image: 'http://g-search3.alicdn.com/img/bao/uploaded/i4/i3/672500506/O1CN01SKfAiO1FbmzUUUT7S_!!672500506.jpg_360x360Q90.jpg_.webp',
                 detial: '品牌男装，舒适好看你值得拥有',
+                type:'变美了',
+                site:'经开区',
                 kucun: 1000,
                 sellcount: 500
               },

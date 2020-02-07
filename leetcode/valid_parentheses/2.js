@@ -18,4 +18,4 @@ function isValid(s){
     }
     return sum==0 ? true:false;
 }
-console.log(isValid('()'))
+console.log(isValid('())('))

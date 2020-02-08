@@ -33,7 +33,15 @@
       }
     })
   }
-
+  const mergeRequest = async () => {
+    await request({
+      url:'http://localhost:3001/merge',
+      headers:{
+        "content-type":"application/json"
+      }
+    });
+    alert('上传成功')
+  }
   document
     .getElementById('file')
     .addEventListener('change', async (event) => {
@@ -65,7 +73,8 @@
         data:formData
       }))
       await Promise.all(requestList)
-      console.log(requestList)
+      // console.log(requestList)
+      await mergeRequest();
     })
   </script>
 </body>

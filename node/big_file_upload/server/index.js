@@ -41,7 +41,7 @@ const mergeFileChunk = async (filePath, filename, size) => {
       )
     )
   )
-  console.log('文件合并成功');
+  // console.log('文件合并成功');
   fse.rmdirSync(chunkDir);
 }
 

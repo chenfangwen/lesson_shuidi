@@ -157,6 +157,7 @@ export default {
     },
     async handleUpload (e) {
       // 大量的任务
+      // this.hashPercentage = 30;
       if (!this.container.file) return;
       this.status = Status.uploading;
 

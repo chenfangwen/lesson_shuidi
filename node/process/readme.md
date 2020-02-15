@@ -13,3 +13,10 @@
     node 是服务器端js执行的容器 node 是多进程 
 
   js 单线程 容器 浏览器
+
+
+  进程的两种方式
+  child_process fork
+  cluster fork
+  提升运行效率
+  nginx 负载均衡

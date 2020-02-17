@@ -33,13 +33,13 @@
       //props 参数管家
       console.log(props);
       // console.log(props.children)
-      let { children, type, circle, onClick, block } = props
+      let { children, type,shape, circle, onClick, block } = props
       // console.log(type);
       return (
         // <div className ="xButton ripple" >
         <div 
         onClick={onClick}
-        className = {`xButton ripple ${type} ${circle} ${block?'block':''}`} >
+        className = {`xButton ripple ${type} ${shape} ${circle} ${block?'block':''}`} >
         { children }
         </div>
       )
@@ -48,7 +48,6 @@
     // 渲染组建API
     ReactDOM.render(
       <div>
-        
         <Button>default</Button>
         <Button type="primary">primary</Button>
         <Button type="warning">warn</Button>

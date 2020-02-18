@@ -19,7 +19,7 @@ Page({
     //  app.globalData.currentId=cur;
     // app.globalData.image=curimg;
     wx.navigateTo({
-      url: '../goodsshow/goodsshow?id='+cur+'&img='+curimg,
+      url: '../goodsshow/goodsshow?id='+cur,
     })
   },
   onShareAppMessage() {

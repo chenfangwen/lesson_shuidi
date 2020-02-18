@@ -9,7 +9,18 @@
   margin-left: 20%;
   display: flex;
 }
-
+.img{
+  width: 53px;
+  height: 43px;
+}
+.shouye{
+  width: 53px;
+  height: 43px;
+}
+.center{
+  text-align: center;
+  line-height:  43px;
+}
 
 .clear{clear: both;overflow: hidden;}
 .banner{height:350px;}
@@ -63,5 +74,5 @@
 .kefu button{width:53.33px;border:none;background:none;display:block;padding:0px;margin:0px;line-height:1.5em;font-size:inherit;}
 .kefu button::after{border: none;}
 .kefu .button-hover{color:#333; background:none;}
-.kefu button .iconfont{ padding:0px;}
+.kefu button .iconfont{ text-align: center; padding:0px;}
 .icon-shoucang2{color:red;}

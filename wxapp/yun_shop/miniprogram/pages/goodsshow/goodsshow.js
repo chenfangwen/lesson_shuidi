@@ -17,8 +17,17 @@ Page({
     interval: 5000,
     duration: 1000,
     c:'',
-    i:'',
     product:[]
+  },
+  ident(){
+    wx.switchTab({
+      url:'../indent/indent'
+    })
+  },
+  buy(){
+    wx.navigateTo({
+      url:'../buy/buy?id='+this.data.c
+    })
   },
   previewImage: function (e) {
     var current = e.target.dataset.src;
@@ -33,15 +42,20 @@ Page({
       urls: imglist// 需要预览的图片http链接列表  
     })
   },
+  shouye(){
+    wx.navigateBack({
+      
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     this.setData({
-     c:options.id,
-     i:options.img
+     c:options.id
     
     });
+    // console.log(this.data.c)
     var that = this;
     db.collection('products').where({
       _id:this.data.c

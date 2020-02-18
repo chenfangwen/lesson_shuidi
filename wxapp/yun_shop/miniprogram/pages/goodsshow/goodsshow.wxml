@@ -1,12 +1,6 @@
 <!--miniprogram/pages/goodsshow/goodsshow.wxml-->
 
 <view wx:for="{{product}}">
-<!-- <view><van-card
-       
-        title="{{c}}"
-        thumb="{{i}}">
-</van-card></view>
-<view class="desc"><button class="btn">加入购物车</button><button class="btn">立即购买</button></view> -->
 <view class="banner">
       <image src="{{item.image}}" mode="aspectFill" bindtap="previewImage"/>
 </view>
@@ -36,15 +30,12 @@
   <view class='pj_box'>
     <view style="height:40px;line-height: 40px;border-bottom:1px solid #f5f5f5;">
      <view style='float:left;'>商品评价</view>
-     <view style='float:right;margin-left:2px;margin-top:-1px;'>
-        <image src="/img/ico_jt.png" class="ico_img_jt"></image>
-     </view>
      <view style='float:right;font-size:12px;color:#A2A2A2;'>
         <navigator url="pjList?id={{item._id}}">查看全部</navigator>
      </view>
      <view class='clear'></view>
     </view>
-    <block wx:for="{{pjDataList}}" wx:for-item="item" wx:key="pj">
+    <!-- <block wx:for="{{pjDataList}}" wx:for-item="item" wx:key="pj">
       <view class="list_item">
         <view class='pj_u_info clear'>
           <view class='header_img'><image src="{{item.headpic}}" mode="aspectFit"></image></view>
@@ -55,7 +46,7 @@
           {{item.content}}
         </view>
       </view>
-    </block>
+    </block> -->
 </view>
 </block>
 <!--商品详情-->
@@ -71,24 +62,45 @@
 </view>
  
 <!--底部浮动 start-->
-<view class="foot-nav mt15">
+<view class="foot-nav ">
   <view class="flex con gridXt tc">
-    <view class="fast-links mr15 flex f12">
-      <view class="sub gridYr" bindtap='shoucang'>
-        <text class="iconfont {{is_shoucang==0?'icon-shoucang1':'icon-shoucang2'}}">收藏</text>
+    <view class="shouye center" bindtap='shouye'>
+      <view class="iconfont" >首页</view>
+    </view>
+    <view class="kefu ">
+      <button open-type="contact">
+        <text class="center ">客服</text>
+       </button>
+    </view>
+    <view class="dingdan center" bindtap="ident">
+      <view class="sub gridYr">
+        <text class="iconfont ">订单</text>
+      </view>
+    </view>
+    <view class="add-cart sub f16">
+      <view class="add-cart sub f16">
+        <button class="add-cart-btn" bindtap='buy'>立即购买</button>
+      </view>
+    </view>
+    <!-- <view class="fast-links  flex ">
+      <view class="sub gridYr" bindtap='shouye'>
+        <view class="img">
+         
+          <view class="iconfont" >首页</view>
+        </view>
       </view>
       <view class="sub kefu">
        <button open-type="contact">
-        <text class="iconfont icon-lianxikefu">客服</text>
+        <text class="iconfont ">客服</text>
        </button>
       </view>
       <view class="sub gridYr">
-        <text class="iconfont icon-gouwuche">购物车</text>
+        <text class="iconfont ">订单</text>
       </view>
     </view>
     <view class="add-cart sub f16">
       <button class="add-cart-btn" bindtap='buy'>立即购买</button>
-    </view>
+    </view> -->
   </view>
 </view>
 </view>

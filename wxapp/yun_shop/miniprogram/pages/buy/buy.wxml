@@ -1,0 +1,15 @@
+<!-- miniprogram/pages/buy.wxml -->
+<view wx:for="{{product}}">
+    <view class="information">
+        <image class="img" src="{{item.image}}" />
+        <view class="text">{{item.tags}}</view>
+    </view>
+    <view class="num">
+        <view >购买数量</view>
+        <view class="numflex">
+            <view >-</view>
+            <view >1</view>
+            <view >+</view>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,27 @@
+/* miniprogram/pages/buy.wxss */
+.information{
+    display: flex;
+    height:250rpx;
+    box-shadow: 0 3px 1px rgba(100, 100, 100, 0.1);
+    /* background-color: red; */
+}
+.information image{
+    position: relative;
+    width: 150rpx;
+    margin: 50rpx;
+    height:150rpx;
+    /* background-color: blue; */
+}
+.text{
+    font-size: 14px;
+    margin-top: 50rpx;
+}
+.num{
+    display: inline-flex;
+    height: 100rpx;
+}
+.numflex{
+    display: flex;
+    margin-right: 0;
+    height: 100vh;
+}

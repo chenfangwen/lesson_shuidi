@@ -15,13 +15,13 @@
     "pages/im/im",
     "pages/im/room/room",
     "pages/member/member",
-    "pages/newshop/newshop",
     "pages/indent/indent",
     "pages/search/search",
     "pages/search1/search1",
     "pages/goodsshow/goodsshow",
-    "pages/goodsshow/pjList"
+    "pages/goodsshow/pjList",
     
+    "pages/buy/buy_suc"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -52,12 +52,6 @@
         "iconPath": "images/member.png",
         "pagePath": "pages/member/member",
         "text": "黑卡会员"
-      },
-      {
-        "selectedIconPath": "images/newshops.png",
-        "iconPath": "images/newshop.png",
-        "pagePath": "pages/newshop/newshop",
-        "text": "新店"
       },
       {
         "selectedIconPath": "images/indents.png",

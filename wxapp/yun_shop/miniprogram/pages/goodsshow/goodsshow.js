@@ -16,7 +16,7 @@ Page({
     autoplay: true,
     interval: 5000,
     duration: 1000,
-    c:'',
+    c:'1acf1de95e1fb4ec0247eccc3c19f705',
     product:[]
   },
   ident(){
@@ -51,10 +51,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-     c:options.id
-    
-    });
+    if (options.id) {
+      this.setData({
+      c:options.id
+      });
+    }
     // console.log(this.data.c)
     var that = this;
     db.collection('products').where({

@@ -1,15 +1,77 @@
 <!-- miniprogram/pages/buy.wxml -->
-<view wx:for="{{product}}">
+<view class="desc bodyview" wx:for="{{product}}">
     <view class="information">
-        <image class="img" src="{{item.image}}" />
-        <view class="text">{{item.tags}}</view>
+        <image  src="{{item.image}}" />
+        <view class="text font">{{item.tags}}</view>
     </view>
     <view class="num">
-        <view >购买数量</view>
-        <view class="numflex">
-            <view >-</view>
-            <view >1</view>
-            <view >+</view>
+        <view class="num1 font" >购买数量</view>
+        <view class="num2">
+            <view class="numpart" bindtap="decrese">-</view>
+            <view class="numpart">{{num}}</view>
+            <view class="numpart" bindtap="add" >+</view>
         </view>
+    </view>
+    <view class="num">
+        <view class="num1 font" >小计</view>
+        <view class="num2">
+            <view class="numpart1">{{money}}元</view>
+        </view>
+    </view>
+    <view class="num" hidden="{{isred}}">
+        <view class="num1 font black center" >黑卡会员</view>
+        <view class="num2">
+            <view class=" numpart2 ">-{{rednum}}元</view>
+        </view>
+    </view>
+    <view class="num">
+        <view class="num1 font" >实付金额</view>
+        <view class="num2">
+            <view class="numpart2">{{newmoney}}元</view>
+        </view>
+    </view>
+    <view class="block"></view>
+    <view>
+        <view class="member">
+            <view class="leftpart">
+                <view class=" font" >365天黑卡会员</view>
+                <view class=" font2" >赠送2张3元南昌好店无门槛红包</view>
+            </view>
+            <view class="rightpart" bindtap="member" data-id="1">
+                <view >￥99</view>
+                <image class="img" src="{{select1==1?selectimg:selectsimg}}" />
+            </view>
+        </view>
+        <view class="member" hidden="{{isHidden}}">
+            <view class="leftpart">
+                <view class=" font" >90天黑卡会员</view>
+                <view class=" font2" >赠送2张3元南昌好店无门槛红包</view>
+            </view>
+            <view class="rightpart" bindtap="member" data-id="2">
+                <view >￥29.9</view>
+                <image class="img" src="{{select2==1?selectimg:selectsimg}}" />
+            </view>
+        </view>
+        <view class="member" hidden="{{isHidden}}">
+            <view class="leftpart">
+                <view class=" font" >30天黑卡会员</view>
+                <view class=" font2" >赠送2张3元南昌好店无门槛红包</view>
+            </view>
+            <view class="rightpart" bindtap="member" data-id="3">
+                <view class="center">￥9.9</view>
+                <image class="img" src="{{select3==1?selectimg:selectsimg}}" />
+            </view>
+        </view>
+        <view class="block2 " bindtap="isShowAll" >
+            <view class="text2 font3 "> {{isAll}}</view>
+            <image mode="aspectFill"  src="{{isTop}}" />
+        </view>
+    </view>
+    <view class="con">
+        <view class="butttom1" >
+            <view class="butttom1_1">合计：</view>
+            <view class="butttom1_2">￥{{newmoney}}</view>
+        </view>
+        <view class="butttom2" bindtap="buysuc">立即支付</view>
     </view>
 </view>

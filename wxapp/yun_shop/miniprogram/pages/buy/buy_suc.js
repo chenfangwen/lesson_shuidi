@@ -1,4 +1,4 @@
-// miniprogram/pages/newshop/newshop.js
+// miniprogram/pages/buy/buy_suc.js
 Page({
 
   /**

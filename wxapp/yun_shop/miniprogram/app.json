@@ -1,6 +1,6 @@
 {
   "pages": [
-    "pages/buy/buy",
+    
     "pages/index/index",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",
@@ -16,16 +16,16 @@
     "pages/im/room/room",
     "pages/member/member",
     "pages/indent/indent",
+    "pages/buy/buy",
     "pages/search/search",
     "pages/search1/search1",
-    "pages/goodsshow/goodsshow",
     "pages/goodsshow/pjList",
-    
+    "pages/goodsshow/goodsshow",
     "pages/buy/buy_suc"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
-    "navigationBarBackgroundColor": "#f4ea2a",
+    "navigationBarBackgroundColor": "#1296db",
     "backgroundTextStyle": "light",
     "navigationBarTitleText": "云开发 QuickStart",
     "navigationBarTextStyle": "black"

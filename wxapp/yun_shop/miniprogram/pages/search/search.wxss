@@ -1,6 +1,6 @@
 .desc{
   position: relative;
-  background-color:#f4ea2a;
+  background-color:#1296db;
   top: 0;
   height:130rpx;
 }
@@ -12,7 +12,7 @@
   border-radius: 50rpx;
   margin-left: 30rpx;
   margin-right:30rpx;
-  background-color: #f9f28b;
+  background-color: #B0C4DE;
 }
 .desc1{
   position:absolute;
@@ -35,7 +35,7 @@
   width: 1vw;
   height: 80%;
   left:0;
-  background-color:yellow;
+  background-color:#1296db;
 }
 .desc1_1_2{
   position: relative;
@@ -70,7 +70,7 @@
   width: 1vw;
   height: 80%;
   left:0;
-  background-color:yellow;
+  background-color:#1296db;
 }
 .desc1_2_2{
   position: relative;

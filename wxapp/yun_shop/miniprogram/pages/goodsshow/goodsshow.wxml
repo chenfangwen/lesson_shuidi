@@ -7,12 +7,6 @@
 <!--商品幻灯片 end-->
 <view class="info-price clear">
   <view class='price'>￥{{item.price}} </view>
-  <view class='fenxiang'>
-      <button class='fxbtn' open-type="share">
-        <view style='height:20px;margin-top:8px;'><image src='../../images/share.png' mode="aspectFill" ></image></view>
-        <view>分享</view>
-      </button>
-  </view>
 </view>
 <view class="info-title">  
     <text>{{item.tags}}</text>
@@ -62,7 +56,25 @@
 </view>
  
 <!--底部浮动 start-->
-<view class="foot-nav ">
+<view class="con">
+        <view class="butttom1" >
+            <view class="butttom1_1" bindtap='shouye'>
+              <image class="img2" src="../../images/homes.png"></image>
+              <view class="text">首页</view>
+            </view>
+            <button class="butttom1_1" open-type="share">
+              <image class="img2_1" src="../../images/homes.png"></image>
+              <view class="text">分享</view>
+            </button>
+            <view class="butttom1_1" bindtap="ident">
+              <image class="img2" src="../../images/indents.png"></image>
+              <view class="text">订单</view>
+            </view>
+        </view>
+        <view class="butttom2" bindtap="buy">立即购买</view>
+</view>
+<!--底部浮动 start-->
+<!-- <view class="foot-nav ">
   <view class="flex con gridXt tc">
     <view class="shouye center" bindtap='shouye'>
       <view class="iconfont" >首页</view>
@@ -82,25 +94,9 @@
         <button class="add-cart-btn" bindtap='buy'>立即购买</button>
       </view>
     </view>
-    <!-- <view class="fast-links  flex ">
-      <view class="sub gridYr" bindtap='shouye'>
-        <view class="img">
-         
-          <view class="iconfont" >首页</view>
-        </view>
-      </view>
-      <view class="sub kefu">
-       <button open-type="contact">
-        <text class="iconfont ">客服</text>
-       </button>
-      </view>
-      <view class="sub gridYr">
-        <text class="iconfont ">订单</text>
-      </view>
-    </view>
-    <view class="add-cart sub f16">
-      <button class="add-cart-btn" bindtap='buy'>立即购买</button>
-    </view> -->
   </view>
+</view> -->
+
 </view>
-</view>
+
+

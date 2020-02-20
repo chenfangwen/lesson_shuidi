@@ -1,22 +1,110 @@
 .sec1{
-  position: relative;
+  /* position: relative; */
+  margin: 0;
+  padding: 0;
   display: flex;
   width: 100vw;
   height:200rpx;
-  background-color: yellow;
+  background-color: #1296db;
 }
 .headimg{
+  /* position: relative; */
+  display: flex;
+  position: absolute;
+  margin-top:50rpx;
+  height: 100rpx;
+  margin-left: 50rpx;
+}
+.headimg image{
   position: relative;
-  top:50rpx;
+  margin: 0;
+  padding: 0;
   height: 100rpx;
   width: 100rpx;
   border-radius: 50rpx;
-  background-color: white;
 }
 .name{
   position: relative;
-  top:50rpx;
   height: 100rpx;
   width: 150rpx;
+  margin-left:10rpx;
   text-align: center;
+  line-height: 100rpx;
+}
+.sec2{
+  position: absolute;
+  display: flex;
+  top: 180rpx;
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+  width: 690rpx;
+  height: 120rpx;
+  /* line-height: 120rpx; */
+  border-radius: 5rpx;
+  background-color: #fff;
+  /* background-color: red; */
+  /* x轴偏移 y轴偏移 虚化程度 阴影宽度 阴影颜色 */
+  box-shadow: 0 0 5px 0 #f2f2f2;
+}
+.sec2_1{
+  width: 230rpx;
+  text-align: center;
+}
+.img2{
+  width:50rpx;
+  height:50rpx;
+  margin-top: 18rpx;
+}
+.text{
+  font-size: 12px;
+}
+.sec3{
+  position: absolute;
+  top: 310rpx;
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+  width: 690rpx;
+  /* height: 300rpx; */
+  /* background-color: red; */
+}
+.sec3_1{
+  position: relative;
+  display: flex;
+  box-shadow: 0 1px 0px rgba(100, 100, 100, 0.1);
+}
+.sec3_1_1{
+  width: 345rpx;
+  height: 120rpx;
+  font-size: 14px;
+  line-height: 120rpx;
+  text-align: center;
+}
+.sec3_2{
+  position: relative;
+  /* background-color: red; */
+}
+.indent{
+  width: 690rpx;
+  display: flex;
+  font-size: 12px;
+  height: 120rpx;
+  
+  box-shadow: 0 1px 0px rgba(100, 100, 100, 0.1);
+}
+.tags{
+  width: 500rpx;
+  padding-top: 20rpx;
+  height: 100vh;
+}
+.money{
+  width: 190rpx;
+  /* line-height: 120rpx; */
+  padding-top: 20rpx;
+  margin-left: 0;
+  text-align: right;
+}
+.active{
+  color:#1296db;
+  border-bottom: 1px solid;
+  border-bottom-color: #1296db;
 }

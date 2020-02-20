@@ -1,3 +1,72 @@
 <view class="bodyview">
-  <view class="sec1"><view class="headimg"></view><view class="name">何时悦</view></view>
+  <view class="sec1">
+    <view class="headimg">
+      <image class="img" src="../../images/use.jpg"></image>
+      <view class="name">何时悦</view>
+    </view>
+  </view>
+  <view class="sec2">
+    <view class="sec2_1" bindtap="select1" data-id='1'>
+      <image class="img2" src="{{isselect1==1?'../../images/indents.png':'../../images/indent.png'}}"></image>
+      <view class="text {{isselect1==1?'active':''}}">订单</view>
+    </view>
+    <view class="sec2_1" bindtap="select1" data-id='2'>
+      <image class="img2" src="{{isselect1==2?'../../images/youhuis.png':'../../images/youhui.png'}}"></image>
+      <view class="text {{isselect1==2?'active':''}}">优惠券</view>
+    </view>
+    <view class="sec2_1" bindtap="select1" data-id='3'>
+      <image class="img2" src="{{isselect1==3?'../../images/hongbaos.png':'../../images/hongbao.png'}}"></image>
+      <view class="text {{isselect1==3?'active':''}}">红包</view>
+    </view>
+  </view>
+  <view class="sec3" >
+    <view hidden="{{isselect1!=1}}" >
+      <view class="sec3_1" >
+        <view class="sec3_1_1 {{isselect2==1?'active':''}}" bindtap="select2" data-id2="1">待使用({{}})</view>
+        <view class="sec3_1_1  {{isselect2==2?'active':''}}" bindtap="select2" data-id2="2">全部</view>
+      </view>
+      <view class="sec3_2" >
+        <view hidden="{{isselect2!=1}}">
+          <block wx:for="{{unuseindent}}" >
+            <view class="indent">
+              <view class="tags">{{item.tags}}</view>
+              <view class="money">
+                <view >* {{item.num}}</view>
+                <view >￥{{item.pay}}</view>
+              </view>
+              </view>
+          </block>
+        </view>
+        <view hidden="{{isselect2!=2}}">
+          <block wx:for="{{indent}}" >
+            <view class="indent">
+              <view class="tags">{{item.tags}}</view>
+              <view class="money">
+                <view >* {{item.num}}</view>
+                <view >￥{{item.pay}}</view>
+              </view>
+              </view>
+          </block>
+        </view>
+      </view>
+    </view>
+    
+    <view hidden="{{isselect1!=2}}" >
+      <view class="sec3_1" >
+      <view class="sec3_1_1 {{isselect2_2==1?'active':''}}" bindtap="select2_2" data-id2="1" >可使用优惠券({{}})</view>
+      <view class="sec3_1_1 {{isselect2_2==2?'active':''}}" bindtap="select2_2" data-id2="2">已使用/已过期({{}})</view>
+      </view>
+      <view class="sec3_2">显示优惠券</view>
+    </view>
+
+    <view hidden="{{isselect1!=3}}" >
+      <view class="sec3_1" >
+        <view class="sec3_1_1 {{isselect2_3==1?'active':''}}" bindtap="select2_3" data-id2="1">可使用红包({{}})</view>
+        <view class="sec3_1_1 {{isselect2_3==2?'active':''}}" bindtap="select2_3" data-id2="2">已使用/已过期({{}})</view>
+      </view>
+      <view class="sec3_2">显示红包</view>
+    </view>
+    
+  </view>
 </view>
+

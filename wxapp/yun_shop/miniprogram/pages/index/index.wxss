@@ -1,7 +1,7 @@
 
 .desc{
   position: relative;
-  background-color:#f4ea2a;
+  background-color:#1296db;
   top: 0;
   height:100rpx;
 
@@ -13,7 +13,7 @@
   border-radius: 25rpx;
   margin-left: 30rpx;
   margin-right:30rpx;
-  background-color: #f9f28b;
+  background-color: #B0C4DE;
 }
 .desc_1{
   position:absolute;

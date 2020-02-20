@@ -1,9 +1,20 @@
 /* miniprogram/pages/goodsshow/goodsshow.wxss */
 .btn{
+  /* position: absolute;
+  */
+  height: 79rpx;
+}
+input{
 
-  background-color: red;
-  display: inline-flex;
-  font-size: 16px;
+outline:none;
+
+border:none;
+
+list-style: none;
+
+}
+button::after {
+border: none;
 }
 .desc{
   margin-left: 20%;
@@ -121,5 +132,6 @@
   margin-top: 5rpx;
 }
 .text{
+  margin-top: 10rpx;
   font-size: 10px;
 }

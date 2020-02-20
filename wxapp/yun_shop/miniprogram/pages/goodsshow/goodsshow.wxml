@@ -29,18 +29,6 @@
      </view>
      <view class='clear'></view>
     </view>
-    <!-- <block wx:for="{{pjDataList}}" wx:for-item="item" wx:key="pj">
-      <view class="list_item">
-        <view class='pj_u_info clear'>
-          <view class='header_img'><image src="{{item.headpic}}" mode="aspectFit"></image></view>
-          <view class='name'>{{item.author}}</view>
-          <view class='time'>{{item.add_time}}</view>
-        </view>
-        <view class='pj_cont'>
-          {{item.content}}
-        </view>
-      </view>
-    </block> -->
 </view>
 </block>
 <!--商品详情-->
@@ -62,10 +50,13 @@
               <image class="img2" src="../../images/homes.png"></image>
               <view class="text">首页</view>
             </view>
-            <button class="butttom1_1" open-type="share">
-              <image class="img2_1" src="../../images/homes.png"></image>
+            <view class="butttom1_1">
+              <button class="btn" open-type="share">
+              <image class="img2" src="../../images/share.png"></image>
+              </button>
               <view class="text">分享</view>
-            </button>
+            </view>
+            
             <view class="butttom1_1" bindtap="ident">
               <image class="img2" src="../../images/indents.png"></image>
               <view class="text">订单</view>

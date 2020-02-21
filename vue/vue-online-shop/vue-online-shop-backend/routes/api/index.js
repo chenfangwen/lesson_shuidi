@@ -1,8 +1,9 @@
 const express = require('express');
-const router = express.Router();
+const router = express.Router(); //得到路由对象
+const manufacturerController = require('../../controller/manufacturer');
 
-router.get('/manufacturers',(req,res)=>{
-    res.send('厂家')
-})
-
+// product 1    manu 2 
+router.get('/manufacturers',manufacturerController.all) //控制器
+router.post('/manufacturers', manufacturerController.create)
+// router.get('/product')
 module.exports = router;

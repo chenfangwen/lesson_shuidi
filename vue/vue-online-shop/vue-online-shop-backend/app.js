@@ -14,7 +14,12 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-mongoose.connect('mongodb://localhost:27017/meituan')
+mongoose.connect('mongodb://localhost:27017/cfw',{useNewUrlParser:true}, function(err){
+  　　if(err){
+  　　　　console.log('Connection Error:' + err)
+  　　}else{
+  　　　　console.log('Connection success!') }
+  })
 
 app.use(logger('dev'));
 app.use(express.json());

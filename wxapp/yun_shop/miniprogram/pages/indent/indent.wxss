@@ -46,6 +46,36 @@
   /* x轴偏移 y轴偏移 虚化程度 阴影宽度 阴影颜色 */
   box-shadow: 0 0 5px 0 #f2f2f2;
 }
+.shop{
+  width:460rpx;
+  display: flex;
+}
+.shop2{
+  margin-left: 10rpx;
+}
+.shop3{
+  width: 170rpx;
+  text-align: right;
+  color: red;
+}
+.buttom1{
+  width: 450rpx;
+}
+.buttom2{
+  width: 180rpx;
+  line-height: 60rpx;
+  text-align: center;
+  font-size: 12px;
+  background-color: #1296db;
+  border-radius: 10rpx;
+}
+.buttom3{
+  width: 180rpx;
+  line-height: 60rpx;
+  text-align: right;
+  font-size: 14px;
+  color: red;
+}
 .sec2_1{
   width: 230rpx;
   text-align: center;
@@ -81,26 +111,84 @@
 }
 .sec3_2{
   position: relative;
+  margin-bottom: 0;
   /* background-color: red; */
+}
+.null{
+  margin-top: 200rpx;
+  text-align: center;
+  color:#808080;
 }
 .indent{
   width: 690rpx;
-  display: flex;
   font-size: 12px;
-  height: 120rpx;
-  
-  box-shadow: 0 1px 0px rgba(100, 100, 100, 0.1);
+  padding-top: 20rpx;
+  margin-bottom: 20rpx;
+  margin-top: 20rpx;
+  height: 360rpx;
+  /* box-shadow: 0 1px 0px rgba(100, 100, 100, 0.1); */
+  background-color: #f2f2f2;
+  border-radius: 20rpx;
+}
+.indent_1{
+  width: 630rpx;
+  display: flex;
+  margin-left: 30rpx;
+  /* margin-top: 20rpx; */
+  margin-right: 30rpx;
+  height:60rpx;
+  line-height: 60rpx;
+}
+.indent_2{
+  display: flex;
+  width: 630rpx;
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+  height:140rpx;
+}
+.indent_3{
+  display: flex;
+  width: 630rpx;
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+  height:60rpx;
+  line-height: 60rpx;
+  /* text-align: right; */
+}
+.indent_3_l{
+  width: 315rpx;
+  height: 100vw;
+  text-align: left;
+}
+.indent_3_r{
+  width: 315rpx;
+  height: 100vw;
+  text-align: right;
+  color: red;
+}
+.indent_4{
+  width: 630rpx;
+  display: flex;
+  margin-left: 30rpx;
+  margin-bottom: 20rpx;
+  margin-right: 30rpx;
+  height:60rpx;
+  line-height: 60rpx;
+  text-align: right;
+}
+.img{
+   width: 140rpx;
+    height:140rpx;
 }
 .tags{
-  width: 500rpx;
-  padding-top: 20rpx;
+  width: 330rpx;
   height: 100vh;
+  margin-left: 30rpx;
+  margin-right: 30rpx;
 }
 .money{
-  width: 190rpx;
+  width: 100rpx;
   /* line-height: 120rpx; */
-  padding-top: 20rpx;
-  margin-left: 0;
   text-align: right;
 }
 .active{

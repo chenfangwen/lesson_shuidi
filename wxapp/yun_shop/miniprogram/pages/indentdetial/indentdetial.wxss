@@ -1,0 +1,122 @@
+/* miniprogram/pages/indentdetial/indentdetial.wxss */
+.sec{
+  position: absolute;
+  top: 30rpx;
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+  width: 690rpx;
+  /* height: 300rpx; */
+  /* background-color: red; */
+}
+.indent{
+  width: 690rpx;
+  font-size: 12px;
+  margin-bottom: 20rpx;
+  padding-top: 20rpx;
+  padding-bottom: 40rpx;
+  margin-top: 20rpx;
+  /* height: 510rpx; */
+  /* box-shadow: 0 1px 0px rgba(100, 100, 100, 0.1); */
+  background-color: #f2f2f2;
+  border-radius: 20rpx;
+}
+.indent_1{
+  width: 630rpx;
+  display: flex;
+  margin-left: 30rpx;
+  margin-top: 20rpx;
+  margin-right: 30rpx;
+  height:60rpx;
+  line-height: 60rpx;
+}
+.shop{
+  width:460rpx;
+  display: flex;
+}
+.shop2{
+  margin-left: 10rpx;
+}
+.shop3{
+  width: 170rpx;
+  text-align: right;
+  color: red;
+}
+.indent_2{
+  display: flex;
+  width: 630rpx;
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+  height:140rpx;
+}
+.indent_3{
+  display: flex;
+  width: 630rpx;
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+  height:60rpx;
+  line-height: 60rpx;
+  /* text-align: right; */
+}
+.indent_3_l{
+  width: 315rpx;
+  height: 100vw;
+  text-align: left;
+}
+.indent_3_r{
+  width: 315rpx;
+  height: 100vw;
+  text-align: right;
+  color: red;
+}
+.indent_4{
+  display: flex;
+  width: 630rpx;
+  margin-left: 30rpx;
+  margin-bottom: 20rpx;
+  margin-right: 30rpx;
+  height:90rpx;
+  line-height: 90rpx;
+  text-align: right;
+}
+.indent_4_1{
+  display: flex;
+  width: 630rpx;
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+  height:90rpx;
+  line-height: 90rpx;
+  text-align: right;
+}
+.buttom1{
+  width: 430rpx;
+}
+.buttom2{
+  width: 200rpx;
+  line-height: 90rpx;
+  text-align: center;
+  font-size: 14px;
+  background-color: #1296db;
+  border-radius: 10rpx;
+}
+.buttom3{
+  width: 200rpx;
+  line-height: 90rpx;
+  text-align: right;
+  font-size: 14px;
+  color: red;
+}
+.img{
+   width: 140rpx;
+    height:140rpx;
+}
+.tags{
+  width: 330rpx;
+  height: 100vh;
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+}
+.money{
+  width: 100rpx;
+  /* line-height: 120rpx; */
+  text-align: right;
+}

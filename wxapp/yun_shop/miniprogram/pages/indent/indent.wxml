@@ -22,49 +22,71 @@
   <view class="sec3" >
     <view hidden="{{isselect1!=1}}" >
       <view class="sec3_1" >
-        <view class="sec3_1_1 {{isselect2==1?'active':''}}" bindtap="select2" data-id2="1">待使用({{}})</view>
-        <view class="sec3_1_1  {{isselect2==2?'active':''}}" bindtap="select2" data-id2="2">全部</view>
+        <view class="sec3_1_1 {{isselect2==1?'active':''}}" bindtap="select2" data-id2="1">待使用({{unusenum}})</view>
+        <view class="sec3_1_1  {{isselect2==2?'active':''}}" bindtap="select2" data-id2="2">全部({{allnum}})</view>
       </view>
       <view class="sec3_2" >
         <view hidden="{{isselect2!=1}}">
           <block wx:for="{{unuseindent}}" >
             <view class="indent">
-              <view class="tags">{{item.tags}}</view>
-              <view class="money">
-                <view >* {{item.num}}</view>
-                <view >￥{{item.pay}}</view>
+              <view class="indent_1" data-id="{{item.shopid}}" bindtap="shopdetial">
+                <view class="shop"><view class="shop1">店名</view><view class="shop2">></view></view>
+                <view class="shop3">交易成功</view>
               </view>
+              <view class="indent_2" data-indentid="{{item._id}}" bindtap="indentdetial">
+                <image src="{{item.productimg}}" class="img" mode="aspectFill"/>
+                <view class="tags">{{item.tags}}</view>
+                <view class="money">
+                  <view >￥{{item.productprice}}</view>
+                  <view >* {{item.num}}</view>
+                </view>
               </view>
+              <view class="indent_3"><view class="indent_3_l">实付款</view><view class="indent_3_r">￥{{item.pay}}</view></view>
+              <view  class="indent_4"  ><view class="buttom1"></view><button bindtap="use" data-id="{{item._id}}" class="buttom2">立即使用</button></view>
+            </view>
           </block>
+          <view hidden="{{unusenum!=0}}" class="null">暂无此类订单</view>
         </view>
         <view hidden="{{isselect2!=2}}">
           <block wx:for="{{indent}}" >
             <view class="indent">
-              <view class="tags">{{item.tags}}</view>
-              <view class="money">
-                <view >* {{item.num}}</view>
-                <view >￥{{item.pay}}</view>
+              <view class="indent_1" data-id="{{item.shopid}}" bindtap="shopdetial">
+                <view class="shop"><view class="shop1">店名</view><view class="shop2">></view></view>
+                <view class="shop3">交易成功</view>
               </view>
+              <view class="indent_2" data-indentid="{{item._id}}" bindtap="indentdetial">
+                <image src="{{item.productimg}}" class="img" mode="aspectFill"/>
+                <view class="tags">{{item.tags}}</view>
+                <view class="money">
+                  <view >￥{{item.productprice}}</view>
+                  <view >* {{item.num}}</view>
+                </view>
               </view>
-          </block>
+              <view class="indent_3"><view class="indent_3_l">实付款</view><view class="indent_3_r">￥{{item.pay}}</view></view>
+              <view hidden="{{item.isuse=='未使用'}}" class="indent_4" ><view class="buttom1"></view><view class="buttom3">已使用</view></view>
+              <view hidden="{{item.isuse!='未使用'}}" class="indent_4"  ><view class="buttom1"></view><button class="buttom2" data-id="{{item._id}}" bindtap="use">立即使用</button></view>
+            </view>
+           </block>
+        <view hidden="{{allnum!=0}}" class="null">暂无订单</view>
         </view>
+        
       </view>
     </view>
     
     <view hidden="{{isselect1!=2}}" >
       <view class="sec3_1" >
-      <view class="sec3_1_1 {{isselect2_2==1?'active':''}}" bindtap="select2_2" data-id2="1" >可使用优惠券({{}})</view>
-      <view class="sec3_1_1 {{isselect2_2==2?'active':''}}" bindtap="select2_2" data-id2="2">已使用/已过期({{}})</view>
+      <view class="sec3_1_1 {{isselect2_2==1?'active':''}}" bindtap="select2_2" data-id2="1" >可使用优惠券(0)</view>
+      <view class="sec3_1_1 {{isselect2_2==2?'active':''}}" bindtap="select2_2" data-id2="2">已使用/已过期(0)</view>
       </view>
-      <view class="sec3_2">显示优惠券</view>
+      <view class="null">暂无优惠券</view>
     </view>
 
     <view hidden="{{isselect1!=3}}" >
       <view class="sec3_1" >
-        <view class="sec3_1_1 {{isselect2_3==1?'active':''}}" bindtap="select2_3" data-id2="1">可使用红包({{}})</view>
-        <view class="sec3_1_1 {{isselect2_3==2?'active':''}}" bindtap="select2_3" data-id2="2">已使用/已过期({{}})</view>
+        <view class="sec3_1_1 {{isselect2_3==1?'active':''}}" bindtap="select2_3" data-id2="1">可使用红包(0)</view>
+        <view class="sec3_1_1 {{isselect2_3==2?'active':''}}" bindtap="select2_3" data-id2="2">已使用/已过期(0)</view>
       </view>
-      <view class="sec3_2">显示红包</view>
+      <view class="null">暂无红包</view>
     </view>
     
   </view>

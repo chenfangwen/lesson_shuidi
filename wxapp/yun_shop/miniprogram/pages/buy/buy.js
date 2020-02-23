@@ -1,5 +1,5 @@
 // miniprogram/pages/buy.js
-
+const cfclick = require('../../utils/util');
 const db = wx.cloud.database(); //云数据库
 const productsCollection = db.collection('indent'); //表 collection
 const app=getApp();
@@ -10,6 +10,7 @@ Page({
    */
   data: {
     goodid:'1acf1de95e1fb4ec0247eccc3c19f705',
+    buttonClicked:false,
     product:{},
     num:1,
     rednum:0,
@@ -128,6 +129,9 @@ Page({
     // console.log(this.data.select1,this.data.rednum,this.data.newmoney)
   },
   buysuc(){
+    // console.log(this.data.buttonClicked)
+    // console.log(cfclick)
+    cfclick.ButtonClicked(this);
     let date = new Date();
     let year = date.getFullYear();
     let month = date.getMonth();
@@ -139,6 +143,9 @@ Page({
     let pro = this.data.product[0];
       productsCollection.add({
         data:{
+          productid:pro._id,
+          productimg:pro.image,
+          productprice:pro.price,
           tags:pro.tags,
           price:pro.price,
           num:this.data.num,

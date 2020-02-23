@@ -15,9 +15,6 @@ Page({
   show (e) {
     
     const cur = e.currentTarget.dataset.current;
-    const curimg = e.currentTarget.dataset.image;
-    //  app.globalData.currentId=cur;
-    // app.globalData.image=curimg;
     wx.navigateTo({
       url: '../goodsshow/goodsshow?id='+cur,
     })
@@ -30,6 +27,7 @@ Page({
   },
   data: {
     products: [],
+    food:[],
     imgUrls:[
       "../../images/1.jpg",
       "../../images/2.jpg",
@@ -46,7 +44,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    const that=this;
+    var that=this;
     productsCollection
       .get()
       .then(res => {
@@ -55,6 +53,14 @@ Page({
         })
 
       })
+    db.collection('food').get({
+      success(res) {
+        console.log('查寻成功', res.data);
+        that.setData({
+          food: res.data
+        })
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

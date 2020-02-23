@@ -12,32 +12,39 @@ Page({
     isselect2_2: 1,
     isselect2_3: 1,
     indent: [],
-    unuseindent: []
+    unuseindent: [],
+    unusenum:1,
+    allnum:1,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  update(){
     var that = this;
     db.collection('indent').where({
-      isuse:'未使用'
+      isuse: '未使用'
     }).get({
       success(res) {
-        console.log('查寻成功', res.data);
+        // console.log('查寻成功', res.data);
         that.setData({
-          unuseindent:res.data
+          unuseindent: res.data,
+          unusenum:res.data.length
         })
       }
     })
     db.collection('indent').get({
       success(res) {
-        console.log('查寻成功', res.data);
+        // console.log('查寻成功', res.data);
         that.setData({
-          indent: res.data
+          indent: res.data,
+          allnum:res.data.length
         })
       }
     })
+  },
+  onLoad: function (options) {
+    this.update();
   },
   select1(e){
     let id = e.currentTarget.dataset.id;
@@ -65,6 +72,33 @@ Page({
       isselect2_3: id
     })
     // console.log(this.data.isselect2)
+  },
+  indentdetial(e){
+    let id = e.currentTarget.dataset.indentid;
+    // console.log(id)
+    wx.navigateTo({
+      url: '../indentdetial/indentdetial?id='+id,
+    })
+  },
+  use(e){
+    let id = e.currentTarget.dataset.id;
+    console.log(id)
+    var that = this;
+    
+    wx.cloud.callFunction({
+      name:'use',
+      data:{
+        dataId:id
+      },
+      success: function (res) {
+        if (res.result.errMsg == 'document.remove:ok') {
+          console.log('调用成功----')
+        }
+      },
+      fail:console.error
+    })
+    // this.update;   更新过早
+    setTimeout(that.update,500)
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

@@ -186,6 +186,17 @@ Page({
         }
       })
     }
+    if (this.data.currentType == '全部' && this.data.currentSite == '全部') {
+      var that = this;
+      db.collection('products').get({
+        success(res) {
+          console.log('查寻成功', res.data);
+          that.setData({
+            products: res.data
+          })
+        }
+      })
+    }
   },
   search(){
     wx:wx.navigateTo({

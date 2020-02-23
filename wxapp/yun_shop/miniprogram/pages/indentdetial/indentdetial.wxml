@@ -1,0 +1,27 @@
+<!--miniprogram/pages/indentdetial/indentdetial.wxml-->
+<view >
+  <view class="sec">
+    <block wx:for="{{indent}}" >
+    <view class="indent">
+              <view class="indent_1" data-id="{{item.shopid}}" bindtap="shopdetial">
+                <view class="shop"><view class="shop1">店名</view><view class="shop2">></view></view>
+                <view class="shop3">交易成功</view>
+              </view>
+              <view class="indent_2" data-productid="{{item.productid}}" bindtap="goodsdetial">
+                <image src="{{item.productimg}}" class="img" mode="aspectFill"/>
+                <view class="tags">{{item.tags}}</view>
+                <view class="money">
+                  <view >￥{{item.productprice}}</view>
+                  <view >* {{item.num}}</view>
+                </view>
+              </view>
+              <view class="indent_3"><view class="indent_3_l">会员</view><view class="indent_3_r">￥{{item.membernum}}</view></view>
+              <view class="indent_3"><view class="indent_3_l">会员红包</view><view class="indent_3_r">￥{{item.rednum}}</view></view>
+              <view class="indent_3"><view class="indent_3_l">实付款</view><view class="indent_3_r">￥{{item.pay}}</view></view>
+              <view hidden="{{item.isuse=='未使用'}}" class="indent_4_1" ><view class="buttom1"></view><view class="buttom3">已使用</view></view>
+              <view bindtap="delete" hidden="{{item.isuse=='未使用'}}" class="indent_4" ><view class="buttom1"></view><button class="buttom2">点击删除</button></view>
+              <view hidden="{{item.isuse!='未使用'}}" class="indent_4" ><view class="buttom1"></view><button data-id="{{item._id}}" bindtap="use" class="buttom2">立即使用</button></view>
+            </view>
+          </block>
+  </view>
+</view>

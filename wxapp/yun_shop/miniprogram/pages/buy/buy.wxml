@@ -1,15 +1,15 @@
 <!-- miniprogram/pages/buy.wxml -->
 <view class="desc bodyview" wx:for="{{product}}">
     <view class="information">
-        <image  src="{{item.image}}" />
+        <image mode="aspectFill" src="{{item.image}}" />
         <view class="text font">{{item.tags}}</view>
     </view>
     <view class="num">
         <view class="num1 font" >购买数量</view>
         <view class="num2">
-            <view class="numpart" bindtap="decrese">-</view>
+            <button class="numpart" bindtap="decrese">-</button>
             <view class="numpart">{{num}}</view>
-            <view class="numpart" bindtap="add" >+</view>
+            <button class="numpart" bindtap="add" >+</button>
         </view>
     </view>
     <view class="num">
@@ -72,6 +72,6 @@
             <view class="butttom1_1">合计：</view>
             <view class="butttom1_2">￥{{newmoney}}</view>
         </view>
-        <view class="butttom2" bindtap="buysuc">立即支付</view>
+        <button class="butttom2" bindtap="{{!buttonClicked?'buysuc':''}}">立即支付</button>
     </view>
 </view>

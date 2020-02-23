@@ -6,7 +6,6 @@
 .information{
     display: flex;
     height:250rpx;
-    
     box-shadow: 0 3px 1px rgba(100, 100, 100, 0.1);
     /* background-color: red; */
 }
@@ -70,7 +69,7 @@
 
     background-color: #f2f2f2;
     text-align: center;
-    width:70rpx;
+    width:100rpx;
     height: 60rpx;
     margin-left: 5rpx;
     line-height: 60rpx;

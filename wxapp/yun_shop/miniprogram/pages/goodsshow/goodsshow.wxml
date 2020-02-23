@@ -52,7 +52,7 @@
             </view>
             <view class="butttom1_1">
               <button class="btn" open-type="share">
-              <image class="img2" src="../../images/share.png"></image>
+                <image class="img2" src="../../images/share.png"></image>
               </button>
               <view class="text">分享</view>
             </view>
@@ -62,7 +62,7 @@
               <view class="text">订单</view>
             </view>
         </view>
-        <view class="butttom2" bindtap="buy">立即购买</view>
+        <button class="butttom2" bindtap="buy">立即购买</button>
 </view>
 <!--底部浮动 start-->
 <!-- <view class="foot-nav ">

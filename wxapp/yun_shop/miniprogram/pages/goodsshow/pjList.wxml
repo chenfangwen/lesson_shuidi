@@ -1,2 +1,6 @@
 <!--miniprogram/pages/goodsshow/pjList.wxml-->
-<text>暂无评价</text>
+
+
+<view>
+<text bindtap="updata">暂无评价</text>
+</view>

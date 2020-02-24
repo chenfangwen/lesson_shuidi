@@ -58,7 +58,7 @@ Page({
     }
     // console.log(this.data.c)
     var that = this;
-    db.collection('products').where({
+    db.collection('goods').where({
       _id:this.data.c
     }).get({
       success(res){

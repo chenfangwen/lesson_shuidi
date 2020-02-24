@@ -26,8 +26,7 @@ Page({
     }
   },
   data: {
-    products: [],
-    food:[],
+    goods:[],
     imgUrls:[
       "../../images/1.jpg",
       "../../images/2.jpg",
@@ -45,19 +44,11 @@ Page({
    */
   onLoad() {
     var that=this;
-    productsCollection
-      .get()
-      .then(res => {
-        that.setData({
-          products: res.data
-        })
-
-      })
-    db.collection('food').get({
+    db.collection('goods').get({
       success(res) {
         console.log('查寻成功', res.data);
         that.setData({
-          food: res.data
+          goods: res.data
         })
       }
     })

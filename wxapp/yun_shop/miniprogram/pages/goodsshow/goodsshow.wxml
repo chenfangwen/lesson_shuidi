@@ -2,21 +2,21 @@
 
 <view wx:for="{{product}}">
 <view class="banner">
-      <image src="{{item.image}}" mode="aspectFill" bindtap="previewImage"/>
+      <image src="{{item.basic_info.traffic_light_img_href}}" mode="aspectFill" bindtap="previewImage"/>
 </view>
 <!--商品幻灯片 end-->
 <view class="info-price clear">
-  <view class='price'>￥{{item.price}} </view>
+  <view class='price'>￥{{item.basic_info.calories_value}} </view>
 </view>
 <view class="info-title">  
-    <text>{{item.tags}}</text>
+    <text>{{item.basic_info.food_name}}</text>
 </view>
  
 <view style="border-top:1px solid #F6F6F6;background: #fff; padding:5px 15px;">
     <view class="clearfix flex grey gridXt">
-      <text class="sub"><block wx:if='{{goods_info.goods_yunfei==0.00}}'>运费：包邮</block><block wx:else>运费：{{goods_info.goods_yunfei}}</block></text>
-      <text class="sub">库存：{{item.kucun}}</text>
-      <text class="sub">销量：{{item.sellcount}}</text>
+      <text class="sub"><block wx:if='{{goods_info.goods_yunfei!=0.00}}'>免运费</block><block wx:else>运费：{{goods_info.goods_yunfei}}</block></text>
+      <text class="sub">库存：{{item.basic_info.kucun!=0?item.basic_info.kucun:'22'}}</text>
+      <text class="sub">销量：{{item.basic_info.sellcount!=0?item.basic_info.sellcount:'55'}}</text>
     </view>
 </view>
 <block wx:if="{{pjDataList!=''}}">
@@ -38,7 +38,7 @@
   </view>
   <view style='padding:10px 0px;'>
       <view class="wxParse">
-         {{item.detial}}
+         {{item.basic_info.cooking_type_detail}}
       </view>
     </view>
 </view>

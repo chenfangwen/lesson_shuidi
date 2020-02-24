@@ -1,6 +1,6 @@
 // miniprogram/pages/search/search.js
 const db = wx.cloud.database();
-const productsCollection = db.collection("products");
+const productsCollection = db.collection("goods");
 Page({
 
   /**
@@ -102,7 +102,7 @@ Page({
     })
     if(type=='全部'){
       var that = this;
-      db.collection('products').get({
+      db.collection('goods').get({
         success(res) {
           console.log('查寻成功', res.data);
           that.setData({
@@ -113,7 +113,7 @@ Page({
     }
     if (this.data.currentType !== '全部'&&this.data.currentSite=='全部'){
       var that = this;
-      db.collection('products').where({
+      db.collection('goods').where({
         type: this.data.currentType,
       }).get({
         success(res) {
@@ -126,7 +126,7 @@ Page({
     }
     if (this.data.currentSite !== '全部'){
       var that = this;
-      db.collection('products').where({
+      db.collection('goods').where({
         type: this.data.currentType,
         site: this.data.currentSite
       }).get({
@@ -148,7 +148,7 @@ Page({
     })
     if (this.data.currentSite == '全部') {
       var that = this;
-      db.collection('products').where({
+      db.collection('goods').where({
         type: this.data.currentType
       }).get({
         success(res) {
@@ -161,7 +161,7 @@ Page({
     }
     if (this.data.currentType == '全部' && this.data.currentSite !== '全部'){
       var that = this;
-      db.collection('products').where({
+      db.collection('goods').where({
         site: this.data.currentSite
       }).get({
         success(res) {
@@ -174,7 +174,7 @@ Page({
     }
     if (this.data.currentType !== '全部' && this.data.currentSite !== '全部'){
       var that = this;
-      db.collection('products').where({
+      db.collection('goods').where({
         type: this.data.currentType,
         site: this.data.currentSite
       }).get({
@@ -188,7 +188,7 @@ Page({
     }
     if (this.data.currentType == '全部' && this.data.currentSite == '全部') {
       var that = this;
-      db.collection('products').get({
+      db.collection('goods').get({
         success(res) {
           console.log('查寻成功', res.data);
           that.setData({
@@ -213,7 +213,7 @@ Page({
     //  app.globalData.currentId=cur;
     // app.globalData.image=curimg;
     wx.navigateTo({
-      url: '../goodsshow/goodsshow?id=' + cur + '&img=' + curimg,
+      url: '../goodsshow/goodsshow?id=' + cur ,
     })
   },
   /**

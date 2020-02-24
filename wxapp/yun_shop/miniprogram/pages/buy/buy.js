@@ -32,8 +32,8 @@ Page({
     var n = this.data.num+1;
     this.setData({
       num:n,
-      money:this.data.product[0].price*n,
-      newmoney: this.data.product[0].price*n+this.data.membernum-this.data.rednum
+      money: this.data.product[0].basic_info.calories_value*n,
+      newmoney: this.data.product[0].basic_info.calories_value*n+this.data.membernum-this.data.rednum
     })
     // console.log(this.data.num)
   },
@@ -42,8 +42,8 @@ Page({
       var n = this.data.num-1;
       this.setData({
         num:n,
-        money: this.data.product[0].price * n,
-        newmoney: this.data.product[0].price * n +this.data.membernum - this.data.rednum
+        money: this.data.product[0].basic_info.calories_value * n,
+        newmoney: this.data.product[0].basic_info.calories_value * n +this.data.membernum - this.data.rednum
       })
     }
     
@@ -68,11 +68,10 @@ Page({
           membernum:99
         })
       }
-      
-      let n = this.data.money-this.data.rednum;
-      this.setData({
-        newmoney:n
-      })
+      // let n = this.data.money-this.data.rednum;
+      // this.setData({
+      //   newmoney:n
+      // })
     }else if(id == '2'){
       if(this.data.select2==2){
         this.setData({
@@ -90,10 +89,10 @@ Page({
           membernum:29.9
         })
       }
-      let n = this.data.money-this.data.rednum;
-      this.setData({
-        newmoney:n
-      })
+      // let n = this.data.money-this.data.rednum;
+      // this.setData({
+      //   newmoney:n
+      // })
     }else if(id == '3'){
       if(this.data.select3==2){
         this.setData({
@@ -125,7 +124,7 @@ Page({
         isred:'true'
       })
     }
-    // console.log(this.data.membernum)
+    console.log(this.data.money, this.data.membernum, this.data.rednum)
     // console.log(this.data.select1,this.data.rednum,this.data.newmoney)
   },
   buysuc(){
@@ -144,10 +143,9 @@ Page({
       productsCollection.add({
         data:{
           productid:pro._id,
-          productimg:pro.image,
-          productprice:pro.price,
-          tags:pro.tags,
-          price:pro.price,
+          productimg: pro.basic_info.traffic_light_img_href,
+          productprice: pro.basic_info.calories_value,
+          tags: pro.basic_info.food_name,
           num:this.data.num,
           membernum:this.data.membernum,
           rednum:this.data.rednum,
@@ -203,15 +201,15 @@ Page({
       })
     }
     var that = this;
-    db.collection('products').where({
+    db.collection('goods').where({
       _id:this.data.goodid
     }).get({
       success(res){
         console.log('查寻成功',res.data);
         that.setData({
           product:res.data,
-          money:res.data[0].price,
-          newmoney:res.data[0].price
+          money: res.data[0].basic_info.calories_value,
+          newmoney: res.data[0].basic_info.calories_value
         })
       }
     })

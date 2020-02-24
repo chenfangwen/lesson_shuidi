@@ -1,8 +1,8 @@
 <!-- miniprogram/pages/buy.wxml -->
 <view class="desc bodyview" wx:for="{{product}}">
     <view class="information">
-        <image mode="aspectFill" src="{{item.image}}" />
-        <view class="text font">{{item.tags}}</view>
+        <image mode="aspectFill" src="{{item.basic_info.traffic_light_img_href}}" />
+        <view class="text font">{{item.basic_info.food_name}}</view>
     </view>
     <view class="num">
         <view class="num1 font" >购买数量</view>

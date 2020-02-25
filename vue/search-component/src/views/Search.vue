@@ -1,23 +1,21 @@
 <template>
-    <div class="search">
-        搜索结果
-        <hr/>
-        {{this.$route.query.searchData}}
-    </div>
+  <div class="search">
+  搜索结果
+  <hr/>
+  {{this.$route.query.searchData}}
+  </div>
 </template>
 
 <script>
-export default {
-    name:'Search',
-    components:{
+// @ is an alias to /src
 
-    },
-    mounted(){
-        console.log(this.$route.query)
-    }
+export default {
+  name: 'Search',
+  components: {
+    
+  },
+  mounted() {//生命周期 
+    console.log(this.$route.query.searchData);
+  },
 }
 </script>
-
-<style lang="stylus" scoped>
-
-</style>

@@ -90,7 +90,7 @@
 }
 .sec3{
   position: absolute;
-  top: 310rpx;
+  top: 350rpx;
   margin-left: 30rpx;
   margin-right: 30rpx;
   width: 690rpx;
@@ -109,9 +109,9 @@
   line-height: 120rpx;
   text-align: center;
 }
-.sec3_2{
+.sec_2{
   position: relative;
-  margin-bottom: 0;
+  height:auto;
   /* background-color: red; */
 }
 .null{
@@ -191,8 +191,13 @@
   /* line-height: 120rpx; */
   text-align: right;
 }
-.active{
+.active2{
   color:#1296db;
   border-bottom: 1px solid;
   border-bottom-color: #1296db;
+}
+.active{
+  color:red;
+  border-bottom: 1px solid;
+  border-bottom-color: red;
 }

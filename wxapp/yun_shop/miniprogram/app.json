@@ -1,6 +1,7 @@
 {
   "pages": [
-    
+    "pages/search1/search1",
+    "pages/indent/indent",
     "pages/index/index",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",
@@ -16,11 +17,9 @@
     "pages/im/room/room",
     "pages/member/member",
     "pages/buy/buy",
-    "pages/search/search",
-    "pages/search1/search1",
+    "pages/search/search",  
     "pages/goodsshow/pjList",
     "pages/goodsshow/goodsshow",
-    "pages/indent/indent",
     "pages/indentdetial/indentdetial"
   ],
   "window": {

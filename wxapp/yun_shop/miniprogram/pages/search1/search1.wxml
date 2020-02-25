@@ -1,16 +1,19 @@
 <view class="bodyview">
- <view class="desc1">
-  <view class="search"><input class="search1" placeholder="商品/店铺/新品" value="{{search_content}}"></input></view><view class="cancel"  bindtap="cancel">取消</view>
- </view>
-<view class="desc2">
+<van-search
+  value="{{ value }}"
+  placeholder="请输入搜索关键词"
+  use-action-slot
+  bind:change="onChange"
+  bind:search="onSearch"
+>
+  <view slot="action" bind:tap="onClick">搜索</view>
+</van-search>
+  <view class="desc2">
    <view class="text">热门搜索</view>
   <view class="content" >
-  <!-- <view bindtap="search" data-content="火锅">火锅</view><view bindtap="search" data-content="美容">美容</view><view data-content="烤肉" bindtap="search">烤肉</view>
-  <view data-content="2-3人餐" bindtap="search">2-3人餐</view><view data-content="中餐" bindtap="search">中餐</view><view data-content="世茂" bindtap="search">世茂</view> -->
     <block wx:for="{{search_thing}}">
-      <view bindtap="search" class="content_view" data-content="{{item.thing}}">{{item.thing}}</view>
+      <view bindtap="search2" class="content_view" data-content="{{item.thing}}">{{item.thing}}</view>
     </block>
   </view>
  </view>
-
 </view>

@@ -1,27 +1,19 @@
 // miniprogram/pages/search1/search1.js
+const data = require('../../data/data3');
+const Index = require('../../utils/indexOf.js');
 Page({
 
   /**
    * 页面的初始数据
    */
-  cancel(){
-    wx.navigateBack({
-      
-    })
-  },
-  search(e){
-    const content = e.currentTarget.dataset.content;
-    this.setData({
-      search_content: content
-    })
-   
-  },
   data: {
-    search_content:'',
-    search_thing:[
+    data: [],
+    value: "",
+    searchResult:[],
+    search_thing: [
       {
-        id:1,
-        thing:'火锅'
+        id: 1,
+        thing: '火锅'
       },
       {
         id: 2,
@@ -44,14 +36,47 @@ Page({
         thing: '世茂'
       }
     ]
-    
+  },
+  onChange(e) {
+    this.setData({
+      value: e.detail
+    });
   },
 
+  onSearch() {
+    for(let i = 0; i<this.data.data.length;i++){
+      let data = this.data.data[i].type;
+      if (Index.indexOf(data,this.data.value) && this.data.value>0){
+        this.data.searchResult.push(data)
+      }
+    }
+    console.log(this.data.searchResult)
+  },
+
+  onClick() {
+    for (let i = 0; i < this.data.data.length; i++) {
+      let data = this.data.data[i].type;
+      console.log(data)
+      if (Index.indexOf(data, this.data.value) > -1 && this.data.value > 0) {
+        this.data.searchResult.push(data)
+      }
+    }
+    console.log(this.data.searchResult)
+  },
+  search2(e){
+    const content = e.currentTarget.dataset.content;
+    this.setData({
+      value: content
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    this.setData({
+      data:data.data
+    })
+    // console.log(this.data.data)
   },
 
   /**

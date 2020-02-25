@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "van-search": "../../vant-weapp/dist/search/index"
+    },
   "navigationBarTitleText": "南昌好店_查找"
 }

@@ -1,5 +1,8 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "van-tab": "../../vant-weapp/dist/tab/index",
+    "van-tabs": "../../vant-weapp/dist/tabs/index"
+    },
   "navigationBarTitleText": "南昌好店_我的订单",
   "navigationBarBackgroundColor": "#1296db"
 }

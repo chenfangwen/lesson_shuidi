@@ -1,1 +1,66 @@
 /* miniprogram/pages/member/member.wxss */
+.sec1{
+  /* position: relative; */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  width: 100vw;
+  height:250rpx;
+  background-color: #1296db;
+}
+.headimg{
+  /* position: relative; */
+  display: flex;
+  position: absolute;
+  margin-top:50rpx;
+  height: 100rpx;
+  margin-left: 50rpx;
+  margin-right: 50rpx;
+}
+.headimg image{
+  position: relative;
+  margin: 0;
+  padding: 0;
+  height: 100rpx;
+  width: 100rpx;
+  border-radius: 50rpx;
+}
+.name{
+  position: relative;
+  height: 100rpx;
+  width: 300rpx;
+  margin-left:10rpx;
+  text-align: left;
+  font-size: 12px;
+}
+.text{
+  height: 50rpx;
+  line-height: 50rpx;
+}
+.sec2{
+  position: absolute;
+  display: flex;
+  top: 80rpx;
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+  width: 690rpx;
+  height: 300rpx;
+  /* line-height: 120rpx; */
+  border-radius: 5rpx;
+  background-color: #fff;
+  /* background-color: red; */
+  /* x轴偏移 y轴偏移 虚化程度 阴影宽度 阴影颜色 */
+  box-shadow: 0 0 5px 0 #f2f2f2;
+}
+.sec3{
+  position: absolute;
+  top: 400rpx;
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  width: 690rpx;
+  /* line-height: 120rpx; */
+  border-radius: 5rpx;
+}

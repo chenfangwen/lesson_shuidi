@@ -1,6 +1,5 @@
 // miniprogram/pages/search1/search1.js
 const data = require('../../data/data3');
-const Index = require('../../utils/indexOf.js');
 Page({
 
   /**
@@ -13,15 +12,15 @@ Page({
     search_thing: [
       {
         id: 1,
-        thing: '火锅'
+        thing: '好吃的'
       },
       {
         id: 2,
-        thing: '美容'
+        thing: '干烧猪脚'
       },
       {
         id: 3,
-        thing: '烤肉'
+        thing: '变美了'
       },
       {
         id: 4,
@@ -37,37 +36,46 @@ Page({
       }
     ]
   },
-  onChange(e) {
+  show(e) {
+
+    const cur = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '../goodsshow/goodsshow?id=' + cur,
+    })
+  },
+  onChange(event) {
     this.setData({
-      value: e.detail
+      value: event.detail
     });
+    this.onClick();
   },
-
   onSearch() {
-    for(let i = 0; i<this.data.data.length;i++){
-      let data = this.data.data[i].type;
-      if (Index.indexOf(data,this.data.value) && this.data.value>0){
-        this.data.searchResult.push(data)
-      }
-    }
-    console.log(this.data.searchResult)
+    this.onClick();
   },
-
   onClick() {
+    this.setData({
+      searchResult: []
+    })
+    let arr = [];
     for (let i = 0; i < this.data.data.length; i++) {
-      let data = this.data.data[i].type;
-      console.log(data)
-      if (Index.indexOf(data, this.data.value) > -1 && this.data.value > 0) {
-        this.data.searchResult.push(data)
+      let data = this.data.data[i];
+      if (data.type == this.data.value && this.data.value.length > 0) {
+        arr.push(data)
+      }
+      if (data.basic_info.food_name == this.data.value && this.data.value.length > 0) {
+        arr.push(data)
       }
     }
-    console.log(this.data.searchResult)
+    this.setData({
+      searchResult: arr
+    })
   },
   search2(e){
     const content = e.currentTarget.dataset.content;
     this.setData({
       value: content
-    })
+    });
+    this.onClick();
   },
   /**
    * 生命周期函数--监听页面加载
@@ -76,7 +84,6 @@ Page({
     this.setData({
       data:data.data
     })
-    // console.log(this.data.data)
   },
 
   /**

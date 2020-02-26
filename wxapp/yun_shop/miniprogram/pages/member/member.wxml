@@ -1,3 +1,20 @@
-<view>
-会员
+<view class="bodyview">
+  <view class="sec1">
+  </view>
+  <view class="sec2">
+    <view class="headimg">
+      <image class="img" src="../../images/use.jpg"></image>
+      <view class="name">
+        <view class="text">何时悦</view>
+        <view class="text">159****8739</view>
+      </view>
+      <view class="name" style="color:#1296db" >
+        已加入会员
+      </view>
+    </view>
+  </view>
+  <view class="sec3">会员推荐</view>
+  <view class="sec4">
+  
+  </view>
 </view>

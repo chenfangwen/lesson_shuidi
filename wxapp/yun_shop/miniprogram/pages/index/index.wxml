@@ -5,14 +5,14 @@
   <view class="desc1_view">
     <!-- <image src="{{}}"></image> -->
     <view class="desc1_1_view">
-      <view class="thing"><image class="img2" src="../../images/food.png"></image></view>
-      <view class="thing "><image class="img2" src="../../images/beau.png"></image></view>
+      <view bindtap="recommend" data-recommendtype="好吃的" class="thing"><image class="img2" src="../../images/food.png"></image></view>
+      <view bindtap="recommend" data-recommendtype="变美了"  class="thing "><image class="img2" src="../../images/beau.png"></image></view>
       <view class="thing "><image class="img2" src="../../images/play.png"></image></view>
       <view class="thing "><image class="img2" src="../../images/shop.png"></image></view>
     </view>
     <view class="desc1_2_view">
-      <view class="thing2 ">好吃的</view>
-      <view class="thing2 ">变美了</view>
+      <view bindtap="recommend" data-recommendtype="好吃的"  class="thing2 ">好吃的</view>
+      <view bindtap="recommend" data-recommendtype="变美了"   class="thing2 ">变美了</view>
       <view class="thing2 ">出去浪</view>
       <view class="thing2 ">捡漏专区</view>
     </view>
@@ -23,22 +23,19 @@
       <view class="thing3 "><view class="font">好店入驻</view></view>
     </view>
   </view>
-</view>
-<swiper class="desc_2" autoplay="{{true}}" interval="3000" circular="{{true}}" >
-  <block  wx:for="{{imgUrls}}"> 
-    <swiper-item class="swiper_items">
-      <image class="swiper_items" src="{{item}}"></image>
+</view >
+<swiper  class="desc_2" autoplay="{{true}}" interval="3000" circular="{{true}}" >
+  <block  wx:for="{{data1}}"> 
+    <swiper-item class="swiper_items" data-id="{{item._id}}" bindtap="show">
+      <image mode="aspectFill"  class="swiper_items" src="{{item.basic_info.traffic_light_img_href}}"></image>
     </swiper-item>
   </block>
 </swiper>
-<view class="text" ><view class="text_1">热门商圈</view><view class="text_2"><image class="img_top"  src="../../images/hot1.svg"></image></view><view class="text_3">商圈排行榜 ></view></view>
+<view class="text" ><view class="text_1">美食推荐</view><view class="text_2"><image class="img_top"  src="../../images/hot1.svg"></image></view><view class="text_3">美食排行榜 ></view></view>
 <view class="desc_3">
 <scroll-view class="scrollview"  scroll-x="{{true}}" style=" white-space:nowrap" >
-    <block wx:for="{{imgUrls}}">
-      <view class=" scroll_item_x "><image class="img"  src="{{item}}"></image></view>
-    </block>
-     <block wx:for="{{imgUrls}}">
-      <view class=" scroll_item_x "><image class="img"  src="{{item}}"></image></view>
+    <block wx:for="{{data2}}">
+      <view data-id="{{item._id}}" bindtap="show" class=" scroll_item_x "><image class="img"  src="{{item.basic_info.traffic_light_img_href}}"></image></view>
     </block>
     <view class="showmore">
       <image class="img1" src="../../images/1.png"></image>
@@ -49,7 +46,6 @@
 <view class="desc_4" >
 <block wx:for="{{goods}}">
     <van-card
-        data-current="{{item._id}}"
         data-image="{{item.basic_info.traffic_light_img_href}}"
         bindtap="show"
         tag="热卖"

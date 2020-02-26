@@ -1,0 +1,8 @@
+{
+ "usingComponents": {
+  "van-card": "../../vant-weapp/dist/card/index"
+},
+"navigationBarTitleText": "南昌好店_推荐",
+"navigationStyle": "default"
+
+}

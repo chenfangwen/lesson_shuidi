@@ -1,6 +1,6 @@
 const db = wx.cloud.database();
 const productsCollection = db.collection("products");
-
+const data = require('../../data/data3');
 const app = getApp();
 Page({
 
@@ -12,9 +12,14 @@ Page({
       url: '../search1/search1',
     })
   },
+  recommend(e){
+    let type = e.currentTarget.dataset.recommendtype;
+    wx.navigateTo({
+      url: '../recommend/recommend?type=' + type,
+    })
+  },
   show (e) {
-    
-    const cur = e.currentTarget.dataset.current;
+    const cur = e.currentTarget.dataset.id;
     wx.navigateTo({
       url: '../goodsshow/goodsshow?id='+cur,
     })
@@ -27,6 +32,8 @@ Page({
   },
   data: {
     goods:[],
+    data1:[],
+    data2:[],
     imgUrls:[
       "../../images/1.jpg",
       "../../images/2.jpg",
@@ -44,6 +51,21 @@ Page({
    */
   onLoad() {
     var that=this;
+    let arr1 = [];
+    for (let i = data.data.length-4;i<data.data.length-1;i++){
+      arr1.push(data.data[i])
+    }
+    this.setData({
+      data1: arr1
+    })
+    let arr2 = [];
+    for (let i = data.data.length - 11; i < data.data.length-5; i++) {
+      arr2.push(data.data[i])
+    }
+    console.log(arr1,arr2)
+    this.setData({
+      data2: arr2
+    })
     db.collection('goods').get({
       success(res) {
         console.log('查寻成功', res.data);

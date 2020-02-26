@@ -1,7 +1,6 @@
 {
   "pages": [
-    "pages/search1/search1",
-    "pages/indent/indent",
+    "pages/member/member",
     "pages/index/index",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",
@@ -15,12 +14,14 @@
     "pages/openapi/cloudid/cloudid",
     "pages/im/im",
     "pages/im/room/room",
-    "pages/member/member",
     "pages/buy/buy",
-    "pages/search/search",  
+    "pages/search/search",
     "pages/goodsshow/pjList",
+    "pages/search1/search1",
+    "pages/indent/indent",
     "pages/goodsshow/goodsshow",
-    "pages/indentdetial/indentdetial"
+    "pages/indentdetial/indentdetial",
+    "pages/recommend/recommend"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

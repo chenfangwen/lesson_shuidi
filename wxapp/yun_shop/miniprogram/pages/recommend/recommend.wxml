@@ -1,0 +1,16 @@
+<view class="bodyview">
+  <view class="desc_4" >
+<block wx:for="{{recommend}}">
+    <van-card
+        data-image="{{item.basic_info.traffic_light_img_href}}"
+        bindtap="show"
+        tag="热卖"
+        title="{{item.basic_info.food_name}}"
+        price="{{item.basic_info.calories_value}}"
+        thumb="{{item.basic_info.traffic_light_img_href}}"
+        data-id="{{item._id}}"
+    >
+    </van-card>
+</block>
+</view>
+</view>

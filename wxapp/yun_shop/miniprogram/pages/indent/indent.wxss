@@ -117,6 +117,7 @@
 .null{
   margin-top: 200rpx;
   text-align: center;
+  height: 500rpx;
   color:#808080;
 }
 .indent{

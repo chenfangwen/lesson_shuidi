@@ -1,0 +1,8 @@
+/* miniprogram/pages/foods/foods.wxss */
+.desc_4{
+  position: absolute;
+  top:30rpx;
+  margin-left: 30rpx;
+  width: 690rpx;
+  margin-right:30rpx;
+}

@@ -40,7 +40,9 @@
 }
 .content_view{
   height: 50rpx;
+  line-height: 50rpx;
   padding-top:10rpx;
+  font-size: 12px;
   padding-bottom:10rpx;
   padding-left:20rpx;
   padding-right:20rpx;
@@ -124,4 +126,12 @@
  color: #09BB07;
  white-space: nowrap;
  font-size: 30rpx;
+}
+.desc_4{
+  position: absolute;
+  top:150rpx;
+  margin-left: 30rpx;
+  width: 690rpx;
+  margin-right:30rpx;
+
 }

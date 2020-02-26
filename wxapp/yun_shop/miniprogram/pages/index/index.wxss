@@ -35,7 +35,7 @@
 .desc1_view{
   position: absolute;
   top:50rpx;
-  height:250rpx;
+  height:150rpx;
   width: 690rpx;
   
 }
@@ -111,13 +111,15 @@
 .desc_2{
    position: absolute;
   top:400rpx;
-  width:100vw;
   height:250rpx;
-  
+  margin-left: 30rpx;
+  width: 690rpx;
+  border-radius: 10rpx;
 }
 .swiper_items{
   height:100%;
   width: 100%;
+  border-radius: 10rpx;
 }
 .text{
   position: absolute;

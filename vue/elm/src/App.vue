@@ -11,19 +11,38 @@
       <span class="head_logo" slot="logo">ele.me</span>
     </head-top> -->
     <!--地址 -->
-    <head-top head-title="编辑地址" go-back="true">
+    <!-- <head-top head-title="编辑地址" go-back="true"> -->
       <!-- <span class="head_logo" slot="logo">ele.me</span> -->
-      <span class="edit" slot="edit">编辑</span>
-    </head-top>
+      <!-- <span class="edit" slot="edit">编辑</span> -->
+    <!-- </head-top> -->
+    <alert-tip v-if="showAlert" :alertText="alertText" @closeTip="closeTip"/>
+    <button @click="showCancel">提示退出</button>
   </div>
 </template>
 <script>
 import Header from './components/header/header';
+import AlertTip from './components/common/alertTip';
 
 export default {
+  data(){
+    return {
+      showAlert:false,
+      alertText:''
+    }
+  },
+  methods:{
+    showCancel(){
+      this.alertText="要退出吗？"
+      this.showAlert=true;
+    },
+    closeTip(){
+      this.showAlert=false;
+    }
+  },
   components: {
     // 怎么解决？
-    "head-top": Header
+    "head-top": Header,
+    "alert-tip":AlertTip
   }  
 }
 </script>

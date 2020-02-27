@@ -135,3 +135,77 @@ border: none;
   margin-top: 10rpx;
   font-size: 10px;
 }
+.text2{
+  font-size: 16px;
+}
+.record{
+  margin-left: 0;
+  width: 690rpx;
+  margin-bottom: 50rpx;
+  height: 240rpx;
+  box-shadow: 0 3px 1px rgba(100, 100, 100, 0.1);
+}
+.userinfo{
+  display: flex;
+  height: 100rpx;
+  width: 690rpx;
+}
+.userinfo image{
+  width: 80rpx;
+  height: 80rpx;
+  margin-top: 10rpx;
+  border-radius: 40rpx;
+  background-color: rgba(100, 100, 100, 0.1);
+}
+.username{
+  margin-left: 10rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+}
+.review{
+  height: 70rpx;
+  margin: 0;
+  width: 690rpx;
+  font-size: 12px;
+}
+.rating{
+  height: 70rpx;
+  margin: 0;
+  width: 690rpx;
+}
+.material{
+  position: relative;
+  margin-top: 30rpx;
+  width: 690rpx;
+  display: flex;
+  /* height: 380rpx; */
+}
+.text3{
+  width: 100rpx;
+  margin: 0;
+}
+.material_info{
+  width: 590rpx;
+  margin: 0;
+}
+.text4_1{
+  width: 590rpx;
+  height: 50rpx;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+.text4{
+  width: 590rpx;
+  height: 180rpx;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+.production_method{
+  margin-top: 50rpx;
+}
+.null{
+  height: 150rpx;
+  margin: 0;
+}

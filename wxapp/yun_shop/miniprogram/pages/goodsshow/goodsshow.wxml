@@ -12,37 +12,60 @@
     <text>{{item.basic_info.food_name}}</text>
 </view>
  
-<view style="border-top:1px solid #F6F6F6;background: #fff; padding:5px 15px;">
+<view style="border-top:1px solid #F6F6F6;background: #fff; padding:5px 15px;border-bottom:1px solid #f5f5f5;">
     <view class="clearfix flex grey gridXt">
       <text class="sub"><block wx:if='{{goods_info.goods_yunfei!=0.00}}'>免运费</block><block wx:else>运费：{{goods_info.goods_yunfei}}</block></text>
       <text class="sub">库存：{{item.basic_info.kucun!=0?item.basic_info.kucun:'22'}}</text>
       <text class="sub">销量：{{item.basic_info.sellcount!=0?item.basic_info.sellcount:'55'}}</text>
     </view>
 </view>
-<block wx:if="{{pjDataList!=''}}">
   <!--评价-->
   <view class='pj_box'>
     <view style="height:40px;line-height: 40px;border-bottom:1px solid #f5f5f5;">
-     <view style='float:left;'>商品评价</view>
+     <view style='float:left;' class="text2">商品评价</view>
      <view style='float:right;font-size:12px;color:#A2A2A2;'>
         <navigator url="pjList?id={{item._id}}">查看全部</navigator>
      </view>
-     <view class='clear'></view>
+    </view>
+    <view> 
+      <block wx:for="{{record}}">
+        <view class="record">
+          <view class="userinfo">
+            <image src="{{item.user_pic}}"></image>
+            <view class="username">{{item.user_name}}</view>
+          </view>
+          <view class="review">{{item.review}}</view>
+          <view class="rating">点赞数：{{item.rating}}</view>
+        </view>
+      </block>
     </view>
 </view>
-</block>
 <!--商品详情-->
 <view class='details_box'>
   <view style="height:40px;line-height: 40px;border-bottom:1px solid #f5f5f5;">
-     <view>商品详情</view>
+     <view class="text2" style="text-align:center">商品详情</view>
   </view>
   <view style='padding:10px 0px;'>
-      <view class="wxParse">
          {{item.basic_info.cooking_type_detail}}
-      </view>
+  </view>
+  <view class="material">
+    <view class="text3" style="color:red">食材：</view>
+    <view class="material_info">
+      <view >{{item.material_info.major_material_info}}</view>
+      <view >{{item.material_info.seasoning_info}}</view>
+      <view >{{item.material_info.supplementary_material_info}}</view>
     </view>
+  </view>
+  <view class="production_method">
+    <view style="color:red">制作步骤：</view>
+    <view>
+      <block wx:for="{{item.production_method}}">
+        <view>{{item}}</view>
+      </block>
+    </view>
+  </view>
+  <view class="null"></view>
 </view>
- 
 <!--底部浮动 start-->
 <view class="con">
         <view class="butttom1" >
@@ -64,30 +87,6 @@
         </view>
         <button class="butttom2" bindtap="buy">立即购买</button>
 </view>
-<!--底部浮动 start-->
-<!-- <view class="foot-nav ">
-  <view class="flex con gridXt tc">
-    <view class="shouye center" bindtap='shouye'>
-      <view class="iconfont" >首页</view>
-    </view>
-    <view class="kefu ">
-      <button open-type="contact">
-        <text class="center ">客服</text>
-       </button>
-    </view>
-    <view class="dingdan center" bindtap="ident">
-      <view class="sub gridYr">
-        <text class="iconfont ">订单</text>
-      </view>
-    </view>
-    <view class="add-cart sub f16">
-      <view class="add-cart sub f16">
-        <button class="add-cart-btn" bindtap='buy'>立即购买</button>
-      </view>
-    </view>
-  </view>
-</view> -->
-
 </view>
 
 

@@ -4,7 +4,7 @@
     <van-card
         data-image="{{item.basic_info.traffic_light_img_href}}"
         bindtap="show"
-        tag="热卖"
+        tag="推荐"
         title="{{item.basic_info.food_name}}"
         price="{{item.basic_info.calories_value}}"
         thumb="{{item.basic_info.traffic_light_img_href}}"

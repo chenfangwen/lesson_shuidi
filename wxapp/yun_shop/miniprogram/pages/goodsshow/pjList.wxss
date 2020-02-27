@@ -1,1 +1,45 @@
 /* miniprogram/pages/goodsshow/pjList.wxss */
+.desc{
+  position: absolute;
+  top: 0;
+  margin-left: 30rpx;
+  width: 690rpx;
+
+}
+.record{
+  margin-left: 0;
+  width: 690rpx;
+  margin-bottom: 50rpx;
+  box-shadow: 0 1px 1px rgba(100, 100, 100, 0.1);
+}
+.userinfo{
+  display: flex;
+  height: 100rpx;
+  width: 690rpx;
+}
+.userinfo image{
+  width: 80rpx;
+  height: 80rpx;
+  margin-top: 10rpx;
+  border-radius: 40rpx;
+  background-color: rgba(100, 100, 100, 0.1);
+}
+.username{
+  margin-left: 10rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+}
+.review{
+  margin: 0;
+  width: 690rpx;
+  font-size: 12px;
+}
+
+.rating{
+  height: 100rpx;
+  margin: 0;
+  text-align: right;
+  line-height: 100rpx;
+  font-size: 12px;
+  width: 690rpx;
+}

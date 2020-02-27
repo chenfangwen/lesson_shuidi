@@ -46,7 +46,7 @@
   width: 690rpx;
   height: 300rpx;
   /* line-height: 120rpx; */
-  border-radius: 5rpx;
+  border-radius: 10rpx;
   background-color: #fff;
   /* background-color: red; */
   /* x轴偏移 y轴偏移 虚化程度 阴影宽度 阴影颜色 */
@@ -61,6 +61,43 @@
   line-height: 50rpx;
   text-align: center;
   width: 690rpx;
+  color: #1296db;
+  font-size: 20px;
   /* line-height: 120rpx; */
   border-radius: 5rpx;
+}
+.sec4{
+  position: absolute;
+  top: 400rpx;
+  margin-left: 32rpx;
+  margin-right: 28rpx;
+  width: 690rpx;
+  /* line-height: 120rpx; */
+}
+.good{
+  position: relative;
+  margin-top: 100rpx;
+  margin-right: 30rpx;
+  width: 690rpx;
+  height: 700rpx;
+  box-shadow: 0 0 5px 0 #f2f2f2;
+}
+.sec4 image{
+  width: 690rpx;
+  height: 450rpx;
+  margin: 0;
+}
+.good_name{
+  height: 130rpx;
+  margin: 0;
+}
+.good_price_buy{
+  display: flex;
+  height: 120rpx;
+  line-height: 120rpx;
+}
+.good_price{
+  width: 470rpx;
+  font-size: 22px;
+  color: red;
 }

@@ -1,6 +1,15 @@
 <!--miniprogram/pages/goodsshow/pjList.wxml-->
-
-
-<view>
-<text bindtap="updata">暂无评价</text>
+<view class="bodyview">
+  <view class="desc">
+    <block wx:for="{{records}}">
+      <view class="record">
+        <view class="userinfo">
+          <image src="{{item.user_pic}}"></image>
+          <view class="username">{{item.user_name}}</view>
+        </view>
+        <view class="review">{{item.review}}</view>
+        <view class="rating"><van-icon name="good-job-o" />{{item.rating}}</view>
+      </view>
+    </block>
+  </view>
 </view>

@@ -1,18 +1,29 @@
 // miniprogram/pages/goodsshow/pjList.js
+const db = wx.cloud.database();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    records:[]
   },
   
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this;
+    db.collection('goods').where({
+      _id: options.id
+    }).get({
+      success(res) {
+        console.log('查寻成功', res.data[0].RECORDS);
+        that.setData({
+          records: res.data[0].RECORDS
+        })
+      }
+    })
   },
 
   /**

@@ -59,10 +59,14 @@ Page({
     let arr = [];
     for (let i = 0; i < this.data.data.length; i++) {
       let data = this.data.data[i];
-      if (data.type == this.data.value && this.data.value.length > 0) {
+      let a = '';
+      a = data.type;
+      let b = '';
+      b = data.basic_info.food_name;
+      if (a.indexOf(this.data.value)>-1 && this.data.value.length > 0) {
         arr.push(data)
       }
-      if (data.basic_info.food_name == this.data.value && this.data.value.length > 0) {
+      if (b.indexOf(this.data.value) > -1 && this.data.value.length > 0) {
         arr.push(data)
       }
     }

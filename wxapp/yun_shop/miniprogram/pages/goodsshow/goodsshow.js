@@ -1,5 +1,6 @@
 // miniprogram/pages/goodsshow/goodsshow.jsconst db = wx.cloud.database();
 const db = wx.cloud.database();
+const data = require('../../data/data3');
 // const _ = db.command;
 
 
@@ -17,7 +18,8 @@ Page({
     interval: 5000,
     duration: 1000,
     c:'1acf1de95e1fb4ec0247eccc3c19f705',
-    product:[]
+    product:[],
+    record:[]
   },
   ident(){
     wx.switchTab({
@@ -51,6 +53,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // let arr1 = [];
+    // for (let i = data.data.length - 4; i < data.data.length - 1; i++) {
+    //   arr1.push(data.data[i])
+    // }
+    // this.setData({
+    //   data1: arr1
+    // })
     if (options.id) {
       this.setData({
       c:options.id
@@ -62,9 +71,14 @@ Page({
       _id:this.data.c
     }).get({
       success(res){
+        let arr=[];
+        for (let i = 0; i < 3;i++){
+          arr.push(res.data[0].RECORDS[i]);
+        }
         console.log('查寻成功',res.data);
         that.setData({
-          product:res.data
+          product:res.data,
+          record:arr
         })
       }
     })

@@ -15,6 +15,14 @@
   </view>
   <view class="sec3">会员推荐</view>
   <view class="sec4">
-  
+    <block wx:for="{{data}}">
+      <view class="good" bindtap="show" data-id="{{item._id}}">
+          <image src="{{item.basic_info.traffic_light_img_href}}"></image>
+          <view class="good_name">{{item.basic_info.food_name}}</view>
+          <view class="good_price_buy">
+            <view class="good_price">￥{{item.basic_info.calories_value}}</view><view><van-button round type="info" color="linear-gradient(to right, #4bb0ff, #6149f6)">立即购买</van-button></view>
+          </view>
+      </view>
+    </block>
   </view>
 </view>

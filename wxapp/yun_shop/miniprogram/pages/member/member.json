@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "van-button": "../../vant-weapp/dist/button/index"
+  },
   "navigationBarTitleText": "南昌好店_会员中心"
 }

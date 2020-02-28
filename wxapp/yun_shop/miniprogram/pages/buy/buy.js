@@ -111,9 +111,10 @@ Page({
         })
       }
     }
-    let n = this.data.money+this.data.membernum-this.data.rednum;
+    console.log(this.data.money, this.data.membernum, this.data.rednum)
+    
       this.setData({
-        newmoney:n
+        newmoney: this.data.product[0].basic_info.calories_value * this.data.num + this.data.membernum - this.data.rednum
       })
     if(this.data.rednum==10){
       this.setData({
@@ -124,7 +125,7 @@ Page({
         isred:'true'
       })
     }
-    console.log(this.data.money, this.data.membernum, this.data.rednum)
+    
     // console.log(this.data.select1,this.data.rednum,this.data.newmoney)
   },
   buysuc(){
@@ -162,15 +163,17 @@ Page({
         icon: 'success',
         duration: 2000
       })
+    }, 1000)
+    setTimeout(function(){
       wx.switchTab({
-        url:'../indent/indent',
+        url: '../indent/indent',
         success() {
           var page = getCurrentPages().pop();
           if (page == undefined || page == null) return;
           page.onLoad();
         }
       })
-    }, 1000)
+    },2000)
      
   },
   isShowAll(){

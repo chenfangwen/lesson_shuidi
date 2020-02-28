@@ -29,7 +29,6 @@ Page({
         var page = getCurrentPages().pop();
         if(page == undefined || page == null) return;
         page.onLoad();
-        // console.log('刷新')
       }
     })
   },

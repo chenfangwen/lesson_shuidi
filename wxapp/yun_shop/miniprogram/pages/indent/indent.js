@@ -13,8 +13,8 @@ Page({
     isselect2_3: 1,
     indent: [],
     unuseindent: [],
-    unusenum:1,
-    allnum:1,
+    unusenum:0,
+    allnum:0,
   },
 
   /**
@@ -29,7 +29,7 @@ Page({
         // console.log('查寻成功', res.data);
         that.setData({
           unuseindent: res.data,
-          unusenum:res.data.length
+          unusenum: res.data.length
         })
       }
     })
@@ -38,13 +38,35 @@ Page({
         // console.log('查寻成功', res.data);
         that.setData({
           indent: res.data,
-          allnum:res.data.length
+          allnum: res.data.length
         })
+        console.log(that.data.unusenum);
       }
     })
   },
   onLoad: function (options) {
-    this.update();
+    var that = this;
+    db.collection('indent').where({
+      isuse: '未使用'
+    }).get({
+      success(res) {
+        // console.log('查寻成功', res.data);
+        that.setData({
+          unuseindent: res.data,
+          unusenum: res.data.length
+        })
+      }
+    })
+    db.collection('indent').get({
+      success(res) {
+        // console.log('查寻成功', res.data);
+        that.setData({
+          indent: res.data,
+          allnum: res.data.length
+        })
+        console.log(that.data.unusenum);
+      }
+    })
   },
   select1(e){
     let id = e.currentTarget.dataset.id;

@@ -3,6 +3,7 @@
  * @param {*} data 
  */
 export const login = (data) => {
+  console.log(data)
     return new Promise((resolve, reject) => {
       // http://127.0.0.1:8080/  跨项目 
       // 跨机房 跨域了吗？

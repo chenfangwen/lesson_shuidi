@@ -1,62 +1,76 @@
 <template>
   <div id="app">
-    <div class="">computed:</div>
-    <input type="text" :value="num1" >
-    <input type="text" :value="num2" >
-    <input type="text" :value="addnum" >
-    <hr/>
-    <div class="">methods:</div>
-    <input type="text" v-model="num5" >
-    <input type="text" v-model="num6" >
-    <input type="text" :value="add()" >
-    <hr/>
-    <div class="">watch:</div>
-    <input type="text" v-model="num3" >
-    <input type="text" v-model="num4" >
-    <input type="text" :value="addnum2" >
+    <p>Original message: "{{ message }}"</p>
+    <p>Computed reversed message: "{{ reversedMessage }}"</p>
+    <p>Capitalized {{message | capitalize}}</p>
+    <div id="watch-example">
+      <p>
+        Ask a yes/no question:
+        <input v-model="question">
+      </p>
+      <p>{{answer}}</p>
+    </div>
   </div>
 </template>
 
 <script>
+// import HelloWorld from './components/HelloWorld.vue'
+import _ from 'lodash';
+import axios from 'axios';
+// console.log(_.debounce);
 export default {
   name: 'App',
-  components: {
+  filters: {
+    capitalize(word) {
+      return word.toUpperCase()
+    }
   },
-  data(){
+  data() {
     return {
-      num1:10,
-      num2:20,
-      num3:20,
-      num4:20,
-      addnum2:40,
-      num5:22,
-      num6:33
+      message: 'Hello',
+      question: '',
+      answer: 'I cannot give you an answer until you ask a question!'
     }
   },
-  computed:{
-    addnum:function(){
-      return parseInt(this.num1)+parseInt(this.num2)
+  computed: {
+    // 计算属性的 getter
+    reversedMessage: function () {
+      // `this` 指向 vm 实例
+      return this.message.split('').reverse().join('')
     }
   },
-  watch:{
-    num3:function(newvalue){
-      this.num3 = newvalue;
-      this.later_add();
-    },
-    num4:function(newvalue){
-      this.num4 = newvalue;
-      this.later_add();
+  watch: {
+    question: function(newQuestion, oldQuestion) {
+      this.answer = 'Waiting for you to stop typing...'
+      this.debouncedGetAnswer()
     }
   },
-  methods:{
-    later_add(){
-      setTimeout(() => {
-        this.addnum2 = parseInt(this.num3) + parseInt(this.num4)
-      }, 2000);
-    },
-    add(){
-      return parseInt(this.num5)+parseInt(this.num6)
+  methods: {
+    debouncedGetAnswer() {
+      console.log('aaa');
+    }, 
+    getAnswer() {
+      if (this.question.indexOf('?') === -1) {
+        this.answer = 'Questions usually contain a question mark. ;'
+        return
+      }
+      this.answer = 'Thinking...'
+      axios
+        .get('https://yesno.wtf/api')
+        .then(response => {
+          this.answer = _.capitalize(response.data.answer) 
+        })
+        .catch(error => {
+          this.answer = 'Error! Could not reach the API. ' + error
+        })
     }
+  },
+  created: function() {
+    // console.log(_.debounce);
+    this.debouncedGetAnswer = _.debounce(this.getAnswer, 500)
+  },
+  components: {
+    // HelloWorld
   }
 }
 </script>

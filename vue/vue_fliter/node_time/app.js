@@ -15,7 +15,7 @@ mongoose.connect(config.mongodb);
 app.use(bodyParser.json()) //post  get  next   req res next 
 app.use(bodyParser.urlencoded({ extended: true}))
 
-app.use('/todo', todo);
+app.use('/', todo);
 
 app.listen(config.port, () => {
   console.log(`listening on port ${config.port}`);

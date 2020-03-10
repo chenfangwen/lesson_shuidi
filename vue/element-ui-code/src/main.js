@@ -17,7 +17,7 @@ const components = [
 // //封装了成为全局组件的细节 
 const install = function(Vue) {
   components.forEach(component => {
-    console.log(component);
+    // console.log(component);
     //Vue.component vue 语法中， 可以全局引入组件的api 
     // Vue.component(component.name, component)
     component.install(Vue)

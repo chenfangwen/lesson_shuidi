@@ -10,7 +10,7 @@
     >
     </el-alert> -->
     <carousel>
-    <carousel-item v-for="item in 4" :key="item">{{item}}</carousel-item>
+    <carousel-item v-for="item in 4" :key="item"><div class="">{{item}}</div></carousel-item>
     </carousel>
   </div>
 </template>

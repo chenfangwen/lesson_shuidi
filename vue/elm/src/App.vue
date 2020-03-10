@@ -17,6 +17,7 @@
     <!-- </head-top> -->
     <alert-tip v-if="showAlert" :alertText="alertText" @closeTip="closeTip"/>
     <button @click="showCancel">提示退出</button>
+    <x-button type="primary">按钮</x-button>
   </div>
 </template>
 <script>

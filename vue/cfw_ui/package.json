@@ -1,0 +1,37 @@
+{
+  "name": "cfw_ui",
+  "version": "0.1.1",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lib": "vue-cli-service build --target lib --name cfw_ui --dest lib packages/index.js"
+  },
+  "description": "初次在npm上发布组件库。。。",
+  "keywords": [
+    "component",
+    "components",
+    "design",
+    "framework",
+    "frontend",
+    "vue",
+    "vue-component",
+    "ui",
+    "Button"
+  ],
+  "homepage": "https://github.com/chenfangwen/lession_shuidi/vue/cfw_ui",
+  "license": "MIT",
+  "dependencies": {
+    "core-js": "^3.6.4",
+    "vue": "^2.6.11"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^4.2.0",
+    "@vue/cli-service": "^4.2.0",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ],
+  "main": "lib/cfw_ui.umd.min.js"
+}

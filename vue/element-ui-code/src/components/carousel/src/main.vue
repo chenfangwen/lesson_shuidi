@@ -67,7 +67,7 @@ export default {
   methods: {
     updateItems() {
       // console.log('-------')
-      // console.log(this.$children);// 子组件
+      console.log(this.$children);// 子组件
       // nb
       this.items = this.$children.filter(child => child.$options.name === 'CarouselItem')
     }

@@ -77,6 +77,7 @@ export default new Vuex.Store({
       console.log(arguments);
       const tag = evt.target.value;
       // console.log(tag);
+      // console.log(this.$root)
       api
         .fetchUsersByTag(tag, (users) => {
           context.commit('setUsers', users)

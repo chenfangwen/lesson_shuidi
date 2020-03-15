@@ -14,10 +14,12 @@ const userSchema = new Schema({
     }
   },
   "tags": [
-    {type: String}
+    {type: String, index:true}
   ],
   "name": { type: String }
 })
+
+// userSchema
 
 const User = mongoose.model('User', userSchema);
 module.exports = User

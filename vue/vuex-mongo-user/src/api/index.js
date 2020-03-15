@@ -49,27 +49,38 @@
 //     "name": "衷从海"
 //   }
 // ]
+import axios from "axios"
 export default {
   fetchUsers(cb) {
     // setTimeout(() => {
     //   cb(_users);
     // }, 1000)
-    fetch('/api/users')
-      .then(data => data.json())
-      .then(data => {
-        console.log(data, '----api');
-        cb(data)
-      })
-      .catch(err => {
-        cb(err)
+    // fetch('/api/users')
+    //   .then(data => data.json())
+    //   .then(data => {
+    //     console.log(data, '----api');
+    //     cb(data)
+    //   })
+    //   .catch(err => {
+    //     cb(err)
+    //   })
+    axios.get('api/users')
+      .then(res => {
+        console.log(res);
+        cb(res.data)
       })
   },
   fetchUsersByTag(tag, cb) {
-    fetch(`/api/users/tag/${tag}`)
-    .then(data => data.json())
-    .then(data => {
-      console.log(data, '----api_tag');
-      cb(data)
-    })
+    // fetch(`/api/users/tag/${tag}`)
+    // .then(data => data.json())
+    // .then(data => {
+    //   console.log(data, '----api_tag');
+    //   cb(data)
+    // })
+    axios.get(`/api/users/tag/${tag}`)
+      .then(res => {
+        console.log(res);
+        cb(res.data)
+      })
   }
 }

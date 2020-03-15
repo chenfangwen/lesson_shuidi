@@ -106,6 +106,7 @@ export default {
   },
   mounted() { //使用生命周期取数据
     this.fetchUsers();
+    console.log(this.$root,"----")
     // ajax  二层   TCP 三次握手 安全
     // 派发动作
     // this.$store.dispatch('fetchUsers');

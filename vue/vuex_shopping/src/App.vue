@@ -20,11 +20,18 @@
                     </router-link>
                 </div>
             </div>
+            <!-- <img src="./images/airPods.jpg"/> -->
+            <!-- <list/> -->
     <router-view />
   </div>
 </template>
 <script>
+    // import list from "./views/list.vue"
     export default {
+        name: 'App',
+        components: {
+            // list
+        },
         data(){
             return {
                 user: this.$store.state.username
@@ -39,7 +46,7 @@
             }
         },
         mounted(){
-            console.log(this.$router)
+            console.log(window.localStorage.getItem('username'),this.user,this.$store.state.username)
         }
     }
 </script>

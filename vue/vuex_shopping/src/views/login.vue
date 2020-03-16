@@ -82,7 +82,10 @@
             //获取路由中的参数
             if(this.$route.params.loginStatus === 'logout'){
                 window.localStorage.clear();
+                
                 this.$store.commit('getLoginStatus', false);
+                this.$store.commit('getUsername', '');
+                console.log("清空成功",window.localStorage.getItem('username'),this.$store.state.username)
                 return;
             }
             const loginStatus = this.$store.state.loginStatus;

@@ -23,7 +23,8 @@ export default  new Vuex.Store({
         colors: state => {
             const colors = state.productList.map(item => item.color);
             return util.getFilterArray(colors);
-        }
+        },
+        username: state => state.username
     },
     //mutations只能以同步方式
     mutations: {
@@ -64,6 +65,9 @@ export default  new Vuex.Store({
         },
         getLoginStatus(state, flag){
             state.loginStatus = flag;
+        },
+        getUsername(state,name){
+            state.username = name
         }
     },
     actions: {

@@ -10,5 +10,5 @@ var toHex = function(num) {
     }
     return res
 };
-toHex(-3)
+toHex(48)
 

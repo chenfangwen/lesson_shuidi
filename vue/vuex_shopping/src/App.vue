@@ -11,7 +11,7 @@
                     </router-link>
                 </div>
                 <div class="header-menu">
-                        {{user}}
+                        {{username}}
                 </div>
                 <div class="header-menu">
                     <router-link to="/login/logout"
@@ -27,6 +27,7 @@
 </template>
 <script>
     // import list from "./views/list.vue"
+    import {mapGetters} from 'vuex'
     export default {
         name: 'App',
         components: {
@@ -34,10 +35,12 @@
         },
         data(){
             return {
-                user: this.$store.state.username
+                // user: this.$store.state.username
             }
         },
         computed: {
+            ...mapGetters(['username']),
+            // user(){return this.$store.getters.username},
             cartList(){
                 return this.$store.state.cartList;
             },
@@ -47,6 +50,9 @@
         },
         mounted(){
             console.log(window.localStorage.getItem('username'),this.user,this.$store.state.username)
+            if(window.localStorage.getItem('username')==null){
+                this.$router.replace("/login")
+            }
         }
     }
 </script>

@@ -38,7 +38,9 @@
                 </span>
             </div>
         </div>
-        <Product v-for="item in filteredAndOrderedList" :info="item" :key="item.id"></Product>
+        <div class="product1">
+            <Product v-for="item in filteredAndOrderedList" :info="item" :key="item.id"></Product>
+        </div>
         <div class="product-not-found"
              v-show="!filteredAndOrderedList.length">暂无相关商品</div>
     </div>
@@ -134,6 +136,10 @@
         },
         mounted(){
             //初始化时通过Vuex actions获取商品列表信息
+            if(window.localStorage.getItem('username')==null){
+                window.alert('请先完成登录');
+                this.$router.replace("/login")
+            }
             this.$store.dispatch('getProductList');
         }
     }
@@ -164,6 +170,9 @@
         background: #f2352e;
         border: 1px solid #f2352e;
         color: #fff;
+    }
+    .product1{
+       /* margin: 16px; */
     }
     .product-not-found{
         text-align: center;

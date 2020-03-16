@@ -135,6 +135,12 @@
             handleDelete(index){
                 this.$store.commit('deleteCart', this.cartList[index].id);
             }
+        },
+        mounted(){
+            if(window.localStorage.getItem('username')==null){
+                window.alert('请先完成登录');
+                this.$router.replace("/login")
+            }
         }
     }
 </script>

@@ -9,6 +9,9 @@ body{
     background: #f8f8f9;
 }
 .header{
+    position: sticky;
+    width: 100vw;
+    top:0;
     height: 48px;
     line-height: 48px;
     background: rgba(0,0,0,.8);

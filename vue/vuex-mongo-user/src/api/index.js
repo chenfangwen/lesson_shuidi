@@ -51,7 +51,7 @@
 // ]
 import axios from "axios"
 export default {
-  fetchUsers(cb) {
+  async fetchUsers() {
     // setTimeout(() => {
     //   cb(_users);
     // }, 1000)
@@ -64,11 +64,26 @@ export default {
     //   .catch(err => {
     //     cb(err)
     //   })
-    axios.get('api/users')
-      .then(res => {
-        console.log(res);
-        cb(res.data)
+        // let data = []
+        // await axios.get('api/users')
+        // .then(res=>{
+        //   // console.log(res.data)
+        //   data = res.data
+        // })
+        // return new Promise ((resolve,reject)=>{ resolve(data)});
+      return await new Promise ((resolve,reject)=>{
+        axios.get('api/users')
+          .then(res=>{
+          console.log(res)
+          resolve(res.data);
+          })
       })
+   
+      // .then(res => {
+      //   // console.log(res);
+      //   // cb(res.data)
+      // })
+    
   },
   fetchUsersByTag(tag, cb) {
     // fetch(`/api/users/tag/${tag}`)

@@ -16,16 +16,17 @@ const User = require('../models/user.js');
 // 	if (err) return console.error(err);
 // 	console.log(users);
 // })
-User // mongoose 
-    .find({tags: 'love_chenfangwen'},(err, users) => {
-      if (err) return console.error(err);
-      console.log('喜欢陈方闻的是：'+users[0].name);
-    })
+// User // mongoose 
+//     .find({tags: 'love_chenfangwen'},(err, users) => {
+//       if (err) return console.error(err);
+//       console.log('喜欢陈方闻的是：'+users[0].name);
+//     })
 
 user.get('/', async(req, res) => {
   User // mongoose 
     .find({})
     .exec((err, concats) => {
+      // console.log(concats)
       res.json(concats);
     })
 })
@@ -35,8 +36,8 @@ user.get('/tag/:tag', async(req, res) => {
   // console.log(tag, 'node');
   User
     .find({tags: tag})
-    .exec((err, users) => {
-      res.json(users)
+    .exec((err, concats) => {
+      res.json(concats)
     })
 
 })

@@ -66,15 +66,16 @@ export default new Vuex.Store({
   actions: { // 写入状态的第一步
     // 更api 通信的地方`
     fetchUsers(context) {
-      api
-        .fetchUsers((users)=> {
-          // console.log(users);
-          // 写入state,   严格一些 写一个条子 流程来
-          context.commit('setUsers', users)
-        })
+      api.fetchUsers().then(data=>{
+        context.commit('setUsers', data)
+      })
+      
+        // ((users)=> {
+        //   // console.log(users);
+        //   // 写入state,   严格一些 写一个条子 流程来
     },
     queryTag(context, evt) {
-      console.log(arguments);
+      // console.log(arguments);
       const tag = evt.target.value;
       // console.log(tag);
       // console.log(this.$root)

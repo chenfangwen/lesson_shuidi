@@ -5,6 +5,7 @@ import store from './store'
 Vue.config.productionTip = false
 
 new Vue({
-  store,
+  // router,
+  store, //数据管理
   render: h => h(App)
 }).$mount('#app')

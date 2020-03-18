@@ -9,6 +9,10 @@ const getters = {
 const mutations = {
     setProducts(state,products){
         state.all = products
+    },
+    decrementProductInventory(state,{id}){
+        const product = state.all.find(item => item.id === id)
+        product.inventory--;
     }
 }
 const actions = {

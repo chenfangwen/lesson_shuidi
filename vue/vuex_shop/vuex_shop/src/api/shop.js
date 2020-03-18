@@ -28,5 +28,10 @@ export default {
     // return new Promise((resolve, reject)=> {
 
     // })
+  },
+  buyProducts(products,cb,errorCb){
+    setTimeout(() => {
+      (Math.random() > 0.5)?cb():errorCb();
+    },1000)
   }
 }

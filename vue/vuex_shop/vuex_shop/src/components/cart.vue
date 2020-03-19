@@ -6,7 +6,7 @@
         <div class="">
             <ul>
                 <li v-for="(item,index) in products" :key="index">
-                    {{item.title}}{{"    "+item.price}}*{{item.quantity}}
+                    {{item.title}}--{{item.price}}*{{item.quantity}}
                 </li>
             </ul><br>
             Total:{{total}}<br>
@@ -21,7 +21,7 @@ import {mapState,mapGetters} from "vuex"
 export default {
     computed:{
         ...mapState({
-            items:(state) => state.cart.items,
+            // items:(state) => state.cart.items,
             checkOutStatus:(state) => state.cart.checkOutStatus
         }),
         ...mapGetters('cart',{
@@ -30,7 +30,7 @@ export default {
         })
     },
     created() {
-        console.log(this.$store.state.cart,this.$store.state.products)
+        // console.log(this.$store.state.cart,this.$store.state.products)
     },
     methods:{
         checkout(products){

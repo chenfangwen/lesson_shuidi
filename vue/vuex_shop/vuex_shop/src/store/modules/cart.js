@@ -58,7 +58,7 @@ const actions = {
     },
     checkout({commit},products){
         const saveCartItems = [...state.items]  //state.items
-        commit('setCheckOutStatus',null)
+        // commit('setCheckOutStatus',null)
         commit('setCartItems',{items:[]})
         shop.buyProducts(
             products,

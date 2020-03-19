@@ -10,5 +10,5 @@ var toHex = function(num) {
     }
     return res
 };
-toHex(48)
+toHex(16*16*3+3*16+2)
 

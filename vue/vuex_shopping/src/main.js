@@ -9,7 +9,7 @@ import store from './store'
 // console.log(router)
 
 
-//跳转前设置title
+// 跳转前设置title
 // router.beforeEach((to, from, next) => {
 //     window.document.title = to.meta.title;
 //     next();

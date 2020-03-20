@@ -1,6 +1,7 @@
 <template>
 <div id="home_page">
   <!-- 首页组件化， PC 页面比较长 -->
+  <login/>
   <navigation_bar>
   </navigation_bar>
   <main_navigation>
@@ -36,9 +37,10 @@
 </div>
 </template>
 <script>
+import Login from '../components/common_components/sign_on_up/login.vue'
 const path = require('path') // require commonJS
 const files = require.context(
-  '@/components/home_page', false,
+  '../components/home_page', false,
    /\.vue$/)
 const modules = {}
 files.keys().forEach(key => {
@@ -48,12 +50,12 @@ files.keys().forEach(key => {
   // console.log(files(key).default)
   modules[name] = files(key).default
 })
+modules['login'] = Login
 
 console.log(modules);
 
-console.log(files);
+// console.log(files);
 export default {
   components: modules
-
 }
 </script>

@@ -79,14 +79,14 @@ const actions = {
     change_message (context, message) {
         context.commit('change_message', message)
     },
-    change_user_info (context) {
-        loginApi.get_user_info().then((response) => {
-            context.commit('change_user_info', response.data)
-            if (!cookies.get('userId')) {
-                cookies.set('userId', response.data.id)
-            }
-        })
-    },
+    // change_user_info (context) {
+    //     loginApi.get_user_info().then((response) => {
+    //         context.commit('change_user_info', response.data)
+    //         if (!cookies.get('userId')) {
+    //             cookies.set('userId', response.data.id)
+    //         }
+    //     })
+    // },
     change_user_info_by_data (context, data) {
         context.commit('change_user_info', data)
     },

@@ -2,11 +2,9 @@
 <template>
     <transition name="login_background_transition">
         <div class="login_div"
-             v-show="show_login_dialog"
         >
             <transition name="login_dialog_transition">
                 <div class="login_dialog_div"
-                     v-show="show_login_dialog"
                 >
                     <div class="nav_bar">
                         <div class="close_dialog_div">
@@ -64,28 +62,28 @@ export default {
         })
     },
     watch: {
-        message: function (newMessage) {
-            if (newMessage) {
-                this.change_warning_message(newMessage)
-                this.change_login_message('')
-                this.change_warning_bar_style_class('alert')
-            }
-        },
-        sign_on: function (newState) {
-            console.log(newState)
-            if (newState === true) {
-                this.change_user_info()
-            }
-        }
+        // message: function (newMessage) {
+        //     if (newMessage) {
+        //         this.change_warning_message(newMessage)
+        //         this.change_login_message('')
+        //         this.change_warning_bar_style_class('alert')
+        //     }
+        // },
+        // sign_on: function (newState) {
+        //     console.log(newState)
+        //     if (newState === true) {
+        //         this.change_user_info()
+        //     }
+        // }
     },
     methods: {
         ...mapActions({
             change_show_state: 'loginState/change_show_state',
             change_on_up_state: 'loginState/change_on_up_state',
-            change_user_info: 'loginState/change_user_info',
-            change_login_message: 'loginState/change_message',
-            change_warning_message: 'warningBar/change_message',
-            change_warning_bar_style_class: 'warningBar/change_warning_bar_style_class'
+            // change_user_info: 'loginState/change_user_info',
+            // change_login_message: 'loginState/change_message',
+            // change_warning_message: 'warningBar/change_message',
+            // change_warning_bar_style_class: 'warningBar/change_warning_bar_style_class'
         })
     }
 }

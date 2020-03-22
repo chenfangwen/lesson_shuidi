@@ -1,9 +1,17 @@
 <template>
   <div id="app">
+    <player/>
     <router-view/>
   </div>
 </template>
-
+<script>
+import player from './components/player.vue'
+export default {
+  component:{
+    player
+  }
+}
+</script>
 <style>
 *{
   margin: 0;

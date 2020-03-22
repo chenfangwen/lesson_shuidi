@@ -1,8 +1,10 @@
 <template>
   <div class="home">
     <div class="nav">
-      <div class="input"><input  type="search" v-model="searchValue"/></div>
-      <img @click="search" class="search_img" src="../assets/search.png" alt="">
+      <div class="search">
+        <div class="input"><input @change="search"  type="search" v-model="searchValue"/></div>
+        <img @click="search" class="search_img" src="../assets/search.png" alt="">
+      </div>
     </div>
     <div class="music_list">
       <ol>
@@ -12,14 +14,13 @@
         </li>
       </ol>
     </div>
-    <div class="info">
-     
-      <div ><img class="vatoar" :src="artistsImg1v1Url" alt=""></div>
+    <div class="info" v-show="ifShow">
+      <div class="avator"><img class="vatoar" :src="cur_music_pic" alt=""></div>
       <div class="name">
-        <span style="font-weight: 600;">歌曲：</span>{{cur_music.name}}<br>
-        <span style="font-weight: 600;">歌手：</span>{{artistsNmae}}
+        <div class="left" style="font-weight: 600;">歌曲：{{cur_music.name}}</div>
+        <div class="left" style="font-weight: 600;">歌手：{{artistsNmae}}</div>
       </div>
-      <audio controls autoplay="autoplay" :src='"http://music.163.com/song/media/outer/url?id="+cur_music.id+".mp3"'></audio>
+      <audio class="audio" loop controls autoplay="autoplay" :src='"http://music.163.com/song/media/outer/url?id="+cur_music.id+".mp3"'></audio>
     </div>
   </div>
 </template>
@@ -38,16 +39,15 @@ export default {
   },
   computed:{
     ...mapState({
-        cur_music:(state) => state.cur_music
+        cur_music:(state) => state.cur_music,
+        cur_music_pic:(state) => state.cur_music_pic
     }),
+    ifShow(){
+      return this.cur_music!=''?true:false;
+    },
     artistsNmae(){
       if( this.cur_music.artists){
         return this.cur_music.artists[0].name;
-      }
-    },
-    artistsImg1v1Url(){
-      if( this.cur_music.artists){
-        return this.cur_music.artists[0].img1v1Url;
       }
     }
   },
@@ -93,21 +93,34 @@ export default {
 </script>
 
 <style  scoped>
+.home{
+  background-color: #f2f3f4;
+  margin: 0;
+  padding: 0;
+}
 .nav{
   position: relative;
-  display: flex;
+  text-align: center;
+  /* display: flex; */
   top: 0;
   width: 100vw;
   height: 40px;
 }
+.search{
+  width: 50vw;
+  margin-left: 50vw;
+  /* text-align: right; */
+  display: flex;
+}
 .input{
   position: relative;
+  margin-left: 150px;
   margin-top: 10px;
   height: 20px;
 }
 .search_img{
   position: relative;
-  margin-right: 0;
+  /* margin-right: 0; */
   margin-top: 10px;
   height: 20px;
   width: 20px;
@@ -123,14 +136,30 @@ export default {
   margin-bottom: 50px;
 }
 .info{
+  background-color: #fff;
   position: fixed;
   display: flex;
   bottom: 0;
   height: 50px;
 }
+.avator{
+  width: 15vw;
+}
 .vatoar{
   width: 50px;
   height: 50px;
   border-radius: 25px;;
+}
+.name{
+  width: 35vw;
+  /* margin-left: 20px; */
+}
+.left{
+  text-align: left;
+}
+.audio{
+  /* background-color: #fff; */
+  width: 48vw;
+  /* margin-left: 20px; */
 }
 </style>

@@ -7,7 +7,7 @@ const dataList = {
         "_id|+1": 1,     //自增
         "name": "@cname",
         "orderDate":"@datetime",
-        "status":"created",
+        "status|1": ['created', 'completed', 'canceled'],
         "shippingFee":"@float(0,8,0,2)",
         "total":"@float(8,100,0,2)"
     }]

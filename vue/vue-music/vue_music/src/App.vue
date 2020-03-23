@@ -1,14 +1,20 @@
 <template>
   <div id="app">
     <player/>
-    <router-view/>
+    <m_header/>
+    <keep-alive>
+      <router-view/>
+    </keep-alive>
   </div>
 </template>
 <script>
 import player from './components/player.vue'
+import m_header from './components/m-header.vue'
+console.log(m_header)
 export default {
-  component:{
-    player
+  components:{
+    player,
+    m_header
   }
 }
 </script>
@@ -37,4 +43,5 @@ export default {
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
 </style>

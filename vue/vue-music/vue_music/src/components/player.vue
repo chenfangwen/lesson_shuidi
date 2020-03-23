@@ -1,79 +1,78 @@
 <template>
-    <transition name="normal" >
-      <div class="normal-player" v-show="true" @touchstart.once="firstPlay">
-        <div class="background">
-          <!-- <transition name="filterR">
-          <div class="filterR" v-show="currentShow === 'lyric'"></div>
-          </transition> -->
-          <div class="filter"></div>
-          <img :src="cur_misic.image" width="100%" height="100%">
+  <div class="player">
+    <transition>
+      <div class="info" v-show="ifShow">
+        <div class="avator"><img class="vatoar" :src="cur_music_pic" alt=""></div>
+        <div class="name">
+          <div class="left" style="font-weight: 600;">歌曲：{{cur_music.name}}</div>
+          <div class="left" style="font-weight: 600;">歌手：{{artistsNmae}}</div>
         </div>
-        <div class="top">
-          <div class="back" @click="back">
-            <i class="fa fa-angle-down"></i>
-          </div>
-          <h1 class="title" v-html="cur_misic.name"></h1>
-          <h2 class="subtitle" v-html="cur_misic.singer"></h2>
-        </div>
-        <div class="middle" @click="changeMiddle">
-          <transition name="middleL">
-            <div class="middle-l" v-show="currentShow === 'cd'">
-              <div class="cd-wrapper">
-                <div class="cd" :class="cdCls" >
-                  <img :src="cur_misic_pic" class="image">
-                </div>
-              </div>
-            </div>
-          </transition>
-          <transition name="middleR">
-            <scroll class="middle-r" ref="lyricList" v-show="currentShow === 'lyric'" :data="currentLyric && currentLyric.lines">
-              <div class="lyric-wrapper">
-                <div class="currentLyric" v-if="currentLyric">
-                  <p ref="lyricLine" class="text" :class="{'current': currentLineNum === index}"
-                    v-for="(line, index) in currentLyric.lines" :key="line.key">
-                    {{line.txt}}
-                  </p>
-                </div>
-                  <p class="no-lyric" v-if="currentLyric === null">{{upDatecurrentLyric}}</p>
-              </div>
-            </scroll>
-          </transition>
-        </div>
-        <div class="bottom">
-          <div class="progress-wrapper">
-            <span class="time time-l">{{format(currentTime)}}</span>
-            <div class="progress-bar-wrapper">
-              <progress-bar :percent="percent" @percentChangeEnd="percentChangeEnd" @percentChange="percentChange"></progress-bar>
-            </div>
-            <span class="time time-r">{{format(duration)}}</span>
-          </div>
-          <div class="operators">
-            <div class="icon i-left" >
-              <i class="iconfont mode" :class="iconMode" @click="changeMode"></i>
-            </div>
-            <div class="icon i-left" >
-              <i class="iconfont icon-prev" @click="prev"></i>
-            </div>
-            <div class="icon i-center" >
-              <i class="iconfont" @click="togglePlaying" :class="playIcon"></i>
-            </div>
-            <div class="icon i-right" >
-              <i class="iconfont icon-test" @click="next"></i>
-            </div>
-            <div class="icon i-right">
-              <i class="iconfont"  @click="toggleFavorite(cur_misic)" :class="getFavoriteIcon(cur_misic)"></i>
-            </div>
-          </div>
-        </div>
+        <audio class="audio" loop controls autoplay="autoplay" :src='"http://music.163.com/song/media/outer/url?id="+cur_music.id+".mp3"'></audio>
       </div>
     </transition>
+  </div>
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+// @ is an alias to /src
+// import HelloWorld from '@/components/HelloWorld.vue'
+import {mapState,mapActions} from 'vuex'
 export default {
-    computed:{
-        ...mapGetters(['cur_misic','cur_music_pic'])
+  name: 'Player',
+  data(){
+    return {
     }
+  },
+  computed:{
+    ...mapState({
+        cur_music:(state) => state.cur_music,
+        cur_music_pic:(state) => state.cur_music_pic
+    }),
+    ifShow(){
+      return this.cur_music!=''?true:false;
+    },
+    artistsNmae(){
+      if( this.cur_music.artists){
+        return this.cur_music.artists[0].name;
+      }
+    }
+  },
+  components: {
+    // HelloWorld
+  },
+  methods:{
+  }
 }
 </script>
+
+<style scoped>
+.info{
+   z-index: 150;
+  background-color: rgba(255, 255, 255, 0.85);
+  position: fixed;
+  display: flex;
+  bottom: 0;
+  height: 50px;
+}
+.avator{
+  width: 15vw;
+}
+.vatoar{
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;;
+}
+.name{
+  width: 35vw;
+  /* margin-left: 20px; */
+}
+.left{
+  text-align: left;
+}
+.audio{
+  /* background-color: #fff; */
+  width: 48vw;
+  /* margin-left: 20px; */
+}
+</style>
+

@@ -1,0 +1,48 @@
+<template>
+  <div class="header">
+    <h1 class="text">VMUSICJIN</h1>
+    <router-link to="/user" class="mine" tag="div">
+     <div class="">我的</div>
+    </router-link>
+    <router-link to="/search" class="search" tag="div">
+      <div class="">
+        <img  class="search_img" src="../assets/search.png" alt="">
+      </div>
+    </router-link>
+  </div>
+</template>
+
+<style lang="stylus" scoped>
+.header {
+  position: relative;
+  height: 44px;
+  width: 100%;
+  text-align: center;
+  background: rgb(212, 68, 57);
+  .text {
+    line-height: 44px;
+    font-weight: bold;
+    font-size  14px
+    color: rgb(241, 241, 241);
+    letter-spacing: 3px;
+  }
+  .mine {
+    position: absolute;
+    line-height 44px
+    top: -1.5px;
+    left: 0;
+  }
+  .search {
+    position: absolute;
+    top: 0;
+    right: 2px;
+    .search_img{
+      position: relative;
+      /* margin-right: 0; */
+      margin-top 11px;
+      height: 20px;
+      width: 20px;
+    }
+  }
+}
+</style>

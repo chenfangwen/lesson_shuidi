@@ -1,33 +1,12 @@
 <template>
-  <div class="home">
-    <div class="nav">
-      <div class="search">
-        <div class="input"><input @change="search"  type="search" v-model="searchValue"/></div>
-        <img @click="search" class="search_img" src="../assets/search.png" alt="">
-      </div>
-    </div>
-    <div class="music_list">
-      <ol>
-        <li @click="getCur_music(item)" class="music_item" v-for="(item, index) in musicsList" :key="index">
-          <span style="font-weight: 600;">歌曲：</span>{{ item.name }} <br />
-          <span style="font-weight: 600;">歌手：</span>{{ item.artists[0].name }}<br />
-        </li>
-      </ol>
-    </div>
-    <div class="info" v-show="ifShow">
-      <div class="avator"><img class="vatoar" :src="cur_music_pic" alt=""></div>
-      <div class="name">
-        <div class="left" style="font-weight: 600;">歌曲：{{cur_music.name}}</div>
-        <div class="left" style="font-weight: 600;">歌手：{{artistsNmae}}</div>
-      </div>
-      <audio class="audio" loop controls autoplay="autoplay" :src='"http://music.163.com/song/media/outer/url?id="+cur_music.id+".mp3"'></audio>
-    </div>
+  <div class="recommend">
+    
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+// import HelloWorld from '@/components/HelloWorld.vue'
 import {mapState,mapActions} from 'vuex'
 export default {
   name: 'Home',
@@ -52,7 +31,7 @@ export default {
     }
   },
   components: {
-    HelloWorld
+    // HelloWorld
   },
   methods:{
     ...mapActions(['getCur_music']),
@@ -134,32 +113,5 @@ export default {
   width: 100vw;
   height: 50px;
   margin-bottom: 50px;
-}
-.info{
-  background-color: #fff;
-  position: fixed;
-  display: flex;
-  bottom: 0;
-  height: 50px;
-}
-.avator{
-  width: 15vw;
-}
-.vatoar{
-  width: 50px;
-  height: 50px;
-  border-radius: 25px;;
-}
-.name{
-  width: 35vw;
-  /* margin-left: 20px; */
-}
-.left{
-  text-align: left;
-}
-.audio{
-  /* background-color: #fff; */
-  width: 48vw;
-  /* margin-left: 20px; */
 }
 </style>

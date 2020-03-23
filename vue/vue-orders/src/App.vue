@@ -126,7 +126,7 @@ export default {
       })
     },
     handleCurrentChange(page) {
-      // console.log(page);
+      console.log(page);
       this.page = page;
       this.getOrders();
     }

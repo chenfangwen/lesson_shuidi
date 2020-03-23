@@ -40,6 +40,8 @@ Mock.mock('/api/orders', 'post', (params) => {
   console.log(page, limit);
 
   return { 
+    // page,
+    // total, 
     total,
     result: dataList.slice((page -1) * limit, page*limit)
   }

@@ -108,34 +108,30 @@ export default {
       ]
     }
   },
-  methods:{
-    getOrders(){
-      Axios.get('/api/orders', {
-        params: {
-          limit: this.limit,
-          page: this.page
-        }
-      })
-      .then(res => {
-        console.log(res);
-        this.list = res.data.result
-        this.total = res.data.total
-        setTimeout(() => {
-          this.listLoading = false
-        }, 1000)
-      })
-    },
-    handleCurrentChange(page) {
-      // console.log(page);
-      this.page = page;
-      this.getOrders();
-    }
-  },
   mounted() {
     // setTimeout(() => {
     //   this.listLoading = false
     // }, 1000)
-    this.getOrders()
+    Axios.get('/api/orders', {
+      params: {
+        limit: this.limit,
+        page: this.page
+      }
+    })
+    .then(res => {
+      console.log(res);
+      this.list = res.data.result
+      this.total = res.data.total
+      setTimeout(() => {
+        this.listLoading = false
+      }, 1000)
+    })
+    
+  },
+  methods: {
+    handleCurrentChange(page) {
+      console.log(page);
+    }
   }
 }
 </script>

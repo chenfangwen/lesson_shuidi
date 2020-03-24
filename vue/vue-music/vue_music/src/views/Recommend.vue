@@ -9,9 +9,12 @@
       </van-swipe>
     </div>
     <div class="recommendList">
-      <div class="img" v-for="(item,index) in playlists" :key="index">
+      <!-- <div class="img" v-for="(item,index) in playlists" :key="index">
         <img :src="item.picUrl" alt="">
-      </div>
+      </div> -->
+      <van-grid :column-num="3">
+        <img src="" alt="">
+      </van-grid>
     </div>
     <router-view/>
   </div>

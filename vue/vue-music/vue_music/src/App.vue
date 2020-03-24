@@ -2,6 +2,7 @@
   <div id="app">
     <player/>
     <m_header/>
+    <tab/>
     <keep-alive>
       <router-view/>
     </keep-alive>
@@ -10,11 +11,12 @@
 <script>
 import player from './components/player.vue'
 import m_header from './components/m-header.vue'
-console.log(m_header)
+import Tab from './components/tab.vue'
 export default {
   components:{
     player,
-    m_header
+    m_header,
+    Tab
   }
 }
 </script>

@@ -32,7 +32,7 @@
     position: absolute;
     line-height 44px
     top: -1.5px;
-    left: 0;
+    left: 10px;
     .mine_img{
       position: relative;
       /* margin-right: 0; */
@@ -44,7 +44,7 @@
   .search {
     position: absolute;
     top: 0;
-    right: 2px;
+    right: 10px;
     .search_img{
       position: relative;
       /* margin-right: 0; */

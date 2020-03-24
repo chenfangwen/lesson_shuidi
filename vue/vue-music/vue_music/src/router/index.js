@@ -16,7 +16,16 @@ const Banner = (resolve) => {
     resolve(module)
   })
 }
-
+const Rank = (resolve) => {
+  import('../views/Rank.vue').then((module) => {
+    resolve(module)
+  })
+}
+const Singer = (resolve) => {
+  import('../views/Singer.vue').then((module) => {
+    resolve(module)
+  })
+}
 Vue.use(VueRouter)
 
 const routes = [
@@ -49,6 +58,22 @@ const routes = [
     meta: {
       keepAlive: true,
       title: '音乐搜索'
+     }
+  },
+  {
+    path: '/rank',
+    component: Rank,
+    meta: {
+      keepAlive: true,
+      title: '音乐排行'
+     }
+  },
+  {
+    path: '/singer',
+    component: Singer,
+    meta: {
+      keepAlive: true,
+      title: '歌手排行'
      }
   }
 ]

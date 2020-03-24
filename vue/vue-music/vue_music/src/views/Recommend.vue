@@ -1,6 +1,6 @@
 <template>
   <div class="recommend">
-    <tab/>
+    <div class="red"></div>
     <div class="swiper">
       <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
         <van-swipe-item v-for="(item,index) in banners" :key="index" @click="getbanner(item)">
@@ -8,14 +8,17 @@
         </van-swipe-item>
       </van-swipe>
     </div>
+    <div class="recommendList">
+      <div class="img" v-for="(item,index) in playlists" :key="index">
+        <img :src="item.picUrl" alt="">
+      </div>
+    </div>
     <router-view/>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue'
-import Tab from '../components/tab.vue'
+
 import API2 from '../api/search'
 import {mapState,mapActions} from 'vuex'
 import API from "../api/recommend"
@@ -23,7 +26,8 @@ export default {
   name: 'Home',
   data(){
     return {
-      banners:[]
+      banners:[],
+      playlists:[]
     }
   },
   computed:{
@@ -33,7 +37,6 @@ export default {
     })
   },
   components: {
-    Tab
   },
   methods:{
     ...mapActions(['getCur_music']),
@@ -55,6 +58,11 @@ export default {
                 }
             })
         }
+    },
+    getplaylist(item){
+      this.$router.push({
+        path:`recommend/${item.targetId}&10`
+      })
     }
   },
   mounted(){
@@ -62,6 +70,11 @@ export default {
     .then(res=>{
       console.log(res.data)
       this.banners = res.data.banners
+    })
+    API.getRecommendList()
+    .then(res=>{
+      console.log(res.data.result)
+      this.playlists = res.data.result;
     })
   }
 }
@@ -72,14 +85,20 @@ export default {
   background-color: #f2f3f4;
   margin: 0;
   padding: 0;
+  .red{
+    height 100px
+    background-color #d44439
+  }
   .swiper{
-    width 100vw
-    .my-swipe{
+    position absolute
+    top 85px
+    width: 98%;
+    margin: 0 1%;
+    border-radius: 10px;
+    overflow: hidden;
+    .my-swipe .van-swipe-item {
     }
   }
-  
 }
-.my-swipe .van-swipe-item {
-  height: 200px;
-}
+
 </style>

@@ -3,11 +3,12 @@
     <tab/>
     <div class="swiper">
       <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
-        <van-swipe-item v-for="(item,index) in banners" :key="index">
+        <van-swipe-item v-for="(item,index) in banners" :key="index" @click="getbanner(item)">
           <img :src="item.picUrl" alt="">
         </van-swipe-item>
       </van-swipe>
     </div>
+    <router-view/>
   </div>
 </template>
 
@@ -15,6 +16,7 @@
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue'
 import Tab from '../components/tab.vue'
+import API2 from '../api/search'
 import {mapState,mapActions} from 'vuex'
 import API from "../api/recommend"
 export default {
@@ -35,6 +37,25 @@ export default {
   },
   methods:{
     ...mapActions(['getCur_music']),
+    getbanner(item){
+      console.log(item)
+      if(item.targetType==10){
+          this.$router.push({
+            path:`recommend/${item.targetId}&${item.targetType}`
+          })
+      }
+      if(item.targetType == 1){
+            API2.getSongDetail(item.targetId)
+            .then(res=>{
+                console.log(res.data)
+                // this.music = res.data.songs
+                if(res.data.songs[0]){
+                    // this.getMusicList(res.data.songs)
+                    this.getCur_music(res.data.songs[0])
+                }
+            })
+        }
+    }
   },
   mounted(){
     API.getBanner()

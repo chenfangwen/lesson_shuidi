@@ -11,6 +11,11 @@ const Search = (resolve) => {
     resolve(module)
   })
 }
+const Banner = (resolve) => {
+  import('../views/Banner.vue').then((module) => {
+    resolve(module)
+  })
+}
 
 Vue.use(VueRouter)
 
@@ -23,9 +28,19 @@ const routes = [
     path: '/recommend',
     name: 'Recommend',
     component: Recommend,
+    children: [
+      {
+        path: ':id&:type',
+        component: Banner,
+      }
+    ],
     meta: {
       keepAlive: true,
-      title: '音乐推荐'
+      title: '音乐推荐',
+      meta: {
+        // keepAlive: true,
+        title: '热门音乐'
+       }
      }
   },
   {

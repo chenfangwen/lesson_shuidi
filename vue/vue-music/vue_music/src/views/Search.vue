@@ -8,20 +8,7 @@
     <div class="firstSinger" v-if="ifSinger">
       <img class="singer_img" :src="firstSinger.picUrl" alt=""><div class="name">歌手:{{firstSinger.name}}</div>
     </div>
-    <div class="music_list">
-      <div  @click="getCur_music(item)" class="music_item" v-for="(item, index) in musicsList" :key="index">
-        <div class="music_item_box">
-          <div class="song">{{ item.name }}</div>
-          <div class="singer">{{ item.artists[0].name }}</div>
-        </div>
-      </div>
-      <!-- <ol>
-        <li @click="getCur_music(item)" class="music_item" v-for="(item, index) in musicsList" :key="index">
-          <span style="font-weight: 600;">歌曲：</span>{{ item.name }} <br />
-          <span style="font-weight: 600;">歌手：</span>{{ item.artists[0].name }}<br />
-        </li>
-      </ol> -->
-    </div>
+    <music-list/>
   </div>
 </template>
 
@@ -30,25 +17,23 @@
 import API from "../api/search"
 import {mapState,mapActions} from 'vuex'
 import searchBox from '../components/searchBox.vue'
+import musicList from '../components/musicList.vue'
 export default {
   name: 'Home',
   data(){
     return {
       searchValue:'',
-      musicsList:[],
       firstSinger:''
     }
   },
   computed:{
     ...mapState({
         cur_music:(state) => state.cur_music,
-        cur_music_pic:(state) => state.cur_music_pic
+        cur_music_pic:(state) => state.cur_music_pic,
+        musicsList:(state) => state.musicsList
     }),
     ifSinger(){
       return this.firstSinger!=''?true:false;
-    },
-    ifShow(){
-      return this.cur_music!=''?true:false;
     },
     artistsNmae(){
       if( this.cur_music.artists){
@@ -58,15 +43,17 @@ export default {
   },
   components: {
     // HelloWorld
+    musicList,
     searchBox
   },
   methods:{
-    ...mapActions(['getCur_music']),
+    ...mapActions(['getCur_music','getMusicList']),
         search: function(query) {
             API.searchResult(query)
             .then(res=>{
-                // console.log(res.data)
-                this.musicsList = res.data.result.songs;
+                console.log(res.data)
+                // this.musicsList = res.data.result.songs;
+                this.getMusicList(res.data.result.songs) 
             })
             API.getSearchSinger(query)
             .then(res=>{
@@ -131,45 +118,5 @@ export default {
             padding 0
         }
     }
-    .music_list{
-        position: relative;
-        background-color: #f2f3f4;
-        /* margin-top: 50px; */
-        .music_item{
-            position: relative;
-            // background-color: #f2f3f4;
-            width: 97vw;
-            height: 47px;
-            margin-left 1.5%
-            text-align left 
-            border-bottom: 1px solid #e4e4e4;
-            .music_item_box{
-              position: relative;
-              margin-top  10px
-              height 40px
-              margin-bottom 7px
-              .song{
-                font-size 14px;
-                font-weight 500
-                height 20px
-                padding-top  2px
-                padding-bottom 2px
-              }
-              .singer{
-                font-size 11px
-                color: #757575;
-                height 18px
-                font-weight 500
-                padding-top 2px
-                padding-bottom 2px
-              }
-            }
-        }
-    }
 }
-
-
-
-
-
 </style>

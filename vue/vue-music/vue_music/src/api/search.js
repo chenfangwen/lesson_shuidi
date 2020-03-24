@@ -23,6 +23,11 @@ export default{
       
         return axios.get(url)
     },
+    getAlbumDetail (id) {
+        const url = "/api" + `/album?id=${id}`
+      
+        return axios.get(url)
+    },
     getSearchHot (id) {
         const url = "/api" + `/search/hot`
       

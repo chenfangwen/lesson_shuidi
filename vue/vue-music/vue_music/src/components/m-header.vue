@@ -2,7 +2,9 @@
   <div class="header">
     <h1 class="text">VMUSICJIN</h1>
     <router-link to="/user" class="mine" tag="div">
-     <div class="">我的</div>
+     <div class="">
+       <img  class="mine_img" src="../assets/mine.png" alt="">
+     </div>
     </router-link>
     <router-link to="/search" class="search" tag="div">
       <div class="">
@@ -31,6 +33,13 @@
     line-height 44px
     top: -1.5px;
     left: 0;
+    .mine_img{
+      position: relative;
+      /* margin-right: 0; */
+      margin-top 11px;
+      height: 20px;
+      width: 20px;
+    }
   }
   .search {
     position: absolute;

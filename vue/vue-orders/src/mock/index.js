@@ -97,21 +97,36 @@ for (let i = 0;  i < count; i++) {
 Mock.mock(new RegExp('/vue-element-admin/article/list'), 'get', (config) => {
   console.log(config);
   // list 根据params 分页
-  const { page = 1, limit = 20, title } = param2Obj(config.url)
-  // console.log(page, limit);
+  const { page = 1, limit = 20, title , author , sort } = param2Obj(config.url)
+  // console.log(page,author,sort);
   // title , 重要性 ， 时间， 状态查询
   let mockList = list.filter(item => {
     // 条件一个个加，
-    if (title && item.title.indexOf(title) < 0) return false;
+    if (title && item.title.indexOf(title) < 0 || author && item.author.indexOf(author)<0) return false;
+    // if (author && item.author.indexOf(author)<0 ) return false
     // .......
     return true;
   });
+  // const a = [3,2,4,1]
+  // console.log(a.sort((a,b)=> b-a))
 
   const pageList =  mockList.filter((item, index) => 
   index < limit *page && index >= limit *(page-1));//某页数据 
   return {
-    list:pageList, 
-    total: mockList.lengths
+    list:pageList.sort((a,b)=>{ 
+      let s = true
+      if(sort=="true"){
+        s = true
+      }else{
+        s = false
+      }
+      if(s){
+        return parseInt(a.id)-parseInt(b.id)
+      }else{
+        return parseInt(b.id)-parseInt(a.id)
+      }
+    }), 
+    total: mockList.length
   }
 })
 

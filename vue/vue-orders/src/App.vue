@@ -59,12 +59,13 @@
         </template>
       </el-table-column>
     </el-table>
+    <!-- .sync双向绑定 -->
     <el-pagination
       :current-page.sync="page"
       :total="total"
       :pageSize="limit"
       layout="total, prev, pager, next"
-      @current-change="handleCurrentChange">
+      @current-change="getOrders">
     </el-pagination>
   </div>
 </template>
@@ -110,7 +111,7 @@ export default {
   },
   methods:{
     getOrders(){
-      Axios.get('/api/orders', {
+      Axios.post('/api/orders', {
         params: {
           limit: this.limit,
           page: this.page
@@ -124,11 +125,6 @@ export default {
           this.listLoading = false
         }, 1000)
       })
-    },
-    handleCurrentChange(page) {
-      console.log(page);
-      this.page = page;
-      this.getOrders();
     }
   },
   mounted() {

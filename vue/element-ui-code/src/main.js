@@ -26,7 +26,8 @@ const install = function(Vue) {
 //Vue.use  会调用对象的install方法
 install(Vue) //安装一下 
 
-
+import ElementUI from 'element-ui'
+Vue.use(ElementUI)
 Vue.config.productionTip = false
 // Vue.use(ElmentUI);
 

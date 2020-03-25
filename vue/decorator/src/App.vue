@@ -45,6 +45,19 @@
 // import HelloWorld from './components/HelloWorld.vue'
 import { MessageBox } from 'element-ui';
 
+function confirmation(target,name,descriptor){
+  let oldValue = descriptor.value;
+  console.log(oldValue)
+  descriptor.value = function(...args) {
+    console.log(args)
+    MessageBox.confirm('您确定要删除吗', '提示')
+      .then(oldValue.bind(this,...args))
+      .catch(() => {
+      })
+  }
+  return descriptor
+}
+
 export default {
   name: 'App',
   data() {
@@ -72,18 +85,9 @@ export default {
     // HelloWorld
   },
   methods: {
+    @confirmation
     handleDelete(index, row) {
-      // console.log(index, row)
-      // 新手
-      // 删除前 警告一下
-      // this.list.splice(index, 1);
-      MessageBox.confirm('您确定要删除吗', '提示')
-        .then(() => {
-          this.list.splice(arguments[0], 1);
-        })
-        .catch(() => {
-
-        })
+      this.list.splice(index, 1);
     }
   }
 }

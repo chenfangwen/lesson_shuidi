@@ -1,15 +1,17 @@
 <template>
-  <div id="search">
-    <div class="search">
-        <img @click="back" class="back_img" src="../assets/back.png" alt="">
-        <search-box @search="search"/>
-        <img @click="search" class="search_img" src="../assets/search.png" alt="">
+  <transition name="search">
+    <div id="search">
+      <div class="search">
+          <img @click="back" class="back_img" src="../assets/back.png" alt="">
+          <search-box @search="search"/>
+          <img @click="search" class="search_img" src="../assets/search.png" alt="">
+      </div>
+      <div class="firstSinger" v-if="ifSinger">
+        <img class="singer_img" :src="firstSinger.picUrl" alt=""><div class="name">歌手:{{firstSinger.name}}</div>
+      </div>
+      <music-list/>
     </div>
-    <div class="firstSinger" v-if="ifSinger">
-      <img class="singer_img" :src="firstSinger.picUrl" alt=""><div class="name">歌手:{{firstSinger.name}}</div>
-    </div>
-    <music-list/>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -73,6 +75,13 @@ export default {
 </script>
 
 <style lang="stylus"  scoped>
+.search-enter-active, .search-leave-active {
+  transition: all 0.3s;
+}
+.search-enter, .search-leave-to {
+  transform: translate3d(50%, 0, 0);
+  opacity: 0;
+}
 #search{
     // overflow hidden
     position: absolute;

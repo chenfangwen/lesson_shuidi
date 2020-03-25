@@ -24,16 +24,16 @@
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue'
 import {mapState,mapActions} from 'vuex'
-import progressBar from './progressBar'
+// import progressBar from './progressBar'
 export default {
   name: 'Player',
   data(){
     return {
-      percent:''
+      // percent:''
     }
   },
   components:{
-    progressBar
+    // progressBar
   },
   computed:{
     ...mapState({

@@ -1,16 +1,16 @@
 <template>
     <div class="albumList">
         <div class="album">
-            <img class="image" :src="albumPic" alt="">
+            <img class="image" :src="playList.coverImgUrl" alt="">
             <div class="info">
-                <div class="name">{{albumName}}</div>
-                <div class="singer">歌手:{{albumSinger}}></div>
+                <div class="name">{{playList.name}}</div>
+                <div class="singer">{{playList.description}}</div>
             </div>
         </div>
-        <div @click="getCur_music(item)" class="music_item" v-for="(item, index) in albumMusic" :key="index">
+        <div @click="getCur_music(item)" class="music_item" v-for="(item, index) in playList.tracks" :key="index">
             <div class="music_item_box">
             <div class="song">{{ item.name }}</div>
-            <div class="singer">{{ item.ar[0].name }}</div>
+            <div class="singer">{{item.ar[0].name}}-{{ item.al.name }}</div>
             </div>
         </div>
     </div>
@@ -21,20 +21,8 @@ import {mapState,mapActions} from 'vuex'
 export default {
     computed:{
         ...mapState({
-            albumMusic:(state) => state.albumMusic
-        }),
-        albumName(){
-            if(this.albumMusic[0]){return this.albumMusic[0].al.name}
-            
-        },
-        albumPic(){
-            if(this.albumMusic[0]){return this.albumMusic[0].al.picUrl}
-            
-        },
-        albumSinger(){
-            if(this.albumMusic[0]){return this.albumMusic[0].ar[0].name}
-            
-        }
+            playList:(state) => state.playList
+        })
     },
     methods:{
         ...mapActions(['getCur_music']),
@@ -64,9 +52,18 @@ export default {
                     margin  5px 0
                 }
                 .singer{
-                    margin  5px 0
+                    margin  10px 0
                     font-size 12px
+                    width 92%
                     color: #757575;
+                    // overflow hidden
+                    // white-space nowrap
+                    // text-overflow ellipsis
+                    overflow: hidden;
+                    text-overflow:ellipsis;//文本溢出显示省略号
+                    display: -webkit-box;
+                    -webkit-line-clamp: 3; //控制文字行数
+                    -webkit-box-orient: vertical; //子元素数值排列
                 }
             }
         }

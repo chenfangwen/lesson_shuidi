@@ -9,7 +9,8 @@ export default new Vuex.Store({
     cur_music:'',
     cur_music_pic:'',
     musicsList:'',
-    albumMusic:''
+    albumMusic:'',
+    playList:''
   },
   mutations: {
     setCur_music(state,cur){
@@ -23,6 +24,9 @@ export default new Vuex.Store({
     },
     setMusicsList(state,list){
       state.musicsList = list;
+    },
+    setPlayList(state,list){
+      state.playList = list;
     },
   },
   actions: {
@@ -42,6 +46,10 @@ export default new Vuex.Store({
     getAlbumMusic(context,list){
       // console.log(cur.id)
       context.commit('setAlbumMusic',list);
+    },
+    getPlayList(context,list){
+      // console.log(cur.id)
+      context.commit('setPlayList',list);
     }
   },
   modules: {

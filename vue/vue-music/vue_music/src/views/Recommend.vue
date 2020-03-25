@@ -1,20 +1,24 @@
 <template>
   <div class="recommend">
     <div class="red"></div>
-    <div class="swiper">
-      <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
-        <van-swipe-item v-for="(item,index) in banners" :key="index" @click="getbanner(item)">
-          <img :src="item.picUrl" alt="">
-        </van-swipe-item>
-      </van-swipe>
-    </div>
-    <div class="recommendList">
-      <!-- <div class="img" v-for="(item,index) in playlists" :key="index">
-        <img :src="item.picUrl" alt="">
-      </div> -->
-      <van-grid :column-num="3">
-        <img src="" alt="">
-      </van-grid>
+    <div class="content">
+      <div class="swiper">
+        <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
+          <van-swipe-item v-for="(item,index) in banners" :key="index" @click="getbanner(item)">
+            <!-- <img :src="item.picUrl" alt=""> -->
+            <van-image  :src="item.picUrl" />
+          </van-swipe-item>
+        </van-swipe>
+      </div>
+      <div class="recommendList">
+        <div class="text">推荐歌单</div>
+        <van-grid :column-num="3" :border="false">
+          <van-grid-item @click="getplaylist(item)" v-for="(item,index) in playlists" :key="index">
+            <div class="image"><van-image  :src="item.picUrl" /></div>
+            <div class="name">{{item.name}}</div>
+          </van-grid-item>
+        </van-grid>
+      </div>
     </div>
     <router-view/>
   </div>
@@ -41,13 +45,14 @@ export default {
   },
   components: {
   },
+  
   methods:{
     ...mapActions(['getCur_music']),
     getbanner(item){
       console.log(item)
-      if(item.targetType==10){
+      if(item.targetType==10||item.targetType==1000){
           this.$router.push({
-            path:`recommend/${item.targetId}&${item.targetType}`
+            path:`banner/${item.targetId}&${item.targetType}`
           })
       }
       if(item.targetType == 1){
@@ -64,14 +69,14 @@ export default {
     },
     getplaylist(item){
       this.$router.push({
-        path:`recommend/${item.targetId}&10`
+        path:`banner/${item.id}&0`
       })
     }
   },
   mounted(){
     API.getBanner()
     .then(res=>{
-      console.log(res.data)
+      // console.log(res.data)
       this.banners = res.data.banners
     })
     API.getRecommendList()
@@ -92,16 +97,86 @@ export default {
     height 100px
     background-color #d44439
   }
-  .swiper{
+  .content{
     position absolute
     top 85px
     width: 98%;
     margin: 0 1%;
-    border-radius: 10px;
-    overflow: hidden;
-    .my-swipe .van-swipe-item {
+    .swiper{
+      position relative
+      // top 85px
+      // width: 98%;
+      // margin: 0 1%;
+      padding 0
+      background-color #f2f2f2
+      border-radius: 10px;
+      // overflow: hidden;
+      .my-swipe .van-swipe-item {
+        border-radius: 10px;
+        .van-image__img{
+          border-radius: 10px;
+          margin 0
+        }
+      }
+    }
+    .recommendList{
+        position relative
+        width 98%
+        margin 0 1%
+        .text{
+          font-size 14px
+          font-weight 600
+          width 98%
+          margin-top 10px
+          height 20px
+          line-height 20px
+          text-align left
+        }
+        .van-grid{
+          .van-grid-item{
+            .van-grid-item__content--center{
+
+            }
+            .van-grid-item__content {
+              position relative
+              padding 18px 6px 0 6px
+              .image{
+                position relative
+                width 100%
+                height 100%
+                padding 0
+                .van-image{
+                  position relative
+                  width 100%
+                  height 100%
+                  .van-image__img{
+                    position relative
+                    // width 100%
+                    // height 100%
+                    border-radius 5px
+                  }
+                }
+              }
+              .name{
+                position relative
+                font-size 11px
+                width 100%
+                color: #757575;
+                margin-top 5px
+                text-align left
+                overflow: hidden;
+                text-overflow:ellipsis;//文本溢出显示省略号
+                display: -webkit-box;
+                -webkit-line-clamp: 1; //控制文字行数
+                -webkit-box-orient: vertical; //子元素数值排列
+              }
+            }
+          }
+        }
     }
   }
+  
+  
 }
 
 </style>

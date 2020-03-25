@@ -4,8 +4,8 @@
       <div class="info" v-show="ifShow">
         <div class="avator"><img class="vatoar" :src="cur_music_pic" alt=""></div>
         <div class="name">
-          <div class="left" style="font-weight: 600;">歌曲：{{cur_music.name}}</div>
-          <div class="left" style="font-weight: 600;">歌手：{{artistsNmae}}</div>
+          <div class="left" >{{cur_music.name}}</div>
+          <div class="left_singer" >{{artistsNmae}}</div>
         </div>
         <audio class="audio" loop controls autoplay="autoplay" :src='"http://music.163.com/song/media/outer/url?id="+cur_music.id+".mp3"'></audio>
       </div>
@@ -35,6 +35,9 @@ export default {
       if( this.cur_music.artists){
         return this.cur_music.artists[0].name;
       }
+      if(this.cur_music.ar){
+        return this.cur_music.ar[0].name;
+      }
     }
   },
   components: {
@@ -47,7 +50,7 @@ export default {
 
 <style scoped>
 .info{
-   z-index: 150;
+  z-index: 150;
   background-color: rgba(255, 255, 255, 0.85);
   position: fixed;
   display: flex;
@@ -55,7 +58,7 @@ export default {
   height: 50px;
 }
 .avator{
-  width: 15vw;
+  width: 50px;
 }
 .vatoar{
   width: 50px;
@@ -63,11 +66,22 @@ export default {
   border-radius: 25px;;
 }
 .name{
-  width: 35vw;
+  width: 46vw;
+  padding-left: 5px;
   /* margin-left: 20px; */
 }
 .left{
   text-align: left;
+  margin-top: 5px;
+  color: black;
+  font-size: 14px;
+}
+.left_singer{
+  text-align: left;
+  font-size: 12px;
+  font-weight: 500;
+  color: #757575;
+  margin: 5px 0;
 }
 .audio{
   /* background-color: #fff; */

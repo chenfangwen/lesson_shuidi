@@ -34,22 +34,27 @@ const routes = [
     redirect: '/recommend'
   },
   {
+    path:'/banner/:id&:type',
+    name:'Banner',
+    component:Banner,
+    meta: {
+      // keepAlive: true,
+      title: '热门音乐'
+     }
+  },
+  {
     path: '/recommend',
     name: 'Recommend',
     component: Recommend,
-    children: [
-      {
-        path: ':id&:type',
-        component: Banner,
-      }
-    ],
+    // children: [
+    //   {
+    //     path: ':id&:type',
+    //     component: Banner,
+    //   }
+    // ],
     meta: {
       keepAlive: true,
-      title: '音乐推荐',
-      meta: {
-        // keepAlive: true,
-        title: '热门音乐'
-       }
+      title: '音乐推荐'
      }
   },
   {

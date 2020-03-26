@@ -31,7 +31,7 @@ export default new Vuex.Store({
   },
   actions: {
     getCur_music(context,cur){
-      // console.log(cur.id)
+      console.log(cur)
       axios.get(`/api/song/detail?ids=${cur.id}`)
       .then(res => {
         // console.log(res.data.songs[0].al.picUrl);

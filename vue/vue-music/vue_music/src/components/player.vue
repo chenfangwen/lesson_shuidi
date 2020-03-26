@@ -12,18 +12,18 @@
     <transition>
       <div class="nomal">
         <div class="progcess">
-          <c-progress class="c-progress" :percent="70" @percentChange="onPercentChange" />
+          <progress-bar ref='progressBar' @percentChangeEnd="percentChangeEnd"  />
         </div>
       </div>
     </transition>
-    <audio v-show="false"  ref="audio" loop autoplay="autoplay" :src='"http://music.163.com/song/media/outer/url?id="+cur_music.id+".mp3"'></audio>
+    <audio v-show="true"  ref="audio" loop  autoplay="autoplay" :src='"http://music.163.com/song/media/outer/url?id="+cur_music.id+".mp3"'></audio>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import {mapState,mapActions} from 'vuex'
-import cProgress from './cProgress.vue'
+import progressBar from './progressBar.vue'
 export default {
   name: 'Player',
   data(){
@@ -32,13 +32,28 @@ export default {
     }
   },
   components:{
-    "c-progress":cProgress
+    progressBar
+  },
+  watch:{
+    // currentTime(value){
+    //   console.log(valuse)
+    //   if(value==this.duration){
+    //     this.$refs.progressBar._offSet(0);
+    //   }
+    // }
   },
   computed:{
     ...mapState({
         cur_music:(state) => state.cur_music,
         cur_music_pic:(state) => state.cur_music_pic
     }),
+    currentTime(){
+      // console.log( this.$refs.audio.currentTime)
+      return this.$refs.audio.currentTime
+    },
+    duration(){
+      return this.$refs.audio.duration;
+    },
     ifShow(){
       return this.cur_music!=''?true:false;
     },
@@ -52,9 +67,27 @@ export default {
     }
   },
   methods:{
-    onPercentChange (per) {
-      console.log(per)
+    // onPercentChange (per) {
+    //   console.log(per)
+    // }
+    percentChangeEnd(percent){
+      this.move = false
+      const currentTime = this.duration * percent
+      this.$refs.audio.currentTime = currentTime
+      // if (!this.playing) {
+      //   this.$refs.audio.play()
+      //   this.setPlayingState(true)
+      // }
+      // if (this.currentLyric) {
+      //   this.currentLyric.seek(currentTime * 1000)
+      // }
     }
+  },
+  created(){
+    this.move = false; 
+    setInterval(()=>{
+      console.log(this.currentTime)
+    },1000)
   }
 }
 </script>

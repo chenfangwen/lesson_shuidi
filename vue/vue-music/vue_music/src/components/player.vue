@@ -12,7 +12,7 @@
     <transition>
       <div class="nomal">
         <div class="progcess">
-          <!-- <progress-bar :percent="percent"></progress-bar> -->
+          <c-progress class="c-progress" :percent="70" @percentChange="onPercentChange" />
         </div>
       </div>
     </transition>
@@ -22,18 +22,17 @@
 
 <script>
 // @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue'
 import {mapState,mapActions} from 'vuex'
-// import progressBar from './progressBar'
+import cProgress from './cProgress.vue'
 export default {
   name: 'Player',
   data(){
     return {
-      // percent:''
+      percent:0
     }
   },
   components:{
-    // progressBar
+    "c-progress":cProgress
   },
   computed:{
     ...mapState({
@@ -52,10 +51,10 @@ export default {
       }
     }
   },
-  components: {
-    // HelloWorld
-  },
   methods:{
+    onPercentChange (per) {
+      console.log(per)
+    }
   }
 }
 </script>

@@ -56,16 +56,19 @@ export default {
           })
       }
       if(item.targetType == 1){
-            API2.getSongDetail(item.targetId)
-            .then(res=>{
-                console.log(res.data)
-                // this.music = res.data.songs
-                if(res.data.songs[0]){
-                    // this.getMusicList(res.data.songs)
-                    this.getCur_music(res.data.songs[0])
-                }
-            })
-        }
+          API2.getSongDetail(item.targetId)
+          .then(res=>{
+              console.log(res.data)
+              // this.music = res.data.songs
+              if(res.data.songs[0]){
+                  // this.getMusicList(res.data.songs)
+                  this.getCur_music(res.data.songs[0])
+              }
+          })
+      }
+      if(item.targetType == 3000){
+        window.open(item.url)
+      }
     },
     getplaylist(item){
       this.$router.push({
@@ -76,7 +79,7 @@ export default {
   mounted(){
     API.getBanner()
     .then(res=>{
-      // console.log(res.data)
+      console.log(res.data)
       this.banners = res.data.banners
     })
     API.getRecommendList()

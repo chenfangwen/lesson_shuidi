@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <h1 class="text">VMUSICJIN</h1>
+    <h1 class="text">VUE 音乐</h1>
     <router-link to="/user" class="mine" tag="div">
      <div class="">
        <img  class="mine_img" src="../assets/mine.png" alt="">

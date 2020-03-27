@@ -44,7 +44,22 @@
             <span class="time time-r">{{format(duration)}}</span>
           </div>
           <div class="operators">
-            
+            <div class="operator palytype">
+              <img src="../assets/cycle.png" alt="">
+            </div>
+            <div class="operator last" @click="last">
+              <img src="../assets/last.png" alt="">
+            </div>
+            <div class="operator paly" @click="changePlaying">
+              <img src="../assets/stop.png" v-show="ifPlaying" alt="">
+              <img src="../assets/play.png" v-show="!ifPlaying" alt="">
+            </div>
+            <div class="operator next" @click="next">
+              <img src="../assets/next.png" alt="">
+            </div>
+            <div class="operator list">
+              <img src="../assets/list.png" alt="">
+            </div>
           </div>
         </div>
       </div>
@@ -76,20 +91,10 @@ export default {
         cur_music:(state) => state.cur_music,
         cur_music_pic:(state) => state.cur_music_pic,
         ifNomal:(state) => state.ifNomal,
-        ifPlaying:(state) => state.ifPlaying
+        ifPlaying:(state) => state.ifPlaying,
+        curIndex:(state) => state.curIndex,
+        curList:(state) => state.curList
     }),
-    
-    // duration(){
-    //   return this.$refs.audio.duration;
-    // },
-    // ms(){
-    //   let m = parseInt(this.$refs.audio.duration/60);
-    //   let s = parseInt(this.$refs.audio.duration)%60
-    //   return `${m}:${s}`
-    // },
-    // currentTime(){
-    //   return this.$refs.audio.currentTime
-    // },
     ifShow(){
       return this.cur_music!=''?true:false;
     },
@@ -119,33 +124,44 @@ export default {
       // this.$refs.audio.src = newUrl
       let stop = setInterval(() => {
         this.duration = this.$refs.audio.duration
-        if (this.duration) {
-          clearInterval(stop)
-        }
+        // if (this.duration) {
+        //   clearInterval(stop)
+        // }
       }, 150)
-      // this.setPlayingState(true)
+      this.getIfPlaying(true)
+      console.log(this.ifPlaying)
     },
     currentTime (val) {
       this.percent = val / this.duration
       // console.log(this.percent)
     }
-    // currentTime(value){
-    //   console.log(value)
-    //   let percent = value/this.duration
-    //   if(value==this.duration){
-    //     this.$refs.progressBar._offSet(0);
-    //   }else{
-    //     this.$refs.progressBar._offSet(percent);
-    //   }
-    // }
   },
   methods:{
-    ...mapActions(['getIfNomal','getIfPlaying']),
-
+    ...mapActions(['getIfNomal','getIfPlaying','getCur_music','getCurIndex']),
+    changePlaying(){
+      console.log(this.ifPlaying)
+      const audio = this.$refs.audio
+      this.getIfPlaying(!this.ifPlaying)
+      console.log(this.ifPlaying)
+      this.ifPlaying ? audio.play() : audio.pause()
+    },
+    last(){
+      if(this.curIndex>0){
+        this.getCur_music(this.curList.tracks[this.curIndex-1])
+        this.getCurIndex(this.curIndex-1)
+      }
+    },
+    next(){
+      // let index = this.curIndex+1
+      // console.log(this.curIndex,this.curList.tracks[index])
+      if(this.curIndex<this.curList.tracks.length-1){
+        this.getCur_music(this.curList.tracks[this.curIndex+1])
+        this.getCurIndex(this.curIndex+1)
+      }
+    },
     // onPercentChange (per) {
     //   console.log(per)
     // }
-    
     updateTime (e) {
       // if (this.move) {
       //   return
@@ -201,6 +217,15 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+&.normal-enter-active, &.normal-leave-active {
+  transition: all 1s;
+  .top, .bottom {
+    transition: all 1s cubic-bezier(0.86, 0.18, 0.82, 1.32);
+  }
+}
+&.normal-enter, &.normal-leave-to {
+  opacity: 0;
+}
 .player{
   .nomal{
     position: fixed;
@@ -348,7 +373,16 @@ export default {
       }
       .operators {
         display: flex;
+        width 100vw
         align-items: center;
+        .operator{
+          width 20%
+          text-align center
+          img{
+            height 40px
+            width 40px
+          }
+        }
         }
       }
     }

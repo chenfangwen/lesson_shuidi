@@ -1,5 +1,9 @@
 <template>
     <div class="albumList">
+         <div class="back">
+            <img @click="back" class="back_img" src="../assets/back2.png" alt="">
+            <div class="type">专辑</div>
+        </div>
         <div class="album">
             <img class="image" :src="albumPic" alt="">
             <div class="info">
@@ -48,6 +52,9 @@ export default {
         getCur_music_m(item,index){
             this.getCur_music(item)
             this.getCurIndex(index)
+        },
+         back(){
+            this.$router.go(-1)
         }
     }
 }
@@ -59,6 +66,22 @@ export default {
         top 0
         background-color: #f2f3f4;
         /* margin-top: 50px; */
+        .back{
+            text-align left
+            height 25px
+            display flex
+            margin-top  10px
+            line-height 25px
+            .back_img{
+                width 25px
+                height 25px
+                margin-left 10px
+            }
+            .type{
+                font-size 19px
+                margin-left 15px
+            }
+        }
         .album{
             width 97%
             margin-top 20px

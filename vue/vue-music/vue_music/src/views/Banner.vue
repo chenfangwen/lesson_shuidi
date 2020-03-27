@@ -1,9 +1,14 @@
 <template>
-    <div id="banner" >
-        <!-- <img :src="cur_music_pic" alt=""> -->
-        <div class="" v-if="ifA"><album-list/></div>
-        <div class="" v-if="ifP"><play-list/></div>
-    </div>
+    <transition name="banner">
+        <!-- <div class="back">
+            <img @click="back" class="back_img" src="../assets/back2.png" alt="">
+        </div> -->
+        <div id="banner" >
+            <!-- <img :src="cur_music_pic" alt=""> -->
+            <div class="" v-if="ifA"><album-list/></div>
+            <div class="" v-if="ifP"><play-list/></div>
+        </div>
+    </transition>
 </template>
 
 <script>
@@ -88,11 +93,19 @@ export default {
 }
 </script>
 <style lang="stylus" scoped>
+.banner-enter-active, .banner-leave-active {
+  transition: all 0.3s;
+}
+.banner-enter, .banner-leave-to {
+  transform: translate3d(50%, 0, 0);
+  opacity: 0;
+}
 #banner{
     position absolute
     top 0
     width 100vw
     height 100vh
+    
     // z-index 150
     // background-color #f2f2f2
     

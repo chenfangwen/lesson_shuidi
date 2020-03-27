@@ -12,9 +12,9 @@ export default new Vuex.Store({
     musicsList:'',
     albumMusic:'',
     playList:'',
-    ifNomal:true,
+    ifNomal:false,
     curIndex:0,
-    ifPalying:true
+    ifPlaying:false
   },
   mutations: {
     setCur_music(state,cur){
@@ -42,7 +42,7 @@ export default new Vuex.Store({
       state.ifNomal = value
     },
     setIfPalying(state,status){
-      state.ifPalying = status
+      state.ifPlaying = status
     }
   },
   actions: {
@@ -50,9 +50,9 @@ export default new Vuex.Store({
       // console.log(cur)
       axios.get(`/api/song/detail?ids=${cur.id}`)
       .then(res => {
-        // console.log(res.data.songs[0].al.picUrl);
+        console.log(res.data.songs);
         context.commit('setCur_music_pic',res.data.songs[0].al.picUrl)
-        context.commit('setIfNomal',true);
+        // context.commit('setIfNomal',true);
       })
       context.commit('setCur_music',cur);
     },

@@ -1,5 +1,5 @@
 <template>
-    <div class="albumList">
+    <div class="albumLists">
         <div class="album">
             <img class="image" :src="playList.coverImgUrl" alt="">
             <div class="info">
@@ -7,12 +7,19 @@
                 <div class="singer">{{playList.description}}</div>
             </div>
         </div>
-        <div @click="getCur_music(item)" class="music_item" v-for="(item, index) in playList.tracks" :key="index">
-            <div class="music_item_box">
-            <div class="song">{{ item.name }}</div>
-            <div class="singer">{{item.ar[0].name}}-{{ item.al.name }}</div>
+        <div class="list">
+            <div class="m-head">
+                <div class="all">播放全部</div>
+                <div class="num">(共{{length}}首)</div>
+            </div>
+            <div @click="getCur_music_m(item,index)" class="music_item" v-for="(item, index) in playList.tracks" :key="index">
+                <div class="music_item_box">
+                <div class="song">{{ item.name }}</div>
+                <div class="singer">{{item.ar[0].name}}-{{ item.al.name }}</div>
             </div>
         </div>
+        </div>
+        
     </div>
 </template>
 
@@ -21,18 +28,32 @@ import {mapState,mapActions} from 'vuex'
 export default {
     computed:{
         ...mapState({
-            playList:(state) => state.playList
-        })
+            playList:(state) => state.playList,
+            curIndex:(state) => state.curIndex
+        }),
+        length(){
+            if(this.playList.tracks){
+                return this.playList.tracks.length
+            }
+        }
     },
     methods:{
-        ...mapActions(['getCur_music']),
+        ...mapActions(['getCur_music','getCurIndex']),
+        getCur_music_m(item,index){
+            // console.log(index)
+            this.getCur_music(item)
+            this.getCurIndex(index)
+            console.log(this.curIndex)
+        }
     }
 }
 </script>
 
 <style lang="stylus" scoped>
-.albumList{
-        position: relative;
+
+.albumLists{
+        position: absolute;
+        top 0
         background-color: #f2f3f4;
         /* margin-top: 50px; */
         .album{
@@ -41,6 +62,7 @@ export default {
             height 200px
             margin-left 1.5%
             display flex
+            background-color: #f2f3f4;
             .image{
                 height 150px
                 width 150px
@@ -49,6 +71,8 @@ export default {
                 margin-left 20px
                 text-align-last left
                 .name{
+                    color white
+                    font-weight 600
                     margin  5px 0
                 }
                 .singer{
@@ -67,35 +91,57 @@ export default {
                 }
             }
         }
-        .music_item{
-            position: relative;
-            // background-color: #f2f3f4;
-            width: 97vw;
-            height: 47px;
-            margin-left 1.5%
-            text-align left 
-            border-bottom: 1px solid #e4e4e4;
-            .music_item_box{
-              position: relative;
-              margin-top  10px
-              height 40px
-              margin-bottom 7px
-              .song{
-                font-size 14px;
-                font-weight 500
-                height 20px
-                padding-top  2px
-                padding-bottom 2px
-              }
-              .singer{
-                font-size 11px
-                color: #757575;
-                height 18px
-                font-weight 500
-                padding-top 2px
-                padding-bottom 2px
-              }
+        .list{
+            // border-radius 5px
+            // background-color: white;
+            .m-head{
+                height 30px
+                widows 100%
+                display flex
+                border-radius 15px 15px 0 0
+                background-color: white;
+                text-align left
+                font-size 15px
+                padding 15px 10px 0px 10px
+                // border-bottom: 1px solid #e4e4e4;
+                .num{
+                    margin-top 2px
+                    font-size 12px
+                    color: #757575;
+                }
+            }
+            .music_item{
+                position: relative;
+                background-color: white;
+                width: 100vw;
+                height: 47px;
+                padding 1% 
+                // margin-left 1.5%
+                text-align left 
+                // 
+                .music_item_box{
+                position: relative;
+                margin-top  10px
+                height 40px
+                margin-bottom 7px
+                .song{
+                    font-size 14px;
+                    font-weight 500
+                    height 20px
+                    padding-top  2px
+                    padding-bottom 2px
+                }
+                .singer{
+                    font-size 11px
+                    color: #757575;
+                    height 18px
+                    font-weight 500
+                    padding-top 2px
+                    padding-bottom 2px
+                }
+                }
             }
         }
+        
     }
 </style>

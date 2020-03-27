@@ -1,6 +1,6 @@
 <template>
     <div class="music_list">
-      <div  @click="getCur_music(item)" class="music_item" v-for="(item, index) in musicsList" :key="index">
+      <div  @click="getCur_music_m(item,index)" class="music_item" v-for="(item, index) in musicsList" :key="index">
         <div class="music_item_box">
           <div class="song">{{ item.name }}</div>
           <div class="singer">{{ item.artists[0].name }}</div>
@@ -14,11 +14,17 @@ import {mapState,mapActions} from 'vuex'
 export default {
     computed:{
         ...mapState({
-            musicsList:(state) => state.musicsList
+            musicsList:(state) => state.musicsList,
+            curList:(state) => state.curList
         })
     },
     methods:{
-        ...mapActions(['getCur_music']),
+        ...mapActions(['getCur_music','getCurList','getCurIndex']),
+        getCur_music_m(item,index){
+          this.getCur_music(item);
+          this.getCurList(this.musicsList)
+          this.getCurIndex(index)
+        }
     }
 }
 </script>

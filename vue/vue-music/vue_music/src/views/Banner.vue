@@ -1,10 +1,10 @@
 <template>
-    <div id="banner">
+    <div id="banner" >
+        <!-- <img :src="cur_music_pic" alt=""> -->
         <div class="" v-if="ifA"><album-list/></div>
-        <div class="" v-if="ifP"><play-list/></div> 
+        <div class="" v-if="ifP"><play-list/></div>
     </div>
 </template>
-
 
 <script>
 import API from '../api/search'
@@ -25,12 +25,17 @@ export default {
         ...mapState({
             playList:(state) => state.playList,
             albumMusic:(state) => state.albumMusic,
+            curList:(state) => state.curList,
+            cur_music_pic:(state) => state.cur_music_pic,
         }),
+        albumPic(){
+            if(this.albumMusic[0]){return this.albumMusic[0].al.picUrl}
+         },
         ifP(){
-            return this.playList!=''?true:false
+            return this.playList==this.curList?true:false
         },
         ifA(){
-            return this.albumMusic!=''?true:false
+            return this.albumMusic==this.curList?true:false
         }
     },
     watch:{
@@ -40,7 +45,7 @@ export default {
         }
     },
     methods:{
-         ...mapActions(['getMusicList','getCur_music',"getAlbumMusic",'getPlayList']),
+         ...mapActions(['getCur_music',"getAlbumMusic",'getPlayList','getCurList']),
          getData(){
             window.scrollTo(0,0)
             console.log(this.$route.params)
@@ -51,6 +56,7 @@ export default {
                     console.log(res.data)
                     if(res.data.songs){
                         this.getAlbumMusic(res.data.songs)
+                        this.getCurList(res.data.songs)
                         console.log(this.albumMusic)
                     }
                 })
@@ -61,6 +67,7 @@ export default {
                     console.log(res.data,'---')
                     if(res.data.playlist){
                         this.getPlayList(res.data.playlist)
+                        this.getCurList(res.data.playlist)
                         // console.log(res.data.songs)
                     }
                 })
@@ -87,6 +94,7 @@ export default {
     width 100vw
     height 100vh
     // z-index 150
-    background-color #f2f2f2
+    // background-color #f2f2f2
+    
 }
 </style>

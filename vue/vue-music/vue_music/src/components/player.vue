@@ -1,7 +1,7 @@
 <template>
   <div class="player" v-show="ifShow">
     <transition name="mini">
-      <div class="info" >
+      <div class="info" v-show="!ifNomal" @click="getIfNomal(true)">
         <div class="avator"><img class="vatoar" :src="cur_music_pic" alt=""></div>
         <div class="name">
           <div class="left" >{{cur_music.name}}</div>
@@ -10,8 +10,20 @@
       </div>
     </transition>
     <transition name="nomal">
-      <div class="nomal">
-
+      <div class="nomal" v-show="ifNomal">
+        <div class="top">
+          <div class="back"  @click="getIfNomal(false)">
+            <!-- <i class="fa fa-angle-down"></i> -->
+            <img class="backImg" src="../assets/back.png" alt="">
+            <!-- <img  class="fa fa-angle-down" src="../assets/back.png"> -->
+          </div>
+          <h1 class="title" v-html="cur_music.name"></h1>
+          <h2 class="subtitle" v-html="artistsNmae"></h2>
+        </div>
+        <div class="background">
+          <div class="filter"></div>
+          <img :src="cur_music_pic" width="100%" height="100%">
+        </div>
         <div class="progress-wrapper">
           <span class="time time-l">{{format(currentTime)}}</span>
           <div class="progress-bar-wrapper">
@@ -46,8 +58,10 @@ export default {
   computed:{
     ...mapState({
         cur_music:(state) => state.cur_music,
-        cur_music_pic:(state) => state.cur_music_pic
+        cur_music_pic:(state) => state.cur_music_pic,
+        ifNomal:(state) => state.ifNomal
     }),
+    
     // duration(){
     //   return this.$refs.audio.duration;
     // },
@@ -109,9 +123,12 @@ export default {
     // }
   },
   methods:{
+    ...mapActions(['getIfNomal']),
+
     // onPercentChange (per) {
     //   console.log(per)
     // }
+    
     updateTime (e) {
       // if (this.move) {
       //   return
@@ -176,6 +193,61 @@ export default {
     bottom: 0;
     z-index: 150;
     background-color #F2F3F4;
+    .top {
+      position: relative;
+      margin-bottom: 25px;
+      .back {
+        position: absolute;
+        top: 0;
+        left: 6px;
+        z-index: 50;
+        .backImg {
+          display: block;
+          height 30px
+          width 30px
+          padding: 8px 10px;
+          font-size: 35px;
+          color:rgb(241, 241, 241);
+        }
+      }
+      .title {
+        width: 70%;
+        margin: 0 auto;
+        padding-top: 10px;
+        line-height: 20px;
+        text-align: center;
+        @include no-wrap();
+        font-size:18px;
+        font-weight: bold;
+        color:  rgb(241, 241, 241);
+      }
+      .subtitle {
+        width: 70%;
+        margin: 0 auto;
+        line-height: 20px;
+        text-align: center;
+        @include no-wrap();
+        font-size:12px;
+        color: rgb(241, 241, 241);
+      }
+    }
+    .background {
+      position: absolute;
+      left: -50%;
+      top: -50%;
+      width: 300%;
+      height: 300%;
+      z-index: -1;
+      opacity: 0.6;
+      filter: blur(30px);
+      .filter {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: black;
+        opacity: 0.6;
+      }
+    }
     .progress-wrapper {
         display: flex;
         align-items: center;
@@ -218,7 +290,7 @@ export default {
       }
     }
     .name{
-      width: 46vw;
+      // width: 46vw;
       padding-left: 5px;
       /* margin-left: 20px; */
       .left{

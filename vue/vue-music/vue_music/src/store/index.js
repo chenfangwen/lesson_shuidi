@@ -14,7 +14,8 @@ export default new Vuex.Store({
     playList:'',
     ifNomal:false,
     curIndex:0,
-    ifPlaying:false
+    ifPlaying:false,
+    ifP:false
   },
   mutations: {
     setCur_music(state,cur){
@@ -43,6 +44,9 @@ export default new Vuex.Store({
     },
     setIfPalying(state,status){
       state.ifPlaying = status
+    },
+    setIfP(state,status){
+      state.ifP = status
     }
   },
   actions: {
@@ -67,6 +71,7 @@ export default new Vuex.Store({
     },
     getCurList(context,list){
       context.commit('setCurList',list);
+      context.commit('setCurIndex',-1)
     },
     getIfNomal(context,value){
       context.commit('setIfNomal',value);
@@ -76,6 +81,9 @@ export default new Vuex.Store({
     },
     getIfPlaying(context,status){
       context.commit('setIfPalying',status);
+    },
+    getIfP(context,status){
+      context.commit('setIfP',status);
     },
   },
   modules: {

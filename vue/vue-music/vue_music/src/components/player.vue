@@ -24,12 +24,28 @@
           <div class="filter"></div>
           <img :src="cur_music_pic" width="100%" height="100%">
         </div>
-        <div class="progress-wrapper">
-          <span class="time time-l">{{format(currentTime)}}</span>
-          <div class="progress-bar-wrapper">
-            <progress-bar :percent="percent" @percentChangeEnd="percentChangeEnd" @percentChange="percentChange"></progress-bar>
+        <div class="middle">
+          <transition name="middleL">
+            <div class="middle-l" v-show="true">
+              <div class="cd-wrapper">
+                <div class="cd play" >
+                  <img :src="cur_music_pic" class="image">
+                </div>
+              </div>
+            </div>
+          </transition>
+        </div>
+        <div class="bottom">
+          <div class="progress-wrapper">
+            <span class="time time-l">{{format(currentTime)}}</span>
+            <div class="progress-bar-wrapper">
+              <progress-bar :percent="percent" @percentChangeEnd="percentChangeEnd" @percentChange="percentChange"></progress-bar>
+            </div>
+            <span class="time time-r">{{format(duration)}}</span>
           </div>
-          <span class="time time-r">{{format(duration)}}</span>
+          <div class="operators">
+            
+          </div>
         </div>
       </div>
     </transition>
@@ -59,7 +75,8 @@ export default {
     ...mapState({
         cur_music:(state) => state.cur_music,
         cur_music_pic:(state) => state.cur_music_pic,
-        ifNomal:(state) => state.ifNomal
+        ifNomal:(state) => state.ifNomal,
+        ifPlaying:(state) => state.ifPlaying
     }),
     
     // duration(){
@@ -123,7 +140,7 @@ export default {
     // }
   },
   methods:{
-    ...mapActions(['getIfNomal']),
+    ...mapActions(['getIfNomal','getIfPlaying']),
 
     // onPercentChange (per) {
     //   console.log(per)
@@ -227,6 +244,7 @@ export default {
         line-height: 20px;
         text-align: center;
         @include no-wrap();
+        font-weight 300
         font-size:12px;
         color: rgb(241, 241, 241);
       }
@@ -248,7 +266,63 @@ export default {
         opacity: 0.6;
       }
     }
-    .progress-wrapper {
+    .middle{
+      display: flex;
+      align-items: center;
+      position: fixed;
+      width: 100%;
+      top: 80px;
+      bottom: 170px;
+      white-space: nowrap;
+      font-size: 0;
+      .middle-l {
+        display: inline-block;
+        vertical-align: top;
+        position: relative;
+        width: 100%;
+        height: 0;
+        padding-top: 80%;
+        &.middleL-enter-active, &.middleL-leave-active {
+          transition: all 0.3s
+        }
+        &.middleL-enter, &.middleL-leave-to {
+          opacity: 0
+        }
+        .cd-wrapper {
+          position: absolute;
+          left: 10%;
+          top: 0;
+          width: 80%;
+          height: 100%;
+          .cd {
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+            border: 15px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            &.play {
+              animation: rotate 20s linear infinite;
+            }
+            &.pause {
+              animation-play-state: paused;
+            }
+            .image {
+              position: absolute;
+              left: 0;
+              top: 0;
+              width: 100%;
+              height: 100%;
+              border-radius: 50%;
+            }
+          }
+        }
+      }
+    }
+    .bottom {
+      position: absolute;
+      bottom: 50px;
+      width: 100%;
+      .progress-wrapper {
         display: flex;
         align-items: center;
         width: 80%;
@@ -272,6 +346,12 @@ export default {
           flex: 1;
         }
       }
+      .operators {
+        display: flex;
+        align-items: center;
+        }
+      }
+    }
   }
   .info{
     z-index: 150;
@@ -306,7 +386,14 @@ export default {
         color: #757575;
         margin: 5px 0;
       }
-    }
+  }
+}
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
 </style>

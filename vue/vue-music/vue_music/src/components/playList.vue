@@ -42,12 +42,13 @@ export default {
         }
     },
     methods:{
-        ...mapActions(['getCur_music','getCurIndex']),
+        ...mapActions(['getCur_music','getCurIndex','getCurList']),
         getCur_music_m(item,index){
             // console.log(index)
             this.getCur_music(item)
             this.getCurIndex(index)
-            console.log(this.curIndex)
+            this.getCurList(this.playList.tracks)
+            // console.log(this.curIndex)
         },
         back(){
         this.$router.go(-1)

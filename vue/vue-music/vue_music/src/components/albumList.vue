@@ -48,10 +48,11 @@ export default {
         }
     },
     methods:{
-        ...mapActions(['getCur_music','getCurIndex']),
+        ...mapActions(['getCur_music','getCurIndex','getCurList']),
         getCur_music_m(item,index){
             this.getCur_music(item)
-            this.getCurIndex(index)
+            this.getCurIndex(index),
+            this.getCurList(this.albumMusic)
         },
          back(){
             this.$router.go(-1)

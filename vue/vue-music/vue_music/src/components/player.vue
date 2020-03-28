@@ -2,7 +2,7 @@
   <div class="player" v-show="ifShow">
     <transition name="mini">
       <div class="info" v-show="!ifNomal" @click="getIfNomal(true)">
-        <div class="avator"><img class="vatoar" :src="cur_music_pic" alt=""></div>
+        <div class="avator"><img class="vatoar" :class="stopPlaying" :src="cur_music_pic" alt=""></div>
         <div class="name">
           <div class="left" >{{cur_music.name}}</div>
           <div class="left_singer" >{{artistsNmae}}</div>
@@ -28,7 +28,7 @@
           <transition name="middleL">
             <div class="middle-l" v-show="true">
               <div class="cd-wrapper">
-                <div class="cd play" >
+                <div class="cd"  :class="stopPlaying"  >
                   <img :src="cur_music_pic" class="image">
                 </div>
               </div>
@@ -98,6 +98,9 @@ export default {
     ifShow(){
       return this.cur_music!=''?true:false;
     },
+    stopPlaying () {
+      return this.ifPlaying ? 'play' : 'play pause'
+    },
     artistsNmae(){
       if( this.cur_music.artists){
         return this.cur_music.artists[0].name;
@@ -147,15 +150,15 @@ export default {
     },
     last(){
       if(this.curIndex>0){
-        this.getCur_music(this.curList.tracks[this.curIndex-1])
+        this.getCur_music(this.curList[this.curIndex-1])
         this.getCurIndex(this.curIndex-1)
       }
     },
     next(){
       // let index = this.curIndex+1
       // console.log(this.curIndex,this.curList.tracks[index])
-      if(this.curIndex<this.curList.tracks.length-1){
-        this.getCur_music(this.curList.tracks[this.curIndex+1])
+      if(this.curIndex<this.curList.length-1){
+        this.getCur_music(this.curList[this.curIndex+1])
         this.getCurIndex(this.curIndex+1)
       }
     },
@@ -400,7 +403,13 @@ export default {
       .vatoar{
         width: 50px;
         height: 50px;
-        border-radius: 25px;;
+        border-radius: 25px;
+        &.play {
+          animation: rotate 10s linear infinite;
+        }
+        &.pause {
+          animation-play-state: paused;
+        }
       }
     }
     .name{

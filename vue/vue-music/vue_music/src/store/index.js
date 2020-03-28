@@ -71,7 +71,7 @@ export default new Vuex.Store({
     },
     getCurList(context,list){
       context.commit('setCurList',list);
-      context.commit('setCurIndex',-1)
+      // context.commit('setCurIndex',-1)
     },
     getIfNomal(context,value){
       context.commit('setIfNomal',value);

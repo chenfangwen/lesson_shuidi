@@ -5,7 +5,7 @@
         </div> -->
         <div id="banner" >
             <!-- <img :src="cur_music_pic" alt=""> -->
-            <div class="" v-if="ifA"><album-list/></div>
+            <div class="" v-if="!ifP"><album-list/></div>
             <div class="" v-if="ifP"><play-list/></div>
         </div>
     </transition>
@@ -32,16 +32,17 @@ export default {
             albumMusic:(state) => state.albumMusic,
             curList:(state) => state.curList,
             cur_music_pic:(state) => state.cur_music_pic,
+            ifP:(state) => state.ifP
         }),
         albumPic(){
             if(this.albumMusic[0]){return this.albumMusic[0].al.picUrl}
          },
-        ifP(){
-            return this.playList==this.curList?true:false
-        },
-        ifA(){
-            return this.albumMusic==this.curList?true:false
-        }
+        // ifP(){
+        //     return this.playList==this.curList?true:false
+        // },
+        // ifA(){
+        //     return this.albumMusic==this.curList?true:false
+        // }
     },
     watch:{
         '$route':function(to,from){
@@ -50,29 +51,31 @@ export default {
         }
     },
     methods:{
-         ...mapActions(['getCur_music',"getAlbumMusic",'getPlayList','getCurList']),
+         ...mapActions(['getCur_music',"getAlbumMusic",'getPlayList','getCurList','getIfP']),
          getData(){
             window.scrollTo(0,0)
             console.log(this.$route.params)
             const type = this.$route.params.type;
             if(type == 10){
+                this.getIfP(false)
                 API.getAlbumDetail(this.$route.params.id)
                 .then(res=>{
                     console.log(res.data)
                     if(res.data.songs){
                         this.getAlbumMusic(res.data.songs)
-                        this.getCurList(res.data.songs)
+                        // this.getCurList(res.data.songs)
                         console.log(this.albumMusic)
                     }
                 })
             }
             if(type == 1000 || type == 0){
+                this.getIfP(true)
                 API2.getRecommendListDetail(this.$route.params.id)
                 .then(res=>{
                     console.log(res.data,'---')
                     if(res.data.playlist){
                         this.getPlayList(res.data.playlist)
-                        this.getCurList(res.data.playlist)
+                        // this.getCurList(res.data.playlist)
                         // console.log(res.data.songs)
                     }
                 })

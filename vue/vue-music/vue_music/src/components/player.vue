@@ -24,15 +24,18 @@
           <div class="filter"></div>
           <img :src="cur_music_pic" width="100%" height="100%">
         </div>
-        <div class="middle">
+        <div class="middle" @click="picOrLyric">
           <transition name="middleL">
-            <div class="middle-l" v-show="true">
+            <div class="middle-l" v-show="currentShow === 'pic'">
               <div class="cd-wrapper">
                 <div class="cd"  :class="stopPlaying"  >
                   <img :src="cur_music_pic" class="image">
                 </div>
               </div>
             </div>
+          </transition>
+           <transition name="middleLyric">
+            <div class="">暂无歌词</div>
           </transition>
         </div>
         <div class="bottom">
@@ -82,7 +85,8 @@ export default {
       duration:0,
       currentTime:0,
       url:'',
-      move:''
+      move:'',
+      currentShow:'pic'
     }
   },
   components:{
@@ -124,6 +128,7 @@ export default {
       this.$refs.audio.pause()
       this.$refs.audio.currentTime = 0
       this._getSong(newVal.id)
+      this.currentShow = 'pic'
     },
     url (newUrl) {
       // this._getLyric(this.currentSong.id)
@@ -178,6 +183,14 @@ export default {
       this.getIfPlaying(!this.ifPlaying)
       // console.log(this.ifPlaying)
       this.ifPlaying ? audio.play() : audio.pause()
+    },
+    picOrLyric () {
+      if (this.currentShow === 'pic') {
+        this.currentShow = 'lyric'
+      } else {
+        this.currentShow = 'pic'
+      }
+      // console.log(this.currentShow)
     },
     last(){
       if(this.curList && this.playType == 1){
@@ -343,6 +356,11 @@ export default {
         font-size:18px;
         font-weight: bold;
         color:  rgb(241, 241, 241);
+        overflow: hidden;
+        text-overflow:ellipsis;//文本溢出显示省略号
+        display: -webkit-box;
+        -webkit-line-clamp: 1; //控制文字行数
+        -webkit-box-orient: vertical; //子元素数值排列
       }
       .subtitle {
         width: 70%;
@@ -353,6 +371,11 @@ export default {
         font-weight 300
         font-size:12px;
         color: rgb(241, 241, 241);
+        overflow: hidden;
+        text-overflow:ellipsis;//文本溢出显示省略号
+        display: -webkit-box;
+        -webkit-line-clamp: 1; //控制文字行数
+        -webkit-box-orient: vertical; //子元素数值排列
       }
     }
     .background {
@@ -420,6 +443,41 @@ export default {
               height: 100%;
               border-radius: 50%;
             }
+          }
+        }
+      }
+      .lyric {
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        vertical-align: top;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        &.middleLyric-enter-active, &.middleLyric-leave-active {
+          transition: all 0.2s;
+        }
+        &.middleLyric-enter, &.middleLyric-leave-to {
+          opacity: 0;
+        }
+        .lyric-wrapper {
+          width: 80%;
+          margin: 0 auto;
+          overflow: hidden;
+          text-align: center;
+          .text {
+            line-height: 40px;
+            color: $color-text-ggg;
+            font-size: $font-size-medium;
+            &.current {
+              color: #FFF;
+            }
+          }
+          .no-lyric {
+            line-height: 40px;
+            margin-top: 60%;
+            color: $color-text-ggg;
+            font-size: $font-size-medium;
           }
         }
       }
@@ -491,7 +549,7 @@ export default {
       }
     }
     .name{
-      // width: 46vw;
+      width: 46vw;
       padding-left: 5px;
       /* margin-left: 20px; */
       .left{
@@ -499,6 +557,11 @@ export default {
         margin-top: 5px;
         color: black;
         font-size: 14px;
+        overflow: hidden;
+        text-overflow:ellipsis;//文本溢出显示省略号
+        display: -webkit-box;
+        -webkit-line-clamp: 1; //控制文字行数
+        -webkit-box-orient: vertical; //子元素数值排列
       }
       .left_singer{
         text-align: left;
@@ -506,6 +569,11 @@ export default {
         font-weight: 500;
         color: #757575;
         margin: 5px 0;
+        overflow: hidden;
+        text-overflow:ellipsis;//文本溢出显示省略号
+        display: -webkit-box;
+        -webkit-line-clamp: 1; //控制文字行数
+        -webkit-box-orient: vertical; //子元素数值排列
       }
   }
 }

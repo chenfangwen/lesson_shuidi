@@ -119,6 +119,8 @@ export default {
             // border-radius 5px
             // background-color: white;
             .m-head{
+                position sticky
+                top 0
                 height 30px
                 widows 100%
                 display flex
@@ -157,7 +159,7 @@ export default {
                         overflow: hidden;
                         text-overflow:ellipsis;//文本溢出显示省略号
                         display: -webkit-box;
-                        -webkit-line-clamp: 3; //控制文字行数
+                        -webkit-line-clamp: 1; //控制文字行数
                         -webkit-box-orient: vertical; //子元素数值排列
                     }
                     .singer{
@@ -170,7 +172,7 @@ export default {
                         overflow: hidden;
                         text-overflow:ellipsis;//文本溢出显示省略号
                         display: -webkit-box;
-                        -webkit-line-clamp: 3; //控制文字行数
+                        -webkit-line-clamp: 1; //控制文字行数
                         -webkit-box-orient: vertical; //子元素数值排列
                     }
                 }

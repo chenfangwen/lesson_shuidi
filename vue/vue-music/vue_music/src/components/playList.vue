@@ -144,25 +144,35 @@ export default {
                 text-align left 
                 // 
                 .music_item_box{
-                position: relative;
-                margin-top  10px
-                height 40px
-                margin-bottom 7px
-                .song{
-                    font-size 14px;
-                    font-weight 500
-                    height 20px
-                    padding-top  2px
-                    padding-bottom 2px
-                }
-                .singer{
-                    font-size 11px
-                    color: #757575;
-                    height 18px
-                    font-weight 500
-                    padding-top 2px
-                    padding-bottom 2px
-                }
+                    position: relative;
+                    margin-top  10px
+                    height 40px
+                    margin-bottom 7px
+                    .song{
+                        font-size 14px;
+                        font-weight 500
+                        height 18px
+                        padding-top  2px
+                        padding-bottom 2px
+                        overflow: hidden;
+                        text-overflow:ellipsis;//文本溢出显示省略号
+                        display: -webkit-box;
+                        -webkit-line-clamp: 3; //控制文字行数
+                        -webkit-box-orient: vertical; //子元素数值排列
+                    }
+                    .singer{
+                        font-size 11px
+                        color: #757575;
+                        height 18px
+                        font-weight 500
+                        padding-top 2px
+                        padding-bottom 2px
+                        overflow: hidden;
+                        text-overflow:ellipsis;//文本溢出显示省略号
+                        display: -webkit-box;
+                        -webkit-line-clamp: 3; //控制文字行数
+                        -webkit-box-orient: vertical; //子元素数值排列
+                    }
                 }
             }
         }

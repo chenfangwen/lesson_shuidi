@@ -15,7 +15,8 @@ export default new Vuex.Store({
     ifNomal:false,
     curIndex:0,
     ifPlaying:false,
-    ifP:false
+    ifP:false,
+    playType:1
   },
   mutations: {
     setCur_music(state,cur){
@@ -47,6 +48,9 @@ export default new Vuex.Store({
     },
     setIfP(state,status){
       state.ifP = status
+    },
+    setPlayType(state,type){
+      state.playType = type
     }
   },
   actions: {
@@ -84,6 +88,9 @@ export default new Vuex.Store({
     },
     getIfP(context,status){
       context.commit('setIfP',status);
+    },
+    getPlayType(context,type){
+      context.commit('setPlayType',type);
     },
   },
   modules: {

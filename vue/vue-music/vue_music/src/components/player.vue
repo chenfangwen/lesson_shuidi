@@ -44,8 +44,10 @@
             <span class="time time-r">{{format(duration)}}</span>
           </div>
           <div class="operators">
-            <div class="operator palytype">
-              <img src="../assets/cycle.png" alt="">
+            <div class="operator palytype" @click="changePlayType(playType)">
+              <img src="../assets/cycle.png" v-if="playType==1" alt="">
+              <img src="../assets/anyone.png" v-if="playType==2" alt="">
+              <img src="../assets/onecycle.png" v-if="playType==3" alt="">
             </div>
             <div class="operator last" @click="last">
               <img src="../assets/last.png" alt="">
@@ -64,7 +66,7 @@
         </div>
       </div>
     </transition>
-    <audio v-show="true"  ref="audio" loop  autoplay="autoplay" :src="url" @timeupdate="updateTime"></audio>
+    <audio v-show="true"  ref="audio"   autoplay="autoplay" :src="url" @timeupdate="updateTime"></audio>
   </div>
 </template>
 
@@ -93,7 +95,8 @@ export default {
         ifNomal:(state) => state.ifNomal,
         ifPlaying:(state) => state.ifPlaying,
         curIndex:(state) => state.curIndex,
-        curList:(state) => state.curList
+        curList:(state) => state.curList,
+        playType:(state) => state.playType
     }),
     ifShow(){
       return this.cur_music!=''?true:false;
@@ -136,30 +139,105 @@ export default {
     },
     currentTime (val) {
       this.percent = val / this.duration
-      // console.log(this.percent)
+      if(val == this.duration){
+        this.percent = 0
+        this.currentTime = 0
+        if(this.curList && this.playType == 1){
+          if(this.curIndex<this.curList.length-1){   //顺序列表
+            this.getCur_music(this.curList[this.curIndex+1])
+            this.getCurIndex(this.curIndex+1)
+          } else {
+            this.getCur_music(this.curList[0])
+            this.getCurIndex(0)
+          }
+        } else if(this.curList && this.playType == 2) { //随机
+          let length =  this.curList.length
+          let index =  parseInt(length*Math.random())
+          this.getCur_music(this.curList[index])
+          this.getCurIndex(index)
+        } else {
+          // this.getIfPlaying(false)  单曲循环
+          this.getCur_music(this.cur_music)
+          this.$refs.audio.play()
+        }
+      }
     }
   },
   methods:{
-    ...mapActions(['getIfNomal','getIfPlaying','getCur_music','getCurIndex']),
+    ...mapActions(['getIfNomal','getIfPlaying','getCur_music','getCurIndex','getPlayType']),
+    changePlayType(type){
+      if(type<3){
+        this.getPlayType(type+1)
+      }else{
+        this.getPlayType(1)
+      }
+    },
     changePlaying(){
-      console.log(this.ifPlaying)
+      // console.log(this.ifPlaying)
       const audio = this.$refs.audio
       this.getIfPlaying(!this.ifPlaying)
-      console.log(this.ifPlaying)
+      // console.log(this.ifPlaying)
       this.ifPlaying ? audio.play() : audio.pause()
     },
     last(){
-      if(this.curIndex>0){
-        this.getCur_music(this.curList[this.curIndex-1])
-        this.getCurIndex(this.curIndex-1)
+      if(this.curList && this.playType == 1){
+        if(this.curIndex>0){
+          this.getCur_music(this.curList[this.curIndex-1])
+          this.getCurIndex(this.curIndex-1)
+        }else{
+          this.getCur_music(this.curList[this.curList.length-1])
+          this.getCurIndex(this.curList.length-1)
+        }
+      } else if(this.curList && this.playType == 2){
+        let length =  this.curList.length
+        let index =  parseInt(length*Math.random())
+        this.getCur_music(this.curList[index])
+        this.getCurIndex(index)
+      } else {
+        if(this.curList){
+          if(this.curIndex>0){
+            this.getCur_music(this.curList[this.curIndex-1])
+            this.getCurIndex(this.curIndex-1)
+          }else{
+            this.getCur_music(this.curList[this.curList.length-1])
+            this.getCurIndex(this.curList.length-1)
+          }
+        } else {
+          this.getCur_music(this.cur_music)
+          this.$refs.audio.play()
+        }
       }
     },
     next(){
       // let index = this.curIndex+1
       // console.log(this.curIndex,this.curList.tracks[index])
-      if(this.curIndex<this.curList.length-1){
-        this.getCur_music(this.curList[this.curIndex+1])
-        this.getCurIndex(this.curIndex+1)
+      if(this.curList && this.playType == 1){
+        // this.currentTime = 0
+        if(this.curIndex<this.curList.length-1){
+          this.getCur_music(this.curList[this.curIndex+1])
+          this.getCurIndex(this.curIndex+1)
+        }else{
+          this.getCur_music(this.curList[0])
+          this.getCurIndex(0)
+        }
+      } else if(this.curList && this.playType == 2){
+        let length =  this.curList.length
+        let index =  parseInt(length*Math.random())
+        this.getCur_music(this.curList[index])
+        this.getCurIndex(index)
+      } else {
+        if(this.curList){
+          if(this.curIndex<this.curList.length-1){
+            this.getCur_music(this.curList[this.curIndex+1])
+            this.getCurIndex(this.curIndex+1)
+          }else{
+            this.getCur_music(this.curList[0])
+            this.getCurIndex(0)
+          }
+        } else {
+          this.getCur_music(this.cur_music)
+          this.$refs.audio.play()
+        }
       }
     },
     // onPercentChange (per) {

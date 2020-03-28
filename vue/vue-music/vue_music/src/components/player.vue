@@ -35,7 +35,9 @@
             </div>
           </transition>
            <transition name="middleLyric">
-            <div class="">暂无歌词</div>
+            <div class="" >
+              <div class="nolyric" v-show="noLyric">暂无歌词</div>
+            </div>
           </transition>
         </div>
         <div class="bottom">
@@ -86,7 +88,9 @@ export default {
       currentTime:0,
       url:'',
       move:'',
-      currentShow:'pic'
+      currentShow:'pic',
+      noLyric:true,
+      currentLyric:''
     }
   },
   components:{
@@ -125,9 +129,11 @@ export default {
       if (newVal.id === oldVal.id) {
         return
       }
+      // this.duration = this.$refs.audio.duration
       this.$refs.audio.pause()
       this.$refs.audio.currentTime = 0
       this._getSong(newVal.id)
+      this._getLyric(this.cur_music.id)
       this.currentShow = 'pic'
     },
     url (newUrl) {
@@ -140,7 +146,7 @@ export default {
         // }
       }, 150)
       this.getIfPlaying(true)
-      console.log(this.ifPlaying)
+      // console.log(this.ifPlaying)
     },
     currentTime (val) {
       this.percent = val / this.duration
@@ -170,6 +176,11 @@ export default {
   },
   methods:{
     ...mapActions(['getIfNomal','getIfPlaying','getCur_music','getCurIndex','getPlayType']),
+    _getLyric(id){
+
+      // this.noLyric = false;
+      
+    },
     changePlayType(type){
       if(type<3){
         this.getPlayType(type+1)

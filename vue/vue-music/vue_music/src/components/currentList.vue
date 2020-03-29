@@ -1,38 +1,32 @@
 <template>
   <transition name="currentList">
     <div class="playlist" v-show="showList" @click="hide">
-      <div class="list-wrapper">
+      <div class="list-wrapper" @click.stop="donull">
         <div class="list-header">
-          <h1 class="title">
-            <img src="../assets/cycle.png" alt="">
-            <span class="text">顺序循环
-              (<span class="count">10</span>)
-            </span>
-            <span class="clear" >
-                清空
-            </span>
-          </h1>
-        </div>
-        <div class="list-content">
-            <div class="listItem" v-for="(item,index) in curList" :key="index">
-                <div class="name">{{item.name}}</div>
-                <div class="singer">-{{item.ar[0].name}}</div>
-                <div class="delete">X</div>
+            <div class="playtype" @click="changePlayType(playType)">
+                <img  src="../assets/cycle.png" v-show="playType==1" alt="">
+                <img  src="../assets/anyone.png" v-show="playType==2" alt="">
+                <img  src="../assets/onecycle.png" v-show="playType==3" alt="">
+                <div v-show="playType==1" class="name">顺序播放</div>
+                <div v-show="playType==2" class="name">随机播放</div>
+                <div v-show="playType==3" class="name">单曲循环</div>
             </div>
         </div>
-        <!-- <scroll ref="listContent" class="list-content" :data="sequenceList" :refreshDelay="refreshDelay">
+        <scroll ref="listContent" class="list-content" :data="curList" :refreshDelay="refreshDelay">
           <transition-group name="list" tag="ul">
-            <li class="item" ref="listItem"
-            @click="selectItem(item, index)"
-            v-for="(item, index) in sequenceList" :key="item.id">
-              <i class="current fa" :class="getCurrentIcon(item)"></i>
-              <span class="text">{{item.name}}</span>
-              <span class="delete" @click.stop="deletOne(item)">
+            <li class="item" ref="listItem" :class="index==curIndex?'active':''"
+            @click.stop="m_getCur_music(item, index)"
+            v-for="(item, index) in curList" :key="item.id">
+              <!-- <i class="current fa" :class="getCurrentIcon(item)"></i> -->
+              <div class="text">{{item.name}}</div>
+              <div class="null">-</div>
+              <div class="singer">{{item.ar[0].name}}</div>
+              <!-- <span class="delete" @click.stop="deletOne(item)">
                 <i class="icon-delete"></i>
-              </span>
+              </span> -->
             </li>
           </transition-group>
-        </scroll> -->
+        </scroll>
         <div @click="hide" class="list-close">
           <span>关闭</span>
         </div>
@@ -44,23 +38,49 @@
 
 
 <script>
+import Scroll from './scroll.vue'
 import {mapState,mapActions} from 'vuex'
 export default {
     data(){
         return {
-            showList:false
+            showList:false,
+            refreshDelay:100
         }
     },
+    components:{
+        Scroll
+    },
     computed:{
-        ...mapState(['curList'])
+        ...mapState(['curList','cur_music','curIndex','playType']),
+        getCurrentIcon (item) {
+            if (this.cur_music.id === item.id) {
+                return 'fa-volume-up'
+            }
+            return ''
+        }
     },
     methods:{
-        ...mapActions(['']),
+        ...mapActions(['getCur_music','getCurIndex','getPlayType']),
+        m_getCur_music(item,index){
+            this.getCur_music(item)
+            this.getCurIndex(index)
+        },
+        changePlayType(type){
+            console.log(type)
+            if(type<3){
+                this.getPlayType(type+1)
+            }else{
+                this.getPlayType(1)
+            }
+        },
         show(){
             this.showList = true
         },
         hide(){
             this.showList = false
+        },
+        donull(){
+            return 
         }
     }
 }
@@ -98,35 +118,25 @@ export default {
     //background-color: #F2F3F4;
       background-color #fff
       .list-header {
-        position: relative;
-        padding: 20px 30px 10px 20px;
-        .title {
-          display: flex;
-          align-items: center;
-          .iconfont {
-            margin-right: 10px;
-            font-size: 20px;
-            color: #757575; 
-          }
-          .text {
-            flex: 1;
-            font-size: 14px;
-            color:  #2E3030;
-            .count {
-              position: relative;
-              top: 1px;
+        display: flex;
+        height 40px
+        .playtype{
+            display flex
+            height 40px
+            img{
+                margin-top 10px
+                height 20px
+                widows 20px
             }
-          }
-          .clear {
-            @include extend-click();
-            .icon-clear {
-              font-size:14px;
-              color:  #757575; 
+            .name{
+                margin-left 5px
             }
-          }
         }
       }
       .list-content {
+        .active{
+            color red
+        }
         .listItem{
             height 30px
             display flex
@@ -164,12 +174,23 @@ export default {
             color: rgb(212, 68, 57);
             margin-right: 5px;
           }
+          .null{
+              margin 0 5px
+          }
           .text {
-            flex: 1;
+            // flex: 1;
+            text-align left
             @include no-wrap();
             line-height: 20px;
             font-size: 14px;
-            color: #2E3030;
+            // color: #2E3030;
+          }
+          .singer{
+            text-align left
+            @include no-wrap();
+            line-height: 20px;
+            font-size: 12px;
+            // color: #757575; 
           }
           .delete {
             @include extend-click();

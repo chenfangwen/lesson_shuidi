@@ -25,6 +25,7 @@ export default {
   data(){
     return {
       searchValue:'',
+      firstSingerName:'',
       firstSinger:''
     }
   },
@@ -56,15 +57,28 @@ export default {
                 console.log(res.data)
                 // this.musicsList = res.data.result.songs;
                 this.getMusicList(res.data.result.songs) 
-            })
-            API.getSearchSinger(query)
-            .then(res=>{
-                // console.log(res.data)
-                if(res.data.result.artists){
-                  this.firstSinger = res.data.result.artists[0];
+                if(res.data.result.songs[0].artists[0]){
+                  this.firstSingerName = res.data.result.songs[0].artists[0].name
+                  API.getSearchSinger(this.firstSingerName)
+                  .then(res=>{
+                      console.log(res.data)
+                      if(res.data.result.artists){
+                        this.firstSinger = res.data.result.artists[0];
+                      }
+                      
+                  })
                 }
-                
             })
+            // if(this.firstSingerName){
+            //   API.getSearchSinger(this.firstSingerName)
+            //   .then(res=>{
+            //       console.log(res.data)
+            //       if(res.data.result.artists){
+            //         this.firstSinger = res.data.result.artists[0];
+            //       }
+                  
+            //   })
+            // }
         },
         back(){
             this.$router.go(-1)

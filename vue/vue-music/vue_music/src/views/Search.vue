@@ -69,16 +69,6 @@ export default {
                   })
                 }
             })
-            // if(this.firstSingerName){
-            //   API.getSearchSinger(this.firstSingerName)
-            //   .then(res=>{
-            //       console.log(res.data)
-            //       if(res.data.result.artists){
-            //         this.firstSinger = res.data.result.artists[0];
-            //       }
-                  
-            //   })
-            // }
         },
         back(){
             this.$router.go(-1)

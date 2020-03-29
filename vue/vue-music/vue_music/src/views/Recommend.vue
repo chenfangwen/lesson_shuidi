@@ -2,19 +2,16 @@
   <div class="recommend">
     <div class="red"></div>
     <div class="content">
-      <div class="swiper">
-        <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
-          <van-swipe-item v-for="(item,index) in banners" :key="index" @click="getbanner(item)">
-            <!-- <img :src="item.picUrl" alt=""> -->
-            <van-image  :src="item.picUrl" />
-          </van-swipe-item>
-        </van-swipe>
-      </div>
+      <van-swipe :autoplay="3000" indicator-color="white">
+        <van-swipe-item v-for="(item,index) in banners" :key="index" @click="getbanner(item)">
+          <van-image  :src="item.picUrl" />
+        </van-swipe-item>
+      </van-swipe>
       <div class="recommendList">
         <div class="text">推荐歌单</div>
         <van-grid :column-num="3" :border="false">
           <van-grid-item @click="getplaylist(item)" v-for="(item,index) in playlists" :key="index">
-            <div class="image"><van-image  :src="item.picUrl" /></div>
+            <div class="image"><img class="van-image__img" :src="item.picUrl" /></div>
             <div class="name">{{item.name}}</div>
           </van-grid-item>
         </van-grid>
@@ -93,9 +90,10 @@ export default {
 
 <style lang="stylus"  scoped>
 .recommend{
-  background-color: #f2f3f4;
+  // background-color: #f2f3f4;
   margin: 0;
   padding: 0;
+  z-index: 100;
   .red{
     height 100px
     background-color #d44439
@@ -105,23 +103,29 @@ export default {
     top 85px
     width: 98%;
     margin: 0 1%;
-    .swiper{
-      position relative
-      // top 85px
-      // width: 98%;
-      // margin: 0 1%;
-      padding 0
-      background-color #f2f2f2
+    // .swiper{
+    //   position relative
+    //   background-color #f2f2f2
+    //   border-radius: 10px;
+    //   // overflow: hidden;
+    .van-swipe{
       border-radius: 10px;
-      // overflow: hidden;
-      .my-swipe .van-swipe-item {
-        border-radius: 10px;
-        .van-image__img{
-          border-radius: 10px;
-          margin 0
+      .van-swipe__track{
+        .van-swipe-item{
+          .van-image{
+            width 100%
+            height 100%
+            margin 0
+            .van-image__img{
+               border-radius: 10px;
+            }
+          }
         }
       }
+      
     }
+    
+    // }
     .recommendList{
         position relative
         width 98%
@@ -137,9 +141,6 @@ export default {
         }
         .van-grid{
           .van-grid-item{
-            .van-grid-item__content--center{
-
-            }
             .van-grid-item__content {
               position relative
               padding 18px 6px 0 6px
@@ -148,17 +149,19 @@ export default {
                 width 100%
                 height 100%
                 padding 0
-                .van-image{
+                border-radius 5px
+                // .van-image{
+                //   position relative
+                //   width 100%
+                //   height 100%
+                //   border-radius 5px
+                .van-image__img{
                   position relative
                   width 100%
                   height 100%
-                  .van-image__img{
-                    position relative
-                    // width 100%
-                    // height 100%
-                    border-radius 5px
-                  }
+                  border-radius 5px
                 }
+                // }
               }
               .name{
                 position relative
@@ -166,6 +169,7 @@ export default {
                 width 100%
                 color: #757575;
                 margin-top 5px
+                height 18px
                 text-align left
                 overflow: hidden;
                 text-overflow:ellipsis;//文本溢出显示省略号

@@ -7,6 +7,16 @@
           <div class="left" >{{cur_music.name}}</div>
           <div class="left_singer" >{{artistsNmae}}</div>
         </div>
+        <div class="play" @click.stop="changePlaying">
+          <!-- <progress-circle :radius="radius" :percent="percent"> -->
+            <!-- <i class="icon-mini" :class="miniIcon" ></i> -->
+            <img src="../assets/miniPlay.png" v-show="!ifPlaying" alt="">
+            <img src="../assets/miniStop.png" v-show="ifPlaying" alt="">
+          <!-- </progress-circle> -->
+        </div>
+        <div class="curList" @click.stop="showPlaylist">
+          <img src="../assets/miniList.png" alt="">
+        </div>
       </div>
     </transition>
     <transition name="nomal">
@@ -64,13 +74,15 @@
             <div class="operator next" @click="next">
               <img src="../assets/next.png" alt="">
             </div>
-            <div class="operator list">
+            <div class="operator list" @click="showPlaylist">
               <img src="../assets/list.png" alt="">
             </div>
           </div>
         </div>
       </div>
     </transition>
+    <!-- curlist -->
+    <current-list ref="currentList" />
     <audio v-show="true"  ref="audio"   autoplay="autoplay" :src="url" @timeupdate="updateTime"></audio>
   </div>
 </template>
@@ -79,6 +91,7 @@
 // @ is an alias to /src
 import {mapState,mapActions} from 'vuex'
 import progressBar from './progressBar.vue'
+import currentList from './currentList.vue'
 export default {
   name: 'Player',
   data(){
@@ -94,7 +107,8 @@ export default {
     }
   },
   components:{
-    progressBar
+    progressBar,
+    currentList
   },
   computed:{
     ...mapState({
@@ -176,6 +190,9 @@ export default {
   },
   methods:{
     ...mapActions(['getIfNomal','getIfPlaying','getCur_music','getCurIndex','getPlayType']),
+    showPlaylist(){
+      this.$refs.currentList.show()
+    },
     _getLyric(id){
 
       // this.noLyric = false;
@@ -538,15 +555,18 @@ export default {
     }
   }
   .info{
-    z-index: 150;
-    width 100vw
-    background-color: rgba(255, 255, 255, 0.85);
-    position: fixed;
     display: flex;
+    align-items: center;
+    position: fixed;
+    left: 0;
     bottom: 0;
-    height: 50px;
+    z-index: 180;
+    width: 100%;
+    height: 60px;
+    background-color #fff
     .avator{
       width: 50px;
+      margin-top 5px
       .vatoar{
         width: 50px;
         height: 50px;
@@ -560,7 +580,7 @@ export default {
       }
     }
     .name{
-      width: 46vw;
+      width: 91vw;
       padding-left: 5px;
       /* margin-left: 20px; */
       .left{
@@ -586,8 +606,29 @@ export default {
         -webkit-line-clamp: 1; //控制文字行数
         -webkit-box-orient: vertical; //子元素数值排列
       }
+    }
+    .play{
+      position relative
+      height 60px
+      width 40px
+      img{
+        height 40px
+        width 40px
+        margin-top 10px
+      }
+    }
+    .curList{
+      position relative
+      height 60px
+      width 40px
+      margin-left 15px
+      img{
+        height 40px
+        width 40px
+        margin-top 10px
+      }
+    }
   }
-}
 @keyframes rotate {
   0% {
     transform: rotate(0);

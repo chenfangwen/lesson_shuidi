@@ -82,7 +82,7 @@ export default {
           this.showList = false
         },
         deletOne(item,index){
-          console.log(index,this.curIndex)
+          // console.log(index,this.curIndex)
           if(this.curIndex>index){
             let arr = this.curList;
             arr.splice(index,0);

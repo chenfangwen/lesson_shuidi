@@ -611,22 +611,22 @@ export default {
     .play{
       position relative
       height 60px
-      width 40px
+      width 30px
       img{
-        height 40px
-        width 40px
-        margin-top 10px
+        height 30px
+        width 30px
+        margin-top 15px
       }
     }
     .curList{
       position relative
       height 60px
-      width 40px
+      width 30px
       margin-left 15px
       img{
-        height 40px
-        width 40px
-        margin-top 10px
+        height 30px
+        width 30px
+        margin-top 15px
       }
     }
   }

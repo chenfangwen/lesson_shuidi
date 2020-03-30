@@ -5,7 +5,9 @@
             <div class="type">歌单</div>
         </div>
         <div class="album">
-            <img class="image" :src="playList.coverImgUrl" alt="">
+            <div class="img">
+                <img class="image" :src="playList.coverImgUrl" alt="">
+            </div>
             <div class="info">
                 <div class="name">{{playList.name}}</div>
                 <div class="singer">{{playList.description}}</div>
@@ -65,31 +67,43 @@ export default {
         background-color: #f2f3f4;
         /* margin-top: 50px; */
         .back{
+            position fixed
+            background-color rgb(212, 68, 57);
             text-align left
-            height 25px
+            height 50px
+            color white
+            width 100vw
             display flex
-            margin-top  10px
+            z-index 150
+            // margin-top  10px
             line-height 25px
             .back_img{
+                margin-top 12px
                 width 25px
                 height 25px
                 margin-left 10px
             }
             .type{
+                margin-top 12px
                 font-size 19px
                 margin-left 15px
             }
         }
         .album{
             width 97%
-            margin-top 20px
+            margin-top 55px
             height 200px
+            width 100vw
             margin-left 1.5%
             display flex
             background-color: #f2f3f4;
-            .image{
+            .img{
                 height 150px
                 width 150px
+                .image{
+                    height 150px
+                    width 150px
+                }
             }
             .info{
                 margin-left 20px

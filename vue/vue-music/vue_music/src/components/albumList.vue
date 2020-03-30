@@ -5,7 +5,8 @@
             <div class="type">专辑</div>
         </div>
         <div class="album">
-            <img class="image" :src="albumPic" alt="">
+            <div class="img"><img class="image" :src="albumPic" alt=""></div>
+            
             <div class="info">
                 <div class="name">{{albumName}}</div>
                 <div class="singer">歌手:{{albumSinger}}></div>
@@ -68,30 +69,39 @@ export default {
         background-color: #f2f3f4;
         /* margin-top: 50px; */
         .back{
+            position fixed
+            background-color rgb(212, 68, 57);
+            width 100vw
+            color #fff
             text-align left
-            height 25px
+            height 50px
             display flex
-            margin-top  10px
             line-height 25px
             .back_img{
                 width 25px
                 height 25px
+                margin-top 12px
                 margin-left 10px
             }
             .type{
+                margin-top 12px
                 font-size 19px
                 margin-left 15px
             }
         }
         .album{
             width 97%
-            margin-top 20px
+            margin-top 55px
             height 200px
             margin-left 1.5%
             display flex
-            .image{
+            .img{
                 height 150px
                 width 150px
+                .image{
+                    height 150px
+                    width 150px
+                }
             }
             .info{
                 margin-left 20px

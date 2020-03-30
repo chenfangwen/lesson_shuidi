@@ -74,7 +74,7 @@ export default {
             color white
             width 100vw
             display flex
-            z-index 150
+            z-index 1
             // margin-top  10px
             line-height 25px
             .back_img{

@@ -76,6 +76,7 @@ export default {
             text-align left
             height 50px
             display flex
+            z-index 1
             line-height 25px
             .back_img{
                 width 25px

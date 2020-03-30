@@ -3,14 +3,15 @@
     <div class="playlist" v-show="showList" @click="hide">
       <div class="list-wrapper" @click.stop="donull">
         <div class="list-header">
-            <div class="playtype" @click="changePlayType(playType)">
-                <img  src="../assets/cycle.png" v-show="playType==1" alt="">
-                <img  src="../assets/anyone.png" v-show="playType==2" alt="">
-                <img  src="../assets/onecycle.png" v-show="playType==3" alt="">
+            <div class=" playtype" @click="changePlayType(playType)">
+                <img  src="../assets/b_cycle.png" v-show="playType==1" alt="">
+                <img  src="../assets/b_anyone.png" v-show="playType==2" alt="">
+                <img  src="../assets/b_onecycle.png" v-show="playType==3" alt="">
                 <div v-show="playType==1" class="name">顺序播放</div>
                 <div v-show="playType==2" class="name">随机播放</div>
                 <div v-show="playType==3" class="name">单曲循环</div>
             </div>
+            <div class="deleteall" @click.stop="deleteAll"><img src="../assets/deleteall.png" alt=""></div>
         </div>
         <scroll ref="listContent" class="list-content" :data="curList" :refreshDelay="refreshDelay">
           <transition-group name="list" tag="ul">
@@ -18,12 +19,13 @@
             @click.stop="m_getCur_music(item, index)"
             v-for="(item, index) in curList" :key="item.id">
               <!-- <i class="current fa" :class="getCurrentIcon(item)"></i> -->
+              <div class="laba" v-show="curIndex==index"><img src="../assets/laba.png"  alt=""></div>
               <div class="text">{{item.name}}</div>
               <div class="null">-</div>
               <div class="singer">{{item.ar[0].name}}</div>
-              <!-- <span class="delete" @click.stop="deletOne(item)">
-                <i class="icon-delete"></i>
-              </span> -->
+              <span class="delete" @click.stop="deletOne(item,index)">
+                <img src="../assets/deleteone.png" alt="">
+              </span>
             </li>
           </transition-group>
         </scroll>
@@ -60,10 +62,11 @@ export default {
         }
     },
     methods:{
-        ...mapActions(['getCur_music','getCurIndex','getPlayType']),
+        ...mapActions(['getCur_music','getCurIndex','getPlayType','getCurList']),
         m_getCur_music(item,index){
             this.getCur_music(item)
             this.getCurIndex(index)
+            console.log(this.curIndex)
         },
         changePlayType(type){
             console.log(type)
@@ -72,6 +75,35 @@ export default {
             }else{
                 this.getPlayType(1)
             }
+        },
+        deleteAll(){
+          let arr = []
+          this.getCurList(arr);
+          this.showList = false
+        },
+        deletOne(item,index){
+          console.log(index,this.curIndex)
+          if(this.curIndex>index){
+            let arr = this.curList;
+            arr.splice(index,0);
+            this.getCurList(arr);
+            let newIndex = this.curIndex - 1
+            this.getCurIndex(newIndex)
+            this.getCur_music(this.curList[newIndex+1])
+            // console.log(this.curIndex)
+          }
+          if(this.curIndex==index){
+            let arr = this.curList;
+            arr.splice(index,1);
+            this.getCurList(arr);
+            // console.log(index,this.curIndex)
+            this.getCur_music(this.curList[index])
+          }
+          else{
+            let arr = this.curList;
+            arr.splice(index,1);
+            this.getCurList(arr);
+          }
         },
         show(){
             this.showList = true
@@ -121,21 +153,33 @@ export default {
         display: flex;
         height 40px
         .playtype{
-            display flex
-            height 40px
-            img{
-                margin-top 10px
-                height 20px
-                widows 20px
-            }
-            .name{
-                margin-left 5px
-            }
+          margin-left 20px
+          display flex
+          height 40px
+          img{
+              margin-top 10px
+              height 20px
+              widows 20px
+          }
+          .name{
+              margin-left 10px
+              line-height 40px
+          }
+        }
+        .deleteall{
+          position absolute
+          right 20px
+          height 40px
+          img{
+            margin-top 10px
+            height 20px
+            widows 20px
+          }
         }
       }
       .list-content {
         .active{
-            color red
+            color #d81e06
         }
         .listItem{
             height 30px
@@ -177,6 +221,16 @@ export default {
           .null{
               margin 0 5px
           }
+          .laba{
+            position relative
+            margin-top 5px
+            height 20px
+            width 20px
+            img{
+              height 15px
+              width 15px
+            }
+          }
           .text {
             // flex: 1;
             text-align left
@@ -194,8 +248,15 @@ export default {
           }
           .delete {
             @include extend-click();
-            font-size: 11px;
-            color:  rgb(212, 68, 57);
+            position absolute
+            right 20px
+            margin-top 5px
+            height 20px
+            width 20px
+            img{
+              height 15px
+              width 15px
+            }
           }
         }
       }

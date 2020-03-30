@@ -8,7 +8,7 @@ export default new Vuex.Store({
   state: {
     cur_music:'',
     cur_music_pic:'',
-    curList:'',
+    curList:[],
     musicsList:'',
     albumMusic:'',
     playList:'',

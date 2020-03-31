@@ -109,7 +109,7 @@ export default {
     width 100vw
     height 100vh
     
-    // z-index 150
+    z-index 100
     // background-color #f2f2f2
     
 }

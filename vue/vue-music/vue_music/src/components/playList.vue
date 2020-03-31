@@ -5,6 +5,10 @@
             <div class="type">歌单</div>
         </div>
         <div class="album">
+            <!-- <div class="bgimg">
+                <div class="filter"></div>
+                <img :src="playList.coverImgUrl" width="100%" height="100%">
+            </div> -->
             <div class="img">
                 <img class="image" :src="playList.coverImgUrl" alt="">
             </div>
@@ -64,7 +68,8 @@ export default {
 .albumLists{
         position: absolute;
         top 0
-        background-color: #f2f3f4;
+        width 100vw
+        // background-color: #f2f3f4;
         /* margin-top: 50px; */
         .back{
             position fixed
@@ -74,7 +79,7 @@ export default {
             color white
             width 100vw
             display flex
-            z-index 1
+            z-index 2
             // margin-top  10px
             line-height 25px
             .back_img{
@@ -90,13 +95,29 @@ export default {
             }
         }
         .album{
-            width 97%
+            position absolute
             margin-top 55px
             height 200px
             width 100vw
-            margin-left 1.5%
             display flex
             background-color: #f2f3f4;
+            // .bgimg {
+            //     position: absolute;
+            //     margin-top 44px
+            //     left: 10%;
+            //     top: -50%;
+            //     width: 100%;
+            //     height: 100%;
+            //     z-index: -1;
+            //     filter: blur(30px);
+            //     .filter {
+            //         position: absolute;
+            //         width: 100%;
+            //         height: 100%;
+            //         background: black;
+            //         opacity: 0.7;
+            //     }
+            // }
             .img{
                 height 150px
                 width 150px
@@ -132,6 +153,7 @@ export default {
         .list{
             // border-radius 5px
             // background-color: white;
+            margin-top 250px
             .m-head{
                 position sticky
                 top 0

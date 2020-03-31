@@ -5,8 +5,11 @@
             <div class="type">专辑</div>
         </div>
         <div class="album">
+            <!-- <div class="bgimg">
+                <div class="filter"></div>
+                <img :src="albumPic" width="100%" height="100%">
+            </div> -->
             <div class="img"><img class="image" :src="albumPic" alt=""></div>
-            
             <div class="info">
                 <div class="name">{{albumName}}</div>
                 <div class="singer">歌手:{{albumSinger}}></div>
@@ -20,7 +23,11 @@
             <div @click="getCur_music_m(item,index)" class="music_item" v-for="(item, index) in albumMusic" :key="index">
                 <div class="music_item_box">
                 <div class="song">{{ item.name }}</div>
-                <div class="singer">{{ item.ar[0].name }}</div>
+                <div class="singers">
+                    <div class="singer" v-for="(singer,index) in item.ar" :key="index">
+                        {{ singer.name }}
+                    </div>
+                </div>
             </div>
         </div>
         </div>
@@ -76,7 +83,7 @@ export default {
             text-align left
             height 50px
             display flex
-            z-index 1
+            z-index 2
             line-height 25px
             .back_img{
                 width 25px
@@ -96,6 +103,22 @@ export default {
             height 200px
             margin-left 1.5%
             display flex
+            // .bgimg {
+            //     position: absolute;
+            //     left: -50%;
+            //     top: -50%;
+            //     width: 300%;
+            //     height: 100%;
+            //     z-index: -1;
+            //     filter: blur(30px);
+            //     .filter {
+            //         position: absolute;
+            //         width: 100%;
+            //         height: 100%;
+            //         background: black;
+            //         opacity: 0.6;
+            //     }
+            // }
             .img{
                 height 150px
                 width 150px

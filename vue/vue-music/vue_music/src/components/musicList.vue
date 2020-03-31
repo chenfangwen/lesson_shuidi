@@ -3,7 +3,11 @@
       <div  @click="getCur_music_m(item,index)" class="music_item" v-for="(item, index) in musicsList" :key="index">
         <div class="music_item_box">
           <div class="song">{{ item.name }}</div>
-          <div class="singer">{{ item.artists[0].name }}</div>
+          <div class="singers">
+            <div class="singer" v-for="(singer,index) in item.artists" :key="index">
+              <div class="singername">{{ singer.name }}</div> <div class="null" v-if="index<item.artists.length-1">\</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -50,17 +54,39 @@ export default {
               .song{
                 font-size 14px;
                 font-weight 500
-                height 20px
+                height 18px
                 padding-top  2px
                 padding-bottom 2px
+                overflow: hidden;
+                text-overflow:ellipsis;//文本溢出显示省略号
+                // display: -webkit-box;
+                -webkit-line-clamp: 1; //控制文字行数
+                -webkit-box-orient: vertical; //子元素数值排列
               }
-              .singer{
+              .singers{
+                display flex
                 font-size 11px
                 color: #757575;
-                height 18px
+                height 13px
+                overflow: hidden;
+                text-overflow:ellipsis;//文本溢出显示省略号
+                // display: -webkit-box;
+                -webkit-line-clamp: 1; //控制文字行数
+                -webkit-box-orient: vertical; //子元素数值排列
                 font-weight 500
                 padding-top 2px
                 padding-bottom 2px
+                .singer{
+                  display flex
+                  text-align left
+                  .singername{
+                  }
+                  .null{
+                    width 10px
+                    text-align center
+                    line-height 15px
+                  }
+                }
               }
             }
         }

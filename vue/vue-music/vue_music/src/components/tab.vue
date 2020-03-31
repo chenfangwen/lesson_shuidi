@@ -34,7 +34,9 @@ export default {
 </script>
 <style lang="stylus" scoped>
 .tab{
-    position: relative;
+    position: fixed;
+    z-index 1
+    top 43px
     height: 44px;
     width: 100%;
     display flex

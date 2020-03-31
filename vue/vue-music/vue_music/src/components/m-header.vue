@@ -16,7 +16,9 @@
 
 <style lang="stylus" scoped>
 .header {
-  position: relative;
+  position fixed;
+  z-index 1
+  top 0
   height: 44px;
   width: 100%;
   text-align: center;

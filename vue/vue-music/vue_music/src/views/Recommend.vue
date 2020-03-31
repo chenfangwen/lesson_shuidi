@@ -96,7 +96,7 @@ export default {
   padding: 0;
   z-index: 100;
   .red{
-    height 100px
+    height 200px
     background-color #d44439
   }
   .content{

@@ -11,14 +11,13 @@
                 <div v-show="playType==2" class="name">随机播放</div>
                 <div v-show="playType==3" class="name">单曲循环</div>
             </div>
-            <div class="deleteall" @click.stop="deleteAll"><img src="../assets/deleteall.png" alt=""></div>
+            <div class="deleteall" @click.stop="showConfirm"><img src="../assets/deleteall.png" alt=""></div>
         </div>
         <scroll ref="listContent" class="list-content" :data="curList" :refreshDelay="refreshDelay">
           <transition-group name="list" tag="ul">
             <li class="item" ref="listItem" :class="index==curIndex?'active':''"
             @click.stop="m_getCur_music(item, index)"
             v-for="(item, index) in curList" :key="item.id">
-              <!-- <i class="current fa" :class="getCurrentIcon(item)"></i> -->
               <div class="laba" v-show="curIndex==index"><img src="../assets/laba.png"  alt=""></div>
               <div class="text">{{item.name}}</div>
               <div class="null">-</div>
@@ -33,7 +32,7 @@
           <span>关闭</span>
         </div>
       </div>
-      <!-- <confirm ref="confirm" @confirm="confirmClear" text="是否清空播放列表" confirmBtnText="清空"></confirm> -->
+      <confirm ref="confirm" @confirm="confirmClear" text="是否清空此播放列表" confirmBtnText="清空"></confirm>
     </div>
   </transition>
 </template>
@@ -41,6 +40,7 @@
 
 <script>
 import Scroll from './scroll.vue'
+import confirm from './common/confirm'
 import {mapState,mapActions} from 'vuex'
 export default {
     data(){
@@ -50,7 +50,8 @@ export default {
         }
     },
     components:{
-        Scroll
+        Scroll,
+        confirm
     },
     computed:{
         ...mapState(['curList','cur_music','curIndex','playType']),
@@ -76,7 +77,14 @@ export default {
                 this.getPlayType(1)
             }
         },
-        deleteAll(){
+        showConfirm(){
+          // let arr = []
+          // this.getCurList(arr);
+          // this.showList = false
+          if(this.curList!='')
+          {this.$refs.confirm.show()}
+        },
+        confirmClear () {
           let arr = []
           this.getCurList(arr);
           this.showList = false

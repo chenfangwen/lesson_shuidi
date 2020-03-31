@@ -44,7 +44,7 @@ export default {
   },
   
   methods:{
-    ...mapActions(['getCur_music']),
+    ...mapActions(['getCur_music','getCurList']),
     getbanner(item){
       console.log(item)
       if(item.targetType==10||item.targetType==1000){
@@ -60,6 +60,7 @@ export default {
               if(res.data.songs[0]){
                   // this.getMusicList(res.data.songs)
                   this.getCur_music(res.data.songs[0])
+                  this.getCurList(res.data.songs)
               }
           })
       }

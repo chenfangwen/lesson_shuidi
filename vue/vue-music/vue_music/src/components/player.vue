@@ -45,9 +45,20 @@
             </div>
           </transition>
            <transition name="middleLyric">
-            <div class="" >
+            <!-- <div class="" >
               <div class="nolyric" v-show="noLyric">暂无歌词</div>
-            </div>
+            </div> -->
+            <scroll class="lyric" ref="lyricList" v-show="currentShow === 'lyric'" :data="currentLyric && currentLyric.lines">
+              <div class="lyric-wrapper">
+                <div class="currentLyric" v-if="currentLyric">
+                  <p ref="lyricLine" class="text" :class="{'current': currentLineNum === index}"
+                    v-for="(item, index) in currentLyric.lines" :key="item.key">
+                    {{item.txt}}
+                  </p>
+                </div>
+                  <p class="no-lyric" v-if="currentLyric == ''">暂无歌词</p>
+              </div>
+            </scroll>
           </transition>
         </div>
         <div class="bottom">
@@ -92,6 +103,7 @@
 import {mapState,mapActions} from 'vuex'
 import progressBar from './progressBar.vue'
 import currentList from './currentList.vue'
+import scroll from './scroll.vue'
 export default {
   name: 'Player',
   data(){
@@ -103,12 +115,12 @@ export default {
       move:'',
       currentShow:'pic',
       noLyric:true,
-      currentLyric:''
     }
   },
   components:{
     progressBar,
-    currentList
+    currentList,
+    scroll
   },
   computed:{
     ...mapState({
@@ -118,7 +130,8 @@ export default {
         ifPlaying:(state) => state.ifPlaying,
         curIndex:(state) => state.curIndex,
         curList:(state) => state.curList,
-        playType:(state) => state.playType
+        playType:(state) => state.playType,
+        currentLyric:(state) => state.currentLyric
     }),
     ifShow(){
       return this.cur_music!=''?true:false;

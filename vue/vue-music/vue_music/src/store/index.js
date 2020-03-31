@@ -9,14 +9,15 @@ export default new Vuex.Store({
     cur_music:'',
     cur_music_pic:'',
     curList:[],
-    musicsList:'',
-    albumMusic:'',
-    playList:'',
+    musicsList:[],
+    albumMusic:[],
+    playList:[],
     ifNomal:false,
     curIndex:0,
     ifPlaying:false,
     ifP:false,
-    playType:1
+    playType:1,
+    currentLyric:[]
   },
   mutations: {
     setCur_music(state,cur){

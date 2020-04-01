@@ -5,10 +5,10 @@
             <div class="type">歌单</div>
         </div>
         <div class="album">
-            <!-- <div class="bgimg">
-                <div class="filter"></div>
+            <div id="bgimg" class="blur">
+                <!-- <div class="filter"></div> -->
                 <img :src="playList.coverImgUrl" width="100%" height="100%">
-            </div> -->
+            </div>
             <div class="img">
                 <img class="image" :src="playList.coverImgUrl" alt="">
             </div>
@@ -69,7 +69,7 @@ export default {
         position: absolute;
         top 0
         width 100vw
-        // background-color: #f2f3f4;
+        background-color: rgba(0, 0, 0, 0.3);
         /* margin-top: 50px; */
         .back{
             position fixed
@@ -99,15 +99,47 @@ export default {
             margin-top 55px
             height 200px
             width 100vw
+
+            // position: fixed;
+            // left: 0;
+            // right: 0;
+            // top: 44px;
+            // bottom: 0;
+
             display flex
-            background-color: #f2f3f4;
+            // background-color: #f2f3f4;
+            #bgimg{
+                width 100vw
+                height 500px
+                position relative
+            }
+            #bgimg.blur{
+                position absolute
+                top -300px
+                left 0px
+                // width 80%
+                // background-size cover
+                filter blur(30px)
+                z-index -1
+            }
+            #bgimg:before{
+                position absolute
+                width 100%
+                height 100%
+                top 0
+                left 0
+                bottom 0
+                right 0
+                filter blur(7px)
+                z-index -1
+            }
             // .bgimg {
             //     position: absolute;
-            //     margin-top 44px
+            //     // margin-top 44px
             //     left: 10%;
             //     top: -50%;
-            //     width: 100%;
-            //     height: 100%;
+            //     width: 300%;
+            //     height: 300%;
             //     z-index: -1;
             //     filter: blur(30px);
             //     .filter {
@@ -115,7 +147,7 @@ export default {
             //         width: 100%;
             //         height: 100%;
             //         background: black;
-            //         opacity: 0.7;
+            //         opacity: 0.6;
             //     }
             // }
             .img{
@@ -138,7 +170,7 @@ export default {
                     margin  10px 0
                     font-size 12px
                     width 92%
-                    color: #757575;
+                    color: #c7c7c7; 
                     // overflow hidden
                     // white-space nowrap
                     // text-overflow ellipsis
@@ -152,7 +184,8 @@ export default {
         }
         .list{
             // border-radius 5px
-            // background-color: white;
+            border-radius 15px 15px 0 0
+            background-color: white;
             margin-top 250px
             .m-head{
                 position sticky
@@ -177,13 +210,15 @@ export default {
                 background-color: white;
                 width: 100vw;
                 height: 47px;
-                padding 1% 
+                // padding 1% 
                 // margin-left 1.5%
                 text-align left 
                 // 
                 .music_item_box{
                     position: relative;
                     margin-top  10px
+                    width 96%
+                    margin-left 2%
                     height 40px
                     margin-bottom 7px
                     .song{

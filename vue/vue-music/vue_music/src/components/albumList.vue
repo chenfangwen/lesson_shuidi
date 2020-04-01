@@ -5,10 +5,9 @@
             <div class="type">专辑</div>
         </div>
         <div class="album">
-            <!-- <div class="bgimg">
-                <div class="filter"></div>
+            <div id="bgimg" class="blur">
                 <img :src="albumPic" width="100%" height="100%">
-            </div> -->
+            </div>
             <div class="img"><img class="image" :src="albumPic" alt=""></div>
             <div class="info">
                 <div class="name">{{albumName}}</div>
@@ -73,7 +72,7 @@ export default {
 .albumList{
         position: absolute;
         top 0
-        background-color: #f2f3f4;
+        // background-color: #f2f3f4;
         /* margin-top: 50px; */
         .back{
             position fixed
@@ -98,10 +97,11 @@ export default {
             }
         }
         .album{
-            width 97%
+
+            position absolute
             margin-top 55px
             height 200px
-            margin-left 1.5%
+            width 100vw
             display flex
             // .bgimg {
             //     position: absolute;
@@ -119,6 +119,31 @@ export default {
             //         opacity: 0.6;
             //     }
             // }
+            #bgimg{
+                width 100vw
+                height 500px
+                position relative
+            }
+            #bgimg.blur{
+                position absolute
+                top -300px
+                left 0px
+                // width 80%
+                // background-size cover
+                filter blur(30px)
+                z-index -1
+            }
+            #bgimg:before{
+                position absolute
+                width 100%
+                height 100%
+                top 0
+                left 0
+                bottom 0
+                right 0
+                filter blur(7px)
+                z-index -1
+            }
             .img{
                 height 150px
                 width 150px
@@ -136,13 +161,15 @@ export default {
                 .singer{
                     margin  5px 0
                     font-size 12px
-                    color: #757575;
+                    color: #c7c7c7; 
                 }
             }
         }
         .list{
             // border-radius 5px
-            // background-color: white;
+            border-radius 15px 15px 0 0
+            background-color: white;
+            margin-top 250px
             .m-head{
                 height 30px
                 widows 100%
@@ -164,13 +191,14 @@ export default {
                 background-color: white;
                 width: 100vw;
                 height: 47px;
-                padding 1% 
                 text-align left 
                 // border-bottom: 1px solid #e4e4e4;
                 .music_item_box{
                 position: relative;
                 margin-top  10px
                 height 40px
+                width 96%
+                margin-left 2%
                 margin-bottom 7px
                 .song{
                     font-size 14px;

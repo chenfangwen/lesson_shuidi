@@ -6,8 +6,9 @@
           <search-box @search="search"/>
           <img @click="search" class="search_img" src="../assets/search.png" alt="">
       </div>
-      <div class="firstSinger" v-if="ifSinger">
-        <img class="singer_img" :src="firstSinger.picUrl" alt=""><div class="name">歌手:{{firstSinger.name}}</div>
+      <div class="firstSinger" v-if="ifSinger" @click="toSinger">
+        <img class="singer_img" :src="firstSinger.picUrl" alt="">
+        <div class="name">歌手:{{firstSinger.name}}</div>
       </div>
       <music-list/>
     </div>
@@ -51,27 +52,31 @@ export default {
   },
   methods:{
     ...mapActions(['getCur_music','getMusicList']),
-        search: function(query) {
-            API.searchResult(query)
-            .then(res=>{
-                console.log(res.data)
-                // this.musicsList = res.data.result.songs;
-                this.getMusicList(res.data.result.songs) 
-                if(res.data.result.songs[0].artists[0]){
-                  this.firstSingerName = res.data.result.songs[0].artists[0].name
-                  API.getSearchSinger(this.firstSingerName)
-                  .then(res=>{
-                      console.log(res.data)
-                      if(res.data.result.artists){
-                        this.firstSinger = res.data.result.artists[0];
-                      }
-                      
-                  })
-                }
-            })
-        },
-        back(){
-            this.$router.go(-1)
+    search: function(query) {
+        API.searchResult(query)
+        .then(res=>{
+            console.log(res.data)
+            // this.musicsList = res.data.result.songs;
+            this.getMusicList(res.data.result.songs) 
+            if(res.data.result.songs[0].artists[0]){
+              this.firstSingerName = res.data.result.songs[0].artists[0].name
+              API.getSearchSinger(this.firstSingerName)
+              .then(res=>{
+                  console.log(res.data)
+                  if(res.data.result.artists){
+                    this.firstSinger = res.data.result.artists[0];
+                  }
+              })
+            }
+        })
+    },
+    back(){
+      this.$router.go(-1)
+    },
+    toSinger(){
+      this.$router.push({
+        path:`singer/${this.firstSinger.id}`
+      })
     }
   }
 
@@ -97,7 +102,7 @@ export default {
     height: 100vh;
     background-color: #f2f3f4;
     .firstSinger{
-      margin-top 10px
+      margin-top 50px
       display flex
       margin-left 1.5%
       height 60px
@@ -114,7 +119,11 @@ export default {
     }
     .search{
         // padding-top 20px
+        position fixed
+        z-index 2
+        top 0
         height 45px;
+        width 100%
         display flex
         background-color #d44439
         .back_img{

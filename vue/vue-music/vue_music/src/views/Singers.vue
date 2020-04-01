@@ -1,11 +1,12 @@
 <template>
-    <div class="" id="rank">
-        Rank
+    <div class="" id="singers">
+        Singers
     </div>
+    
 </template>
 
 <style lang="stylus" scoped>
-#rank{
+#singers{
     position absolute
     width 100%
     height 100%
@@ -13,4 +14,3 @@
     background-color #fff
 }
 </style>
-

@@ -21,6 +21,11 @@ const Rank = (resolve) => {
     resolve(module)
   })
 }
+const Singers = (resolve) => {
+  import('../views/Singers.vue').then((module) => {
+    resolve(module)
+  })
+}
 const Singer = (resolve) => {
   import('../views/Singer.vue').then((module) => {
     resolve(module)
@@ -46,12 +51,6 @@ const routes = [
     path: '/recommend',
     name: 'Recommend',
     component: Recommend,
-    // children: [
-    //   {
-    //     path: ':id&:type',
-    //     component: Banner,
-    //   }
-    // ],
     meta: {
       keepAlive: true,
       title: '音乐推荐'
@@ -74,12 +73,26 @@ const routes = [
      }
   },
   {
-    path: '/singer',
-    component: Singer,
+    path: '/singers',
+    component: Singers,
     meta: {
       keepAlive: true,
       title: '歌手排行'
-     }
+    }
+    // children: [
+    //   {
+    //     path: ':id',
+    //     component: Singer,
+    //   }
+    // ]
+  },
+  {
+    path: '/singer/:id',
+    component: Singer,
+    meta: {
+      keepAlive: true,
+      title: '歌手详情'
+    }
   }
 ]
 

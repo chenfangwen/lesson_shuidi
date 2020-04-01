@@ -23,7 +23,7 @@ export default {
         {
           id:1,
           content:'歌手',
-          to:'/singer'
+          to:'/singers'
         }
       ]
     }

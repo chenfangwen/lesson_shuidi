@@ -1,8 +1,8 @@
 import axios from 'axios'
 
 export default{
-    getLyric (id) {
-        const url = '/api' + `/lyric?id=${id}`
+    getSingerSongs (id) {
+        const url = '/api' + `/artists?id=${id}`
         
         return axios.get(url)
     }

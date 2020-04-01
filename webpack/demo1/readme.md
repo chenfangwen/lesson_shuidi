@@ -8,3 +8,12 @@
         mode 
         output
     }
+
+
+    打包过后 css -> [
+                        [ './node_modules/css-loader/dist/cjs.js!./src/index.css',
+                            'body {\r\n    width: 100%;\r\n    height: 100vh;\r\n    background-color: orange;\r\n  }',
+                        '' ],
+                        toString: [Function: toString],
+                        i: [Function]
+                    ]

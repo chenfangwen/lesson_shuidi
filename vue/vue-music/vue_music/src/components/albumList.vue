@@ -156,6 +156,8 @@ export default {
                 margin-left 20px
                 text-align-last left
                 .name{
+                    color white
+                    font-weight 600
                     margin  5px 0
                 }
                 .singer{

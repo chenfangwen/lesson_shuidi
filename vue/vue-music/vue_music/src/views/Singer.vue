@@ -1,7 +1,7 @@
 <template>
     <div class="" id="singer">
-        <div class="back">
-            <img src="" alt="">
+        <div class="header">
+            <img @click="back" src="../assets/back.png" alt="">
         </div>
         <div class="bgimg">
             <img :src="singerInfo.picUrl" alt="">
@@ -17,7 +17,8 @@ import singer from '../api/singer.js'
 export default {
     data() {
         return {
-            singerInfo:{}
+            singerInfo:{},
+            hotSongs:[]
         }
     },
     watch:{
@@ -34,10 +35,15 @@ export default {
             singer.getSingerSongs(id)
             .then(res => {
                 console.log(res.data);
-                if(res.data){
+                if(res.data.artist){
                     this.singerInfo = res.data.artist
+                    // this.singerPic = this.singerInfo.picUrl
+                    this.hotSongs = res.data.hotSongs
                 }
             })
+        },
+        back(){
+            this.$router.go(-1)
         }
     },
     created(){
@@ -53,9 +59,23 @@ export default {
     height 100%
     z-index 2
     background-color #fff
+    .header{
+        position absolute
+        top 0
+        width 100%
+        height 30px
+        text-align left
+        z-index 2
+        img{
+            height 30px
+            width 30px
+            margin-left 10px
+            margin-top 10px
+        }
+    }
     .bgimg{
-        position relative
-        margin-top 0
+        position absolute
+        top 0
         height 43%
         width 100%
         background-size cover

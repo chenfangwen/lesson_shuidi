@@ -14,10 +14,10 @@
                         <div class="someHot">
                             <div class="hot">近期热门</div>
                             <div @click="getCur_music_m(item,index)" class="song" v-for="(item,index) in someHot" :key="index">
-                                <div class="index" v-show="curIndex!=index">
+                                <div class="index" v-show="curIndex!=index||curIndex===''">
                                     <img :src="item.al.picUrl" alt="">
                                 </div>
-                                <div class="index" v-show="curIndex===index">
+                                <div class="index" v-show="curIndex==index&&curIndex!==''">
                                     <img class="laba" src="../assets/laba.png" alt="">
                                 </div>
                                 <div class="info">
@@ -41,8 +41,8 @@
                     <div class="hotSongs">
                         <div class="list">
                             <div @click="getCur_music_m(item,index)" class="song" v-for="(item,index) in hotSongs" :key="index">
-                                <div class="index" v-show="curIndex!=index">{{index+1}}</div>
-                                <div class="index" v-show="curIndex==index">
+                                <div class="index" v-show="curIndex!=index||curIndex===''">{{index+1}}</div>
+                                <div class="index" v-show="curIndex==index&&curIndex!==''">
                                     <img src="../assets/laba.png" alt="">
                                 </div>
                                 <div class="info">
@@ -114,6 +114,7 @@ export default {
     },
     created(){
         this.search()
+        console.log(this.curIndex ,'------')
     }
 }
 </script>
@@ -292,21 +293,15 @@ export default {
                             width 100%
                             height 30px
                             line-height 30px
+                            overflow hidden
+                            text-overflow ellipsis;//文本溢出显示省略号
+                            display  -webkit-box;
+                            -webkit-line-clamp  1; //控制文字行数
                             .name1{
-                                overflow: hidden;
-                                text-overflow:ellipsis;//文本溢出显示省略号
-                                display: -webkit-box;
-                                -webkit-line-clamp: 1; //控制文字行数
-                                -webkit-box-orient: vertical; //子元素数值排列
                             }
                             .name2{
                                 color #757575; 
                                 margin-left 5px
-                                overflow: hidden;
-                                text-overflow:ellipsis;//文本溢出显示省略号
-                                display: -webkit-box;
-                                -webkit-line-clamp: 1; //控制文字行数
-                                -webkit-box-orient: vertical; //子元素数值排列
                             }
                         }
                         .singer{

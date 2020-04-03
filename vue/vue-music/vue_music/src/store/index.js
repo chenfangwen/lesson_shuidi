@@ -13,7 +13,7 @@ export default new Vuex.Store({
     albumMusic:[],
     playList:[],
     ifNomal:false,
-    curIndex:0,
+    curIndex:'',
     ifPlaying:false,
     ifP:false,
     playType:1,

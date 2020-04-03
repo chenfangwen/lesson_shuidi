@@ -14,8 +14,11 @@
                         <div class="someHot">
                             <div class="hot">近期热门</div>
                             <div @click="getCur_music_m(item,index)" class="song" v-for="(item,index) in someHot" :key="index">
-                                <div class="index">
+                                <div class="index" v-show="curIndex!=index">
                                     <img :src="item.al.picUrl" alt="">
+                                </div>
+                                <div class="index" v-show="curIndex===index">
+                                    <img class="laba" src="../assets/laba.png" alt="">
                                 </div>
                                 <div class="info">
                                     <div class="name">
@@ -38,7 +41,10 @@
                     <div class="hotSongs">
                         <div class="list">
                             <div @click="getCur_music_m(item,index)" class="song" v-for="(item,index) in hotSongs" :key="index">
-                                <div class="index">{{index+1}}</div>
+                                <div class="index" v-show="curIndex!=index">{{index+1}}</div>
+                                <div class="index" v-show="curIndex==index">
+                                    <img src="../assets/laba.png" alt="">
+                                </div>
                                 <div class="info">
                                     <div class="name">
                                         <div class="name1">{{item.name}}</div>
@@ -60,7 +66,7 @@
 
 <script>
 import singer from '../api/singer.js'
-import {mapActions} from 'vuex'
+import {mapActions,mapState} from 'vuex'
 export default {
     data() {
         return {
@@ -69,6 +75,9 @@ export default {
             active:1,
             someHot:[]
         }
+    },
+    computed:{
+        ...mapState(['curIndex'])
     },
     watch:{
         '$route':function(to,from){
@@ -79,6 +88,7 @@ export default {
     methods:{
         ...mapActions(['getCur_music','getCurIndex','getCurList']),
         getCur_music_m(item,index){
+            console.log(this.curIndex)
             this.getCur_music(item)
             this.getCurIndex(index),
             this.getCurList(this.hotSongs)
@@ -166,6 +176,14 @@ export default {
                 position relative
                 margin-left 3%
                 width 94%
+                .hot{
+                    height 40px
+                    color #2E3030;
+                    font-weight 600
+                    font-size 17px
+                    line-height 40px
+                    text-align left
+                }
                 .song{
                     display flex
                     position relative
@@ -176,8 +194,14 @@ export default {
                         width 50px
                         height 50px
                         img{
+                            border-radius 5px
                             width 50px
                             height 50px
+                        }
+                        .laba{
+                            margin 16px
+                            width 18px
+                            height 18px
                         }
                     }
                     .info{
@@ -218,6 +242,19 @@ export default {
                     }
                 }
             }
+            .baseInfo{
+                position relative
+                margin-left 3%
+                width 94%
+                .text{
+                    height 40px
+                    color #2E3030;
+                    font-weight 600
+                    font-size 17px
+                    line-height 40px
+                    text-align left
+                }
+            }
         }
         .hotSongs {
             width 100vw
@@ -237,6 +274,11 @@ export default {
                         line-height 50px
                         margin-top 10px
                         color #757575;
+                        img{
+                            margin 16px
+                            width 18px
+                            height 18px
+                        }
                     }
                     .info{
                         text-align left

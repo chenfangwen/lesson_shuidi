@@ -119,7 +119,7 @@ export default {
                 left 0px
                 // width 80%
                 // background-size cover
-                filter blur(30px)
+                filter blur(100px)
                 z-index -1
             }
             #bgimg:before{

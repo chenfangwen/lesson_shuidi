@@ -24,8 +24,11 @@
                 <div class="song">{{ item.name }}</div>
                 <div class="singers">
                     <div class="singer" v-for="(singer,index) in item.ar" :key="index">
-                        {{ singer.name }}
+                        <div class="singername">{{ singer.name }}</div> <div class="null" v-if="index<item.ar.length-1">\</div>
                     </div>
+                    <!-- <div class="singer" v-for="(singer,index) in item.ar" :key="index">
+                        {{ singer.name }}
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -103,22 +106,6 @@ export default {
             height 200px
             width 100vw
             display flex
-            // .bgimg {
-            //     position: absolute;
-            //     left: -50%;
-            //     top: -50%;
-            //     width: 300%;
-            //     height: 100%;
-            //     z-index: -1;
-            //     filter: blur(30px);
-            //     .filter {
-            //         position: absolute;
-            //         width: 100%;
-            //         height: 100%;
-            //         background: black;
-            //         opacity: 0.6;
-            //     }
-            // }
             #bgimg{
                 width 100vw
                 height 500px
@@ -209,16 +196,33 @@ export default {
                     padding-top  2px
                     padding-bottom 2px
                 }
-                .singer{
+                .singers{
+                    display flex
                     font-size 11px
                     color: #757575;
-                    height 18px
+                    height 13px
+                    overflow: hidden;
+                    text-overflow:ellipsis;//文本溢出显示省略号
+                    // display: -webkit-box;
+                    -webkit-line-clamp: 1; //控制文字行数
+                    -webkit-box-orient: vertical; //子元素数值排列
                     font-weight 500
                     padding-top 2px
                     padding-bottom 2px
-                }
+                    .singer{
+                        display flex
+                        text-align left
+                        .singername{
+                        }
+                        .null{
+                            width 10px
+                            text-align center
+                            line-height 15px
+                        }
+                    }
                 }
             }
         }
     }
+}
 </style>

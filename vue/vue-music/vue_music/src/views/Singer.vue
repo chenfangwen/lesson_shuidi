@@ -7,8 +7,14 @@
             <img :src="singerInfo.picUrl" alt="">
         </div>
         <div class="content">
-
+            <van-tabs v-model="active" sticky animated swipeable>
+                <van-tab title="主页">内容 1</van-tab>
+                <van-tab title="歌曲">内容 2</van-tab>
+                <van-tab title="专辑">内容 3</van-tab>
+                <van-tab title="视频">内容 4</van-tab>
+            </van-tabs>
         </div>
+        <!-- <div class="test">sfs</div> -->
     </div>
 </template>
 
@@ -18,7 +24,8 @@ export default {
     data() {
         return {
             singerInfo:{},
-            hotSongs:[]
+            hotSongs:[],
+            active:1
         }
     },
     watch:{
@@ -56,11 +63,12 @@ export default {
 #singer{
     position absolute
     width 100%
-    height 100%
+    height 300px
     z-index 2
     background-color #fff
+    overflow scoll
     .header{
-        position absolute
+        position fixed
         top 0
         width 100%
         height 30px
@@ -87,13 +95,20 @@ export default {
         }
     }
     .content{
-        position absolute
-        top 43%
+        position sticky
+        margin-top 250px
+        top 40px
         border-radius 15px 15px 0 0
         background-color #fff
         width 100%
         z-index 100
-        height 500px
+        height 1000px
+    }
+    .test{
+        margin-top 1000px
+        height 20px
+        width 20px
+        background-color red
     }
 }
 </style>

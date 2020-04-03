@@ -205,7 +205,6 @@ export default {
                     text-overflow:ellipsis;//文本溢出显示省略号
                     // display: -webkit-box;
                     -webkit-line-clamp: 1; //控制文字行数
-                    -webkit-box-orient: vertical; //子元素数值排列
                     font-weight 500
                     padding-top 2px
                     padding-bottom 2px

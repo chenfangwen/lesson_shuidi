@@ -31,6 +31,11 @@ const Singer = (resolve) => {
     resolve(module)
   })
 }
+const SingerTopList = (resolve) => {
+  import('../views/SingerTopList.vue').then((module) => {
+    resolve(module)
+  })
+}
 Vue.use(VueRouter)
 
 const routes = [
@@ -79,12 +84,6 @@ const routes = [
       keepAlive: true,
       title: '歌手排行'
     }
-    // children: [
-    //   {
-    //     path: ':id',
-    //     component: Singer,
-    //   }
-    // ]
   },
   {
     path: '/singer/:id',
@@ -92,6 +91,14 @@ const routes = [
     meta: {
       keepAlive: true,
       title: '歌手详情'
+    }
+  },
+  {
+    path: '/singerTopList',
+    component: SingerTopList,
+    meta: {
+      keepAlive: true,
+      title: '歌手榜'
     }
   }
 ]

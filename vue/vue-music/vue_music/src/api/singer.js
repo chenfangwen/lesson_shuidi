@@ -20,5 +20,11 @@ export default{
         const url = '/api' + `/toplist/artist`
         
         return axios.get(url)
+    },
+    getSingerAlbum(id){
+        const url = '/api' + `/artist/album?id=${id}&limit=30`
+        
+        return axios.get(url)
+        
     }
 }

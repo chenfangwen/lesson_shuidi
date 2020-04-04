@@ -30,7 +30,10 @@
                             </div>
                         </div>
                         <div class="baseInfo">
-                            <div class="text">基本信息</div>
+                            <div class="Text">
+                                <div class="text1">基本信息</div>
+                                <div class="text2">更多信息</div>
+                            </div>
                             <div class="briefDesc">
                                 <div class="dis_flex"><div class="boxL">昵称:</div><div class="boxR">{{singerInfo.name}}</div></div>
                                 <div class="dis_flex"><div class="boxL">性别:</div><div class="boxR">男</div></div>
@@ -39,9 +42,11 @@
                         </div>
                         <div class="influence">
                             <div class="text">影响力</div>
-                            <div class="detial">
-                                <div class="">歌手热度</div><div class="">{{}}</div>
-                                <div class="">歌手榜华语地区</div><div class="">NO.{{}}</div>
+                            <div class="detial" @click="toSingerTopList">
+                                <div class="">歌手热度</div><div class="num">{{hotScore}}</div>
+                                <div class="">歌手榜华语地区</div><div class="num">NO.{{NO}}</div> 
+                                <div class="">排行榜</div>
+                                <div class="num">></div>
                             </div>
                         </div>
                     </div>
@@ -65,7 +70,28 @@
                         </div>
                     </div>
                 </van-tab>
-                <van-tab title="专辑">内容 3</van-tab>
+                <van-tab :title="albumText">
+                    <div class="albumsLists">
+                        <div class="sort">排序</div>
+                        <div class="lists">
+                            <div class="album" @click="toAlbum(item.id)" v-for="(item,index) in albums " :key="index">
+                                <div class="image">
+                                    <img :src="item.picUrl" alt="">
+                                </div>
+                                <div class="info">
+                                    <div class="name">
+                                        <div class="name1">{{item.name}}</div>
+                                        <div class="name2" v-if="item.alias!=''">({{item.alias[0]}})</div>
+                                    </div>
+                                    <div class="time_num">
+                                        <div class="time">{{item.publishTime|time}}</div>
+                                        <div class="num">歌曲{{item.size}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </van-tab>
                 <van-tab title="视频">暂无视频</van-tab>
             </van-tabs>
         </div>
@@ -81,12 +107,31 @@ export default {
         return {
             singerInfo:{},
             hotSongs:[],
-            active:1,
-            someHot:[]
+            active:0,
+            someHot:[],
+            hotScore:0,
+            NO:0,
+            albums:[]
         }
     },
     computed:{
-        ...mapState(['curIndex','curList'])
+        ...mapState(['curIndex','curList']),
+        albumText(){
+            if(this.albums){
+                return '专辑 '+ this.albums.length
+            }
+            else{
+                return ''
+            }
+        }
+    },
+    filters: {
+        time(value) {
+        // console.log(value);
+        const date = new Date(value);
+        // console.log(date)
+        return  `${date.getFullYear()}.${date.getMonth() + 1}.${date.getDate()}`;
+        }
     },
     watch:{
         '$route':function(to,from){
@@ -116,9 +161,35 @@ export default {
                     this.someHot = res.data.hotSongs.slice(0,3)
                 }
             })
+            singer.getSingerTopList().then(res=>{
+                console.log(res.data);
+                let list = res.data.list.artists
+                for(let i = 0; i<list.length;i++){
+                    if(list[i].name==this.singerInfo.name){
+                        this.hotScore = list[i].score
+                        console.log(list[i].score,i+1)
+                        this.NO = i+1
+                    }
+                }
+            })
+            singer.getSingerAlbum(id)
+            .then(res=>{
+                console.log(res.data)
+                this.albums = res.data.hotAlbums
+            })
         },
         back(){
             this.$router.go(-1)
+        },
+        toAlbum(id){
+            this.$router.push({
+                path:`/banner/${id}&10`
+            })
+        },
+        toSingerTopList(){
+            this.$router.push({
+                path:'/singerTopList'
+            })
         }
     },
     created(){
@@ -250,13 +321,31 @@ export default {
                 position relative
                 margin-left 3%
                 width 94%
-                .text{
+                .Text{
+                    display flex
                     height 40px
-                    color #2E3030;
-                    font-weight 600
-                    font-size 17px
-                    line-height 40px
-                    text-align left
+                    .text1{
+                        height 40px
+                        color #2E3030;
+                        font-weight 600
+                        font-size 17px
+                        line-height 40px
+                        text-align left
+                    }
+                    .text2{
+                        position absolute
+                        right 0
+                        height 20px
+                        top 10px
+                        border-radius 10px
+                        padding 0 10px 0 10px
+                        color #2E3030;
+                        // font-weight 600
+                        border 0.5px solid #c7c7c7;
+                        font-size 12px
+                        line-height 20px
+                        text-align center
+                    }
                 }
                 .briefDesc{
                     .dis_flex{
@@ -295,6 +384,10 @@ export default {
                 .detial{
                     font-size 13px
                     display flex
+                    .num{
+                        margin 2px 10px
+                        color #2E3030;
+                    }
                 }
             }
         }
@@ -354,6 +447,73 @@ export default {
                             text-overflow ellipsis;//文本溢出显示省略号
                             display  -webkit-box;
                             -webkit-line-clamp  1; //控制文字行数
+                        }
+                    }
+                }
+            }
+        }
+        .albumsLists{
+            width 100vw
+            .sort{
+
+            }
+            .lists {
+                position relative
+                margin-left 3%
+                width 94
+                .album{
+                    display flex
+                    position relative
+                    width 100%
+                    height 70px
+                    .image{
+                        
+                        img{
+                            height 50px
+                            width 50px
+                            margin-top 10px
+                            border-radius 5px
+                        }
+                    }
+                    .info{
+                        text-align left
+                        margin-left 10px
+                        margin-top 10px
+                        height 50px
+                        width 70%
+                        .name{
+                            display flex
+                            font-size 15px
+                            width 100%
+                            height 30px
+                            line-height 30px
+                            overflow hidden
+                            text-overflow ellipsis;//文本溢出显示省略号
+                            display  -webkit-box;
+                            -webkit-line-clamp  1; //控制文字行数
+                            .name1{
+                            }
+                            .name2{
+                                color #757575; 
+                                margin-left 5px
+                            }
+                        }
+                        .time_num{
+                            display flex
+                            font-size 12px
+                            height 20px
+                            line-height 20px
+                            color #757575; 
+                            overflow hidden
+                            text-overflow ellipsis;//文本溢出显示省略号
+                            display  -webkit-box;
+                            -webkit-line-clamp  1; //控制文字行数
+                            .time{
+
+                            }
+                            .num{
+
+                            }
                         }
                     }
                 }

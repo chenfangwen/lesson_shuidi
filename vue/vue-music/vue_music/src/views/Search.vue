@@ -3,7 +3,7 @@
     <div id="search">
       <div class="search">
           <img @click="back" class="back_img" src="../assets/back.png" alt="">
-          <search-box @search="search"/>
+          <search-box ref="searchbox" @search="search"/>
           <img @click="search" class="search_img" src="../assets/search.png" alt="">
       </div>
       <div class="firstSinger" v-if="ifSinger" @click="toSinger">
@@ -78,6 +78,8 @@ export default {
         path:`singer/${this.firstSinger.id}`
       })
     }
+  },
+  mounted(){
   }
 
 }

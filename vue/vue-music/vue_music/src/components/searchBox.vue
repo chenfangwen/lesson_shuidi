@@ -1,7 +1,7 @@
 <template>
   <div class="search-box">
     <!-- <i class="icon-search"></i> -->
-     <input :placeholder="placeholder" @keyup.enter="search" v-model="query" type="text" class="box">
+     <input id="search" :placeholder="placeholder" @keyup.enter="search" v-model="query" type="text" class="box">
     
     <!-- <img @click="search" class="search_img" src="../assets/search.png" alt=""> -->
     <!-- <span class="search" >{{clickInfo}}</span> -->
@@ -33,6 +33,11 @@ export default {
     },
     setQuery () {
       console.log(this.query)
+    }
+  },
+  mounted(){
+    document.getElementById('search').onfocus = () => {
+      
     }
   }
 }

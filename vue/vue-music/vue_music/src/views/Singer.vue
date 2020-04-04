@@ -37,6 +37,13 @@
                                 <div class="dis_flex"><div class="boxL"><div class="">简</div>介:</div><div class="boxR">{{singerInfo.briefDesc}}</div></div>
                             </div>
                         </div>
+                        <div class="influence">
+                            <div class="text">影响力</div>
+                            <div class="detial">
+                                <div class="">歌手热度</div><div class="">{{}}</div>
+                                <div class="">歌手榜华语地区</div><div class="">NO.{{}}</div>
+                            </div>
+                        </div>
                     </div>
                 </van-tab>
                 <van-tab title="歌曲">
@@ -271,6 +278,23 @@ export default {
                             -webkit-box-orient: vertical; //子元素数值排列
                         }
                     }
+                }
+            }
+            .influence{
+                position relative
+                margin-left 3%
+                width 94%
+                .text{
+                    height 40px
+                    color #2E3030;
+                    font-weight 600
+                    font-size 17px
+                    line-height 40px
+                    text-align left
+                }
+                .detial{
+                    font-size 13px
+                    display flex
                 }
             }
         }

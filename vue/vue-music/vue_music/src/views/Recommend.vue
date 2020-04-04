@@ -48,7 +48,7 @@ export default {
       console.log(item)
       if(item.targetType==10||item.targetType==1000){
           this.$router.push({
-            path:`banner/${item.targetId}&${item.targetType}`
+            path:`/banner/${item.targetId}&${item.targetType}`
           })
       }
       if(item.targetType == 1){
@@ -69,7 +69,7 @@ export default {
     },
     getplaylist(item){
       this.$router.push({
-        path:`banner/${item.id}&0`
+        path:`/banner/${item.id}&0`
       })
     }
   },

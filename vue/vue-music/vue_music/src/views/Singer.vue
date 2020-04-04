@@ -72,7 +72,7 @@
                 </van-tab>
                 <van-tab :title="albumText">
                     <div class="albumsLists">
-                        <div class="sort">排序</div>
+                        <div class="sort">当前为按发行时间排序</div>
                         <div class="lists">
                             <div class="album" @click="toAlbum(item.id)" v-for="(item,index) in albums " :key="index">
                                 <div class="image">

@@ -12,17 +12,17 @@ export default {
       tabs:[
         {
           id:1,
-          content:'推荐',
+          content:'每日推荐',
           to:'/recommend'
         },
         {
           id:1,
-          content:'排行',
+          content:'排行榜',
           to:'/rank'
         },
         {
           id:1,
-          content:'歌手',
+          content:'歌手榜',
           to:'/singers'
         }
       ]

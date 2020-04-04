@@ -14,10 +14,10 @@
                         <div class="someHot">
                             <div class="hot">近期热门</div>
                             <div @click="getCur_music_m(item,index)" class="song" v-for="(item,index) in someHot" :key="index">
-                                <div class="index" v-show="curIndex!=index||curIndex===''">
+                                <div class="index" v-show="curIndex!=index||curIndex===''||curList!=hotSongs">
                                     <img :src="item.al.picUrl" alt="">
                                 </div>
-                                <div class="index" v-show="curIndex==index&&curIndex!==''">
+                                <div class="index" v-show="curIndex==index&&curIndex!==''&&curList==hotSongs">
                                     <img class="laba" src="../assets/laba.png" alt="">
                                 </div>
                                 <div class="info">
@@ -31,8 +31,10 @@
                         </div>
                         <div class="baseInfo">
                             <div class="text">基本信息</div>
-                            <div class="content">
-
+                            <div class="briefDesc">
+                                <div class="dis_flex"><div class="boxL">昵称:</div><div class="boxR">{{singerInfo.name}}</div></div>
+                                <div class="dis_flex"><div class="boxL">性别:</div><div class="boxR">男</div></div>
+                                <div class="dis_flex"><div class="boxL"><div class="">简</div>介:</div><div class="boxR">{{singerInfo.briefDesc}}</div></div>
                             </div>
                         </div>
                     </div>
@@ -41,8 +43,8 @@
                     <div class="hotSongs">
                         <div class="list">
                             <div @click="getCur_music_m(item,index)" class="song" v-for="(item,index) in hotSongs" :key="index">
-                                <div class="index" v-show="curIndex!=index||curIndex===''">{{index+1}}</div>
-                                <div class="index" v-show="curIndex==index&&curIndex!==''">
+                                <div class="index" v-show="curIndex!=index||curIndex===''||curList!=hotSongs">{{index+1}}</div>
+                                <div class="index" v-show="curIndex==index&&curIndex!==''&&curList==hotSongs">
                                     <img src="../assets/laba.png" alt="">
                                 </div>
                                 <div class="info">
@@ -77,7 +79,7 @@ export default {
         }
     },
     computed:{
-        ...mapState(['curIndex'])
+        ...mapState(['curIndex','curList'])
     },
     watch:{
         '$route':function(to,from){
@@ -217,21 +219,15 @@ export default {
                             width 100%
                             height 30px
                             line-height 30px
+                            overflow hidden
+                            text-overflow ellipsis;//文本溢出显示省略号
+                            display  -webkit-box;
+                            -webkit-line-clamp  1; //控制文字行数
                             .name1{
-                                overflow: hidden;
-                                text-overflow:ellipsis;//文本溢出显示省略号
-                                display: -webkit-box;
-                                -webkit-line-clamp: 1; //控制文字行数
-                                -webkit-box-orient: vertical; //子元素数值排列
                             }
                             .name2{
                                 color #757575; 
                                 margin-left 5px
-                                overflow: hidden;
-                                text-overflow:ellipsis;//文本溢出显示省略号
-                                display: -webkit-box;
-                                -webkit-line-clamp: 1; //控制文字行数
-                                -webkit-box-orient: vertical; //子元素数值排列
                             }
                         }
                         .singer{
@@ -254,6 +250,27 @@ export default {
                     font-size 17px
                     line-height 40px
                     text-align left
+                }
+                .briefDesc{
+                    .dis_flex{
+                        margin-top 5px
+                        display flex
+                        font-size 12px
+                        .boxL{
+                            color #757575; 
+                            display flex
+                        }
+                        .boxR{
+                            margin-left  10px
+                            color #2E3030;
+                            text-align left
+                            overflow: hidden;
+                            text-overflow:ellipsis;//文本溢出显示省略号
+                            display: -webkit-box;
+                            -webkit-line-clamp: 4; //控制文字行数
+                            -webkit-box-orient: vertical; //子元素数值排列
+                        }
+                    }
                 }
             }
         }
@@ -309,6 +326,10 @@ export default {
                             height 20px
                             line-height 20px
                             color #757575; 
+                            overflow hidden
+                            text-overflow ellipsis;//文本溢出显示省略号
+                            display  -webkit-box;
+                            -webkit-line-clamp  1; //控制文字行数
                         }
                     }
                 }

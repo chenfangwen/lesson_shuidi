@@ -76,11 +76,12 @@ export default {
       .confirm-content {
         width: 270px;
         border-radius: 5px;
-        background: #F2F3F4;
+        background: #fff;
         .text {
           padding: 12px 15px;
           line-height: 22px;
-          text-align: center;
+          text-align: left ;
+          font-weight 600
           font-size: 16px;
           color:  #2E3030;
         }
@@ -88,9 +89,9 @@ export default {
           align-items: center;
           text-align: center;
           font-size: 16px;
+          color:  #2E3030;
           .singer{
-            margin 10px 0
-            padding 0 0 10px 0
+            padding 0 0 20px 0
           }
         }
       }

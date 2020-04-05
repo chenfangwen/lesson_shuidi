@@ -63,7 +63,13 @@
                                         <div class="name1">{{item.name}}</div>
                                         <div class="name2" v-if="item.alia!=''">({{item.alia[0]}})</div>
                                     </div>
-                                    <div class="singer">{{item.ar[0].name}}-{{item.al.name}}</div>
+                                    <!-- <div class="singer">{{item.ar[0].name}}-{{item.al.name}}</div> -->
+                                    <div class="singers">
+                                        <div class="singer" v-for="(singer,index) in item.ar" :key="index">
+                                            <div class="singername" >{{singer.name}}</div><div v-if="index<item.ar.length-1" class="null">/</div>
+                                        </div>
+                                        <div class="singer">-{{ item.al.name }}</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -436,21 +442,50 @@ export default {
                             display  -webkit-box;
                             -webkit-line-clamp  1; //控制文字行数
                             .name1{
+                                display flex
                             }
                             .name2{
                                 color #757575; 
                                 margin-left 5px
                             }
                         }
-                        .singer{
-                            font-size 12px
-                            height 20px
-                            line-height 20px
-                            color #757575; 
-                            overflow hidden
-                            text-overflow ellipsis;//文本溢出显示省略号
-                            display  -webkit-box;
-                            -webkit-line-clamp  1; //控制文字行数
+                        // .singer{
+                        //     font-size 12px
+                        //     height 20px
+                        //     line-height 20px
+                        //     color #757575; 
+                        //     overflow hidden
+                        //     text-overflow ellipsis;//文本溢出显示省略号
+                        //     display  -webkit-box;
+                        //     -webkit-line-clamp  1; //控制文字行数
+                        // }
+                        .singers{
+                            position relative
+                            display flex
+                            font-size 11px
+                            width 100%
+                            color: #757575;
+                            height 18px
+                            font-weight 500
+                            padding-top 2px
+                            padding-bottom 2px
+                            overflow: hidden;
+                            text-overflow:ellipsis;//文本溢出显示省略号
+                            display: -webkit-box;
+                            -webkit-line-clamp: 1; //控制文字行数
+                            // -webkit-box-orient: vertical; //子元素数值排列
+                            .singer{
+                                display flex
+                                line-height 18px
+                                .singername{
+
+                                }
+                                .null{
+                                    width 10px
+                                    text-align center
+                                    line-height 18px
+                                }
+                            }
                         }
                     }
                 }

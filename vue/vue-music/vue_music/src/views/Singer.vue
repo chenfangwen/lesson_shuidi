@@ -45,7 +45,6 @@
                             <div class="detial" @click="toSingerTopList">
                                 <div class="">歌手热度</div><div class="num">{{hotScore}}</div>
                                 <div class="">歌手榜华语地区</div><div class="num">NO.{{NO}}</div> 
-                                <div class="">排行榜</div>
                                 <div class="num">></div>
                             </div>
                         </div>

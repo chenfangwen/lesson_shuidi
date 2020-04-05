@@ -2,7 +2,7 @@
   <div class="search-box">
     <!-- <i class="icon-search"></i> -->
      <input id="search" :placeholder="placeholder" @keyup.enter="search" v-model="query" type="text" class="box">
-    
+      <img @click="clear" v-show="query!=''" class="search_img" src="../assets/delete.png" alt="">
     <!-- <img @click="search" class="search_img" src="../assets/search.png" alt=""> -->
     <!-- <span class="search" >{{clickInfo}}</span> -->
   </div>
@@ -15,7 +15,7 @@ export default {
   props: {
     placeholder: {
       type: String,
-      default: '搜索歌曲、歌手'
+      default: '请输入关键词'
     }
   },
   data () {
@@ -57,8 +57,8 @@ export default {
   background-color #d44439
   
   .search_img{
-    width 25px
-    height 25px
+    width 30px
+    height 30px
     margin 0
     padding 0
   }

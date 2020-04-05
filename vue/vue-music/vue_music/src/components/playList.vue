@@ -235,6 +235,7 @@ export default {
                         // -webkit-box-orient: vertical; //子元素数值排列
                         .singer{
                             display flex
+                            line-height 18px
                             .singername{
 
                             }

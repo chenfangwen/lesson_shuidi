@@ -71,7 +71,13 @@ export default {
     methods:{
         ...mapActions(['getCur_music','getCurIndex','getCurList']),
         showConfirm(){
-            this.$refs.singerConfirm.show()
+            if(this.albumSingers.length>1){
+                this.$refs.singerConfirm.show()
+            } else {
+                this.$router.push({
+                    path:`/singer/${this.albumSingers[0].id}`
+                })
+            }
         },
         getCur_music_m(item,index){
             this.getCur_music(item)

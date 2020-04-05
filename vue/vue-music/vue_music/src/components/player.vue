@@ -32,7 +32,7 @@
             <!-- <img  class="fa fa-angle-down" src="../assets/back.png"> -->
           </div>
           <h1 class="title" v-html="cur_music.name"></h1>
-          <h1 class="subtitle">
+          <h1 class="subtitle" @click="showConfirm">
             <div class="singer"  v-for="(item,index) in artistsNmae" :key="index">
               <div class="name">{{item.name}}</div><div v-if="index<artistsNmae.length-1" class="null" >/</div>
             </div>
@@ -102,6 +102,7 @@
     </transition>
     <!-- curlist -->
     <current-list ref="currentList" />
+    <singer-confirm ref="singerConfirm" :singers="artistsNmae" />
     <audio v-show="true"  ref="audio"   autoplay="autoplay" :src="url" @timeupdate="updateTime"></audio>
   </div>
 </template>
@@ -111,6 +112,8 @@
 import {mapState,mapActions} from 'vuex'
 import progressBar from './progressBar.vue'
 import currentList from './currentList.vue'
+import SingerConfirm from './common/singerConfirm.vue'
+
 import scroll from './scroll.vue'
 export default {
   name: 'Player',
@@ -128,7 +131,8 @@ export default {
   components:{
     progressBar,
     currentList,
-    scroll
+    scroll,
+    SingerConfirm
   },
   computed:{
     ...mapState({
@@ -153,6 +157,8 @@ export default {
       }
       if(this.cur_music.ar){
         return this.cur_music.ar;
+      }else{
+        return []
       }
     }
   },
@@ -211,6 +217,19 @@ export default {
   },
   methods:{
     ...mapActions(['getIfNomal','getIfPlaying','getCur_music','getCurIndex','getPlayType']),
+    showConfirm(){
+        if(this.artistsNmae.length>1){
+            this.$refs.singerConfirm.show()
+        } else {
+            console.log(this.$route.params.path)
+            if(this.$route.params.path!=`/singer/${this.artistsNmae[0].id}`){
+              this.$router.push({
+                  path:`/singer/${this.artistsNmae[0].id}`
+              })
+            }
+        }
+        this.getIfNomal(!this.ifNomal)
+    },
     showPlaylist(){
       this.$refs.currentList.show()
     },

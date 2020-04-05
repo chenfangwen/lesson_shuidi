@@ -65,7 +65,7 @@ export default {
         },
         albumSingers(){
             if(this.albumMusic[0]){return this.albumMusic[0].ar}
-            
+            else{return []}
         }
     },
     methods:{

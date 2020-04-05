@@ -221,8 +221,8 @@ export default {
         if(this.artistsNmae.length>1){
             this.$refs.singerConfirm.show()
         } else {
-            console.log(this.$route.params.path)
-            if(this.$route.params.path!=`/singer/${this.artistsNmae[0].id}`){
+            console.log(this.$route.params.id)
+            if(this.$route.params.id!=this.artistsNmae[0].id){
               this.$router.push({
                   path:`/singer/${this.artistsNmae[0].id}`
               })

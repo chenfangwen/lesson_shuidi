@@ -18,6 +18,11 @@ export default {
       default: '请输入关键词'
     }
   },
+  watch:{
+    query(value){
+      this.search()
+    }
+  },
   data () {
     return {
       query: '',

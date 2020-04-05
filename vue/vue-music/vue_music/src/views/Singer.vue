@@ -150,6 +150,17 @@ export default {
             window.scrollTo(0,0)
             console.log(this.$route.params)
             const id = this.$route.params.id;
+            singer.getSingerTopList().then(res=>{
+                console.log(res.data);
+                let list = res.data.list.artists
+                for(let i = 0; i<list.length;i++){
+                    if(list[i].id==id){
+                        this.hotScore = list[i].score
+                        console.log(list[i].score,i+1)
+                        this.NO = i+1
+                    }
+                }
+            })
             singer.getSingerSongs(id)
             .then(res => {
                 console.log(res.data);
@@ -160,17 +171,7 @@ export default {
                     this.someHot = res.data.hotSongs.slice(0,3)
                 }
             })
-            singer.getSingerTopList().then(res=>{
-                console.log(res.data);
-                let list = res.data.list.artists
-                for(let i = 0; i<list.length;i++){
-                    if(list[i].name==this.singerInfo.name){
-                        this.hotScore = list[i].score
-                        console.log(list[i].score,i+1)
-                        this.NO = i+1
-                    }
-                }
-            })
+            
             singer.getSingerAlbum(id)
             .then(res=>{
                 console.log(res.data)
@@ -191,7 +192,7 @@ export default {
             })
         }
     },
-    created(){
+    mounted(){
         this.search()
         console.log(this.curIndex ,'------')
     }

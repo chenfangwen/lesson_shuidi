@@ -6,6 +6,9 @@
           <search-box ref="searchbox" @search="search"/>
           <!-- <img @click="search" class="search_img" src="../assets/search.png" alt=""> -->
       </div>
+      <div class="hotSearch">
+
+      </div>
       <div class="firstSinger" v-if="ifSinger" @click="toSinger">
         <img class="singer_img" :src="firstSinger.picUrl" alt="">
         <div class="name">歌手:{{firstSinger.name}}</div>
@@ -75,7 +78,7 @@ export default {
     },
     toSinger(){
       this.$router.push({
-        path:`singer/${this.firstSinger.id}`
+        path:`/singer/${this.firstSinger.id}`
       })
     }
   },

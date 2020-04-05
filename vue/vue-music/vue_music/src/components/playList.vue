@@ -148,7 +148,7 @@ export default {
             }
             .info{
                 margin-left 20px
-                text-align-last left
+                text-align left
                 .name{
                     color white
                     font-weight 600

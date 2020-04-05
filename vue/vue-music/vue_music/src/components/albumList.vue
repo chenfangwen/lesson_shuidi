@@ -11,9 +11,16 @@
             <div class="img"><img class="image" :src="albumPic" alt=""></div>
             <div class="info">
                 <div class="name">{{albumName}}</div>
-                <div class="singer">歌手:{{albumSinger}}></div>
+                <div class="singers" @click="showConfirm">
+                    <div class="text">歌手:</div>
+                    <div class="singer" v-for="(singer,index) in albumSingers" :key="index">
+                        <div class="singername">{{ singer.name }}</div> <div class="null" v-if="index<albumSingers.length-1">/</div>
+                    </div>
+                    <div class="text">></div>
+                </div>
             </div>
         </div>
+        <singer-confirm ref="singerConfirm" :singers="albumSingers" />
         <div class="list">
             <div class="m-head">
                 <div class="all">播放全部</div>
@@ -39,7 +46,11 @@
 
 <script>
 import {mapState,mapActions} from 'vuex'
+import SingerConfirm from './common/singerConfirm.vue'
 export default {
+    components:{
+        SingerConfirm
+    },
     computed:{
         ...mapState({
             albumMusic:(state) => state.albumMusic
@@ -52,13 +63,16 @@ export default {
             if(this.albumMusic[0]){return this.albumMusic[0].al.picUrl}
             
         },
-        albumSinger(){
-            if(this.albumMusic[0]){return this.albumMusic[0].ar[0].name}
+        albumSingers(){
+            if(this.albumMusic[0]){return this.albumMusic[0].ar}
             
         }
     },
     methods:{
         ...mapActions(['getCur_music','getCurIndex','getCurList']),
+        showConfirm(){
+            this.$refs.singerConfirm.show()
+        },
         getCur_music_m(item,index){
             this.getCur_music(item)
             this.getCurIndex(index),
@@ -141,16 +155,38 @@ export default {
             }
             .info{
                 margin-left 20px
-                text-align-last left
+                text-align left
                 .name{
                     color white
                     font-weight 600
                     margin  5px 0
                 }
-                .singer{
+                .singers{
                     margin  5px 0
                     font-size 12px
                     color: #c7c7c7; 
+                    height 30px
+                    line-height 30px
+                    display flex
+                    overflow: hidden;
+                    text-overflow:ellipsis;//文本溢出显示省略号
+                    // display: -webkit-box;
+                    -webkit-line-clamp: 1; //控制文字行数
+                    .text{
+                        color: #c7c7c7; 
+                    }
+                    .singer{
+                        display flex
+                        text-align left
+                        .singername{
+                        }
+                        .null{
+                            width 10px
+                            text-align center
+                            height 30px
+                            line-height 30px
+                        }
+                    }
                 }
             }
         }

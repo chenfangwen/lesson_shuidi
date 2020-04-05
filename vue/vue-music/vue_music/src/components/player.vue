@@ -5,7 +5,11 @@
         <div class="avator"><img class="vatoar" :class="stopPlaying" :src="cur_music_pic" alt=""></div>
         <div class="name">
           <div class="left" >{{cur_music.name}}</div>
-          <div class="left_singer" >{{artistsNmae}}</div>
+          <div class="left_singer" >
+            <div class="singer" v-for="(singer,index) in artistsNmae" :key="index">
+                <div class="singername"> {{singer.name}}</div><div  v-if="index<artistsNmae.length-1" class="null">/</div>
+            </div>
+          </div>
         </div>
         <div class="play" @click.stop="changePlaying">
           <!-- <progress-circle :radius="radius" :percent="percent"> -->
@@ -28,7 +32,11 @@
             <!-- <img  class="fa fa-angle-down" src="../assets/back.png"> -->
           </div>
           <h1 class="title" v-html="cur_music.name"></h1>
-          <h2 class="subtitle" v-html="artistsNmae"></h2>
+          <h1 class="subtitle">
+            <div class="singer"  v-for="(item,index) in artistsNmae" :key="index">
+              <div class="name">{{item.name}}</div><div v-if="index<artistsNmae.length-1" class="null" >/</div>
+            </div>
+          </h1>
         </div>
         <div class="background">
           <div class="filter"></div>
@@ -141,10 +149,10 @@ export default {
     },
     artistsNmae(){
       if( this.cur_music.artists){
-        return this.cur_music.artists[0].name;
+        return this.cur_music.artists;
       }
       if(this.cur_music.ar){
-        return this.cur_music.ar[0].name;
+        return this.cur_music.ar;
       }
     }
   },
@@ -405,7 +413,10 @@ export default {
         -webkit-box-orient: vertical; //子元素数值排列
       }
       .subtitle {
+        position relative
         width: 70%;
+        display flex
+        justify-content center
         margin: 0 auto;
         line-height: 20px;
         text-align: center;
@@ -417,7 +428,17 @@ export default {
         text-overflow:ellipsis;//文本溢出显示省略号
         display: -webkit-box;
         -webkit-line-clamp: 1; //控制文字行数
-        -webkit-box-orient: vertical; //子元素数值排列
+        .singer{
+          display flex
+          text-align center
+          .name{
+
+          }
+          .null{
+              width 10px
+              text-align center
+          }
+        }
       }
     }
     .background {
@@ -598,6 +619,7 @@ export default {
       width: 91vw;
       padding-left: 5px;
       /* margin-left: 20px; */
+      // margin-right 10px
       .left{
         text-align: left;
         margin-top: 5px;
@@ -614,12 +636,25 @@ export default {
         font-size: 12px;
         font-weight: 500;
         color: #757575;
+        display flex
         margin: 5px 0;
         overflow: hidden;
         text-overflow:ellipsis;//文本溢出显示省略号
         display: -webkit-box;
         -webkit-line-clamp: 1; //控制文字行数
-        -webkit-box-orient: vertical; //子元素数值排列
+        // -webkit-box-orient: vertical; //子元素数值排列
+        // white-space nowrap
+        .singer{
+          display flex
+          .singername{
+
+          }
+          .null{
+              width 10px
+              text-align center
+              line-height 15px
+          }
+        }
       }
     }
     .play{

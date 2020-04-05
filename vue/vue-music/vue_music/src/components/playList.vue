@@ -25,7 +25,12 @@
             <div @click="getCur_music_m(item,index)" class="music_item" v-for="(item, index) in playList.tracks" :key="index">
                 <div class="music_item_box">
                 <div class="song">{{ item.name }}</div>
-                <div class="singer">{{item.ar[0].name}}-{{ item.al.name }}</div>
+                <div class="singers">
+                    <div class="singer" v-for="(singer,index) in item.ar" :key="index">
+                        <div class="singername" >{{singer.name}}</div><div v-if="index<item.ar.length-1" class="null">/</div>
+                    </div>
+                    <div class="singer">-{{ item.al.name }}</div>
+                </div>
             </div>
         </div>
         </div>
@@ -133,23 +138,6 @@ export default {
                 filter blur(7px)
                 z-index -1
             }
-            // .bgimg {
-            //     position: absolute;
-            //     // margin-top 44px
-            //     left: 10%;
-            //     top: -50%;
-            //     width: 300%;
-            //     height: 300%;
-            //     z-index: -1;
-            //     filter: blur(30px);
-            //     .filter {
-            //         position: absolute;
-            //         width: 100%;
-            //         height: 100%;
-            //         background: black;
-            //         opacity: 0.6;
-            //     }
-            // }
             .img{
                 height 150px
                 width 150px
@@ -171,9 +159,6 @@ export default {
                     font-size 12px
                     width 92%
                     color: #c7c7c7; 
-                    // overflow hidden
-                    // white-space nowrap
-                    // text-overflow ellipsis
                     overflow: hidden;
                     text-overflow:ellipsis;//文本溢出显示省略号
                     display: -webkit-box;
@@ -233,8 +218,11 @@ export default {
                         -webkit-line-clamp: 1; //控制文字行数
                         -webkit-box-orient: vertical; //子元素数值排列
                     }
-                    .singer{
+                    .singers{
+                        position relative
+                        display flex
                         font-size 11px
+                        width 100%
                         color: #757575;
                         height 18px
                         font-weight 500
@@ -244,7 +232,18 @@ export default {
                         text-overflow:ellipsis;//文本溢出显示省略号
                         display: -webkit-box;
                         -webkit-line-clamp: 1; //控制文字行数
-                        -webkit-box-orient: vertical; //子元素数值排列
+                        // -webkit-box-orient: vertical; //子元素数值排列
+                        .singer{
+                            display flex
+                            .singername{
+
+                            }
+                            .null{
+                                width 10px
+                                text-align center
+                                line-height 15px
+                            }
+                        }
                     }
                 }
             }

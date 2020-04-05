@@ -158,6 +158,10 @@ export default {
                         this.hotScore = list[i].score
                         console.log(list[i].score,i+1)
                         this.NO = i+1
+                        break;
+                    }else{
+                        this.hotScore = '未知'
+                        this.NO = '暂未上榜'
                     }
                 }
             })
@@ -385,7 +389,7 @@ export default {
                     font-size 13px
                     display flex
                     .num{
-                        margin 2px 10px
+                        margin 0px 10px
                         color #2E3030;
                     }
                 }

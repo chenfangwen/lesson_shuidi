@@ -11,7 +11,10 @@
       </div>
       <div class="firstSinger" v-if="ifSinger" @click="toSinger">
         <img class="singer_img" :src="firstSinger.picUrl" alt="">
-        <div class="name">歌手:{{firstSinger.name}}</div>
+        <div class="name">
+          <div class="text">歌手 ：</div>
+          <div class="singername">{{firstSinger.name}}</div>
+        </div>
       </div>
       <music-list/>
     </div>
@@ -105,14 +108,14 @@ export default {
     z-index: 1;
     width: 100vw;
     height: 100vh;
-    background-color: #f2f3f4;
+    background-color: #fff;
     .firstSinger{
       margin-top 50px
       display flex
       margin-left 1.5%
       height 60px
       line-height 60px
-      border-bottom: 1px solid #e4e4e4;
+      // border-bottom: 1px solid #e4e4e4;
       .singer_img{
         height 50px
         width 50px
@@ -120,6 +123,13 @@ export default {
       .name{
         margin-left 10px
         font-size 13px
+        display flex
+        .text{
+
+        }
+        .singername{
+          color blue
+        }
       }
     }
     .search{

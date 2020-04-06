@@ -7,6 +7,9 @@
             <div class="singer" v-for="(singer,index) in item.artists" :key="index">
               <div class="singername">{{ singer.name }}</div> <div class="null" v-if="index<item.artists.length-1">\</div>
             </div>
+            <div class="singer">
+                <div class="null">-</div><div class="singername" >{{ item.album.name }}</div>
+            </div>
           </div>
         </div>
       </div>
@@ -36,7 +39,7 @@ export default {
 <style lang="stylus" scoped>
 .music_list{
         position: relative;
-        background-color: #f2f3f4;
+        background-color: #fff;
         /* margin-top: 50px; */
         .music_item{
             position: relative;
@@ -45,7 +48,7 @@ export default {
             height: 47px;
             margin-left 1.5%
             text-align left 
-            border-bottom: 1px solid #e4e4e4;
+            // border-bottom: 1px solid #e4e4e4;
             .music_item_box{
               position: relative;
               margin-top  10px
@@ -57,6 +60,7 @@ export default {
                 height 18px
                 padding-top  2px
                 padding-bottom 2px
+                color #757575;
                 overflow: hidden;
                 text-overflow:ellipsis;//文本溢出显示省略号
                 // display: -webkit-box;
@@ -66,7 +70,6 @@ export default {
               .singers{
                 display flex
                 font-size 11px
-                color: #757575;
                 height 13px
                 overflow: hidden;
                 text-overflow:ellipsis;//文本溢出显示省略号
@@ -79,12 +82,16 @@ export default {
                 .singer{
                   display flex
                   text-align left
+                  height 13px
+                  line-height 13px
+                  color #8a8a8a
                   .singername{
                   }
                   .null{
                     width 10px
                     text-align center
-                    line-height 15px
+                    height 13px
+                    line-height 13px
                   }
                 }
               }

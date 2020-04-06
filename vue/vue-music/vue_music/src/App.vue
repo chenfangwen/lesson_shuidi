@@ -3,7 +3,7 @@
     <player/>
     <m_header/>
     <tab/>
-    <keep-alive :include="include">
+    <keep-alive >
       <router-view v-if="$route.meta.keepAlive"/>
     </keep-alive>
     <router-view v-if="!$route.meta.keepAlive"/>

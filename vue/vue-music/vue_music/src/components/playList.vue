@@ -30,7 +30,7 @@
                         <div class="singername" >{{singer.name}}</div><div v-if="index<item.ar.length-1" class="null">/</div>
                     </div>
                     <div class="singer">
-                        <div class="null">--</div><div class="singername" >{{ item.al.name }}</div>
+                        <div class="null">-</div><div class="singername" >{{ item.al.name }}</div>
                     </div>
                 </div>
             </div>

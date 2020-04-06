@@ -67,8 +67,9 @@ const routes = [
     path: '/search',
     component: Search,
     meta: {
-      // keepAlive: true,
-      title: '音乐搜索'
+      keepAlive: true,
+      title: '音乐搜索',
+      deepth: 1
      }
   },
   {
@@ -77,6 +78,7 @@ const routes = [
     meta: {
       // keepAlive: true,
       title: '音乐排行'
+      
      }
   },
   {

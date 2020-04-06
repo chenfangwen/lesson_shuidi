@@ -617,7 +617,7 @@ export default {
     z-index: 180;
     width: 100%;
     height: 60px;
-    // transform 
+    border-top: 1px solid #e4e4e4;
     background-color #fff
     .avator{
       width: 50px;

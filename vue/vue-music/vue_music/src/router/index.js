@@ -44,28 +44,30 @@ const routes = [
     redirect: '/recommend'
   },
   {
-    path:'/banner/:id&:type',
-    name:'Banner',
-    component:Banner,
-    meta: {
-      // keepAlive: true,
-      title: '热门音乐'
-     }
-  },
-  {
     path: '/recommend',
     name: 'Recommend',
     component: Recommend,
     meta: {
+      // keepAlive: true,
+      title: '音乐推荐',
+      deepth: 0.5
+     }
+  },
+  {
+    path:'/banner/:id&:type',
+    name:'Banner',
+    component:Banner,
+    meta: {
       keepAlive: true,
-      title: '音乐推荐'
+      title: '热门音乐',
+      deepth: 1
      }
   },
   {
     path: '/search',
     component: Search,
     meta: {
-      keepAlive: true,
+      // keepAlive: true,
       title: '音乐搜索'
      }
   },
@@ -73,7 +75,7 @@ const routes = [
     path: '/rank',
     component: Rank,
     meta: {
-      keepAlive: true,
+      // keepAlive: true,
       title: '音乐排行'
      }
   },
@@ -81,7 +83,7 @@ const routes = [
     path: '/singers',
     component: Singers,
     meta: {
-      keepAlive: true,
+      // keepAlive: true,
       title: '歌手排行'
     }
   },
@@ -89,15 +91,16 @@ const routes = [
     path: '/singer/:id',
     component: Singer,
     meta: {
-      keepAlive: true,
-      title: '歌手详情'
+      // keepAlive: true,
+      title: '歌手详情',
+      deepth: 2
     }
   },
   {
     path: '/singerTopList',
     component: SingerTopList,
     meta: {
-      keepAlive: true,
+      // keepAlive: true,
       title: '歌手榜'
     }
   }

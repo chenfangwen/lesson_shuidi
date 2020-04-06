@@ -3,9 +3,10 @@
     <player/>
     <m_header/>
     <tab/>
-    <keep-alive>
-      <router-view/>
+    <keep-alive :include="include">
+      <router-view v-if="$route.meta.keepAlive"/>
     </keep-alive>
+    <router-view v-if="!$route.meta.keepAlive"/>
   </div>
 </template>
 <script>
@@ -13,10 +14,28 @@ import player from './components/player.vue'
 import m_header from './components/m-header.vue'
 import Tab from './components/tab.vue'
 export default {
+  data() {
+    return {
+      include:[]
+    }
+  },
   components:{
     player,
     m_header,
     Tab
+  },
+  watch: {
+    $route(to, from){
+      // console.log(from,to)
+      if(to.meta.keepAlive) {
+        !this.include.includes(to.name) && this.include.push(to.name)
+      }
+
+      if(from.meta.keepAlive && to.meta.deepth < from.meta.deepth) {
+        var index = this.include.indexOf(from.name)
+        index !== -1 && this.include.splice(index,1)
+      }
+    }
   }
 }
 </script>

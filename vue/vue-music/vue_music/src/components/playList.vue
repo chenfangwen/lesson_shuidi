@@ -29,7 +29,9 @@
                     <div class="singer" v-for="(singer,index) in item.ar" :key="index">
                         <div class="singername" >{{singer.name}}</div><div v-if="index<item.ar.length-1" class="null">/</div>
                     </div>
-                    <div class="singer">-{{ item.al.name }}</div>
+                    <div class="singer">
+                        <div class="null">--</div><div class="singername" >{{ item.al.name }}</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -232,9 +234,9 @@ export default {
                         text-overflow:ellipsis;//文本溢出显示省略号
                         display: -webkit-box;
                         -webkit-line-clamp: 1; //控制文字行数
-                        // -webkit-box-orient: vertical; //子元素数值排列
                         .singer{
                             display flex
+                            height 18px
                             line-height 18px
                             .singername{
 
@@ -242,7 +244,8 @@ export default {
                             .null{
                                 width 10px
                                 text-align center
-                                line-height 15px
+                                height 18px
+                                line-height 18px
                             }
                         }
                     }

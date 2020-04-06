@@ -33,9 +33,6 @@
                     <div class="singer" v-for="(singer,index) in item.ar" :key="index">
                         <div class="singername">{{ singer.name }}</div> <div class="null" v-if="index<item.ar.length-1">/</div>
                     </div>
-                    <!-- <div class="singer" v-for="(singer,index) in item.ar" :key="index">
-                        {{ singer.name }}
-                    </div> -->
                 </div>
             </div>
         </div>

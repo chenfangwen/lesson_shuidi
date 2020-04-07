@@ -16,8 +16,11 @@ const sum = (a, b, c) => {
       // this 
       // 因为 this 没有绑定到 cat 上面，并没有做优先级的处理
       // 判断 是不是 this 调用？？ .target
+      console.log(thisObj,'---')
       let isNewCall = this instanceof innerFunc;
+      console.log(isNewCall,'....')
       // isNewCall ? 实例 : thisObj
+      console.log(this)
       return fn.call(isNewCall ? this : thisObj, ...args);
     }
     innerFunc.prototype = fn.prototype;

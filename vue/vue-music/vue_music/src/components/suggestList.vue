@@ -5,7 +5,7 @@
         <div class="confirm-content">
           <p class="text">搜索 "{{query}}"</p>
           <div class="singers">
-              <div class="singer" v-for="(suggest,index) in suggestList" :key="index">
+              <div @click="changeSearch(suggest)" class="singer" v-for="(suggest,index) in suggestList" :key="index">
                   {{suggest.name}}
               </div>
           </div>
@@ -26,6 +26,12 @@ export default {
             type:Array,
             default:[]
         }
+    },
+    methods:{
+        changeSearch(suggest){
+            this.query = ''
+            this.$emit('changeSearch',suggest)
+        }
     }
 }
 </script>
@@ -35,7 +41,8 @@ export default {
     position: fixed;
     left: 20px;
     width 75%
-    top: 50px;
+    top: 135px;
+    
     z-index: 998;
     background-color: rgba(0, 0, 0, 0.3);
     &.confirm-fade-enter-active {
@@ -54,6 +61,7 @@ export default {
         width: 270px;
         border-radius: 5px;
         background: #fff;
+        box-shadow 0 0 10px  #f2f2f2
         .text {
           padding: 12px 15px;
           line-height: 22px;
@@ -61,14 +69,18 @@ export default {
           font-weight 600
           font-size: 16px;
           color:  #2E3030;
+          border-bottom  1px solid #e4e4e4;
+
         }
         .singers {
           align-items: center;
-          text-align: center;
+          text-align: left ;
           font-size: 16px;
           color:  #2E3030;
+          
           .singer{
-            padding 0 0 20px 0
+            padding 10px 15px 10px 15px
+            border-bottom  1px solid #e4e4e4;
           }
         }
       }

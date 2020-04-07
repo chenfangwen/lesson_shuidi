@@ -6,7 +6,7 @@
           <search-box ref="searchbox" @searchSuggest="searchSuggest" @search="search"/>
           <!-- <img @click="search" class="search_img" src="../assets/search.png" alt=""> -->
       </div>
-      <suggest-List :suggestList="suggestList" :query="query" />
+      <suggest-List @changeSearch="changeSearch" :suggestList="suggestList" :query="query" />
       <div class="hotSearch">
       </div>
       <div class="firstSinger" v-if="ifSinger" @click="toSinger">
@@ -63,6 +63,7 @@ export default {
   methods:{
     ...mapActions(['getCur_music','getMusicList']),
     search: function(query) {
+        this.query = ''
         API.searchResult(query)
           .then(res=>{
               console.log(res.data)
@@ -79,6 +80,11 @@ export default {
                 })
               }
           })
+    },
+    changeSearch(suggest){
+      // this.$refs.searchbox.query = suggest.name
+      this.search(suggest.name)
+      this.query = ''
     },
     searchSuggest(query){
       this.query = query

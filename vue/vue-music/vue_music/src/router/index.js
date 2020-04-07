@@ -48,7 +48,7 @@ const routes = [
     name: 'Recommend',
     component: Recommend,
     meta: {
-      // keepAlive: true,
+      keepAlive: true,
       title: '音乐推荐',
       deepth: 0.5
      }
@@ -65,6 +65,7 @@ const routes = [
   },
   {
     path: '/search',
+    name:'Search',
     component: Search,
     meta: {
       keepAlive: true,
@@ -74,35 +75,39 @@ const routes = [
   },
   {
     path: '/rank',
+    name:'Rank',
     component: Rank,
     meta: {
-      // keepAlive: true,
+      keepAlive: false,
       title: '音乐排行'
       
      }
   },
   {
     path: '/singers',
+    name:'Singers',
     component: Singers,
     meta: {
-      // keepAlive: true,
+      keepAlive: false,
       title: '歌手排行'
     }
   },
   {
     path: '/singer/:id',
+    name:'Singer',
     component: Singer,
     meta: {
-      // keepAlive: true,
+      keepAlive: false,
       title: '歌手详情',
       deepth: 2
     }
   },
   {
     path: '/singerTopList',
+    name:'SingerTopList',
     component: SingerTopList,
     meta: {
-      // keepAlive: true,
+      keepAlive: false,
       title: '歌手榜'
     }
   }

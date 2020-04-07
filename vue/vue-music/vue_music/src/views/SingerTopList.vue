@@ -4,6 +4,12 @@
     </div>
 </template>
 
+<script>
+export default {
+    name:'SingerTopList',
+}
+</script>
+
 <style lang="stylus" scoped>
 #SingerTopList{
     position absolute

@@ -108,6 +108,7 @@
 import singer from '../api/singer.js'
 import {mapActions,mapState} from 'vuex'
 export default {
+    name:'Singer',
     data() {
         return {
             singerInfo:{},

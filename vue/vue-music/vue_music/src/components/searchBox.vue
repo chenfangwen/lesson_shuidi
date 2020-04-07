@@ -20,7 +20,7 @@ export default {
   },
   watch:{
     query(value){
-      this.search()
+      this.searchSuggest()
     }
   },
   data () {
@@ -32,6 +32,9 @@ export default {
   methods: {
     clear () {
       this.query = ''
+    },
+    searchSuggest(){
+      this.$emit('searchSuggest',this.query)
     },
     search(){
         this.$emit('search',this.query)

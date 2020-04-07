@@ -1,15 +1,13 @@
 <template>
-  <transition name="confirm-fade">
-    <div class="confirm" v-show="ifShow" @click.stop="hide">
+    <transition name="confirm-fade">
+    <div class="confirm" v-show="query!=''" @click.stop="hide">
       <div class="confirm-wrapper">
         <div class="confirm-content">
-          <p class="text">{{text}}</p>
+          <p class="text">搜索 "{{query}}"</p>
           <div class="singers">
-              <div class="singer" @click="toSinger(singer.id)" v-for="(singer,index) in singers" :key="index">
-                  {{singer.name}}
+              <div class="singer" v-for="(suggest,index) in suggestList" :key="index">
+                  {{suggest.name}}
               </div>
-            <!-- <div @click="cancel" class="operate-btn left">{{cancelBtnText}}</div>
-            <div @click="confirm" class="operate-btn">{{confirmBtnText}}</div> -->
           </div>
         </div>
       </div>
@@ -17,48 +15,27 @@
   </transition>
 </template>
 
-
-
 <script>
 export default {
-  props: {
-    text: {
-      type: String,
-      default: '请选择要查看的歌手'
-    },
-    singers: {
-        type:Array,
-        default:[]
+    props:{
+        query:{
+            type:String,
+            default:''
+        },
+        suggestList: {
+            type:Array,
+            default:[]
+        }
     }
-  },
-  data () {
-    return {
-      ifShow: false
-    }
-  },
-  methods: {
-    show () {
-      this.ifShow = true
-    },
-    hide () {
-      this.ifShow = false
-    },
-    toSinger(id){
-        this.$router.push({
-            path:`/singer/${id}`
-        })
-    }
-  }
 }
 </script>
 
 <style scoped lang="stylus">
   .confirm {
     position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
+    left: 20px;
+    width 75%
+    top: 50px;
     z-index: 998;
     background-color: rgba(0, 0, 0, 0.3);
     &.confirm-fade-enter-active {

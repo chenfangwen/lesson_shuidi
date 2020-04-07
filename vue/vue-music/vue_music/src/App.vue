@@ -3,7 +3,7 @@
     <player/>
     <m_header/>
     <tab/>
-    <keep-alive >
+    <keep-alive :include="include" >
       <router-view v-if="$route.meta.keepAlive"/>
     </keep-alive>
     <router-view v-if="!$route.meta.keepAlive"/>
@@ -35,6 +35,7 @@ export default {
         var index = this.include.indexOf(from.name)
         index !== -1 && this.include.splice(index,1)
       }
+      // console.log(this.include,'----')
     }
   }
 }

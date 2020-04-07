@@ -18,6 +18,7 @@ import {mapState,mapActions} from 'vuex'
 import albumList from '../components/albumList.vue'
 import playList from '../components/playList.vue'
 export default {
+    name:'Banner',
     data(){
         return {
         }

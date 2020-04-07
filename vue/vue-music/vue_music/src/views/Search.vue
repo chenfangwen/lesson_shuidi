@@ -3,11 +3,11 @@
     <div id="search">
       <div class="search">
           <img @click="back" class="back_img" src="../assets/back.png" alt="">
-          <search-box ref="searchbox" @search="search"/>
+          <search-box ref="searchbox" @searchSuggest="searchSuggest" @search="search"/>
           <!-- <img @click="search" class="search_img" src="../assets/search.png" alt=""> -->
       </div>
+      <suggest-List :suggestList="suggestList" :query="query" />
       <div class="hotSearch">
-
       </div>
       <div class="firstSinger" v-if="ifSinger" @click="toSinger">
         <img class="singer_img" :src="firstSinger.picUrl" alt="">
@@ -27,13 +27,16 @@ import API from "../api/search"
 import {mapState,mapActions} from 'vuex'
 import searchBox from '../components/searchBox.vue'
 import musicList from '../components/musicList.vue'
+import suggestList from '../components/suggestList'
 export default {
-  name: 'Home',
+  name: 'Search',
   data(){
     return {
       searchValue:'',
       firstSingerName:'',
-      firstSinger:''
+      firstSinger:'',
+      suggestList:[],
+      query:''
     }
   },
   computed:{
@@ -54,26 +57,35 @@ export default {
   components: {
     // HelloWorld
     musicList,
-    searchBox
+    searchBox,
+    suggestList
   },
   methods:{
     ...mapActions(['getCur_music','getMusicList']),
     search: function(query) {
         API.searchResult(query)
-        .then(res=>{
-            console.log(res.data)
-            // this.musicsList = res.data.result.songs;
-            this.getMusicList(res.data.result.songs) 
-            if(res.data.result.songs[0].artists[0]){
-              this.firstSingerName = res.data.result.songs[0].artists[0].name
-              API.getSearchSinger(this.firstSingerName)
-              .then(res=>{
-                  console.log(res.data)
-                  if(res.data.result.artists){
-                    this.firstSinger = res.data.result.artists[0];
-                  }
-              })
-            }
+          .then(res=>{
+              console.log(res.data)
+              // this.musicsList = res.data.result.songs;
+              this.getMusicList(res.data.result.songs) 
+              if(res.data.result.songs[0].artists[0]){
+                this.firstSingerName = res.data.result.songs[0].artists[0].name
+                API.getSearchSinger(this.firstSingerName)
+                .then(res=>{
+                    console.log(res.data)
+                    if(res.data.result.artists){
+                      this.firstSinger = res.data.result.artists[0];
+                    }
+                })
+              }
+          })
+    },
+    searchSuggest(query){
+      this.query = query
+      API.getSearchSuggest(query)
+        .then(res => {
+          // console.log(res.data)
+          this.suggestList = res.data.result.artists
         })
     },
     back(){

@@ -26,7 +26,7 @@ import API2 from '../api/search'
 import {mapState,mapActions} from 'vuex'
 import API from "../api/recommend"
 export default {
-  name: 'Home',
+  name: 'Recommend',
   data(){
     return {
       banners:[],

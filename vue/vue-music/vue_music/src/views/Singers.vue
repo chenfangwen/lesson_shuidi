@@ -4,6 +4,11 @@
     </div>
     
 </template>
+<script>
+export default {
+    name:'Singers',
+}
+</script>
 
 <style lang="stylus" scoped>
 #singers{

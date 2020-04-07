@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+//     function foo() {
+//       // setTimeout(() => {
+//       //   console.log(1);
+//       // }, 2000)
+//       // return 'foo';
+//       return new Promise((resolve) => {
+//         setTimeout(() => {
+//           resolve(123);
+//         }, 2000)
+//       })
+//     }
+
+//     function* test() {
+//       console.log('start');
+//       // 从 后 往 前
+//       let a = yield foo();  // foo 返回一个 'foo'  不会等着 定时器 两秒过后 才执行往后的代码
+//       // a ???? 和  yield 后面的值没有任何关系
+//       console.log('a', a);
+//       let b = yield 2;
+//       console.log('b', b);
+//       console.log('end');
+//     }
+//     // let g = test();
+//     // console.log(g)
+//     // a 的值 可以通过 next 方法 传递
+//     // next 传递的参数： 就是上一个 yield 的返回值
+//     // console.log(g.next());
+//     // 插入新的任务：foo
+//     // foo();
+//     // foo 执行完 再启动下一步
+//     // console.log(g.next('A_value'));
+// // console.log(g.next('B_value'));
+//     // generate 内部相比普通函数而言，是可以被中止的
+//     // 相比普通函数而言 调用的时候是 通过 一步步的 next 来调用的
+//     // while(!g.next().done) {
+//     //   g.next();
+//     // }
+
+//     // 协程
+//     function generateAutoRun(gen) {
+//       let g = gen();
+//       function next(value) {
+//         let res = g.next(value);
+//         if (res.done) return;
+//         next(res.value);
+//       }
+//       next();
+//     }
+//     generateAutoRun(test);
+    // let p = Promise.resolve(1);
+// let p2 = new Promise((resolve) => {
+//   setTimeout(() => {
+//     resolve(234)
+//   }, 2000)
+// })
+let p = 
+  setTimeout(() => {
+    console.log(1);
+  }, 2000)
+
+let p2 = 
+  setTimeout(() => {
+    console.log(2);
+  }, 1000)
+
+// 不是 简单 async -> *  yield -> await
+// 转完之后 还得保证 顺序
+function* test() {
+  let a = yield p;
+  console.log(a)
+  let b = yield p2;
+  console.log(b);
+}
+// 简单版本的实现
+// 1：执行 generate 2： 而且保证顺序
+function asyncTogenerate(gen) {
+  let g = gen();
+  function step(value) {
+    // 处理 yield 返回值问题
+    let info = g.next(value);
+    if (info.done) {
+      return;
+    } else {
+      // 把 yield 后面的东西(info.value) 直接 resolve
+      Promise.resolve(info.value).then((res) => {
+        // 下一个 yield 下一个 递归
+        // 第一次 1'
+        step(res);
+      })
+    }
+  }
+  step();
+}
+asyncTogenerate(test);
+
+  </script>
+</body>
+</html>

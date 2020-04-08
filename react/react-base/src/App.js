@@ -1,7 +1,37 @@
-import React from 'react';
+import React,{ useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+//<></>  == <React.Fragment><React.Fragment/>
+
+class Header extends React.Component {
+  state = {
+    list: [
+      'A','B','C'
+    ]
+  }
+  render(){
+    const {color} = this.props
+    const {list} = this.state
+    return (
+      <>  
+      <header style={{
+          'color':color
+        }}>
+          头
+          {
+            list.map((char,i)=>{
+              return (
+                <h3 key={i}>{char}</h3>
+              )
+            })
+          }
+      </header>
+      <div>头</div>
+      </>
+    )
+  }
+}
 function App() {
   let list = [
     { first: 'Albert', last: 'Einstein', year: 1879, passed: 1955 },
@@ -17,18 +47,24 @@ function App() {
     { first: 'Lise', last: 'Meitner', year: 1878, passed: 1968 },
     { first: 'Hanna', last: 'Hammarström', year: 1829, passed: 1909 }
   ];
-  let newlist = list.map((person,i) => {
+  const [ listState, setListState ] = useState(list)
+  let listEle = listState.map((person,i) => {
     return (
     <li  key={i}>姓名：{person.first}-{person.last},享年：{person.passed-person.year}</li>
     )
   })
-  console.log(newlist)
-  let hasData = list.length > 0
+  setTimeout(() => {
+    let newList = list.splice(0,list.length-1)
+    setListState(newList)
+  },3000)
+  // console.log(listEle)
+  let hasData = listEle.length > 0
   //列表渲染会自动展开数组
-  let arr = [<li>0</li>,<li>1</li>,<li>2</li>]
+  // let arr = [<li>0</li>,<li>1</li>,<li>2</li>]
   return (
     <div>
-      { hasData ? newlist : <em>暂无数据</em>}
+      <Header color="red"></Header>
+      { hasData ? listEle : <em>暂无数据</em>}
     </div>
   );
 }

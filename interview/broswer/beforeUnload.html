@@ -6,6 +6,25 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <div class="text">
+        <a href="http://www.baidu.com">百度</a>
+        <form action="post">
+            <input id="text" type="text">
+        </form>
+        
+    </div>
+    <script>
+        var value = ''
+        document.getElementById('text')
+        .addEventListener('change',function(event){
+            value = event.target.value
+            console.log(value)
+        })
+        window.onbeforeunload = function(event) {
+            if(value){
+                return confirm('确定要离开吗')
+            }
+        }
+    </script>
 </body>
 </html>

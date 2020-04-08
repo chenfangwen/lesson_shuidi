@@ -91,6 +91,7 @@ function asyncTogenerate(gen) {
       return;
     } else {
       // 把 yield 后面的东西(info.value) 直接 resolve
+      // console.log(info.value)
       Promise.resolve(info.value).then((res) => {
         // 下一个 yield 下一个 递归
         // 第一次 1'

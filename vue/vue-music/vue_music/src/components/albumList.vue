@@ -167,16 +167,16 @@ export default {
                 .singers{
                     margin  5px 0
                     font-size 12px
-                    color: #c7c7c7; 
-                    height 30px
+                    color: #fff; 
+                    height 100px
                     line-height 30px
                     display flex
                     overflow: hidden;
-                    text-overflow:ellipsis;//文本溢出显示省略号
-                    // display: -webkit-box;
-                    -webkit-line-clamp: 1; //控制文字行数
+                    text-overflow:ellipsis;//文本溢出显示省略号 
+                    display: -webkit-box;
+                    -webkit-line-clamp: 3; //控制文字行数
                     .text{
-                        color: #c7c7c7; 
+                        // color: #c7c7c7; 
                     }
                     .singer{
                         display flex

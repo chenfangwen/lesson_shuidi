@@ -220,15 +220,17 @@ export default {
     showConfirm(){
         if(this.artistsNmae.length>1){
             this.$refs.singerConfirm.show()
+            // this.getIfNomal(!this.ifNomal)
         } else {
             console.log(this.$route.params.id)
             if(this.$route.params.id!=this.artistsNmae[0].id){
               this.$router.push({
                   path:`/singer/${this.artistsNmae[0].id}`
               })
+              this.getIfNomal(!this.ifNomal)
             }
         }
-        this.getIfNomal(!this.ifNomal)
+        
     },
     showPlaylist(){
       this.$refs.currentList.show()
@@ -307,20 +309,20 @@ export default {
         this.getCur_music(this.curList[index])
         this.getCurIndex(index)
       } 
-      // else {
-      //   if(this.curList){
-      //     if(this.curIndex<this.curList.length-1){
-      //       this.getCur_music(this.curList[this.curIndex+1])
-      //       this.getCurIndex(this.curIndex+1)
-      //     }else{
-      //       this.getCur_music(this.curList[0])
-      //       this.getCurIndex(0)
-      //     }
-      //   } else {
-      //     this.getCur_music(this.cur_music)
-      //     this.$refs.audio.play()
-      //   }
-      // }
+      else {
+        if(this.curList){
+          if(this.curIndex<this.curList.length-1){
+            this.getCur_music(this.curList[this.curIndex+1])
+            this.getCurIndex(this.curIndex+1)
+          }else{
+            this.getCur_music(this.curList[0])
+            this.getCurIndex(0)
+          }
+        } else {
+          this.getCur_music(this.cur_music)
+          this.$refs.audio.play()
+        }
+      }
     },
     // onPercentChange (per) {
     //   console.log(per)

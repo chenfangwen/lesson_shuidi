@@ -20,6 +20,7 @@
 
 
 <script>
+import {mapActions} from 'vuex'
 export default {
   props: {
     text: {
@@ -37,6 +38,7 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['getIfNomal']),
     show () {
       this.ifShow = true
     },
@@ -47,6 +49,7 @@ export default {
         this.$router.push({
             path:`/singer/${id}`
         })
+        this.getIfNomal(false)
     }
   }
 }

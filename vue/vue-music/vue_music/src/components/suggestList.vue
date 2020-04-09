@@ -1,6 +1,6 @@
 <template>
     <transition name="confirm-fade">
-    <div class="confirm" v-show="query!=''" @click.stop="hide">
+    <div class="confirm" v-show="query!=''" >
       <div class="confirm-wrapper">
         <div class="confirm-content">
           <p class="text">搜索 "{{query}}"</p>
@@ -39,9 +39,9 @@ export default {
 <style scoped lang="stylus">
   .confirm {
     position: fixed;
-    left: 20px;
-    width 75%
-    top: 135px;
+    left: 10%;
+    width 75vw
+    top: 23%;
     
     z-index: 998;
     background-color: rgba(0, 0, 0, 0.3);

@@ -8,8 +8,6 @@
               <div class="singer" @click="toSinger(singer.id)" v-for="(singer,index) in singers" :key="index">
                   {{singer.name}}
               </div>
-            <!-- <div @click="cancel" class="operate-btn left">{{cancelBtnText}}</div>
-            <div @click="confirm" class="operate-btn">{{confirmBtnText}}</div> -->
           </div>
         </div>
       </div>
@@ -62,7 +60,7 @@ export default {
     right: 0;
     top: 0;
     bottom: 0;
-    z-index: 998;
+    z-index: 200;
     background-color: rgba(0, 0, 0, 0.3);
     &.confirm-fade-enter-active {
       animation: confirm-fadein 0.3s;

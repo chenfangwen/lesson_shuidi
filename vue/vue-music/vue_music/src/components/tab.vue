@@ -12,7 +12,7 @@ export default {
       tabs:[
         {
           id:1,
-          content:'每日推荐',
+          content:'发现',
           to:'/recommend'
         },
         {

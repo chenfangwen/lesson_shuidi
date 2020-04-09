@@ -16,7 +16,7 @@
           <div class="singername">{{firstSinger.name}}</div>
         </div>
       </div>
-      <music-list/>
+      <music-list @hide="hide"/>
     </div>
   </transition>
 </template>
@@ -62,6 +62,9 @@ export default {
   },
   methods:{
     ...mapActions(['getCur_music','getMusicList']),
+    hide(){
+      this.query = ''
+    },
     search: function(query) {
         this.query = ''
         API.searchResult(query)
@@ -74,7 +77,7 @@ export default {
                 API.getSearchSinger(this.firstSingerName)
                 .then(res=>{
                     console.log(res.data)
-                    if(res.data.result.artists){
+                    if(res.data.result.artists[0]){
                       this.firstSinger = res.data.result.artists[0];
                     }
                 })

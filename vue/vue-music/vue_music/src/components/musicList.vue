@@ -29,6 +29,7 @@ export default {
         ...mapActions(['getCur_music','getCurList','getCurIndex']),
         getCur_music_m(item,index){
           this.getCur_music(item);
+          this.$emit('hide')
           // this.getCurList(this.musicsList)
           // this.getCurIndex(index)
         }

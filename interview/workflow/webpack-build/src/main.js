@@ -1,5 +1,5 @@
 console.log('我爱刘姿依')
-require('./style/index.css')
+// require('./style/index.css')
 
 
 

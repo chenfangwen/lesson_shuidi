@@ -1,3 +1,4 @@
+const { findSync } = require('../lib')
 const Config = require('webpack-chain');
 const config = new Config();    //配置实例
 const path = require('path')
@@ -13,6 +14,11 @@ module.exports = () => {
         .set('mode',process.env.NODE_ENV)
         .output.path(resolve('dist'))
         .filename('[name].bundle.js');
+
+    const  files = findSync('config');
+    console.log(files,"++++")
+    // config.module
+    //     .
 
     return config
 }

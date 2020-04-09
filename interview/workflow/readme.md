@@ -9,3 +9,9 @@
     rimraf  yarn add rimraf -D
 
     3. base.js 同时服务 dev.js build.js
+
+    4. module 和插件处理
+        config.js
+
+    5. lib 把module 放在congig 目录 把一个文件一件事
+    findSync 所有js 文件组成数组输出

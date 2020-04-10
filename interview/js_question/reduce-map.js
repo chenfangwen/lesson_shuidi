@@ -30,3 +30,7 @@ function test(fn) {
 test(function(str){
     console.log(str)
 })
+
+module.exports =  () => {
+    console.log('sfasdfasdf')
+}

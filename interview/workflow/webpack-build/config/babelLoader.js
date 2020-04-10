@@ -1,6 +1,8 @@
 
 module.exports = (config,resolve) => {
-    const baseRule = config.module.rule('js').test(/.js$/);
+    // ts -> js -> evn js
+
+    const baseRule = config.module.rule('js').test(/.js|.ts$/);  //匹配 js ts
     const babelPath = resolve('babel.js')
     const babelConf = require(babelPath);   // src/babel.js
     // console.log(babelConf,'----------')

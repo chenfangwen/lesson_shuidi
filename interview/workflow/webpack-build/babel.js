@@ -12,7 +12,16 @@ module.exports = function({version}) {
                         safari: 8
                     }
                 }
+            ],
+            [
+                "@babel/preset-typescript",
+                {
+                    allExtensions: true
+                }
             ]
+        ],
+        plugins: [
+            '@babel/plugin-transform-typescript'
         ]
     }
 }

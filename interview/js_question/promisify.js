@@ -3,17 +3,18 @@ const util = require('util')
 const fsReadfile = mypromisify(fs.readFile)
 
 fsReadfile('./reduce-map.js',{ encoding: 'utf-8' })
-.then(info => {
+.then((info) => {
     console.log(info)
 })
 
 
 function mypromisify(func) {
-    return (...args) => {
+    return (...arguments) => {
+        console.log(arguments)
         return new Promise((resolve,reject) => {
-            func(...args,(err,res) => {
+            func(...arguments,(err,res) => {
                 if(err) reject(err)
-                resolve(res)
+                else resolve(res)
             })
         })
     }

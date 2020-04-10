@@ -5,20 +5,19 @@ const path = require('path')
 const resolve = (src) => {
     return path.join(process.cwd(),src)
 }
+const  files = findSync('config');
+console.log(files,"++++")
 
 module.exports = () => {
-    config
-        .entry('app')
-        .add(resolve('src/main.js'))
-        .end()
-        .set('mode',process.env.NODE_ENV)
-        .output.path(resolve('dist'))
-        .filename('[name].bundle.js');
-
-    const  files = findSync('config');
-    console.log(files,"++++")
-    // config.module
-    //     .
-
+    const map = new Map()   //es6 Map key不限类型
+    files.map(file => {
+        const name = file.split('/').pop().replace('.js','')
+        // console.log(name,'---')
+        return map.set(name,require(file)(config,resolve))
+    })
+    // console.log(map,'map-----')
+    map.forEach(v => {
+        v()
+    })
     return config
 }

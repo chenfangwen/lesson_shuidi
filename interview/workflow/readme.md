@@ -15,3 +15,10 @@
 
     5. lib 把module 放在congig 目录 把一个文件一件事
     findSync 所有js 文件组成数组输出
+
+    6. 可拔插的webpack 插件
+    - babel
+    - postcss
+    - htmltemplate
+
+    webpack 通过module 

@@ -1,4 +1,5 @@
-module.exports = function() {
+module.exports = function({version}) {
+    console.log(version,'babel.js')
     return {
         'presets': [
             [

@@ -1,7 +1,7 @@
 <template>
   <div class="search-box">
     <!-- <i class="icon-search"></i> -->
-     <input id="search" :placeholder="placeholder" @keyup.enter="search" v-model="query" type="text" class="box">
+     <input id="search_123" :placeholder="placeholder" @click.stop="searchSuggest" @keyup.enter="search" v-model="query" type="text" class="box">
       <img @click="clear" v-show="query!=''" class="search_img" src="../assets/delete.png" alt="">
     <!-- <img @click="search" class="search_img" src="../assets/search.png" alt=""> -->
     <!-- <span class="search" >{{clickInfo}}</span> -->
@@ -44,9 +44,7 @@ export default {
     }
   },
   mounted(){
-    document.getElementById('search').onfocus = () => {
-      
-    }
+    document.getElementById('search_123').focus()
   }
 }
 </script>
@@ -75,6 +73,7 @@ export default {
     line-height: 25px;
     // width 699px
     background: rgb(212, 68, 57);
+    padding 0 20px 0 5px
     color: #fff;
     font-size:14px;
     border: none;

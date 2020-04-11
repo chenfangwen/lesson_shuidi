@@ -27,15 +27,19 @@
                 <div class="num">(共{{albumMusic.length}}首)</div>
             </div>
             <div @click="getCur_music_m(item,index)" class="music_item" v-for="(item, index) in albumMusic" :key="index">
+                <div class="index" v-show="curIndex!=index||curIndex===''||curList!=albumMusic">{{index+1}}</div>
+                <div class="index" v-show="curIndex==index&&curIndex!==''&&curList==albumMusic">
+                    <img src="../assets/laba.png" alt="">
+                </div>
                 <div class="music_item_box">
-                <div class="song">{{ item.name }}</div>
-                <div class="singers">
-                    <div class="singer" v-for="(singer,index) in item.ar" :key="index">
-                        <div class="singername">{{ singer.name }}</div> <div class="null" v-if="index<item.ar.length-1">/</div>
+                    <div class="song">{{ item.name }}</div>
+                    <div class="singers">
+                        <div class="singer" v-for="(singer,index) in item.ar" :key="index">
+                            <div class="singername">{{ singer.name }}</div> <div class="null" v-if="index<item.ar.length-1">/</div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
         </div>
         
     </div>
@@ -49,9 +53,7 @@ export default {
         SingerConfirm
     },
     computed:{
-        ...mapState({
-            albumMusic:(state) => state.albumMusic
-        }),
+        ...mapState(['albumMusic','curList','curIndex']),
         albumName(){
             if(this.albumMusic[0]){return this.albumMusic[0].al.name}
             
@@ -149,6 +151,7 @@ export default {
                 z-index -1
             }
             .img{
+                margin-left 5px
                 height 150px
                 width 150px
                 .image{
@@ -221,6 +224,20 @@ export default {
                 height: 47px;
                 text-align left 
                 // border-bottom: 1px solid #e4e4e4;
+                display flex
+                .index{
+                    width 50px
+                    height 50px
+                    text-align center
+                    line-height 50px
+                    margin-top 10px
+                    color #757575;
+                    img{
+                        margin 12px
+                        width 18px
+                        height 18px
+                    }
+                }
                 .music_item_box{
                 position: relative;
                 margin-top  10px
@@ -232,8 +249,8 @@ export default {
                     font-size 14px;
                     font-weight 500
                     height 20px
-                    padding-top  2px
-                    padding-bottom 2px
+                    padding-top  1px
+                    padding-bottom 1px
                 }
                 .singers{
                     display flex
@@ -245,8 +262,8 @@ export default {
                     // display: -webkit-box;
                     -webkit-line-clamp: 1; //控制文字行数
                     font-weight 500
-                    padding-top 2px
-                    padding-bottom 2px
+                    padding-top 1px
+                    padding-bottom 1px
                     .singer{
                         display flex
                         text-align left

@@ -222,12 +222,12 @@ export default {
             this.$refs.singerConfirm.show()
             // this.getIfNomal(!this.ifNomal)
         } else {
-            console.log(this.$route.params.id)
+            // console.log(this.$route.params.id)
+            this.getIfNomal(!this.ifNomal)
             if(this.$route.params.id!=this.artistsNmae[0].id){
               this.$router.push({
                   path:`/singer/${this.artistsNmae[0].id}`
               })
-              this.getIfNomal(!this.ifNomal)
             }
         }
         

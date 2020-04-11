@@ -214,8 +214,12 @@ export default {
           display: flex;
           align-items: center;
           height: 40px;
-          padding: 0 30px 0 20px;
+          padding: 0 37px 0 20px;
           overflow: hidden;
+          text-overflow:ellipsis;//文本溢出显示省略号
+          display: -webkit-box;
+          -webkit-line-clamp: 1; //控制文字行数
+          // -webkit-box-orient: vertical; //子元素数值排列
           &.list-enter-active, &.list-leave-active {
             transition: all 0.1s;
           }
@@ -242,9 +246,15 @@ export default {
           .text {
             // flex: 1;
             text-align left
+            max-width 50%
+            height 15px
             @include no-wrap();
-            line-height: 20px;
+            line-height: 15px;
             font-size: 14px;
+            overflow: hidden;
+            text-overflow:ellipsis;//文本溢出显示省略号
+            display: -webkit-box;
+            -webkit-line-clamp: 1; //控制文字行数
             // color: #2E3030;
           }
           .singer{

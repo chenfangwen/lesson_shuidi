@@ -1,6 +1,6 @@
 <template>
   <transition name="search">
-    <div id="search">
+    <div id="search" @click="hide">
       <div class="search">
           <img @click="back" class="back_img" src="../assets/back.png" alt="">
           <search-box ref="searchbox" @searchSuggest="searchSuggest" @search="search"/>
@@ -67,35 +67,44 @@ export default {
     },
     search: function(query) {
         this.query = ''
-        API.searchResult(query)
-          .then(res=>{
-              console.log(res.data)
-              // this.musicsList = res.data.result.songs;
-              this.getMusicList(res.data.result.songs) 
-              if(res.data.result.songs[0].artists[0]){
-                this.firstSingerName = res.data.result.songs[0].artists[0].name
-                API.getSearchSinger(this.firstSingerName)
-                .then(res=>{
-                    console.log(res.data)
-                    if(res.data.result.artists[0]){
-                      this.firstSinger = res.data.result.artists[0];
-                    }
-                })
-              }
-          })
+        if(query){
+          API.searchResult(query)
+            .then(res=>{
+                console.log(res.data)
+                // this.musicsList = res.data.result.songs;
+                this.getMusicList(res.data.result.songs) 
+                if(res.data.result.songs[0].artists[0]){
+                  this.firstSingerName = res.data.result.songs[0].artists[0].name
+                  API.getSearchSinger(this.firstSingerName)
+                  .then(res=>{
+                      console.log(res.data)
+                      if(res.data.result.artists[0]){
+                        this.firstSinger = res.data.result.artists[0];
+                      }
+                  })
+                }
+            })
+        }
     },
     changeSearch(suggest){
+      // console.log(suggest)
       // this.$refs.searchbox.query = suggest.name
       this.search(suggest.name)
       this.query = ''
     },
     searchSuggest(query){
       this.query = query
-      API.getSearchSuggest(query)
-        .then(res => {
-          // console.log(res.data)
-          this.suggestList = res.data.result.artists
-        })
+      if(query){
+        API.getSearchSuggest(query)
+          .then(res => {
+            if(res.data.result.artists){
+              console.log(res.data)
+              let artists = res.data.result.artists
+              let songs = res.data.result.songs
+              this.suggestList = artists.concat(songs)
+            }
+          })
+      }
     },
     back(){
       this.$router.go(-1)

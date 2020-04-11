@@ -23,20 +23,23 @@
                 <div class="num">(共{{length}}首)</div>
             </div>
             <div @click="getCur_music_m(item,index)" class="music_item" v-for="(item, index) in playList.tracks" :key="index">
+                <div class="index" v-show="curIndex!=index||curIndex===''||curList!=playList.tracks">{{index+1}}</div>
+                <div class="index" v-show="curIndex==index&&curIndex!==''&&curList==playList.tracks">
+                    <img src="../assets/laba.png" alt="">
+                </div>
                 <div class="music_item_box">
-                <div class="song">{{ item.name }}</div>
-                <div class="singers">
-                    <div class="singer" v-for="(singer,index) in item.ar" :key="index">
-                        <div class="singername" >{{singer.name}}</div><div v-if="index<item.ar.length-1" class="null">/</div>
-                    </div>
-                    <div class="singer">
-                        <div class="null">-</div><div class="singername" >{{ item.al.name }}</div>
+                    <div class="song">{{ item.name }}</div>
+                    <div class="singers">
+                        <div class="singer" v-for="(singer,index) in item.ar" :key="index">
+                            <div class="singername" >{{singer.name}}</div><div v-if="index<item.ar.length-1" class="null">/</div>
+                        </div>
+                        <div class="singer">
+                            <div class="null">-</div><div class="singername" >{{ item.al.name }}</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        </div>
-        
     </div>
 </template>
 
@@ -44,10 +47,7 @@
 import {mapState,mapActions} from 'vuex'
 export default {
     computed:{
-        ...mapState({
-            playList:(state) => state.playList,
-            curIndex:(state) => state.curIndex
-        }),
+        ...mapState(['curList','curIndex','playList']),
         length(){
             if(this.playList.tracks){
                 return this.playList.tracks.length
@@ -141,6 +141,7 @@ export default {
                 z-index -1
             }
             .img{
+                margin-left 5px
                 height 150px
                 width 150px
                 .image{
@@ -195,12 +196,26 @@ export default {
             .music_item{
                 position: relative;
                 background-color: white;
+                display flex
                 width: 100vw;
                 height: 47px;
                 // padding 1% 
                 // margin-left 1.5%
                 text-align left 
                 // 
+                .index{
+                    width 50px
+                    height 50px
+                    text-align center
+                    line-height 50px
+                    margin-top 10px
+                    color #757575;
+                    img{
+                        margin 12px
+                        width 18px
+                        height 18px
+                    }
+                }
                 .music_item_box{
                     position: relative;
                     margin-top  10px

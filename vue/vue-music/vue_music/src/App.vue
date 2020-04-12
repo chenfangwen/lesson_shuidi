@@ -13,6 +13,7 @@
 import player from './components/player.vue'
 import m_header from './components/m-header.vue'
 import Tab from './components/tab.vue'
+import {mapState,mapActions} from 'vuex'
 export default {
   data() {
     return {
@@ -24,7 +25,16 @@ export default {
     m_header,
     Tab
   },
+  computed: {
+    ...mapState(['ifNomal','cur_music'])
+  },
   watch: {
+    cur_music(value){
+      if(value!==''){
+        console.log('++++')
+        document.getElementById('app').style.paddingBottom = 50
+      }
+    },
     $route(to, from){
       // console.log(from,to)
       if(to.meta.keepAlive) {

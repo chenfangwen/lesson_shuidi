@@ -21,7 +21,12 @@
               <div class="laba" v-show="curIndex==index"><img src="../assets/laba.png"  alt=""></div>
               <div class="text">{{item.name}}</div>
               <div class="null">-</div>
-              <div class="singer">{{item.ar[0].name}}</div>
+              <!-- <div class="singer">{{item.ar[0].name}}</div> -->
+              <div class="singers">
+                  <div class="singer" v-for="(singer,index) in item.ar" :key="index">
+                      <div class="singername">{{ singer.name }}</div> <div class="null" v-if="index<item.ar.length-1">/</div>
+                  </div>
+              </div>
               <span class="delete" @click.stop="deletOne(item,index)">
                 <img src="../assets/deleteone.png" alt="">
               </span>
@@ -197,6 +202,7 @@ export default {
                 font-size 16px
                 line-height 30px
             }
+            
             .singer{
                 font-size 12px
                 color #757575
@@ -257,12 +263,32 @@ export default {
             -webkit-line-clamp: 1; //控制文字行数
             // color: #2E3030;
           }
-          .singer{
-            text-align left
-            @include no-wrap();
-            line-height: 20px;
-            font-size: 12px;
-            // color: #757575; 
+          .singers{
+              display flex
+              flex 1
+              font-size 11px
+              color: #757575;
+              height 18px
+              overflow: hidden;
+              text-overflow:ellipsis;//文本溢出显示省略号
+              display: -webkit-box;
+              -webkit-line-clamp: 1; //控制文字行数
+              font-weight 500
+              padding-top 1px
+              padding-bottom 1px
+              .singer{
+                  display flex
+                  text-align left
+                  height 18px
+                  line-height 18px
+                  .singername{
+                  }
+                  .null{
+                      width 10px
+                      text-align center
+                      line-height 18px
+                  }
+              }
           }
           .delete {
             @include extend-click();

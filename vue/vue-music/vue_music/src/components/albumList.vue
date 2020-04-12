@@ -21,7 +21,7 @@
             </div>
         </div>
         <singer-confirm ref="singerConfirm" :singers="albumSingers" />
-        <div class="list">
+        <div class="list" id="list">
             <div class="m-head">
                 <div class="all">播放全部</div>
                 <div class="num">(共{{albumMusic.length}}首)</div>
@@ -53,7 +53,7 @@ export default {
         SingerConfirm
     },
     computed:{
-        ...mapState(['albumMusic','curList','curIndex']),
+        ...mapState(['albumMusic','curList','curIndex','cur_music']),
         albumName(){
             if(this.albumMusic[0]){return this.albumMusic[0].al.name}
             
@@ -65,6 +65,16 @@ export default {
         albumSingers(){
             if(this.albumMusic[0]){return this.albumMusic[0].ar}
             else{return []}
+        }
+    },
+    watch: {
+        cur_music(value){
+            if(value!==''){
+                // console.log('++++')
+                let list = document.getElementById('list')
+                console.log(list,'----')
+                list.style.paddingBottom = 60 + 'px'
+            }
         }
     },
     methods:{
@@ -85,6 +95,14 @@ export default {
         },
          back(){
             this.$router.go(-1)
+        }
+    },
+    mounted(){
+        if(this.cur_music!==''){
+            // console.log('++++')
+            let list = document.getElementById('list')
+            console.log(list,'----')
+            list.style.paddingBottom = 60 + 'px'
         }
     }
 }
@@ -221,7 +239,7 @@ export default {
                 position: relative;
                 background-color: white;
                 width: 100vw;
-                height: 47px;
+                height: 57px;
                 text-align left 
                 // border-bottom: 1px solid #e4e4e4;
                 display flex
@@ -256,7 +274,7 @@ export default {
                     display flex
                     font-size 11px
                     color: #757575;
-                    height 13px
+                    height 18px
                     overflow: hidden;
                     text-overflow:ellipsis;//文本溢出显示省略号
                     // display: -webkit-box;
@@ -267,12 +285,14 @@ export default {
                     .singer{
                         display flex
                         text-align left
+                        height 18px
+                        line-height 18px
                         .singername{
                         }
                         .null{
                             width 10px
                             text-align center
-                            line-height 15px
+                            line-height 18px
                         }
                     }
                 }

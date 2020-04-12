@@ -1,13 +1,13 @@
 <template>
   <div class="recommend">
     <div class="red"></div>
-    <div class="content">
+    <div class="content" >
       <van-swipe :autoplay="3000" indicator-color="white">
         <van-swipe-item v-for="(item,index) in banners" :key="index" @click="getbanner(item)">
           <van-image  :src="item.picUrl" />
         </van-swipe-item>
       </van-swipe>
-      <div class="recommendList">
+      <div class="recommendList" id="list">
         <div class="text">推荐歌单</div>
         <van-grid :column-num="3" :border="false">
           <van-grid-item @click="getplaylist(item)" v-for="(item,index) in playlists" :key="index">
@@ -17,7 +17,6 @@
         </van-grid>
       </div>
     </div>
-    <router-view/>
   </div>
 </template>
 
@@ -34,14 +33,32 @@ export default {
     }
   },
   computed:{
-    ...mapState({
-        cur_music:(state) => state.cur_music,
-        cur_music_pic:(state) => state.cur_music_pic
-    })
+    ...mapState(['cur_music','cur_music_pic'])
   },
   components: {
   },
-  
+  watch: {
+      cur_music(value){
+          if(value!==''){
+              // console.log('++++')
+              let list = document.getElementById('list')
+              // console.log(list,'----')
+              list.style.paddingBottom = 60 + 'px'
+              // console.log('success')
+          }
+      },
+      '$route':function(to,from){
+          // document.body.scrollTop = 0
+          // console.log(to,from)
+          if(this.cur_music!==''){
+              let list = document.getElementById('list')
+              if(list){
+                list.style.paddingBottom = 60 + 'px'
+                console.log('----')
+              }
+          }
+      }
+  },
   methods:{
     ...mapActions(['getCur_music','getCurList']),
     getbanner(item){
@@ -122,7 +139,6 @@ export default {
           }
         }
       }
-      
     }
     
     // }
@@ -130,6 +146,7 @@ export default {
         position relative
         width 98%
         margin 0 1%
+        // padding-bottom 50px
         .text{
           font-size 14px
           font-weight 600

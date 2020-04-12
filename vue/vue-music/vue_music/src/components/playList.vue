@@ -17,7 +17,7 @@
                 <div class="singer">{{playList.description}}</div>
             </div>
         </div>
-        <div class="list">
+        <div class="list" id="list">
             <div class="m-head">
                 <div class="all">播放全部</div>
                 <div class="num">(共{{length}}首)</div>
@@ -47,10 +47,20 @@
 import {mapState,mapActions} from 'vuex'
 export default {
     computed:{
-        ...mapState(['curList','curIndex','playList']),
+        ...mapState(['curList','curIndex','playList','cur_music']),
         length(){
             if(this.playList.tracks){
                 return this.playList.tracks.length
+            }
+        }
+    },
+    watch: {
+        cur_music(value){
+            if(value!==''){
+                // console.log('++++')
+                let list = document.getElementById('list')
+                console.log(list,'----')
+                list.style.paddingBottom = 60 + 'px'
             }
         }
     },
@@ -65,6 +75,14 @@ export default {
         },
         back(){
         this.$router.go(-1)
+        }
+    },
+    mounted(){
+        if(this.cur_music!==''){
+            // console.log('++++')
+            let list = document.getElementById('list')
+            console.log(list,'----')
+            list.style.paddingBottom = 60 + 'px'
         }
     }
 }
@@ -198,7 +216,7 @@ export default {
                 background-color: white;
                 display flex
                 width: 100vw;
-                height: 47px;
+                height: 57px;
                 // padding 1% 
                 // margin-left 1.5%
                 text-align left 
@@ -243,8 +261,8 @@ export default {
                         color: #757575;
                         height 18px
                         font-weight 500
-                        padding-top 2px
-                        padding-bottom 2px
+                        padding-top 1px
+                        // padding-bottom 1px
                         overflow: hidden;
                         text-overflow:ellipsis;//文本溢出显示省略号
                         display: -webkit-box;

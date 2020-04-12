@@ -33,7 +33,8 @@ export default {
             albumMusic:(state) => state.albumMusic,
             curList:(state) => state.curList,
             cur_music_pic:(state) => state.cur_music_pic,
-            ifP:(state) => state.ifP
+            ifP:(state) => state.ifP,
+            cur_music:(state) => state.cur_music,
         }),
         albumPic(){
             if(this.albumMusic[0]){return this.albumMusic[0].al.picUrl}
@@ -46,6 +47,14 @@ export default {
         // }
     },
     watch:{
+        cur_music(value){
+            if(value!==''){
+                // console.log('++++')
+                let list = document.getElementById('list')
+                console.log(list,'----')
+                list.style.paddingBottom = 60 + 'px'
+            }
+        },
         '$route':function(to,from){
             // document.body.scrollTop = 0
             this.getData()
@@ -87,7 +96,12 @@ export default {
         // this.$router.afterEach((to,from,next) => {
         //     window.scrollTo(0,0)
         // })
-        
+        if(this.cur_music!==''){
+            // console.log('++++')
+            let list = document.getElementById('list')
+            console.log(list,'----')
+            list.style.paddingBottom = 60 + 'px'
+        }
         this.getData();
         // if(type == 0){
 

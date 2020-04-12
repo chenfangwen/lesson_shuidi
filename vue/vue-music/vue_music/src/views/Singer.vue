@@ -7,8 +7,8 @@
         <div class="bgimg">
             <img :src="singerInfo.picUrl" alt="">
         </div>
-        <div class="content">
-            <van-tabs v-model="active" sticky animated swipeable>
+        <div class="content" >
+            <van-tabs id="list" v-model="active" sticky animated swipeable>
                 <van-tab title="主页">
                     <div class="info">
                         <div class="someHot">
@@ -121,7 +121,7 @@ export default {
         }
     },
     computed:{
-        ...mapState(['curIndex','curList']),
+        ...mapState(['curIndex','curList','cur_music']),
         albumText(){
             if(this.albums){
                 return '专辑 '+ this.albums.length
@@ -140,6 +140,15 @@ export default {
         }
     },
     watch:{
+        cur_music(value){
+            if(value!==''){
+                console.log(value.name)
+                let list = document.getElementById('list')
+                // console.log(list,'----')
+                list.style.paddingBottom = 60 + 'px'
+                // console.log('success')
+            }
+        },
         '$route':function(to,from){
             // document.body.scrollTop = 0
             this.search()
@@ -204,8 +213,15 @@ export default {
         }
     },
     mounted(){
+        if(this.cur_music!==''){
+            console.log(this.cur_music.name)
+            let list = document.getElementById('list')
+            // console.log(list,'----')
+            list.style.paddingBottom = 60 + 'px'
+            console.log('success')
+        }
         this.search()
-        console.log(this.curIndex ,'------')
+        // console.log(this.curIndex ,'------')
     }
 }
 </script>

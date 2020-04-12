@@ -29,12 +29,6 @@ export default {
     ...mapState(['ifNomal','cur_music'])
   },
   watch: {
-    cur_music(value){
-      if(value!==''){
-        console.log('++++')
-        document.getElementById('app').style.paddingBottom = 50
-      }
-    },
     $route(to, from){
       // console.log(from,to)
       if(to.meta.keepAlive) {

@@ -16,7 +16,7 @@
           <div class="singername">{{firstSinger.name}}</div>
         </div>
       </div>
-      <music-list @hide="hide"/>
+      <music-list id="list" @hide="hide"/>
     </div>
   </transition>
 </template>
@@ -65,7 +65,8 @@ export default {
     hide(){
       this.query = ''
     },
-    search: function(query) {
+    search(query) {
+        
         this.query = ''
         if(query){
           API.searchResult(query)

@@ -1,5 +1,5 @@
 <template>
-    <div class="music_list">
+    <div class="music_list" id="list">
       <div  @click="getCur_music_m(item,index)" class="music_item" v-for="(item, index) in musicsList" :key="index">
         <div class="music_item_box">
           <div class="song">{{ item.name }}</div>
@@ -28,6 +28,9 @@ export default {
     methods:{
         ...mapActions(['getCur_music','getCurList','getCurIndex']),
         getCur_music_m(item,index){
+          let list = document.getElementById('list')
+          // console.log(list,'----')
+          list.style.paddingBottom = 60 + 'px'
           this.getCur_music(item);
           this.$emit('hide')
           // this.getCurList(this.musicsList)

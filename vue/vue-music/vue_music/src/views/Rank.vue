@@ -1,8 +1,19 @@
 <template>
     <div class="" id="rank">
-        <div class="list" id="list">
-            <div class="playlist" @click="toPlayList(playList.id)" v-for="(playList,index) in TopList" :key="index">
+        <div class="list" id="list" >
+            <div class="playlist"  @click="toPlayList(playList.id)" v-for="(playList,index1) in TopList" :key="index1">
                 <img :src="playList.coverImgUrl" alt="">
+                <div class="songs">
+                    <div class="song" v-for="(song,index2) in ListSomesong[index1]" :key="index2">
+                        <div class="name">{{index2+1}}.{{song.name}}</div>
+                        <div class="null">-</div>
+                        <div class="singers">
+                            <div class="singer" v-for="(singer,index3) in song.ar" :key="index3">
+                                <div class="singername" >{{singer.name}}</div><div v-if="index3<song.ar.length-1" class="null">/</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -10,12 +21,14 @@
 
 <script>
 import API from '../api/rank.js'
+import API2 from '../api/recommend.js'
 import {mapActions,mapState} from 'vuex'
 export default {
     name:'Rank',
     data () {
         return {
-            TopList:[]
+            TopList:[],
+            ListSomesong:[]
         }
     },
     computed:{
@@ -49,18 +62,32 @@ export default {
             })
         }
     },
-    mounted() {
+    async mounted() {
         if(this.cur_music!==''){
             // console.log('++++')
             let list = document.getElementById('list')
             // console.log(list,'----')
             list.style.paddingBottom = 60 + 'px'
-            console.log('success')
         }
-        API.getTopList()
+        await API.getTopList()
         .then(res => {
             console.log(res.data)
+            let arr = []
             this.TopList = res.data.list
+            for( let i = 0; i < this.TopList.length; i++){
+                API2.getRecommendListDetail(this.TopList[i].id)
+                .then(res=>{
+                    // console.log(res.data,'+++')
+                    // if(res.data.playlist){
+                    //     console.log(res.data.playlist.tracks.slice(0,3))
+                        arr[i] = res.data.playlist.tracks.slice(0,3)
+                    // }
+                })
+            }
+            setTimeout(()=>{
+                this.ListSomesong = arr
+            },500)
+            
         })
     }
 }
@@ -70,7 +97,8 @@ export default {
 #rank{
     margin: 0;
     padding: 0;
-    z-index: 100;
+    position: absolute;
+    width 100vw
     // background-color #fff
     .list{
         position absolute
@@ -81,11 +109,57 @@ export default {
             height 100px
             text-align left
             margin 10px
+            display flex
             img{
                 width 100px
                 height 100px
                 border-radius 5px
                 margin-left 0
+            }
+            .songs{
+                flex  1
+                .song{
+                    display flex
+                    font-size 11px
+                    .name{
+                    }
+                    .null{
+                        width 10px
+                        text-align center
+                        height 18px
+                        line-height 18px
+                    }
+                    .singers{
+                        position relative
+                        display flex
+                        font-size 11px
+                        // width 100%
+                        color: #757575;
+                        height 18px
+                        font-weight 500
+                        padding-top 1px
+                        // padding-bottom 1px
+                        // overflow: hidden;
+                        // text-overflow:ellipsis;//文本溢出显示省略号
+                        // display: -webkit-box;
+                        // -webkit-line-clamp: 1; //控制文字行数
+                        .singer{
+                            display flex
+                            height 18px
+                            line-height 18px
+                            .singername{
+
+                            }
+                            .null{
+                                width 10px
+                                text-align center
+                                height 18px
+                                line-height 18px
+                            }
+                        }
+                    }
+                    //
+                }
             }
         }
     }

@@ -59,7 +59,7 @@ export default {
             if(value!==''){
                 // console.log('++++')
                 let list = document.getElementById('list')
-                console.log(list,'----')
+                // console.log(list,'----')
                 list.style.paddingBottom = 60 + 'px'
             }
         }
@@ -81,7 +81,7 @@ export default {
         if(this.cur_music!==''){
             // console.log('++++')
             let list = document.getElementById('list')
-            console.log(list,'----')
+            // console.log(list,'----')
             list.style.paddingBottom = 60 + 'px'
         }
     }

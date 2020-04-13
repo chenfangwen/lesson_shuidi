@@ -9,4 +9,4 @@ const h2 = document.createElement('h2')
 h2.innerText = '姿依'
 h2.className = 'test'
 
-document.body.append(h2)   
+document.body.append(h2)    

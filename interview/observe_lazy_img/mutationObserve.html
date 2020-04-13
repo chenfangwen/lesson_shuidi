@@ -1,5 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
@@ -23,10 +31,10 @@
 
 <body>
   <div class="wrapper">
-  <img src="./loading.svg"
+  <img src="default.png"
     target-src="https://yanxuan-item.nosdn.127.net/91a264d84fed57f97c48dc107370e941.png?imageView&thumbnail=265x265&quality=95"
     alt="">
-  <img src="./loading.svg"
+  <img src="default.png"
     target-src="https://yanxuan-item.nosdn.127.net/a517938254c7d2f480827debf355127a.png?imageView&thumbnail=265x265&quality=95"
     alt="">
   </div>
@@ -38,7 +46,6 @@
           console.log('我出现了')
           const targetSrc = node.target.getAttribute('target-src');
           node.target.src = targetSrc;
-          observer.unobserve(node.target)
         }
       })
     }, {
@@ -53,4 +60,6 @@
   </script>
 </body>
 
+</html>
+</body>
 </html>

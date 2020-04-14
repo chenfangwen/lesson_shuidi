@@ -105,11 +105,17 @@ export default {
         top 85px
         width: 98%;
         margin: 0 1%;
+        padding-bottom 1px
+        
         .playlist{
             height 100px
             text-align left
             margin 10px
             display flex
+            overflow: hidden;
+            text-overflow:ellipsis;//文本溢出显示省略号
+            display: -webkit-box;
+            -webkit-line-clamp: 1; //控制文字行数
             img{
                 width 100px
                 height 100px
@@ -117,17 +123,22 @@ export default {
                 margin-left 0
             }
             .songs{
-                flex  1
                 .song{
                     display flex
                     font-size 11px
+                    height 18px
+                    margin 11px 5px
+                    line-height 18px
+                    overflow: hidden;
+                    text-overflow:ellipsis;//文本溢出显示省略号
+                    display: -webkit-box;
+                    -webkit-line-clamp: 1; //控制文字行数
                     .name{
                     }
                     .null{
                         width 10px
                         text-align center
-                        height 18px
-                        line-height 18px
+                        
                     }
                     .singers{
                         position relative

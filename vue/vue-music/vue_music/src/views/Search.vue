@@ -16,7 +16,7 @@
           <div class="singername">{{firstSinger.name}}</div>
         </div>
       </div>
-      <music-list id="list" @hide="hide"/>
+      <music-list id="list" :musicList="searchResult"  @hide="hide"/>
     </div>
   </transition>
 </template>
@@ -36,7 +36,8 @@ export default {
       firstSingerName:'',
       firstSinger:'',
       suggestList:[],
-      query:''
+      query:'',
+      searchResult:[]
     }
   },
   computed:{
@@ -72,8 +73,8 @@ export default {
           API.searchResult(query)
             .then(res=>{
                 console.log(res.data)
-                // this.musicsList = res.data.result.songs;
-                this.getMusicList(res.data.result.songs) 
+                this.searchResult = res.data.result.songs;
+                // this.getMusicList(res.data.result.songs) 
                 if(res.data.result.songs[0].artists[0]){
                   this.firstSingerName = res.data.result.songs[0].artists[0].name
                   API.getSearchSinger(this.firstSingerName)

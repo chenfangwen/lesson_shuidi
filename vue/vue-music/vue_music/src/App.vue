@@ -36,6 +36,7 @@ export default {
       }
 
       if(from.meta.keepAlive && to.meta.deepth < from.meta.deepth) {
+        // console.log('删除')
         var index = this.include.indexOf(from.name)
         index !== -1 && this.include.splice(index,1)
       }

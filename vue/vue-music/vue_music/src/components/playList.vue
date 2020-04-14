@@ -2,7 +2,7 @@
     <div class="albumLists">
         <div class="back">
             <img @click="back" class="back_img" src="../assets/back2.png" alt="">
-            <div class="type">歌单</div>
+            <div class="type">{{listName}}</div>
         </div>
         <div class="album">
             <div id="bgimg" class="blur">
@@ -46,6 +46,11 @@
 <script>
 import {mapState,mapActions} from 'vuex'
 export default {
+    data () {
+        return {
+            listName:'榜单'
+        }
+    },
     computed:{
         ...mapState(['curList','curIndex','playList','cur_music']),
         length(){
@@ -114,9 +119,17 @@ export default {
                 margin-left 10px
             }
             .type{
-                margin-top 12px
+                flex 1
+                margin-top 15px
                 font-size 19px
+                height 19px
+                line-height 19px
                 margin-left 15px
+                overflow: hidden;
+                text-overflow:ellipsis;//文本溢出显示省略号
+                display: -webkit-box;
+                -webkit-line-clamp: 1; //控制文字行数
+                -webkit-box-orient: vertical; //子元素数值排列
             }
         }
         .album{

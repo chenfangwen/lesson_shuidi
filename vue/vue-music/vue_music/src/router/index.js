@@ -78,9 +78,9 @@ const routes = [
     name:'Rank',
     component: Rank,
     meta: {
-      keepAlive: false,
-      title: '音乐排行'
-      
+      keepAlive: true,
+      title: '音乐排行',
+      deepth:0.5
      }
   },
   {

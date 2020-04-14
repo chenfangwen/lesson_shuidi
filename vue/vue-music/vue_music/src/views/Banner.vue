@@ -6,7 +6,7 @@
         <div id="banner" >
             <!-- <img :src="cur_music_pic" alt=""> -->
             <div class="" v-if="!ifP"><album-list/></div>
-            <div class="" v-if="ifP"><play-list/></div>
+            <div class="" v-if="ifP"><play-list ref="playlist" /></div>
         </div>
     </transition>
 </template>
@@ -76,6 +76,7 @@ export default {
                     // console.log(res.data,'---')
                     if(res.data.playlist){
                         this.getPlayList(res.data.playlist)
+                        this.$refs.playlist.listName = res.data.playlist.name
                         // this.getCurList(res.data.playlist)
                         // console.log(res.data.songs)
                     }

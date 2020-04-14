@@ -10,9 +10,14 @@ module.exports = {
    extensions: ['.js', '.ts', '.tsx'], // ts typescript js  .styl .sacc
  },
  entry: {
-   app: './index.ts', // webpack 打包入口可以多个
-   vendorStyles: [ // bootstrap css 框架 vue  业务代码在改变, 但是框架要
-    // 被打包， 但是不会被修改， 单独打包
+   app: './index.tsx', // webpack 打包入口可以多个
+   vendor:[   //不怎么改变的依赖文件 bootstrap css 框架 vue  业务代码在改变, 但是框架要
+              // 被打包， 但是不会被修改， 单独打包
+    'react',
+    'react-dom',
+    'react-router-dom'
+   ],
+   vendorStyles: [ 
      '../node_modules/bootstrap/dist/css/bootstrap.css',
    ],
  },
@@ -24,7 +29,7 @@ module.exports = {
    rules: [
     //  .ts -> .js -> babel
      {
-       test: /\.ts$/,
+       test: /\.tsx?$/,
        exclude: /node_modules/,
        loader: 'awesome-typescript-loader',
        options: {

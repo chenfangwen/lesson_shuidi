@@ -8,13 +8,14 @@
 <body>
   <script>
     function foo() {
-      var a = 123
+      let a = 123
       return function() {
         let b= a;
         debugger;
+        return b
       }
     }
-    foo()();
+    console.log(foo()());
   </script>
 </body>
 </html>

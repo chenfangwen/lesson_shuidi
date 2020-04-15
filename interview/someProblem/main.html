@@ -1,0 +1,13 @@
+<script src="https://cdn.bootcss.com/lodash.js/4.17.15/lodash.min.js"></script>
+<script>
+    const  _ = lodash
+    function add(a,b) {
+        console.log('asdfa')
+        return a+b
+    } 
+    const Madd = _.memoized(add)
+    Madd(1,2)
+    Madd(1,2)
+    Madd(1,2)
+
+</script>

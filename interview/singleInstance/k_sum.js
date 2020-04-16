@@ -23,7 +23,7 @@ var ksum = function(data, n, sum) {
       tempList.pop();
     }
   }
-  // [1, 2, 3, 4, 5, 7
+  // [1, 2, 3, 4, 5, 7]
   console.log(ksum([1, 2, 3, 4, 5, 7], 3, 10))
   
   

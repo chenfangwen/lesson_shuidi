@@ -1,9 +1,12 @@
 import * as React from 'react'; // ts 牛逼 静态编译
+import {Header} from './components'
 
-export const App = () => { 
+// 类型限制  @types/react  
+export const App: React.StatelessComponent<{}> = () => { 
   return ( 
     <div>
-        hello world!
+        {/* 头部   导航 */}
+        <Header />
     </div>
   )
 }

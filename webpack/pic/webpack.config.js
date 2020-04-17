@@ -57,6 +57,7 @@ module.exports = {
               importLoaders: 2 // 在 css-loader 前执行的 loader 数量
             }
           },
+          // 'postcss-loader',
           {
             loader: 'postcss-loader',
             options: {
@@ -75,6 +76,16 @@ module.exports = {
             }
           }
         ]
+      },
+      {
+        test: /\.(woff2?|eot|ttf|otf|svg)(\?.*)?$/i,
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]',
+            outputPath: 'fonts/'
+          }
+        }
       }
     ]
   },

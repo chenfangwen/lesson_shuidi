@@ -13,14 +13,14 @@ export const Header:React.StatelessComponent<{}> = () => {
 
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav mr-auto">
-            <li className="nav-item">
-                {/* js hash  history  */}
-                <Link className="nav-link" to="/about">About</Link>
-            </li>
-            <li className="nav-item">
-              {/* js hash  history  */}
-              <Link className="nav-link" to="/members">Members</Link>
-            </li>
+          <li className="nav-item">
+            {/* js hash  history  */}
+            <Link className="nav-link" to="/about">About</Link>
+          </li>
+          <li className="nav-item">
+            {/* js hash  history  */}
+            <Link className="nav-link" to="/members">Members</Link>
+          </li>
         </ul>
       </div>
     </nav>

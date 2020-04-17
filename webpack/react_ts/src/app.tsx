@@ -4,9 +4,9 @@ import {Header} from './components'
 // 类型限制  @types/react  
 export const App: React.StatelessComponent<{}> = () => { 
   return ( 
-    <div>
-        {/* 头部   导航 */}
-        <Header />
+    // js class为关键字
+    <div className="container-fulid">
+      <Header></Header>
     </div>
   )
 }

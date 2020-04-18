@@ -35,15 +35,15 @@
       // console.log(entry);
       entry.forEach((node) => {
         if (node.isIntersecting) {
-          console.log('我出现了')
+          // console.log('我出现了')
           const targetSrc = node.target.getAttribute('target-src');
           node.target.src = targetSrc;
           observer.unobserve(node.target)
         }
       })
     }, {
-      root: document.querySelector('.wrapper'),
-      rootMargin: '0px 0px 100px 0px'  // 让我们计算某个出现在可视区域之内，是按照 margin 的规则排列之后计算的 mb 让我们提前 100px 加载
+      // root: document.querySelector('.wrapper'),
+      // rootMargin: '0px 0px 100px 0px'  // 让我们计算某个出现在可视区域之内，是按照 margin 的规则排列之后计算的 mb 让我们提前 100px 加载
       // threshold: [1, 0.5]   // 阀值 0 ~ 1 50% || 100%
     })
     const img = document.querySelectorAll('img');

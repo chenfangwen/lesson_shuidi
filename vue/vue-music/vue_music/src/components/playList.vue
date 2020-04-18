@@ -2,7 +2,12 @@
     <div class="albumLists">
         <div class="back">
             <img @click="back" class="back_img" src="../assets/back2.png" alt="">
-            <div class="type">{{listName}}</div>
+            
+            <div class="type">
+                <zou-ma-deng  :delay="0.5" :speed="80" :content="listName" >
+                    <span>{{listName}}</span>
+                </zou-ma-deng>
+            </div>
         </div>
         <div class="album">
             <div id="bgimg" class="blur">
@@ -45,11 +50,15 @@
 
 <script>
 import {mapState,mapActions} from 'vuex'
+import ZouMaDeng from './common/zouMaDeng'
 export default {
     data () {
         return {
-            listName:'榜单'
+            listName:''
         }
+    },
+    components:{
+        ZouMaDeng
     },
     computed:{
         ...mapState(['curList','curIndex','playList','cur_music']),
@@ -75,7 +84,8 @@ export default {
             // console.log(index)
             this.getCur_music(item)
             this.getCurIndex(index)
-            this.getCurList(this.playList.tracks)
+            let arr = this.playList.tracks
+            this.getCurList(arr)
             // console.log(this.curIndex)
         },
         back(){

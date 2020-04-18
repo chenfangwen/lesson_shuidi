@@ -11,7 +11,9 @@
         <div class="text">推荐歌单</div>
         <van-grid :column-num="3" :border="false">
           <van-grid-item @click="getplaylist(item)" v-for="(item,index) in playlists" :key="index">
-            <div class="image"><img class="van-image__img" :src="item.picUrl" /></div>
+            <div class="image">
+              <img class="van-image__img"  :src="item.picUrl" />
+            </div>
             <div class="name">{{item.name}}</div>
           </van-grid-item>
         </van-grid>
@@ -101,6 +103,7 @@ export default {
       console.log(res.data.result)
       this.playlists = res.data.result;
     })
+    
   }
 }
 </script>

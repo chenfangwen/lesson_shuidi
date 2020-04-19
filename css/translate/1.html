@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .x {
+            transform: perspective(300px) ;
+            animation: around 3s infinite ;
+        }
+        .y {
+            transform: perspective(200px) rotateY(-60deg);
+        }
+        .z {
+            transform: perspective(200px) rotateZ(60deg);
+        }
+        @keyframes around {
+            0%{
+                transform:  rotateX(0);
+            }
+            
+            100%{
+                transform:  rotateX(360deg);
+            }
+        }   
+    </style>
+</head>
+<body>
+    
+    <div class="stage"> 
+        <div class="container">
+            <img class="x" src="1.jpg" />
+            <img class="y" src="1.jpg" />
+            <img class="z" src="1.jpg" />
+        </div>
+    </div>
+</body>
+</html>

@@ -36,6 +36,12 @@ const SingerTopList = (resolve) => {
     resolve(module)
   })
 }
+const MvDetial = (resolve) => {
+  import('../views/MvDetial.vue').then((module) => {
+    resolve(module)
+  })
+}
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -109,6 +115,16 @@ const routes = [
     meta: {
       keepAlive: false,
       title: '歌手榜'
+    }
+  },
+  {
+    path: '/mvdetial/:id',
+    name:'MvDetial',
+    component: MvDetial,
+    meta: {
+      keepAlive: false,
+      title: '歌手榜',
+      deepth: 2
     }
   }
 ]

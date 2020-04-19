@@ -178,7 +178,7 @@ export default {
         },
         toMv(item){
             this.$router.push({
-                path:`/mvdetial/${id}`
+                path:`/mvdetial/${item.id}`
             })
         },
         search(){

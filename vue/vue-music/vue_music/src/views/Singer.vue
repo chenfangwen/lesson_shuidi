@@ -97,7 +97,20 @@
                         </div>
                     </div>
                 </van-tab>
-                <van-tab title="视频">暂无视频</van-tab>
+                <van-tab title="视频">
+                    <div class="mvs">
+                        <div class="text"><div class="text1">全部</div><div class="text2">(共{{mvs.length}}个)</div></div>
+                        <div class="mvsList">
+                            <div class="mvitem" @click="toMv(mv)" v-for="(mv,index) in mvs" :key="index">
+                                <div class="pic"><img :src="mv.imgurl" alt=""></div>
+                                <div class="info">
+                                    <div class="name">{{mv.name}}</div>
+                                    <div class="time">{{mv.publishTime}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </van-tab>
             </van-tabs>
         </div>
         <!-- <div class="test">sfs</div> -->
@@ -117,7 +130,8 @@ export default {
             someHot:[],
             hotScore:0,
             NO:0,
-            albums:[]
+            albums:[],
+            mvs:[]
         }
     },
     computed:{
@@ -162,6 +176,11 @@ export default {
             this.getCurIndex(index),
             this.getCurList(this.hotSongs)
         },
+        toMv(item){
+            this.$router.push({
+                path:`/mvdetial/${id}`
+            })
+        },
         search(){
             window.scrollTo(0,0)
             console.log(this.$route.params)
@@ -196,6 +215,11 @@ export default {
             .then(res=>{
                 console.log(res.data)
                 this.albums = res.data.hotAlbums
+            })
+            singer.getSingerMv(id)
+            .then(res => {
+                console.log(res.data)
+                this.mvs = res.data.mvs
             })
         },
         back(){
@@ -575,12 +599,64 @@ export default {
                 }
             }
         }
-    }
-    .test{
-        margin-top 1000px
-        height 20px
-        width 20px
-        background-color red
+        .mvs{
+            width 100vw
+            .text{
+                margin-left 3%
+                display flex
+                margin-top 5px
+                height 30px
+                line-height 30px
+                .text1{
+                    font-weight 600
+                    font-size 15px
+                }
+                .text2{
+                    font-size 12px
+                    color #757575
+                }
+            }
+            .mvsList{
+                position relative
+                margin-left 3%
+                width 94%
+                .mvitem{
+                    display flex
+                    height 100px
+                    .pic{
+                        img{
+                            margin 0
+                            height 80px
+                            width 125px
+                            margin-top 10px
+                        }
+                    }
+                    .info{
+                        flex 1
+                        margin-top 10px
+                        height 80px
+                        margin-left 10px
+                        display flex
+                        flex-direction column
+                        justify-content center
+                        text-align left
+                        .name{
+                            font-weight 16px
+                            overflow hidden
+                            text-overflow ellipsis;//文本溢出显示省略号
+                            display  -webkit-box;
+                            -webkit-line-clamp  2; //控制文字行数
+                            -webkit-box-orient: vertical;
+                        }
+                        .time{
+                            color #757575
+                            font-size 12px
+                            margin-top 12px
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 </style>

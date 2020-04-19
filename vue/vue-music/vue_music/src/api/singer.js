@@ -26,5 +26,18 @@ export default{
         
         return axios.get(url)
         
+    },
+    getSingerMv(id){
+        const url = '/api' + `/artist/mv?id=${id}`
+        
+        return axios.get(url)
+        
+    },
+    getConnectMv(id){
+        const url = '/api' + `/related/allvideo?id=${id}`
+        
+        return axios.get(url)
+        
     }
+    
 }

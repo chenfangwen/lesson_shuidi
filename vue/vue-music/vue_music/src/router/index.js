@@ -103,7 +103,7 @@ const routes = [
     name:'Singer',
     component: Singer,
     meta: {
-      keepAlive: false,
+      keepAlive: true,
       title: '歌手详情',
       deepth: 2
     }
@@ -123,8 +123,8 @@ const routes = [
     component: MvDetial,
     meta: {
       keepAlive: false,
-      title: '歌手榜',
-      deepth: 2
+      title: 'mv',
+      deepth: 3
     }
   }
 ]

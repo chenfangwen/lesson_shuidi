@@ -169,7 +169,7 @@ export default {
         }
     },
     methods:{
-        ...mapActions(['getCur_music','getCurIndex','getCurList']),
+        ...mapActions(['getCur_music','getCurIndex','getCurList','getIfPlaying']),
         getCur_music_m(item,index){
             console.log(this.curIndex)
             this.getCur_music(item)
@@ -177,6 +177,7 @@ export default {
             this.getCurList(this.hotSongs)
         },
         toMv(item){
+            this.getIfPlaying(false)
             this.$router.push({
                 path:`/mvdetial/${item.id}`
             })

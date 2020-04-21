@@ -1,12 +1,12 @@
 <template>
-    <div class="progress-bar" ref="progressBar" @click="progressClick">
+    <div class="progress-bar" ref="progressBar" @click.stop="progressClick">
     <div class="bar-inner">
       <div class="progress" ref="progress"></div>
       <div class="progress-btn-wrapper" ref="progressBtn"
       @touchstart.prevent="progressTouchStart"
       @touchmove.prevent="progressTouchMove"
       @touchend.prevent="progressTouchEnd">
-        <div class="progress-btn"></div>
+        <div v-if="showBtn" class="progress-btn"></div>
       </div>
     </div>
   </div>
@@ -19,7 +19,7 @@ const transform = prefixStyle('transform')
 export default {
     data(){
         return {
-            
+            showBtn:false
         }
     },
     props: {
@@ -41,7 +41,11 @@ export default {
       }
     },
     methods:{
+      changeBtn(b){
+        this.showBtn = b
+      },
         progressTouchStart (e) {
+            this.changeBtn(true)
           this.touch.initiated = true
           this.touch.startX = e.touches[0].pageX
           this.touch.left = this.$refs.progress.clientWidth
@@ -49,6 +53,7 @@ export default {
         progressClick (e) {
             // 这个有 bug
             // this._offset(e.offsetX)
+            this.changeBtn(true)
             const rect = this.$refs.progressBar.getBoundingClientRect()
             // rect.left 元素距离左边的距离
             // e.pageX 点击距离左边的距离
@@ -63,12 +68,14 @@ export default {
           // if (!this.touch.initiated) {
           //   return
           // }
+          this.changeBtn(true)
           this._triggerPercent()
           const deltaX = e.touches[0].pageX - this.touch.startX
           const offsetWidth = Math.min(Math.min(this.$refs.progressBar.clientWidth - progressBtnWidth, Math.max(0, this.touch.left + deltaX)))
           this._offset(offsetWidth)
         },
         progressTouchEnd (e) {
+          this.changeBtn(true)
           this.touch.initiated = false
           const barWidth = this.$refs.progressBar.clientWidth - progressBtnWidth
           const percent = this.$refs.progress.clientWidth / barWidth

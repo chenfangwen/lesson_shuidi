@@ -73,7 +73,7 @@
           <div class="progress-wrapper">
             <span class="time time-l">{{format(currentTime)}}</span>
             <div class="progress-bar-wrapper">
-              <progress-bar :percent="percent" @percentChangeEnd="percentChangeEnd" @percentChange="percentChange"></progress-bar>
+              <progress-bar ref="progressBar" :percent="percent" @percentChangeEnd="percentChangeEnd" @percentChange="percentChange"></progress-bar>
             </div>
             <span class="time time-r">{{format(duration)}}</span>
           </div>
@@ -177,6 +177,9 @@ export default {
       this._getLyric(this.cur_music.id)
       this.currentShow = 'pic'
     },
+    ifPlaying(value){
+      value ? this.$refs.audio.play() : this.$refs.audio.pause()
+    },
     url (newUrl) {
       // this._getLyric(this.currentSong.id)
       // this.$refs.audio.src = newUrl
@@ -249,10 +252,10 @@ export default {
     },
     changePlaying(){
       // console.log(this.ifPlaying)
-      const audio = this.$refs.audio
+      // const audio = this.$refs.audio
       this.getIfPlaying(!this.ifPlaying)
       // console.log(this.ifPlaying)
-      this.ifPlaying ? audio.play() : audio.pause()
+      // this.ifPlaying ? audio.play() : audio.pause()
     },
     picOrLyric () {
       if (this.currentShow === 'pic') {
@@ -345,6 +348,8 @@ export default {
       const currentTime = this.duration* percent
       this.currentTime = currentTime
       this.$refs.audio.currentTime = currentTime
+      this.$refs.audio.play()
+      this.getIfPlaying(true)
       // if (!this.playing) {
       //   this.$refs.audio.play()
       //   this.setPlayingState(true)
@@ -371,8 +376,9 @@ export default {
       return minute + ':' + second
     },
   },
-  created(){
-    this.move = false; 
+  mounted(){
+    this.move = false;
+    this.$refs.progressBar.changeBtn(true) 
     // this.duration = this.$refs.audio.duration;
     // setInterval(()=>{
     //   console.log(this.refs.audio.currentTime)

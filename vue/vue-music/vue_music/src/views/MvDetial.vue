@@ -4,14 +4,18 @@
             <img @click="back" src="../assets/back.png" alt="">
             <div class="name">{{mvInfo.name}}</div>
         </div>
-        <div class="mv">
-            <div class="ifPlay">
-                <img src="../assets/stop.png" alt="">
-                <img src="" alt="">
+        <div class="mv" @click.stop="showControl">
+            <div class="time">
+                <span>{{format(currentTime)}}/</span>
+                <span>{{format(duration)}}</span>
             </div>
-            <video :src="mvUrl" ref="video" autoplay></video>
+            <div v-if="ifShow" class="ifPlay" @click.stop="stopOrPlay" >
+                <!-- <img v-if="ifPlay"  src="../assets/stop.png" alt=""> -->
+                <img  src="../assets/play.png" alt="">
+            </div>
+            <video  :src="mvUrl" ref="video" autoplay @timeupdate="updateTime"></video>
             <div class="progressBar">
-                <progress-bar :percent="percent" />
+                <progress-bar ref="progressBar" :percent="percent" @percentChangeEnd="percentChangeEnd" @percentChange="percentChange" />
             </div>
         </div>
     </div>
@@ -32,38 +36,58 @@ export default {
             percent:0,
             duration:0,
             currentTime:0,
+            ifShow:false,
+            ifPlay:true
         }
     },
     methods:{
         back(){
             this.$router.go(-1)
         },
+        updateTime (e) {
+            // if (this.move) {
+            //   return
+            // }
+            // console.log(e.target.currentTime)
+            this.currentTime = e.target.currentTime
+        },
+        format (interval) {
+            interval = interval | 0
+            let minute = interval / 60 | 0
+            let second = interval % 60
+            if (second < 10) {
+                second = '0' + second
+            }
+            return minute + ':' + second
+        },
+        percentChangeEnd(percent){
+            console.log(this.$refs.video.currentTime)
+            this.$refs.video.play()
+            this.ifShow = false
+            const currentTime = this.duration* percent
+            this.currentTime = currentTime
+            this.$refs.video.currentTime = currentTime
+            this.$refs.progressBar.changeBtn(false)
+        },
+        percentChange (percent) {
+            const currentTime = this.duration * percent
+            this.currentTime = currentTime
+        },
+        showControl(){
+            console.log('changed1')
+            this.ifShow = !this.ifShow
+            this.ifShow ?  this.$refs.video.pause():this.$refs.video.play() 
+            this.$refs.progressBar.changeBtn(this.ifShow)
+        }
     },
     watch:{
         currentTime (val) {
+            // console.log(val)
             this.percent = val / this.duration
-            if(val == this.duration){
-                this.percent = 0
-                this.currentTime = 0
-                if(this.curList && this.playType == 1){
-                if(this.curIndex<this.curList.length-1){   //顺序列表
-                    this.getCur_music(this.curList[this.curIndex+1])
-                    this.getCurIndex(this.curIndex+1)
-                } else {
-                    this.getCur_music(this.curList[0])
-                    this.getCurIndex(0)
-                }
-                } else if(this.curList && this.playType == 2) { //随机
-                let length =  this.curList.length
-                let index =  parseInt(length*Math.random())
-                this.getCur_music(this.curList[index])
-                this.getCurIndex(index)
-                } else {
-                // this.getIfPlaying(false)  单曲循环
-                this.getCur_music(this.cur_music)
-                this.$refs.audio.play()
-                }
-            }
+            // if(val == this.duration){
+            //     this.percent = 0
+            //     this.currentTime = 0
+            // }
         }
     },
     mounted(){
@@ -73,7 +97,7 @@ export default {
             if(res.data.data){
                 console.log(res.data)
                 this.mvInfo = res.data.data
-                this.duration = res.data.data.duration
+                this.duration = res.data.data.duration/1000
                 this.mvUrl = res.data.data.brs[1080]
             }
         })
@@ -86,10 +110,10 @@ export default {
     position absolute
     width 100%
     height 100%
-    z-index 100
+    z-index 200
     background-color #fff
     .header{
-        position fixed
+        position absolute
         display flex
         top 0
         width 100%
@@ -108,17 +132,38 @@ export default {
             font-size 18px
             font-weight 600
             line-height 50px
+            flex: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
     }
     .mv{
         margin-top 50px
         width 100%
-        height 300px
+        position fixed
+        .time{
+            position absolute
+            margin-left 10px
+            height: 0;
+            padding: 48% 0;
+            span:nth-child(1){
+                color #fff
+            }
+            span:nth-child(2){
+                color #c7c7c7 
+            }
+        }
         .ifPlay{
             position absolute
             margin-left 50vw
-            line-height 250px
             transform translateX(-50%) 
+            /* padding 百分比 相对于自己的 宽度来计算的 */
+            height: 0;
+            padding: 22% 0;
+            img{
+                z-index 100
+            }
         }
         video{
             width 100vw

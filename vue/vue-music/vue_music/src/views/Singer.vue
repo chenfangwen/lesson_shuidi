@@ -630,6 +630,7 @@ export default {
                             height 80px
                             width 125px
                             margin-top 10px
+                            border-radius 5px
                         }
                     }
                     .info{

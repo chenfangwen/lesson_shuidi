@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import autobind from 'autobind-decorator'
 import THREE, { Vector3 } from 'three'
 import { loadModel } from '../utils/utils'
-import { Game } from '../components/Game.js'
+import Game from '../components/Game.js'
 
 export default class GameContainer extends Component {
   constructor() {

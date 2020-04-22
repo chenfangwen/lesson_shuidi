@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 export default class Game extends Component {
   // react es7 class 静态属性 react prop 检测的机房
@@ -8,7 +9,12 @@ export default class Game extends Component {
   }
   static propTypes = {
     width: PropTypes.number.isRequired,
-    height: PropTypes.number.isRequired,
-    dfd:  PropTypes.number.isRequired,
+    height: PropTypes.number.isRequired
+  }
+
+  render () {
+    return (
+      <div />
+    )
   }
 }

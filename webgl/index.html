@@ -8,8 +8,16 @@
     <!-- 内容分发网络 从cdn引入 更快 -->
     <script src="https://cdn.bootcss.com/three.js/r83/three.min.js">
     </script>
+    <style>
+        .text{
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    </style>
 </head>
 <body>
+    <div class="text">地球</div>
     <canvas id="webglcanvas"></canvas>
     <script>
         var canvas,  //3d 渲染容器 webgl  
@@ -62,7 +70,7 @@
             camera.position.x += (mouseX - camera.position.x)*0.05;
             camera.position.y +=(-mouseY - camera.position.y)*0.05;
             camera.lookAt(scene.position);
-            group.rotation.y -= 0.005;
+            group.rotation.y -= 0.01;
             renderer.render(scene, camera);
         }
 

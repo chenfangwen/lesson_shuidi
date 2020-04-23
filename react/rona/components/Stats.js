@@ -18,7 +18,7 @@ const StatBlock = styled.div`
 `
 export default function Stats({ url }) {
   const { stats, loading,  error} = useStats(url);
-  console.log(stats)
+//   console.log(stats)
   if (loading) return <p>Loading...</p>;
   if (error) return <p>出错了...</p>
   // ajax  loading false 

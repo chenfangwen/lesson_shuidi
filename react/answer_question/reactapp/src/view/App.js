@@ -29,7 +29,6 @@ class Counter extends React.Component{
             </div>
         )
 
-
     }
     goDatiPage=()=>{
         //console.log(this.props)

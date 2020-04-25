@@ -48,7 +48,7 @@ class DatiCom extends React.Component{
         let oStyle = this.state.optionsStyle;
         
         
-        //如果数据没有加载进来，就设置为loading
+        
         if(timuArr.length>0){
             let options = JSON.parse(timuArr[currentNum].options) 
             return (
@@ -69,6 +69,7 @@ class DatiCom extends React.Component{
                     </div>
                 </div>
             )
+        //如果数据没有加载进来，就设置为loading
         }else{
             return (
                 <div>

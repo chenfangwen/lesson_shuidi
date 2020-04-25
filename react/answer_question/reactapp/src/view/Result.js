@@ -11,9 +11,7 @@ function mapStateToProps(state){
 //将修改state数据的方法，映射到props,默认会传入store里的dispach方法
 function mapDispatchToProps(dispatch){
     return {
-        onAddClick:()=>{dispatch({type:'add'})},
-        
-            
+        onAddClick:()=>{dispatch({type:'add'})}
     }
 }
 

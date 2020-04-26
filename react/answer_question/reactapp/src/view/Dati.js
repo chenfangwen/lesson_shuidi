@@ -40,14 +40,13 @@ class DatiCom extends React.Component{
     componentDidMount(){
         this.props.getTimu()
     }
+    
     render(){
         console.log(this.props)
         console.log(this.state.currentTimu)
         let timuArr = this.props.timuList;
         let currentNum = this.state.currentTimu;
         let oStyle = this.state.optionsStyle;
-        
-        
         
         if(timuArr.length>0){
             let options = JSON.parse(timuArr[currentNum].options) 

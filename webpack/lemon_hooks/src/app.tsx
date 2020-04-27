@@ -1,16 +1,11 @@
-import * as React from 'react'
-import { HelloComponent } from './hello'
-
+import * as React from 'react';
+import {Header} from "./components"
 export const App = () => {
-    const [name,setName] = React.useState('initName')   //react Hooks
-    const setUsernameState = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setName(event.target.value)
-    }
-    return (
-        // fragment
-        <>
-            <HelloComponent userName={name} />
-            <NameEditComponent userName={name} onChange={setUsernameState} />
-        </>
-    )
+  // <></> 这是什么
+
+  return (
+    <div className="container-fluid">
+        <Header></Header>
+    </div>
+  )
 }

@@ -4,9 +4,9 @@ import * as React from 'react'
 
 import * as ReactDom from 'react-dom';
 import {HelloComponent} from './hello'
-import {App} from './app'
+import {AppRouter} from './router'
 
 ReactDom.render(
-    <App/>,
+    <AppRouter/>,
     document.getElementById('root')
 )

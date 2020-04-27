@@ -8,5 +8,9 @@ self.addEventListener('install',(event) => {
         ])
     })
 
-    event.waitUntil()
+    event.waitUntil(cacheComplete)
 })
+
+self.addEventListener('active', () => {})
+
+self.addEventListener('fetch' )

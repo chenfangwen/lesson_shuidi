@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@tarojs/cli": "^2.1.5",
+    "babel-eslint": "^10.1.0",
     "eslint": "^6.8.0"
   }
 }

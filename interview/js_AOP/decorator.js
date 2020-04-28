@@ -4,11 +4,11 @@ function isAnimal (target){
         console.log('is animal')
     }
 }
-function watchWork (target, name, descriptor) {
-    console.log(descriptor)
+function watchFunc (target, name, descriptor) {
+    // console.log(descriptor)
     let orginWork = descriptor.value
     descriptor.value = function() {
-        console.log("监听work")
+        console.log("监听到方法执行")
         orginWork()
     }
 }
@@ -18,10 +18,11 @@ class Man {
     static isMan() {
         console.log('yes')
     }
+    @watchFunc
     say() {
         console.log('i say')
     }
-    @watchWork
+    @watchFunc
     work() {
         console.log('i am working')
     }

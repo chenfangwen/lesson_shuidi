@@ -17,12 +17,12 @@ function isAnimal(target) {
   };
 }
 
-function watchWork(target, name, descriptor) {
-  console.log(descriptor);
+function watchFunc(target, name, descriptor) {
+  // console.log(descriptor)
   var orginWork = descriptor.value;
 
   descriptor.value = function () {
-    console.log("监听work");
+    console.log("监听到方法执行");
     orginWork();
   };
 }
@@ -50,7 +50,7 @@ var Man = isAnimal(_class = (_class2 = /*#__PURE__*/function () {
   }]);
 
   return Man;
-}(), (_applyDecoratedDescriptor(_class2.prototype, "work", [watchWork], Object.getOwnPropertyDescriptor(_class2.prototype, "work"), _class2.prototype)), _class2)) || _class;
+}(), (_applyDecoratedDescriptor(_class2.prototype, "say", [watchFunc], Object.getOwnPropertyDescriptor(_class2.prototype, "say"), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, "work", [watchFunc], Object.getOwnPropertyDescriptor(_class2.prototype, "work"), _class2.prototype)), _class2)) || _class;
 
 var boy = new Man();
 boy.say();

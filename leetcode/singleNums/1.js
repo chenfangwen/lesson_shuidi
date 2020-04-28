@@ -17,7 +17,7 @@ var singleNumbers = function(nums) {
   
     // 获取最高位的 1，记为 diff
     const diff = mask & -mask
-    let num1 = 0
+    let num1 = 0;
     for (let num of nums) {
       // 若 num 与 diff 的与运算结果为 1，则说明这些 num 是一组的
       // 与此同时，结果为 0 的表示另外一组

@@ -1,0 +1,17 @@
+<script>
+    const originPush = Array.prototype.push
+    Array.prototype.push = function(n) {
+        console.log(...arguments)
+        console.log('push调用')
+        // this.push(n)
+        // 1.  originPush.apply(this,arguments)
+
+        originPush.call(this,...arguments)  // 2.
+
+        // 3.  let newPush = originPush.bind(this,...arguments)
+        // newPush()
+    }
+    let arr = [0,1,2,3]
+    arr.push(4,5)
+    console.log(arr)
+</script>

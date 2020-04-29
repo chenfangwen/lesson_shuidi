@@ -6,11 +6,37 @@
     <title>Document</title>
 </head>
 <body>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.min.js"></script>
     <script>
         // api 请求结果错误 统一处理
         // axios 
         // 原生的 XMLHttpRequest 封装的一个库
 
+        const _XMLHttpRequest = XMLHttpRequest;
+        window.XMLHttpRequest = function () {
+            const xhr = new _XMLHttpRequest();
+            xhr.addEventListener('error',() => {
+                console.log('出错')
+            })
+            xhr.addEventListener('timeout',() => {
+                console.log('超时')
+            })
+            xhr.addEventListener('readystatechange',() => {
+                if(xhr.readyState === 4) {
+                    // console.log(xhr.status)
+                    if(xhr.status != 200) {
+                        console.log('xhr 错误', xhr.status)
+                    }
+                }
+            })
+            return xhr;
+        }
+        // axios.get('https://www.yuque.com').then(res => {
+        //     console.log(res)
+        // })
+        axios.get('http://neteasecloudmusicapi.zhaoboy.com/sea').then(res => {
+            console.log(res)
+        })
     </script>
 </body>
 </html>

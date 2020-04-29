@@ -11,20 +11,26 @@
             'name1':null
         }
         //意料之中
+        new Promise((res,rej) => {
+            rej('error')
+        })
         try {
-            obj.name1.a = 123
-            // setTimeout(() => {
-            //     obj.name1.a = 123
-            // });
+            // obj.name1.a = 123
+            setTimeout(() => {
+                obj.name1.a = 123
+            });
         } catch(error) {
             console.log(error)
         }
 
         //意料之外  全局捕获
         console.log('dadsads')
-        obj.name1.a = 123
+        // obj.name1.a = 123
         window.addEventListener('error', function(err) {
             console.log(err,'----')
+        }, false)
+        window.addEventListener('unhandledrejection',function(err) {
+            console.log(err)
         })
     </script>
 </body>

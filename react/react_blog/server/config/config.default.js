@@ -13,7 +13,7 @@ module.exports = appInfo => {
   const config = exports = {};
 
   // use for cookie sign key, should change to your own and keep security
-  config.keys = appInfo.name + '_1588240278519_9742';
+  config.keys = appInfo.name + '_1588289902830_3475';
 
   // add your middleware config here
   config.middleware = [];
@@ -41,6 +41,28 @@ module.exports = appInfo => {
     // load into agent, default is close
     agent: false,
   };
+
+  // config.security = {
+  //   　　　　csrf: {
+  //   　　　　　　enable: false
+  //   　　　　},
+  //   　　　　domainWhiteList: [ '*' ]
+  //   　　};
+  //    config.cors = {
+  //       origin: '*',
+  //       allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS'
+  //   };
+
+  config.security = {
+　　　　csrf: {enable: false},
+　　　　domainWhiteList: [ '*' ]
+　　};
+  config.cors = {
+    origin: 'http://localhost:3000', //只允许这个域进行访问接口
+    credentials: true,   // 开启认证
+    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS'
+  };
+
   return {
     ...config,
     ...userConfig,

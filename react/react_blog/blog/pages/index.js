@@ -9,12 +9,27 @@ import Author from '../components/Author'
 import Advert from '../components/Advert'
 import Footer from '../components/Footer'
 import '../static/style/pages/index.css'
+import marked from 'marked'
+import hljs from "highlight.js";
+import 'highlight.js/styles/monokai-sublime.css';
 const Home = (list) =>{
 
-  console.log(list)
-  //---------主要代码-------------start
+  // console.log(list)
   const [ mylist , setMylist ] = useState( list.data);
-  //---------主要代码-------------end
+  const renderer = new marked.Renderer();
+  marked.setOptions({
+    renderer: renderer,
+    gfm: true,
+    pedantic: false,
+    sanitize: false,
+    tables: true,
+    breaks: false,
+    smartLists: true,
+    smartypants: false,
+    highlight: function (code) {
+      return hljs.highlightAuto(code).value;
+    }
+  });
   return (
     <>
       <Head>
@@ -41,11 +56,12 @@ const Home = (list) =>{
                       <span><Icon type="folder" /> {item.typeName}</span>
                       <span><Icon type="fire" /> {item.view_count}人</span>
                     </div>
-                    <div className="list-context">{item.introduce}</div>  
+                    <div className="list-context"
+                      dangerouslySetInnerHTML={{__html:marked(item.introduce)}}
+                    ></div>  
                   </List.Item>
                 )}
               />  
-
             </div>
         </Col>
 

@@ -8,7 +8,6 @@ import Author from '../components/Author'
 import Advert from '../components/Advert'
 import Footer from '../components/Footer'
 import '../static/style/pages/detailed.css'
-import MarkNav from 'markdown-navbar';
 import 'markdown-navbar/dist/navbar.css';
 import axios from 'axios'
 import marked from 'marked'
@@ -31,9 +30,7 @@ const Detailed = (props) =>{
   };
 
   marked.setOptions({
-
     renderer: renderer,
-
     gfm: true,
     pedantic: false,
     sanitize: false,
@@ -41,11 +38,9 @@ const Detailed = (props) =>{
     breaks: false,
     smartLists: true,
     smartypants: false,
-
     highlight: function (code) {
-            return hljs.highlightAuto(code).value;
+      return hljs.highlightAuto(code).value;
     }
-
   }); 
 
 

@@ -2,6 +2,7 @@ import React,{useState} from 'react'
 import Link from 'next/link'
 import axios from 'axios'
 import Head from 'next/head'
+import  servicePath  from '../config/apiUrl'
 import {Row, Col , List ,Icon} from 'antd'
 import Header from '../components/Header'
 import Author from '../components/Author'
@@ -62,7 +63,7 @@ const Home = (list) =>{
 
 Home.getInitialProps = async ()=>{
   const promise = new Promise((resolve)=>{
-    axios('http://127.0.0.1:7001/default/getArticleList').then(
+    axios(servicePath.getArticleList).then(
       (res)=>{
         //console.log('远程获取数据结果:',res.data.data)
         resolve(res.data)

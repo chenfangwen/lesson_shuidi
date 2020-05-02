@@ -1,6 +1,6 @@
 import React , {useState} from 'react';
-// import 'antd/dist/antd.css';
-// import { Card, Input, Icon,Button,Spin} from 'antd'
+import 'antd/dist/antd.css';
+import { Button } from 'antd'
 import '../static/css/Login.css'
 
 function Login(){
@@ -22,7 +22,6 @@ function Login(){
     //                     id="userName"
     //                     size="large"
     //                     placeholder="Enter your userName"
-    //                     prefix={<Icon type="user" style={{color:'rgba(0,0,0,.25)'}} />}
     //                     onChange={(e)=>{setUserName(e.target.value)}}
     //                 /> 
     //                 <br/><br/>
@@ -30,7 +29,6 @@ function Login(){
     //                     id="password"
     //                     size="large"
     //                     placeholder="Enter your password"
-    //                     prefix={<Icon type="key" style={{color:'rgba(0,0,0,.25)'}} />}
     //                     onChange={(e)=>{setPassword(e.target.value)}}
     //                 />     
     //                 <br/><br/>
@@ -40,7 +38,7 @@ function Login(){
     //     </div>
     // )
     return (
-        <div>asdfsdfasdf</div>
+        <Button>anniu</Button>
     )
 }
 export default Login

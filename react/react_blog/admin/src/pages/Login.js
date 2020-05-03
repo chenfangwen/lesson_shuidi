@@ -1,15 +1,58 @@
-import React , {useState} from 'react';
+import React , {useState,useEffect,createContext} from 'react';
 import 'antd/dist/antd.css';
-// import { Button } from 'antd'
-import { Spin,Card,Input,Button,Icon } from 'antd'
-import '../static/css/Login.css'
+import '../static/css/Login.css';
+import { Card, Input, Icon,Button ,Spin,message } from 'antd';
+import axios from 'axios'
+import  servicePath  from '../config/apiUrl'
 
-function Login(){
+const openIdContext = createContext()
+
+function Login(props){
+
     const [userName , setUserName] = useState('')
     const [password , setPassword] = useState('')
     const [isLoading, setIsLoading] = useState(false)
+
+    useEffect(()=>{
+
+    },[])
+
     const checkLogin = ()=>{
         setIsLoading(true)
+
+        if(!userName){
+            setIsLoading(false)
+            message.error('用户名不能为空')
+            return false
+        }else if(!password){
+            setIsLoading(false)
+            message.error('密码不能为空')
+            return false
+        }
+        let dataProps = {
+            'userName':userName,
+            'password':password
+        }
+        axios({
+            method:'post',
+            url:servicePath.checkLogin,
+            data:dataProps,
+            withCredentials: true
+        }).then(
+           res=>{
+                console.log(res.data)
+                setIsLoading(false)
+                if(res.data.data=='登录成功'){
+                    localStorage.setItem('openId',res.data.openId)
+                    props.history.push('/index')
+                }else{
+                    message.error('用户名或密码错误')
+                }
+
+
+           }
+        )
+
         setTimeout(()=>{
             setIsLoading(false)
         },1000)
@@ -17,8 +60,9 @@ function Login(){
 
     return (
         <div className="login-div">
-            <Spin tip="登录中..." spinning={isLoading}>
-                <Card title="吾心系依博客系统" bordered={true} style={{ width: 400 }} >
+
+            <Spin tip="Loading..." spinning={isLoading}>
+                <Card title="JSPang Blog  System" bordered={true} style={{ width: 400 }} >
                     <Input
                         id="userName"
                         size="large"
@@ -35,14 +79,11 @@ function Login(){
                         onChange={(e)=>{setPassword(e.target.value)}}
                     />     
                     <br/><br/>
-                    <Button type="primary" size="large" block onClick={checkLogin} > 登录 </Button>
+                    <Button type="primary" size="large" block onClick={checkLogin} > Login in </Button>
                 </Card>
             </Spin>
         </div>
     )
-    // return (
-    //     <Button>sd</Button>
-    // )
 }
 
 export default Login

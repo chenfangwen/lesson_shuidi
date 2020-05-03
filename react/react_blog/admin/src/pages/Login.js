@@ -1,6 +1,7 @@
 import React , {useState} from 'react';
 import 'antd/dist/antd.css';
-import { Spin,Card,Input,Icon,Button } from 'antd'
+// import { Button } from 'antd'
+import { Spin,Card,Input,Button,Icon } from 'antd'
 import '../static/css/Login.css'
 
 function Login(){
@@ -39,5 +40,9 @@ function Login(){
             </Spin>
         </div>
     )
+    // return (
+    //     <Button>sd</Button>
+    // )
 }
+
 export default Login

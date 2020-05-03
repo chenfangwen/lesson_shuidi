@@ -1,9 +1,0 @@
-{
-  "dependencies": {
-    "@tarojs/cli": "^2.1.5",
-    "antd": "^4.2.0",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^6.8.0",
-    "react-router-dom": "^5.1.2"
-  }
-}

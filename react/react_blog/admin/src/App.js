@@ -1,12 +1,12 @@
 import React from 'react';
-// import { Button } from 'antd';
+import 'antd/dist/antd.css';
+import { Button } from 'antd'
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      {/* <Button>按钮</Button> */}
-      fasdfsdf
+      <Button>按钮</Button>
     </div>
   );
 }

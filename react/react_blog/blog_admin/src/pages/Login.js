@@ -38,7 +38,9 @@ function Login(){
     //     </div>
     // )
     return (
-        <Button>anniu</Button>
+        <div>
+            <Button>anniu</Button>
+        </div>
     )
 }
 export default Login

@@ -50,7 +50,7 @@ function AddArticle(props){
             method:'get',
             url:servicePath.getTypeInfo,
             withCredentials: true
-            // header:{ 'Access-Control-Allow-Origin':'*' },
+            header:{ 'Access-Control-Allow-Origin':'*' },
         }).then(
             res=>{
                 console.log(res.data.data,'----')

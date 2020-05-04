@@ -19,13 +19,13 @@ class MainController extends Controller{
         // console.log(res)
         if(res.length>0){
             //登录成功,进行session缓存
-            let openId1=new Date().getTime()
-            this.ctx.session.openId1={ 'openId1':openId1 }
+            let openId=new Date().getTime()
+            this.ctx.session.openId={ 'openId1':openId }
             // console.log(this.ctx.session.openId1,'+++')
-            this.ctx.body={'data':'登录成功','openId':openId1}
+            this.ctx.body={'data':'登录成功','openId':openId}
 
         }else{
-            this.ctx.session.openId1=[]
+            // this.ctx.session.openId=[]
             this.ctx.body={data:'登录失败'}
         } 
     }

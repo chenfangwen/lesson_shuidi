@@ -50,13 +50,15 @@ function AddArticle(props){
             method:'get',
             url:servicePath.getTypeInfo,
             withCredentials: true
-            header:{ 'Access-Control-Allow-Origin':'*' },
+            // header:{ 'Access-Control-Allow-Origin':'*' },
         }).then(
             res=>{
-                console.log(res.data.data,'----')
-                if(res.data.data=="没有登录"){
+                // console.log(res.data.data,'----')
+                // console.log(localStorage.getItem('openId'))
+                if(res.data.data=="没有登录"||localStorage.getItem('openId')==null){
                     localStorage.removeItem('openId')
-                    props.history.push('/')  
+                    props.history.push('/')
+                    message.error('请先登录')
                 }else{
                     setTypeInfo(res.data.data)
                 }

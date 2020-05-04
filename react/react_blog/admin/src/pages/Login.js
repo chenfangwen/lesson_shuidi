@@ -46,10 +46,9 @@ function Login(props){
                     localStorage.setItem('openId',res.data.openId)
                     props.history.push('/index')
                 }else{
+                    localStorage.removeItem('openId')
                     message.error('用户名或密码错误')
                 }
-
-
            }
         )
 

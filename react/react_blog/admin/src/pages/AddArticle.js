@@ -23,6 +23,14 @@ function AddArticle(props){
 
     useEffect(() => {
         getTypeInfo()
+        let tmpId = props.match.params.id
+        console.log(tmpId)
+        if(tmpId){
+            setIsLoadding(true)
+            setArticleId(tmpId)
+            getArticleById(tmpId)
+            
+        }
     },[])
     marked.setOptions({
         renderer: marked.Renderer(),
@@ -75,7 +83,7 @@ function AddArticle(props){
         // markedContent()  //先进行转换
          
  
-         if(!selectedType){
+         if(selectedType=='请选择类型'){
              message.error('必须选择文章类别')
              return false
          }else if(!articleTitle){
@@ -106,7 +114,7 @@ function AddArticle(props){
         
          if(articleId==0){
              console.log('articleId=:'+articleId)
-             dataProps.view_count =Math.ceil(Math.random()*100)+1000
+             dataProps.view_count = 0
              axios({
                  method:'post',
                  url:servicePath.addArticle,
@@ -149,7 +157,29 @@ function AddArticle(props){
          }
          
  
-     } 
+    } 
+
+    const getArticleById = (id)=>{
+        axios(servicePath.getArticleById+id,{ 
+            withCredentials: true,
+            header:{ 'Access-Control-Allow-Origin':'*' }
+        }).then(
+            res=>{
+                console.log(res)
+                setIsLoadding(false)
+                setArticleTitle(res.data.data[0].title)
+                setArticleContent(res.data.data[0].article_content)
+                let html=marked(res.data.data[0].article_content)
+                setMarkdownContent(html)
+                setIntroducemd(res.data.data[0].introduce)
+                let tmpInt = marked(res.data.data[0].introduce)
+                setIntroducehtml(tmpInt)
+                setShowDate(res.data.data[0].addTime)
+                setSelectType(res.data.data[0].typeId)
+            
+            }
+        )
+   }
     return (
     <div>
         <Spin spinning={isLoading} >
@@ -159,9 +189,9 @@ function AddArticle(props){
                     <Row gutter={10} >
                         <Col span={20}>
                             <Input 
-                                  placeholder="博客标题" 
-                                  onChange={e=>{
-                                                
+                                value={articleTitle}
+                                placeholder="博客标题" 
+                                onChange={e=>{ 
                                     setArticleTitle(e.target.value)
                                 }}
                                   size="large" />

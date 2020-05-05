@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .test{
+            position: relative;
+            background-color: red;
+            width: 100px;
+            height: 500px;
+            padding: 0 10px;
+            /* text-align: center; */
+            margin-left: 300px;
+            border-radius: 5px;
+        }
+        .test::before{
+            position: absolute;
+            left: -20px;
+            top: 30px;
+            width: 0;
+            height: 0;
+            content: "";
+            border-top: 10px solid transparent;
+            border-left: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-right: 10px solid red;
+        }
+    </style>
+</head>
+<body>
+    <div class="test">
+        测试
+    </div>
+</body>
+</html>

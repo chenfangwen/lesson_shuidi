@@ -4,8 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>css4 variable</title>
+    <style>
+        :root{   /* 定义变量的地方 */
+            --bgcolor: blue;
+            --color: red;
+        }
+        p{
+            color: var(--color)
+
+        }
+        div{
+            background-color: var(--color);
+            color: var(--bgcolor)
+        }
+    </style>
 </head>
 <body>
-    
+    <p>如何在30岁之前财富自由</p>
+    <div class="">买本书，如何让刘姿依爱上我</div>
 </body>
 </html>

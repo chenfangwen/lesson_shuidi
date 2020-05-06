@@ -6,10 +6,10 @@
 
 一、css盒模型
 	css中的盒子模型包括IE盒子模型和标准的W3C盒子模型。
-border-sizing: border-box, inherit, content-box
-标准盒子模型： 左右border+左右padding+contentwidth
-IE盒子模型border-box: width = content+padding+border 元素指定的任何内边距和边框都将在已设定的宽度和高度内进行绘制
-inherit: 从父类继承box-sizing的值
+	border-sizing: border-box, inherit, content-box
+	标准盒子模型： 左右border+左右padding+contentwidth
+	IE盒子模型border-box: width = content+padding+border 元素指定的任何内边距和边框都将在已设定的宽度和高度内进行绘制
+	inherit: 从父类继承box-sizing的值
 
 二、前端一像素问题（画一条0.5px的线）
 * transform: scaleY（0.5） 使用伪元素设置1px的边框，然后对边框进行缩放(s

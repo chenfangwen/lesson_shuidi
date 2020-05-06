@@ -1,9 +1,37 @@
 <script>
     function CutePromise(executor) {
         this.status = 'pending'
+        this.value = ''
+        let self = this
+
+        function resolve (arg) {
+            //console.log(arg); 
+            self.status="fullfield";
+            self.value = arg
+        }
+        function reject(error) { 
+            self.status="rejected";
+            self.value = error
+        }
         executor(resolve,reject)
     }
-    CutePromise.prototype.then = function() {
 
+    CutePromise.prototype.then = function(onFullfield,onRejected) {
+        let self = this
+        if(self.status === 'fullfield'){
+            onFullfield(self.value)
+        } else if(self.status === 'rejected') {
+            onRejected(self.value)
+        }
+        
     }
+    new CutePromise((resolve,reject) => {
+        resolve(1)
+       
+    })
+    .then(res => {
+        console.log(res)
+    }, err => {
+        console.log(err)
+    })
 </script>

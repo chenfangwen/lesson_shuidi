@@ -35,7 +35,6 @@ function deepCopy(obj) {
     // const targetObj = obj.constructor === Array ? [] : {};
     const targetObj = Array.isArray(obj) ? [] : {};
     for (let key in obj) {
-      
       //只对对象自有属性进行拷贝
       if (obj.hasOwnProperty(key)) {
         if (obj[key] && typeof obj[key] === 'object') {

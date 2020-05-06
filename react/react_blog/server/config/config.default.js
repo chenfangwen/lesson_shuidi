@@ -62,7 +62,12 @@ module.exports = appInfo => {
     credentials: true,   // 开启认证
     allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS'
   };
-
+  config.session = {
+    key: 'EGG_SESS',
+    maxAge: 24 * 3600 * 1000, // 1 day
+    httpOnly: true,
+    encrypt: true
+ };
   return {
     ...config,
     ...userConfig,

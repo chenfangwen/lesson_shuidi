@@ -19,10 +19,12 @@
 
     CutePromise.prototype.then = function(onFullfield,onRejected) {
         let self = this
-        if(self.status === 'fullfield'){
+        if (self.status === 'fullfield'){
             onFullfield(self.value)
-        } else if(self.status === 'rejected') {
+        } else if (self.status === 'rejected') {
             onRejected(self.value)
+        } else if (self.status === 'pending') {
+
         }
         
     }

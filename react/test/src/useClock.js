@@ -4,7 +4,10 @@ export default function useTime() {
   let id = ''
   useEffect(() => {
     hook();
-  },[time])
+    return () => {
+      clearInterval(id)
+    }
+  },[])
   const hook = () => {
     id = setInterval(() => {
       let date = new Date()
@@ -20,11 +23,8 @@ export default function useTime() {
       }
       setTime(dayStr[day] + date.toLocaleTimeString());
         // console.log(id)
-      clearInterval(id)
       // console.log(time)
     },1000)
-    // clearTimeout(id)
-    // console.log(id)
   }
   return time;
 }

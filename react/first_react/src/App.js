@@ -1,41 +1,73 @@
-import React,{useState,useEffect} from 'react';
-function Clock(){
-  let [date,setDate] = useState(new Date());  
-  let [time,setTime] = useState('');
-  //[]执行一次
-  useEffect(()=> {
-    hook()
-    // setInterval(() => hook(), 1000)
-  },[])
-  
-  const hook = () => {
-    setInterval(()=>{
-    setDate(new Date())
-    
-    const day = date.getDay();
-    let dayStr = '';
-    
-    if (day === 0) {
-      dayStr = '星期日';
-    } else if (day === 1) {
-      dayStr = '星期一';
-    } else if (day === 2) {
-      dayStr = '星期二';
-    } else if (day === 3) {
-      dayStr = '星期三';
-    } else if (day === 4) {
-      dayStr = '星期四';
-    } else if (day === 5) {
-      dayStr = '星期五';
-    } else if (day === 6) {
-      dayStr = '星期六';
-    }
-    setTime(dayStr + date.toLocaleTimeString()) 
-    },1000)
-    
-  }
+import React from 'react';
+// import logo from './logo.svg';
+import './App.css';
+function A({x, y, date}) {
   return (
-      <div>{time}</div>
-    )
+    <div>
+      x: { x }
+      y: { y }
+      date: {date}
+    </div>
+  )
 }
-export default Clock
+function B({x, y, date}) {
+  return (
+    <h2>
+      x: { x }
+      y: { y }
+      date: {date}
+    </h2>
+  )
+}
+function WithMosuInfo(Com) {
+  class WhithMouseComponent extends React.Component {
+    state = {
+      x: 0,
+      y: 0
+    }
+    componentDidMount() {
+      document.addEventListener('mousemove', (e) => {
+        this.setState({
+          x: e.clientX,
+          y: e.clientY
+        })
+      })
+    }
+    render() {
+      let props = this.props;
+
+      return (<Com x={this.state.x} y={this.state.y} {...props}/>)
+    }
+  }
+  return WhithMouseComponent
+}
+// 当前坐标
+// 包装地狱
+// (<Com x={this.state.x} y={this.state.y}/>)
+// <Com date={this.state.date}/>
+// 不会自动合并
+const Amouse =  WithMosuInfo(WithTime(A));
+const Bmouse =  WithMosuInfo(WithTime(B));
+function WithTime(Com) {
+  class WithTimeCom extends React.Component {
+   
+    state = {
+      date: new Date().toLocaleTimeString()
+    }
+    render() {
+      let props = this.props;
+      return (<Com date={this.state.date} {...props}/>)
+    }
+  }
+  return WithTimeCom;
+}
+function App() {
+  return (
+    <div className="App">
+     <Amouse />
+     <Bmouse />
+    </div>
+  );
+}
+
+export default App;

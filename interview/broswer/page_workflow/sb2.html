@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>圣杯布局</title>
+        <style>
+            
+            #bd{
+                /* height: 100px; */
+                position: relative;
+            }
+            #middle{
+                position: absolute;
+                left: 200px;
+                /* width: cacl(100vw-400px); */
+                height: 500px;
+                background:blue;
+                right: 200px;
+            }
+            #left{
+                float:left;
+                width:200px;
+                height:500px;
+                background: #0c9;
+                position: relative;
+            }
+            #right{
+                float: right;
+                width: 200px;
+                height: 500px;
+                background: #0c9;
+                position: relative;
+            }
+            
+        </style>
+    </head>
+    <body>
+      <div id="bd">
+        <div id="middle">middle</div>
+
+          <div id="left">left</div>
+          <div id="right">right</div>      
+      </div> 
+    </body>
+</html>

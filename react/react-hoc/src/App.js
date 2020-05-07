@@ -1,66 +1,41 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-class A extends React.Component {
-  render() {
-    const {x,y} = this.props;
-    return (
-      <div>
-        x: {x} - y: {y}
-      </div>
-    )
-  }
-}
-class B extends React.Component {
-  render() {
-    const {x,y} = this.props;
-    return (
-      <div>
-        <h1>x: {x} - y: {y}</h1>
-      </div>
-    )
-  }
-}
-
-const Axy = withMouseInfo(A)
-const Bxy = withMouseInfo(B)
-
-function withMouseInfo(Compoent) {
-
-  class MouseXy extends Component {
-    state = {
-      x:0,
-      y:0
+import React,{useState,useEffect} from 'react';
+function Clock(){
+  let [date,setDate] = useState(new Date());  
+  let [time,setTime] = useState('');
+  //[]执行一次
+  useEffect(()=> {
+    hook()
+    // setInterval(() => hook(), 1000)
+  },[])
+  
+  const hook = () => {
+    setInterval(()=>{
+    setDate(new Date())
+    
+    const day = date.getDay();
+    let dayStr = '';
+    
+    if (day === 0) {
+      dayStr = '星期日';
+    } else if (day === 1) {
+      dayStr = '星期一';
+    } else if (day === 2) {
+      dayStr = '星期二';
+    } else if (day === 3) {
+      dayStr = '星期三';
+    } else if (day === 4) {
+      dayStr = '星期四';
+    } else if (day === 5) {
+      dayStr = '星期五';
+    } else if (day === 6) {
+      dayStr = '星期六';
     }
-    componentDidMount() {
-      document.body.addEventListener('mousemove',(e) => {
-        // console.log(e.clientX,e.clientY)
-        this.setState({
-          x:e.clientX,
-          y:e.clientY
-        })
-      })
-    }
-    render() {
-      const {x,y} = this.state
-      return(
-        <Compoent x={x} y={y} />
-      )
-    }
+    setTime(dayStr + date.toLocaleTimeString()) 
+    },1000)
+    
   }
-  return MouseXy
-}
-
-class App extends React.Component {
-  render() {
-    return (
-      <div>
-        <Axy></Axy>
-        <Bxy></Bxy>
-      </div>
+  return (
+      <div>{time}</div>
     )
-  }
 }
-
-export default App;
+export default Clock

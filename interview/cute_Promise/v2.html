@@ -2,6 +2,9 @@
     function CutePromise(executor) {
         this.status = 'pending'
         this.value = null
+        this.reason = null
+        this.onFullfield = []
+        this.onRejected = []
         let self = this
 
         function resolve (arg) {
@@ -9,10 +12,16 @@
             self.status="fullfield";
             self.value = arg
             console.log('resolve',arg)
+            for (let fn of self.onFullfield){
+                fn(arg)
+            }
         }
         function reject(error) { 
             self.status="rejected";
-            self.value = error
+            self.reason = error
+            for (let fn of self.onRejected){
+                fn(error)
+            }
         }
         executor(resolve,reject)
     }
@@ -24,7 +33,8 @@
         } else if (self.status === 'rejected') {
             onRejected(self.value)
         } else if (self.status === 'pending') {
-
+            self.onFullfield.push(onFullfield)
+            self.onRejected.push(onRejected)
         }
         
     }

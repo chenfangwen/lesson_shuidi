@@ -5,10 +5,6 @@ import axios from 'axios'
 import  servicePath  from '../config/apiUrl'
 const { confirm } = Modal;
 
-
-
-
-
 function ArticleList(props){
 
     const [list,setList]=useState([])

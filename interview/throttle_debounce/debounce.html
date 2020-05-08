@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>debounce</title>
+</head>
+<body>
+    <button onclick="con1()">按钮</button>
+    <script>
+    function con() {
+        console.log('1')
+    }
+    function debounce (func, wait) {
+         var timeout;
+         return function() {
+             var context = this;
+             var args = arguments;
+             clearTimeout(timeout);
+             timeout = setTimeout(() => {
+                //  console.log(timeout,'----')
+                 func.apply(context,args)
+             }, wait);
+         }
+     }
+    const con1 = debounce(con,3000)
+    </script>
+</body>
+</html>

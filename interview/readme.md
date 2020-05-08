@@ -994,24 +994,23 @@ Function.prototype.bind = function (obj, arg) {
 
 
 三、函数节流（throttle）
- function throttle (func, wait) {
-        var timeout;
-        var previous = 0;
-        return function () {
-            context = this;
-            args = arguments;
-            if (!timeout) {
-                timeout = setTimeout(() => {
-                    timeout = null;
-                    func.apply(context,args)
-                }, wait);
-            }
-        }
-    }
-     
+function throttle (func, wait) {
+	var timeout;
+	var previous = 0;
+	return function () {
+		context = this;
+		args = arguments;
+		if (!timeout) {
+			timeout = setTimeout(() => {
+				timeout = null;
+				func.apply(context,args)
+			}, wait);
+		}
+	}
 }
+     
 
-四、函数防抖（dobounce）
+四、函数防抖（dobounce） 只输出最后一次
  function debounce (func, wait) {
          var timeout;
          return function() {
@@ -1022,7 +1021,7 @@ Function.prototype.bind = function (obj, arg) {
                  func.apply(context,args)
              }, wait);
          }
-     }
+}
 
 五、实现一个函数clone，可以对JavaScript中的5种主要的数据类型（包括Number、String、Object、Array、Boolean）进行值复制
     
@@ -1120,11 +1119,13 @@ event.trigger ('2018/7')
 const http = require('http');
 const fs = require('fs');
 const server = http.createServer((req,res) => {
-	if (reu.url == '/') {
-	const indexFile = fs.createReadStream('./index.html')
-	req.writeHead(200,{'context-Type':'text/html;charset = utf8})
-	indexFile.pipe(res)
-}
+	if (req.url == '/') {
+        const indexFile = fs.createReadStream('./debounce.html')
+        res.writeHead(200,{'context-Type':'text/html;charset = utf8'})
+        indexFile.pipe(res)
+    }
+})
+
 server.listen(8080)
 
 

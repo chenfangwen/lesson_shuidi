@@ -5,6 +5,7 @@
     <p>DOM</p>
 </div>
 
+template(html) -> 抽象语法树(AST Abstract Syntax Tree) -> 虚拟DOM 
 --> js
 
 {

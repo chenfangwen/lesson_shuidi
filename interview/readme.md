@@ -479,6 +479,24 @@ mvc和mvvm其实区别并不大。都是一种设计思想。主要就是mvc中C
 加载速度变慢，影响用户体验。和当 Model 频繁发生变化，开发者需要主动更新到View 。
 
 二、 eventBus vuex
+
+1. state: 存放状态
+
+2. mutations: state成员操作  setCurIndex(state,index){
+							state.curIndex = index
+						}, 	
+						在组件里使用 this.$store.commit('edit')
+
+3. getters: 加工state成员给外界
+
+4. actions: 异步操作     getMusicList(context,list){
+						context.commit('setMusicsList',list);
+					},
+					在组件里使用 ...mapActions(['getMusicList']) this.getMusicList([])
+
+5. modules: 模块化状态管理
+
+
  	原理：eventbus 解决了兄弟组件之间事件传递问题,本质是订阅发布者模式，从而摆脱了兄弟之间需要父组件转而传递的复杂。还有一种方法是vuex数据流，单一状态树,rootState树根
               名词，专车。订阅者跟发布者都引用专车，这个vue实例，来完成订阅发布者。 emit（发布）  on(订阅一个组件)
  npm包	vue-event-proxy
@@ -1165,7 +1183,18 @@ Connection:Keep-Alive
 
 
 
-
+面试
+react特点
+hooks 的各个方法，
+为啥要发明hook， 
+reduct各步骤 ，
+vue，react父里子组件通信 ， 
+组件化 ， 
+es6 新特性， 
+基本数据类型和复杂数据类型的区别， 
+next. js ssr， 
+webpack，
+ts联合类型 ，类型别名，
 
 
 

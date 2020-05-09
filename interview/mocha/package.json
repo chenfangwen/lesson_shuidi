@@ -1,0 +1,15 @@
+{
+  "name": "mocha",
+  "version": "1.0.0",
+  "description": "mocha 是一个单元测试框架，既可以在浏览器环境下运行，也可以在Node.js环境下运行。",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/mocha/data.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mocha": "^7.1.2"
+  }
+}

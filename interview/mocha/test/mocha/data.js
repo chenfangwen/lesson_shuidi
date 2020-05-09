@@ -4,13 +4,13 @@ const should = require('should') //断言库
 // 先写测试代码， 再写实现代码？
 
 describe('测试Date是否合格', () => {
-    let date = new EasyDate('+1m');
+    let date = new EasyDate(3);
     it("shoud create indtance", () => {
         //编写scc/测试代码
         let some = date.toDate();
         let today = new Date();
         should(some.getFullYear()).equal(today.getFullYear());
-        should(some.getMonth()).equal(today.getMonth() + 1);
+        should(some.getMonth()).equal(today.getMonth() + 3);
     })
     describe('判断闰年',() => {
         it('是否为闰年',() => {

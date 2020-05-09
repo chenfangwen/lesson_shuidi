@@ -1,6 +1,9 @@
 class EasyDate {
-    constructor() {
-        this.base = new Date();
+    constructor(n) {
+        // n.match('[0-9]')
+        let date = new Date();
+        date.setMonth(date.getMonth() + n)
+        this.base = date
     }
     toDate() {
         return this.base;

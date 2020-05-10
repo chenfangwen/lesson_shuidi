@@ -478,8 +478,30 @@ caleY)
 mvc和mvvm其实区别并不大。都是一种设计思想。主要就是mvc中Controller演变成mvvm中的viewModel。mvvm主要解决了mvc中大量的DOM 操作使页面渲染性能降低，
 加载速度变慢，影响用户体验。和当 Model 频繁发生变化，开发者需要主动更新到View 。
 
-二、 eventBus vuex
+二、 		
+## 	eventBus 
+	import Vue from 'vue';		//bus.js
+	export default new Vue();
 
+	<div @click="addCart">添加</div>	//使用
+	import Bus from 'bus.js';	
+	export default{
+		methods: {
+			addCart(event){
+				Bus.$emit('getTarget', event.target)
+			}
+		}
+	}
+	// 另一组件
+	export default{
+		created(){
+			Bus.$on('getTarget', target =>{
+				console.log(target)
+			})
+		}
+	}
+
+## vuex
 1. state: 存放状态
 
 2. mutations: state成员操作  setCurIndex(state,index){
@@ -501,7 +523,7 @@ mvc和mvvm其实区别并不大。都是一种设计思想。主要就是mvc中C
 名词，专车。订阅者跟发布者都引用专车，这个vue实例，来完成订阅发布者。 emit（发布）  on(订阅一个组件)
 npm包	vue-event-proxy
 
-vuex 是将数据单独的抽离出来，一种状态管理工具，它借鉴的是Flux、redux的基本思想，将状态抽离到全局形成一个store
+	vuex 是将数据单独的抽离出来，一种状态管理工具，它借鉴的是Flux、redux的基本思想，将状态抽离到全局形成一个store
 
 三、watch:
 	对属性进行监听，允许我们执行异步操作，限制我们执行该操作的频率（debounce），并在我们得到结果前，设置中间转态。
@@ -561,6 +583,30 @@ vuex 是将数据单独的抽离出来，一种状态管理工具，它借鉴的
 	3.这种开发思想就是分而治之。最大程度的降低开发难度和维护成本的效果。并且可以多人协作，每个人写不同的组件，最后像撘积木一样的把它构成一个页面	
 
 十一、vue的依赖收集和watch原理
+
+十二、创建指令
+	1.创建局部指令
+		directives:{
+			// 指令名称
+			dir1: {
+				inserted(el){
+					// 第一个参数是当前使用指令的DOM
+					el.style.width = '200px';
+					el.style.height = '200px';
+					el.style.background = '#000'
+				}
+			}
+		}
+	2.全局指令
+	Vue.directive('dir2', {
+		inserted(el){
+			console.log(el)
+		}
+	})
+	3.指令的使用
+	<div v-dir1></div>
+	<div v-dir2></div>
+
 	
 
 							

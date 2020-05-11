@@ -145,7 +145,7 @@ caleY)
 		2.宽度不定：块级变行内，然后在父上text-aligin
 			    float
 
-四、BFC https://juejin.im/post/5909db2fda2f60005d2093db
+五、BFC https://juejin.im/post/5909db2fda2f60005d2093db
 	理解：BFC是css布局的一个概念，是一块独立的渲染区域，一个环境，里面的元素不会影响到外部的元素
 	如何生成BFC：（脱离文档流）
 		     【1】根元素，即HTML元素（最大的一个BFC）
@@ -162,6 +162,166 @@ caleY)
 		 2.可以阻止元素被浮动元素覆盖
 		 3.可以包含浮动元素---清除内部浮动 原理:：触发父div的BFC属性，使下面的子div都处在父div的同一个BFC区域之内
 		 4.分属于不同的BFC时，可以阻止margin重叠
+六、居中
+1、absolute，margin: auto
+
+.container {
+    position: relative;
+}
+.content {
+    position: absolute;
+    margin: auto;
+    top: 0; left: 0; bottom: 0; right: 0;
+}
+注意: 当没有指定内容块的具体的高度和宽度时，内容块会填满剩余空间。可以通过使用max-height来限制高度，也可以通过 display:table 来使高度由内容来决定，但是浏览器支持不是很好。
+
+2、relative，left top 50%，负margin-left margin-top
+
+.isNegative {
+    position: relative;
+    width: 200px;
+    height: 300px;
+    left: 50%;
+    top: 50%;
+    margin-left: -100px;
+    margin-top: -150px;
+}
+缺点:需要知道具体的高度和宽度
+
+3、relative，left top 50%，transform: translate(-50%,-50%)
+
+  .content {
+      position: relative;
+      left: 50%;
+      top: 50%;
+      -webkit-transform: translate(-50%,-50%);
+        -ms-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+  }
+这里translate的百分比是相对于自身的，所以高度是可变的
+
+4、Table-Cell
+
+<div class="Center-Container is-Table">
+  <div class="Table-Cell">
+    <div class="Center-Block">
+    <!-- CONTENT -->
+    </div>
+  </div>
+</div>
+ 
+ 
+.Center-Container.is-Table { display: table; }
+.is-Table .Table-Cell {
+  display: table-cell;
+  vertical-align: middle;
+}
+.is-Table .Center-Block {
+  width: 50%;
+  margin: 0 auto;
+}
+注意: 需要添加最内层的div，并且给div指定宽度和margin:0 auto;来使div居中。
+
+5、Inline-Block
+
+html
+
+<div class="Center-Container is-Inline">
+  <div class="Center-Block">
+    <!-- CONTENT -->
+  </div>
+</div>
+ 
+css
+
+.Center-Container.is-Inline {
+  text-align: center;
+  overflow: auto;
+}
+ 
+.Center-Container.is-Inline:after,
+.is-Inline .Center-Block {
+  display: inline-block;
+  vertical-align: middle;
+}
+ 
+.Center-Container.is-Inline:after {
+  content: '';
+  height: 100%;
+  margin-left: -0.25em; /* To offset spacing. May vary by font */
+}
+ 
+.is-Inline .Center-Block {
+  max-width: 99%; /* Prevents issues with long content causes the content block to be pushed to the top */
+  /* max-width: calc(100% - 0.25em) /* Only for IE9+ */
+}
+ 
+空内容也会占据一定空间，需要margin-left:-0.25em;来抵消偏移
+
+内容块的最大宽度不能是100%，否则会把::after的内容挤到下一行
+
+6、Flex
+
+ 
+
+html
+
+ <div class="contain">
+   <div class="content">
+      // content
+   </div>
+ </div>
+ 
+css
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+ 
+最方便最简单的方式，但是要注意浏览器的支持
+
+7、display:flex和margin:auto
+
+.box8{
+    display: flex;
+    text-align: center;
+}
+    .box8 span{
+    margin: auto;
+}
+8、display:-webkit-box
+
+.box9{
+    display:-webkit-box;
+    -webkit-box-pack:center;
+    -webkit-box-align:center;
+    -webkit-box-orient: vertical;
+    text-align: center；
+}
+9、display:-webkit-box
+
+这种方法，在 content 元素外插入一个 div。设置此 divheight:50%; margin-bottom:-contentheight;。
+content 清除浮动，并显示在中间。
+
+.floater {
+    float:left;
+    height:50%;
+    margin-bottom:-120px;
+}
+    .content {
+    clear:both;
+    height:240px;
+    position:relative;
+}
+优点：
+适用于所有浏览器
+没有足够空间时(例如：窗口缩小) content 不会被截断，滚动条出现
+缺点：
+唯一我能想到的就是需要额外的空元素了(也没那么糟，又是另外一个话题)
+
 	
 							js面试
 一、 this的指向

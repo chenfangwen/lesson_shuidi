@@ -607,6 +607,12 @@ content 清除浮动，并显示在中间。
 		 而嵌入的JS会阻塞后面的资源加载，所以就会出现上面CSS阻塞下载的情况。
 	
 二十八、meta元素可提供有关页面的元信息，比如针对搜索引擎和更新频度的描述和关键词
+
+二十九、 JS数据类型转换 
+方法主要有三种：
+转换函数 parseInt parseFloat
+强制类型转换 Number(val) String(val) Boolean(val)
+利用js变量弱类型转换。 let a = '0123.23'; let x = a-0;
 						
 								node面试
 一、koa中间件执行机制

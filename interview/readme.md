@@ -797,8 +797,8 @@ npm包	vue-event-proxy
 
 五、React的生命周期
 	三个状态：Mounting(已插入真实的DOM）
-		  Updating(正在被重新渲染)
-		  Unmounting(已移除真实的DOM)
+		  	Updating(正在被重新渲染)
+		  	Unmounting(已移除真实的DOM)
 	componentDIdMount 在第一次渲染后调用，只在客服端。之后组件已经生成对应的DOM结构，
 	componentDidUpdate 在组件完成更新后立即调用，在出初始化是不会调用
 
@@ -821,7 +821,7 @@ npm包	vue-event-proxy
 	Vritual DOM 算法主要实现上面步骤的三个函数：element， diff， patch。然后就可以实际的进行使用
 	react只会匹配相同的class的component（这里的class指的是组件的名字）
 	合并操作，条用component的setState方法的时候，React将其标记为dirty.到每一个时间循环借宿，React检查所有标记dirty的component重新绘制
-	4.选择性子树渲染。可以重写shouldComponentUpdate提高diff的性能	
+	4.选择性子树渲染。可以重写shouldComponentUpdate提高diff的性能
 
 十、super
 
@@ -859,13 +859,22 @@ npm包	vue-event-proxy
 		.then((res) => res.json())
         
 		.then(
-(data) => {
-this.setState({ data:data });
-
+				(data) => {
+				this.setState({ data:data });
 				StatusBar.setNetworkActivityIndicatorVisible(false);
+
+				
             }
    
-							
+十五、 如何提高性能
+我们可以通过多种方式提高应用性能，以下这些比较重要：
+
+- 适当地使用shouldComponentUpdate生命周期方法。 它避免了子组件的不必要的渲染。 如果树中有100个组件，则不重新渲染整个组件树来提高应用程序性能。
+- 使用create-react-app来构建项目，这会创建整个项目结构，并进行大量优化。
+- 不可变性是提高性能的关键。不要对数据进行修改，而是始终在现有集合的基础上创建新的集合，以保持尽可能少的复制，从而提高性能。
+- 在显示列表或表格时始终使用 Keys，这会让 React 的更新速度更快
+- 代码分离是将代码插入到单独的文件中，只加载模块或部分所需的文件的技术。
+
 						性能优化
 
 一、webpack打包文件体积过大？（最终打包为一个js文件）
@@ -1070,7 +1079,20 @@ this.setState({ data:data });
 	3.js写在尾部，主要是因为js主要扮演事件处理的功能，一方面很多操作是在页面渲染后才执行的。另一方面可以节省加载时间，使页面能够更加的加载，提高用户的良好体验
 
 	但是随着JS技术的发展，JS也开始承担页面渲染的工作。比如我们的UI其实可以分被对待，把渲染页面的js放在前面，时间处理的js放在后面
-
+	
+十四、 TCP和UDP的比较
+1. 对比
+				UDP										      TCP
+是否连接		无连接	面向连接
+是否可靠		不可靠传输，不使用流量控制和拥塞控制		   可靠传输，使用流量控制和拥塞控制
+连接对象个数	支持一对一，一对多，多对一和多对多交互通信	    只能是一对一通信
+传输方式		面向报文									 面向字节流
+首部开销		首部开销小，仅8字节							  首部最小20字节，最大60字节
+适用场景	    适用于实时应用（IP电话、视频会议、直播等）	    适用于要求可靠传输的应用，例如文件传输
+2. 总结
+TCP向上层提供面向连接的可靠服务 ，UDP向上层提供无连接不可靠服务。
+虽然 UDP 并没有 TCP 传输来的准确，但是也能在很多实时性要求高的地方有所作为
+对数据准确性要求高，速度可以相对较慢的，可以选用TCP
 	
 
 						设计模式
@@ -1401,6 +1423,8 @@ es6 新特性，
 next. js ssr， 
 webpack，
 ts联合类型 ，类型别名，
+
+
 
 
 								同构

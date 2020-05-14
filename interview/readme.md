@@ -647,13 +647,13 @@ content 清除浮动，并显示在中间。
 
 								vue面试
 一、介绍下MVVM(数据的双向绑定）
-	M: model数据模型
-	V: view 界面
-	MV:作为桥梁负责沟通view跟model
+	M: model数据模型 
+	V: view 界面 
+	MV:作为桥梁负责沟通view跟model 
      只关心数据的流传，减少强耦合性。最关键的就是数据的双向绑定
  关键步骤：1.实现数据监听器Observer，用object.defineProperty()重写数据的get/set。值更新就在set中通知订阅者更新数据
 	  2.实现模板编译compile，深度遍历dom树，对每个元素节点的指令模板替换数据以及订阅数据
-	  3.实现watch用于连接Observer和compile，能够订阅并接受每一个属性的变动的通知，执行指令绑定的相应的回调函数，从而更新数据
+	  3.实现watch用于连接Observer和compile，能够订阅并接受每一个属性的变动的通知，执行指令绑定的相应的回调函数，从而更新数据 
 
 mvc和mvvm其实区别并不大。都是一种设计思想。主要就是mvc中Controller演变成mvvm中的viewModel。mvvm主要解决了mvc中大量的DOM 操作使页面渲染性能降低，
 加载速度变慢，影响用户体验。和当 Model 频繁发生变化，开发者需要主动更新到View 。
@@ -1140,7 +1140,7 @@ npm包	vue-event-proxy
 
 1、CSS优化法
 （1）使用 transform 替代 top
-（2）使用 visibility 替换 display: none ，因为前者只会引起重绘，后者会引发回流（改变了布局
+（2）使用 visibility 替换 display: none ，因为前者只会引起重绘，后者会引发回流（改变了布局）
 （3）避免使用table布局，可能很小的一个小改动会造成整个 table 的重新布局。
 （4）尽可能在DOM树的最末端改变class，回流是不可避免的，但可以减少其影响。尽可能在DOM树的最末端改变class，可以限制了回流的范围，使其影响尽可能少的节点。
 （5）避免设置多层内联样式，CSS 选择符从右往左匹配查找，避免节点层级过多。
@@ -1517,10 +1517,10 @@ Connection:Keep-Alive
 
 
 面试
-react特点
+react特点 
 hooks 的各个方法，
 为啥要发明hook， 
-reduct各步骤 ，
+reduct各步骤 ， 
 vue，react父里子组件通信 ， 
 组件化 ， 
 es6 新特性， 

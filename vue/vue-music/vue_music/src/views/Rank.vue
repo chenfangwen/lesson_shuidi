@@ -87,9 +87,6 @@ export default {
             setTimeout(()=>{
                 this.ListSomesong = arr
             },500)
-            setTimeout(()=>{
-                this.ListSomesong = arr
-            },501)
         })
     }
 }

@@ -162,7 +162,7 @@ caleY)
 		 2.可以阻止元素被浮动元素覆盖
 		 3.可以包含浮动元素---清除内部浮动 原理:：触发父div的BFC属性，使下面的子div都处在父div的同一个BFC区域之内
 		 4.分属于不同的BFC时，可以阻止margin重叠
-六、居中
+六、上下左右居中
 1、absolute，margin: auto
 
 .container {
@@ -329,13 +329,14 @@ content 清除浮动，并显示在中间。
 	2.作为普通函数，this指向window。
 	3.构造器调用，this指向返回的这个对象。
 	4.箭头函数  箭头函数的this绑定看的是this所在函数定义在哪个对象下，就绑定哪个对象
-      		    如果有嵌套的情况，则this绑定到最近的一层对象上
+      	如果有嵌套的情况，则this绑定到最近的一层对象上
 
-		this指向的固定化，并不是因为箭头函数内部有绑定this的
-		机制，实际原因是箭头函数根本没有自己的this，导致内部的this就是外
-		层代码块的this。正是因为它没有this，所以也就不能用作构造函数。
+	this指向的固定化，并不是因为箭头函数内部有绑定this的
+	机制，实际原因是箭头函数根本没有自己的this，导致内部的this就是外
+	层代码块的this。正是因为它没有this，所以也就不能用作构造函数。
 
-	怎么改变this的指向呢？ 1.使用es6的箭头函数；2.在函数内部使用that = this；3.使用apply，call，bind； 4.new实例化一个对象
+	怎么改变this的指向呢？ 
+	1.使用es6的箭头函数；2.在函数内部使用that = this；3.使用apply，call，bind； 4.new实例化一个对象
 
 二、什么是闭包和原型链
 	内部函数可以访问定义他们外部函数的参数和变量。（作用域链的向上查找，把外围的作用域中的变量值存储在内存中而不是在函数调用完毕后销毁）设计私有的方法和变量，避免全局变量的污染
@@ -506,7 +507,6 @@ content 清除浮动，并显示在中间。
 			3.使用XMLHTTPRequest对像，但会精细控制预加载过程
 
 
-
 	懒加载（lazyload）：客户端优化，减少请求数和延迟请求数
 		提升用户体验，
 		减少无效资源的加载
@@ -517,7 +517,7 @@ content 清除浮动，并显示在中间。
 
 十二、函数节流防抖
 	什么是防抖：短时间内多次触发同一个事件，只执行最后一次，或者在开始时执行，中间不执行。比如公交车上车，要等待最后一个乘客上车
-        什么是节流：节流是连续触发事件的过程中以一定时间间隔执行函数。节流会稀释你的执行频率，比如每间隔1秒钟，只会执行一次函数，无论这1秒钟内触发了多少次事件
+    什么是节流：节流是连续触发事件的过程中以一定时间间隔执行函数。节流会稀释你的执行频率，比如每间隔1秒钟，只会执行一次函数，无论这1秒钟内触发了多少次事件
 	都为解决高频事件而来， scroll mousewhell mousemover touchmove onresize
 
 十三、将arguments类数组转化为数组的方法
@@ -613,6 +613,15 @@ content 清除浮动，并显示在中间。
 转换函数 parseInt parseFloat
 强制类型转换 Number(val) String(val) Boolean(val)
 利用js变量弱类型转换。 let a = '0123.23'; let x = a-0;
+
+二九、 ECMAScript和JavaScript的关系 (es6和js关系)
+
+要讲清楚这个问题，需要回顾历史。1996年11月，JavaScript的创造者Netscape公司，决定将JavaScript提交给国际标准化组织ECMA，希望这种语言能够成为国际标准。次年，ECMA发布262号标准文件（ECMA-262）的第一版，规定了浏览器脚本语言的标准，并将这种语言称为ECMAScript，这个版本就是1.0版。
+
+该标准从一开始就是针对JavaScript语言制定的，但是之所以不叫JavaScript，有两个原因。一是商标，Java是Sun公司的商标，根据授权协议，只有Netscape公司可以合法地使用JavaScript这个名字，且JavaScript本身也已经被Netscape公司注册为商标。二是想体现这门语言的制定者是ECMA，不是Netscape，这样有利于保证这门语言的开放性和中立性。
+
+因此，ECMAScript和JavaScript的关系是，前者是后者的规格，后者是前者的一种实现（另外的ECMAScript方言还有Jscript和ActionScript）。日常场合，这两个词是可以互换的。
+
 						
 								node面试
 一、koa中间件执行机制
@@ -719,7 +728,7 @@ npm包	vue-event-proxy
 
 
 		缓存：缓存了组件之后，在次进入组件不会触发beforeCreate，created, beforeMount,mounted
-		      如果你想每次进入组件都做一些事情的话，你可以放在activated进入缓存组件的钩子中
+		      如果你想每次进入组件都做一些事情的话，你可以放在activated进入缓存组件的钩子中 
 七、keep-alive
 	在被keep-alive包含的组件/路由，会多出两个生命周期：activated 和 deactivated
 	actived在组件第一次渲染时会被调用，之后再每次缓存组件被激活时调用 调用机制：第一次进入缓存路由/组件，在mounted后面，beforeRouteEnter守卫传给 next 的回调函数之前调用：
@@ -777,9 +786,9 @@ npm包	vue-event-proxy
 
 							
 							React
-一、react和vue的区别
+一、react和vue的区别 
        =>  相同点：
-		1.数据驱动页面，提供响应式的试图组件
+		1.数据驱动页面，提供响应式的试图组件 
 		2.都有virtual DOM,组件化的开发，通过props参数进行父子之间组件传递数据，都实现了webComponents规范
 		3.数据流动单向，都支持服务器的渲染SSR
 		4.都有支持native的方法，react有React native， vue有wexx
@@ -792,13 +801,13 @@ npm包	vue-event-proxy
 
 二、redux中的reducer（纯函数）
 	Redux数据流里，reduces其实是根据之前的状态（previous state）和现有的action（current action）更新state(这个state可以理解为上下累加器的结果）
-	每次redux reducer被执行时，state和action被传入，这个state根据action进行累加或者是'自身消减'(reduce),进而返回最新的state,这也就是典型reduce函数的用法：state ->  action ->  state
+	每次redux reducer被执行时，state和action被传入，这个state根据action进行累加或者是'自身消减'(reduce),进而返回最新的state,这也就是典型reduce函数的用法：state ->  action ->  state 
 
-三、react的refs
+三、react的refs 
 	refs就想一个逃生窗，允许我们之间访问dom元素或者组件实例，可以向组件添加一个ref属性的值是一个回调函数，
-	它将接受地城dom元素或组件的已挂在实例，作为第一个参数
+	它将接受地城dom元素或组件的已挂在实例，作为第一个参数 
 
-四、react中的keys
+四、react中的keys 
 	帮组我们跟踪哪些项目已更改、添加、从列表中删除，key是独一无二的，可以让我们高效的去定位元素，并且操作它
 
 五、React的生命周期

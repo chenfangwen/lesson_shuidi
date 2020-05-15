@@ -74,8 +74,8 @@ export default {
             console.log(res.data)
             let arr = []
             this.TopList = res.data.list
-            for( let i = 0; i < res.data.list.length; i++){
-                API2.getRecommendListDetail(res.data.list[i].id)
+            for( let i = 0; i < this.TopList.length; i++){
+                API2.getRecommendListDetail(this.TopList[i].id)
                 .then(res2=>{
                     // console.log(res.data,'+++')
                     // if(res.data.playlist){

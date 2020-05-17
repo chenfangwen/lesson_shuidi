@@ -4,7 +4,7 @@
     <div class="content" >
       <van-swipe :autoplay="3000" indicator-color="white">
         <van-swipe-item v-for="(item,index) in banners" :key="index" @click="getbanner(item)">
-          <van-image  :src="item.picUrl" />
+          <van-image  :src="item.imageUrl" />
         </van-swipe-item>
       </van-swipe>
       <div class="recommendList" id="list">
@@ -95,7 +95,7 @@ export default {
   mounted(){
     API.getBanner()
     .then(res=>{
-      console.log(res.data)
+      console.log(res.data.banners,'-----')
       this.banners = res.data.banners
     })
     API.getRecommendList()

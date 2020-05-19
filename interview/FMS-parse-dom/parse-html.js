@@ -5,11 +5,21 @@ let htmlStr = `<html>
  </body>
 </html>
 `;
+// 词法分析：
 // 分词
 // DOM树 节点有 类型
 // { type: element, tagName: 'html', tag: 'startTag'}
 // { type: element, tagName: 'html', tag: 'endTag'}
+// 语法分析：html 配对， js 编程语言（LL, LR）  // 栈来完成
+// 
+// startTag push
+// end  栈顶元素 [ length -  1] 和 自己标签名一样 配对 ? pop
+// CSS 树
+// 
 let currentToken = null;
+let stack = [
+  { type: 'document', children: [] }
+]
 function parse(string) {
   let state = start;
   for (let c of string) {
@@ -62,6 +72,26 @@ function endTagOpen(c) {
     return tagName;
   }
 }
+
+console.log(JSON.stringify(stack, null, 2));
 function emit(token) {
   console.log(token);
+  let top = stack[stack.length - 1];
+  if (token.tag === 'startTag') {
+    let element = {
+      type: 'element',
+      children: [],
+      attribute: [],
+      tagName: token.tagName
+    }
+    // 当前 element 一定是栈顶的 子元素
+    top.children.push(element);
+    stack.push(element)
+  } else if (token.tag === 'endTag') {
+    if (top.tagName === token.tagName) {
+      stack.pop()
+    } else {
+      throw new Error('no match');
+    }
+  }
 }

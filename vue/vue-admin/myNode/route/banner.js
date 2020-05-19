@@ -5,10 +5,10 @@ const mysql = require('../mysql.js')
 router.get('/ad',(req, res) => {
     mysql.query('select * from nideshop_ad', function (error, results, fields) {
         if (error) throw error;
-        // res.send({
-        //     data:results
-        // })
-        res.json(results)
+        res.send({
+            data:results
+        })
+        // res.json(results)
     });
 })
 

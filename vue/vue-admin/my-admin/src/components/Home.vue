@@ -1,6 +1,23 @@
 <template>
   <div class="hello">
-    <h1>首页</h1>
+    <header>
+      <h1>首页</h1>
+    </header>
+    <main>
+      <section class="banner">
+        <el-carousel :interval="4000" height="300px" type="card">
+          <el-carousel-item v-for="(item,index) in banner" :key="index">
+            <img :src="item.image_url" alt="">
+          </el-carousel-item>
+        </el-carousel>
+      </section>
+      <section>
+
+      </section>
+    </main>
+    <footer>
+
+    </footer>
   </div>
 </template>
 
@@ -9,47 +26,36 @@ export default {
   name: 'Home',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      banner:[]
     }
   },
   methods: {
-    async fetchData() {
-      return await new Promise((resolve, reject) => {
-        fetch('http://localhost:3000/banner/ad',{
-          method: 'GET', 
-          headers: {'Content-Type': 'application/json'},
-          mode: 'no-cors'
-        }).then(res => {
+    fetchData() {
+      return new Promise((resolve, reject) => {
+        fetch('http://localhost:3000/banner/ad').then(res => {
           console.log(res)
-          resolve(res)
+          resolve(res.json())
         }).catch(err => {
           reject(err)
         })
       })
     }
   },
-  mounted() {
-    // fetch('http://localhost:3000/banner/ad',{
-    //   method: 'GET', 
-    //   headers: {'Content-Type': 'application/json'},
-    //   mode: 'no-cors'
-    // })
-    // .then(res => {
-    //   console.log(res,'----')
-    //   return res.json()
-    // })
-    // .then(data => {
-    //   console.log(data,'++++')
-    // })
-    let data = this.fetchData();
+  async mounted() {
+    let data = await this.fetchData();
+    this.banner = data.data
     console.log(data)
-    // .catch(function(e) {
-    //   console.log(e);
-    // });
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang="stylus" scoped>
+.hello{
+  .banner{
+    font-size 14px
+  }
+}
+
 </style>

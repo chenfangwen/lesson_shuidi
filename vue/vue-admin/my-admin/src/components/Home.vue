@@ -26,14 +26,13 @@ export default {
   name: 'Home',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App',
       banner:[]
     }
   },
   methods: {
     fetchData() {
       return new Promise((resolve, reject) => {
-        fetch('http://localhost:3000/banner/ad').then(res => {
+        fetch('http://localhost:3000/home/banner').then(res => {
           console.log(res)
           resolve(res.json())
         }).catch(err => {

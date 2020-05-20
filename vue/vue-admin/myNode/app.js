@@ -1,7 +1,6 @@
 const express = require('express');
-const path = require('path')
 const app = express();
-const User = require('./route/banner.js')
+const Home = require('./route/home.js')
 
 //设置允许跨域访问该服务.
 app.all('*', function (req, res, next) {
@@ -19,7 +18,7 @@ app.get('/', (req, res) => {
     res.send({a:'123',b:'534534'})
 })
 
-app.use('/banner', User)
+app.use('/home', Home)
 
 app.listen(3000,() => {
     console.log('listen 3000...')

@@ -1,8 +1,9 @@
 <template>
   <div id="app">
-    <player/>
-    <m_header/>
+    
+    <m-header/>
     <tab/>
+    <player/>
     <keep-alive :include="include" >
       <router-view v-if="$route.meta.keepAlive"/>
     </keep-alive>
@@ -11,7 +12,7 @@
 </template>
 <script>
 import player from './components/player.vue'
-import m_header from './components/m-header.vue'
+import mHeader from './components/m-header.vue'
 import Tab from './components/tab.vue'
 import {mapState,mapActions} from 'vuex'
 export default {
@@ -22,7 +23,7 @@ export default {
   },
   components:{
     player,
-    m_header,
+    mHeader,
     Tab
   },
   computed: {

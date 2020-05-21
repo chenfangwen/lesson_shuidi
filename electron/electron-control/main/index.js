@@ -6,5 +6,5 @@ app.on('ready',() => {
         height: 600,
         webIntegration: true
     })
-    win.loadURL("http://localhost:3000");
+    win.loadURL("http://localhost:8080");
 })  

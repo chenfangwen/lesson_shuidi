@@ -111,7 +111,7 @@ export default {
 <style lang="stylus"  scoped>
 .recommend{
   // background-color: #f2f3f4;
-  z-index: 100;
+  // z-index: 100;
   overflow-y scroll
   -webkit-overflow-scrolling touch
   .red{

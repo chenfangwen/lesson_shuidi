@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>hello world</h1>
+    <input id="sendInput" type="text">
+    <button id="sendBtn">发送</button>
+    <script>
+        // node nativeAPI eventEmitter
+        // 这里代码运行在chorimum 以文件运行 loadFile
+       
+        const events = require('events')
+        const { ipcRenderer } = require('electron')
+        console.log(ipcRenderer instanceof events.EventEmitter,'----') 
+        ipcRenderer.send('greet', {
+            message: "hello main ~"
+        })
+        ipcRenderer.on('greet', (event, args) => {
+            console.log(args)
+        })
+
+        let content  = ''
+        let input = document.getElementById('sendInput')
+        input.addEventListener('input', (e) => {
+            // console.log(e.target.value,'---')
+            content = e.target.value
+        })
+        let btn = document.getElementById('sendBtn')
+        btn.addEventListener('click', () => {
+            // console.log('1','----')
+            console.log(content)
+            ipcRenderer.send('greet', {
+                message: content
+            })
+        })
+    </script>
+</body>
+</html>

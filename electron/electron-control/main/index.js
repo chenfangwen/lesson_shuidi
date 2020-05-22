@@ -1,10 +1,15 @@
 let { app, BrowserWindow } = require('electron');
+const handleIpc = require('./ipc')
 let win
 app.on('ready',() => {
     win = new BrowserWindow({
-        width: 300,
+        width: 900,
         height: 600,
-        webIntegration: true
+        webIntegration: true,
+        webPreferences: {
+            nodeIntegration: true
+        }
     })
-    win.loadURL("http://localhost:8080");
-})  
+    handleIpc()
+    win.loadURL("http://localhost:3000");
+})

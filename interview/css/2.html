@@ -36,6 +36,13 @@
       .style
       .setProperty('--base-size', 20)
   }, 1000)
+  setTimeout(() => {
+  document.body.style.background = "red"
+  setTimeout(() => {
+    document.body.style.background = "blue"
+  })
+})
+
   </script>
 </body>
 </html>

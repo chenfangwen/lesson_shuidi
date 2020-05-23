@@ -1,0 +1,15 @@
+{
+  "name": "singnal",
+  "version": "1.0.0",
+  "description": "- 如果微博有新的头条， 或评论 ， 你怎么得到\r  推送功能    websocket",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ws": "^7.3.0"
+  }
+}

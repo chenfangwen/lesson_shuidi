@@ -157,6 +157,9 @@ function emit(token) {
     if (top.tagName === token.tagName) {
       stack.pop();
       currentTextNode = null;
+      if(top.tagName === "style") {
+        
+      }
     } else {
       throw new Error('no match');
     }

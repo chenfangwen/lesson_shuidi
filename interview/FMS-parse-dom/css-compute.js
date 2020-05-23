@@ -158,12 +158,12 @@ function emit(token) {
       stack.pop();
       currentTextNode = null;
       if(top.tagName === "style") {
-        
+
       }
     } else {
       throw new Error('no match');
     }
-  } else if (token.type === 'text') {
+  } else if (token.type === 'text') { 
     if (currentTextNode === null) {
       currentTextNode = {
         type: 'text',

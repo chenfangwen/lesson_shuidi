@@ -10,19 +10,19 @@
   <img src="" alt="">
   <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script>
-    function onRes(res) {
+    // function onRes(res) {
 
-    }
+    // }
     // 1：前端定义 方法 function onRes() {}
     // 2：script 发送请求给后端 JSONP：callback=方法名 保证 方法名 唯一
     // 3：后端返回: `onRes({code: 0, data: []})`
     // 使用的是 script 浏览器 就会把 字符串当做 JS 执行
-    onRes({code: 0, data: []})
+    // onRes({code: 0, data: []})
     // https://c.y.qq.com/v8/fcg-bin/v8.fcg?callback=jQuery35108169313623243317_1590235851294
-    $.ajax('https://c.y.qq.com/v8/fcg-bin/v8.fcg', {
-      dataType: 'jsonp',
-      success: () => {}
-    })
+    // $.ajax('https://c.y.qq.com/v8/fcg-bin/v8.fcg', {
+    //   dataType: 'jsonp',
+    //   success: () => {}
+    // })
     function jsonp(url, opstions) {
       return new Promise((resolve, reject) => {
         let scriptNode = null, methodName = null, timeout = null;
@@ -38,11 +38,13 @@
         // const image = new Image()
         // image.src =  ''
         scriptNode = document.createElement('script');
-        scriptNode.src  = `url?callback=${methodName}`;
+        scriptNode.src  = `${url}?callback=${methodName}`;
         document.body.appendChild(scriptNode);
+        // 超时处理
         timeout = setTimeout(() => {
           reject('net Err, timeout');
         }, opstions.timeout)
+        //
         scriptNode.onerror = function(err) {
           reject(err);
           delete window[methodName];
@@ -51,14 +53,14 @@
         }
       })
     }
-    jsonp('url', {
+    jsonp('http://localhost:3000/api', {
       timeout: 3000
     })
     .then(res => {
-
+      console.log(res)
     })
     .catch(err => {
-
+      console.log(err)
     })
   </script>
   <!-- <script src="api.com?calllback"></script> -->

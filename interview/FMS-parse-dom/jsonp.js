@@ -7,7 +7,10 @@ http.createServer((req, res) => {
     console.log(cb)
     if(req.url.includes('/api')) {
         let data = ['js','html'];
-        res.end(`${cb}(${JSON.stringify(data)})`)
+        res.end(`${cb}({
+            'code': 200,
+            'data':${JSON.stringify(data)}
+        })`)
     }
 })
 .listen(3000, () => {

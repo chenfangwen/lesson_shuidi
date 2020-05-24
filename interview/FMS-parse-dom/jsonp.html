@@ -42,7 +42,7 @@
         document.body.appendChild(scriptNode);
         timeout = setTimeout(() => {
           reject('net Err, timeout');
-        }, 3000)
+        }, opstions.timeout)
         scriptNode.onerror = function(err) {
           reject(err);
           delete window[methodName];

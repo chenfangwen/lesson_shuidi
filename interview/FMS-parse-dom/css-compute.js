@@ -13,7 +13,7 @@ let htmlStr = `<html>
       <div id="myid">
         <span class="text" ></span>
       </div>
-    </div>
+    </div>ma
  </body>
 </html>
 `;

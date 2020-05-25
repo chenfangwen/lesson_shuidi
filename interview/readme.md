@@ -1233,6 +1233,24 @@ must-revalidate 告诉客户端必须向服务器发起再次验证，即使本�
 proxy-revalidate 告诉共享缓存必须向源服务器发起再验证，即使共享缓存还未过期
 immutable 指明文档是不可更改的
 
+十六、 CORS
+CORS 是目前主流的跨域解决方案，跨域资源共享(CORS) 是一种机制，它使用额外的 HTTP 头来告诉浏览器，让运行在一个 origin (domain) 上的Web 应用被准许访问来自不同源服务器上的指定的资源。
+CORS 需要浏览器和后端同时支持
+服务端设置 Access-Control-Allow-Origin 就可以开启 CORS
+
+简单请求
+GET、HEAD、POST 请求
+Content-Type 为：text/plain、multipart/form-data、application/x-www-form-urlencoded(form 标签可以请求的类型)
+复杂请求
+简单请求之外的请求
+复杂请求跨域在正式通信前会先发送一个 OPTIONS 请求 --- "预检"请求，确认后端是否允许跨域请求
+Access-Control-Allow-Origin 设置哪个源可以访问我
+Access-Control-Allow-Headers 允许携带哪个头访问我
+Access-Control-Allow-Methods 允许哪个方法访问我
+Access-Control-Allow-Credentials 允许携带 cookie
+Access-Control-Max-Age 预检的存活时间
+Access-Control-Expose-Headers 允许返回的头，把响应头暴露出去给前端
+
 						设计模式
 
 一、观察者模式：https://juejin.im/post/5a14e9edf265da4312808d86   https://juejin.im/post/5af05d406fb9a07a9e4d2799
@@ -1568,7 +1586,7 @@ es6和js的关系
 v-modle 怎么实现
 线程池链接的优势
 resetful和graphql比较
-堆栈和队列的实现
+堆栈和队列的实现	数组实现： 堆栈数组尾部插入， 队列数组头部插入 
 redux流程
 jquery 和 react 哪个操作dom快
 koa和express区别

@@ -17,7 +17,7 @@ const QUERY_TODO = gql`
   }
 ` 
 
-
+// console.log(QUERY_TODO)
 const TodoList = () => (
   <Query
     query={QUERY_TODO}
@@ -29,7 +29,7 @@ const TodoList = () => (
           <ul>
               {
                 data.TodoList.map(todo => 
-                  <li>{todo.id}: {todo.content}</li>
+                  <li key={todo.content}>{todo.id}: {todo.content}</li>
                 )
               }
           </ul>

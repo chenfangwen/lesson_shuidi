@@ -8,7 +8,8 @@ const typeDefs = gql`
     type TodoItem{
         id: ID
         content: String
-        checked: Boolean
+        checked: Boolean,
+        name: String
     }
     type Query{
         TodoList: [TodoItem!]

@@ -51,7 +51,7 @@ function computerCss(element) {
   for (let rule of rules) {
     // if (!rule) return;
     // 从后往前
-    console.log(rule.selectors[0]);
+    // console.log(rule.selectors[0]);
     let selectorParts = rule.selectors[0].split(' ').reverse();
     if (!match(element, selectorParts[0])) {
       continue;
@@ -198,7 +198,7 @@ function endTagOpen(c) {
   }
 }
 
-console.log(JSON.stringify(stack, null, 2));
+// console.log(JSON.stringify(stack, null, 2));
 function emit(token) {
   console.log(token);
   let top = stack[stack.length - 1];

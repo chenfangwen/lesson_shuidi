@@ -29,24 +29,24 @@ console.log(a,b)
 
 //手动实现深拷贝
 function deepCopy(obj) {
-    if (!obj && typeof obj !== 'object') {
-      throw new Error('error arguments');
-    }
-    // const targetObj = obj.constructor === Array ? [] : {};
-    const targetObj = Array.isArray(obj) ? [] : {};
-    for (let key in obj) {
-      //只对对象自有属性进行拷贝
-      if (obj.hasOwnProperty(key)) {
-        if (obj[key] && typeof obj[key] === 'object') {
-          targetObj[key] = deepCopy(obj[key]);
-        } else {
-          targetObj[key] = obj[key];
-        }
+  if (!obj && typeof obj !== 'object') {
+    throw new Error('error arguments');
+  }
+  // const targetObj = obj.constructor === Array ? [] : {};
+  const targetObj = Array.isArray(obj) ? [] : {};
+  for (let key in obj) {
+    //只对对象自有属性进行拷贝
+    if (obj.hasOwnProperty(key)) {
+      if (obj[key] && typeof obj[key] === 'object') {
+        targetObj[key] = deepCopy(obj[key]);
+      } else {
+        targetObj[key] = obj[key];
       }
     }
-    return targetObj;
   }
-  
+  return targetObj;
+}
+
 
 let e = {hobbys:{food:{apple:'sdasd'},study:{js:'dasdf'}}}
 let f = deepCopy(e)

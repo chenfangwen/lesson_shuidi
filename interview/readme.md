@@ -1251,6 +1251,18 @@ Access-Control-Allow-Credentials 允许携带 cookie
 Access-Control-Max-Age 预检的存活时间
 Access-Control-Expose-Headers 允许返回的头，把响应头暴露出去给前端
 
+十七、 浏览器多进程的优势：
+
+
+1.避免单个page crash影响整个浏览器
+
+2.避免第三方插件crash影响整个浏览器
+
+3.多进程充分利用多核优势
+
+4.方便使用沙盒模型隔离插件等进程，提高浏览器稳定性
+
+
 						设计模式
 
 一、观察者模式：https://juejin.im/post/5a14e9edf265da4312808d86   https://juejin.im/post/5af05d406fb9a07a9e4d2799
@@ -1427,13 +1439,24 @@ function throttle (func, wait) {
 
 五、实现一个函数clone，可以对JavaScript中的5种主要的数据类型（包括Number、String、Object、Array、Boolean）进行值复制
     
-    Object.prototype.clone = function() {
-      var newObject = this.constructor === Array ? [] : {}  //对象的深拷贝 获取对应的构造函数 [] 或者 {}
-      for (let e in this) { //遍历对象的属性 in  this[e]
-        newObject[e] = typeof this[e] === 'object' ? this[e].clone() : this[e]  //对象中的属性如果还是对象 那就继续递归 否则就返回基本的数据类型
+Object.prototype.clone = function deepCopy(obj) {
+  if (!obj && typeof obj !== 'object') {
+    throw new Error('error arguments');
+  }
+  // const targetObj = obj.constructor === Array ? [] : {};
+  const targetObj = Array.isArray(obj) ? [] : {};
+  for (let key in obj) {
+    //只对对象自有属性进行拷贝
+    if (obj.hasOwnProperty(key)) {
+      if (obj[key] && typeof obj[key] === 'object') {
+        targetObj[key] = deepCopy(obj[key]);
+      } else {
+        targetObj[key] = obj[key];
       }
-      return newObject
     }
+  }
+  return targetObj;
+}
  
 六、实现一个简单的Promise https://juejin.im/post/5b2f02cd5188252b937548ab
 class Promise {

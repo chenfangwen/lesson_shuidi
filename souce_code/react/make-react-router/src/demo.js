@@ -1,10 +1,13 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+// import {
+//   BrowserRouter as Router,
+//   Switch,
+//   Route,
+//   Link
+// } from "react-router-dom";
+import Router from './BrowseRouter.jsx'
+import Route from './Route.jsx'
+import Link from './Link.jsx'
 const isLogin = true
 export default function App() {
   return (
@@ -26,7 +29,7 @@ export default function App() {
 
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
-        <Switch>
+        {/* <Switch> */}
           <Route path="/about">
             <About />
           </Route>
@@ -39,7 +42,7 @@ export default function App() {
           <Route path="/">
             <Home />
           </Route>
-        </Switch>
+        {/* </Switch> */}
       </div>
     </Router>
   );

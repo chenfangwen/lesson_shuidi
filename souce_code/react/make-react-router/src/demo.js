@@ -21,6 +21,9 @@ export default function App() {
             <li>
               <Link to="/about">About</Link>
             </li>
+            <li>
+              <Link to="/my">My</Link>
+            </li>
             {isLogin&&<li>
               <Link to="/users">Users</Link>
             </li>}

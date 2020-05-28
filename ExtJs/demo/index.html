@@ -5,7 +5,7 @@
       <script src="https://cdn.bootcss.com/extjs/6.0.0/ext-all.js"></script>
       <script type="text/javascript">
         Ext.onReady(function() {
-        Ext.create('Ext.Panel', {
+            Ext.create('Ext.Panel', {
             renderTo: 'helloWorldPanel',
             height: 200,
             width: 600,
@@ -13,7 +13,7 @@
             html: '<h1>First Ext JS Hello World Program</h1>'
             });
         });
-        Ext.define(studentApp.view.StudentDeatilsGrid, {
+        Ext.define('a', {
             extend : 'Ext.grid.GridPanel',
             id : 'studentsDetailsGrid',
             store : 'StudentsDetailsGridStore',
@@ -29,7 +29,8 @@
                 text : 'Department',
                 dataIndex : 'department'
             }]
-         });
+        });
+        // console.log(Ext.a)
       </script>
    </head>
    <body>

@@ -30,7 +30,8 @@
 var value = 1
 Object.defineProperty(globalThis, 'a', {
     get() {
-        return value++;
+        console.log(this.value)
+        return this.value++;
     }
 });
     

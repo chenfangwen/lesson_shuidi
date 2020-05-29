@@ -620,7 +620,7 @@ content 清除浮动，并显示在中间。
 
 因此，ECMAScript和JavaScript的关系是，前者是后者的规格，后者是前者的一种实现（另外的ECMAScript方言还有Jscript和ActionScript）。日常场合，这两个词是可以互换的。
 
-三十、 区分Array和object
+三十、 区分Array和object (区分对象和数组)
 1. 利用toString方法   Object.prototype.toString.call(arr)
 2. 通过isArray： Array.isArray(obj); 
 3. 通过instanceof运算符来判断， obj instanceof Array
@@ -630,7 +630,6 @@ content 清除浮动，并显示在中间。
 
 三十一、 slice和splice区别
 - slice(start,end)：方法可从已有数组中返回选定的元素，返回一个新数组，包含从start到end（不包含该元素）的数组元素。
-
 注意：该方法不会改变原数组，而是返回一个子数组，如果想删除数组中的一段元素，应该使用Array.splice()方法。
 
 start参数：必须，规定从何处开始选取，如果为负数，规定从数组尾部算起的位置，-1是指最后一个元素。

@@ -7,18 +7,17 @@
         this.onRejected = []
         let self = this
         function resolve (value) {
-            //console.log(arg); 
             self.status="fullfield";
             self.value = value
-            console.log('resolve',value)
-            for (let fn of self.onFullfield){
-                fn(arg)
+            // console.log('resolve',value)
+            for (let fn of self.onFullfield){     //异步在这里处理then回调
+                fn(value)
             }
         }
         function reject(error) { 
             self.status="rejected";
             self.reason = error
-            console.log('reject',error)
+            // console.log('reject',error)
             for (let fn of self.onRejected){
                 fn(error)
             }

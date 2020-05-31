@@ -1,84 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
 <body>
-    <div id="app"></div>
-  <script>
-  // 观察者模式
-  function defineReactive(target, key, value) {
-    observer(value);
-    Object.defineProperty(target, key, {
-      get() {
-        // updateView();
-        return value;
-      },
-      set(newValue) {
-        observer(value); // 
-        if (newValue !== value) {
-          value = newValue
-          updateView(); // 更新视图
-        }
-      }
-    })
-  }
-
-
-  function updateView() {
-      document.getElementById('app').innerHTML = data.nums
-    console.log('试图更新');
-  }
-
-
-  // MVVM  defineProperty  get set 能力  元编程
-  function observer(target) {
-    // 
-    if (typeof target  !== 'object' || target === null) {
-      return target;
-    }
-    // push -> 改写原型也可以
-    // if (target.constructor == )
-    if (Array.isArray(target)) { //数组
-      target.__proto__ = arrProto;
-    } 
-
-
-    for (let key in target) {
-      defineReactive(target, key, target[key])
-    }
-  }
-  const oldArrayProperty = Array.prototype; // 
-  // 截胡
-  const arrProto = Object.create(oldArrayProperty);
-  ["push", "pop", "shift", "unshift", "spluce"].forEach(methodName => {
-    arrProto[methodName] = function() {
-      oldArrayProperty[methodName].call(this, ...arguments);
-      updateView();
-    }
-  })
-
-
-  const data = {
-    name: '刘子民',
-    info: {
-      address: '北京'
-    },
-    nums: [10, 20, 30]
-  }
-  observer(data);
-  // data.name = '潘帅'
-  // data.info.address = '深圳';
-  // data.nums[0] = 11; //不需要响应
-  // vue 框架满足开发者的需求
-  document.getElementById('app').innerHTML = data.nums
-  setTimeout(() => {
-    data.nums.push(40); // 请支持
-    console.log(data.nums)
-  }, 1000);
-
-  </script>
+    <div id="root">
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.min.js"></script>
+    <script>
+        new Vue({
+            el: '#root',
+            data() {
+                return {
+                    arr: [1, 2, 3]
+                }
+            },
+            template:`<span v-for="(item, index) in arr">&nbsp;&nbsp;{{item}}&nbsp;&nbsp;</span>`
+        })
+    </script>
 </body>
 </html>

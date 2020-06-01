@@ -2,6 +2,10 @@ const express = require('express');
 const app = express();
 const Home = require('./route/home.js')
 
+//获取POST数据:需要body-parser中间件
+var bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: true }));
+
 //设置允许跨域访问该服务.
 app.all('*', function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*'); //设置哪个源可以访问我

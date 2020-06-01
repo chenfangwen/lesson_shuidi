@@ -27,15 +27,15 @@
 // });
 
 // 4.
-var value = 1
 Object.defineProperty(globalThis, 'a', {
     get() {
-        console.log(this.value)
-        return this.value++;
+        if(this.value){
+            return ++this.value;
+        } else {
+            return this.value = 1
+        }
     }
 });
-    
-
 
 if(a == 1 && a == 2 && a == 3) {
     console.log(1)

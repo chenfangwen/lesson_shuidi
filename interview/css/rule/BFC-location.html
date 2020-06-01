@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .aside {
+      width: 100px;
+      height: 150px;
+      float: left;  /*BFC*/
+      background-color: bisque;
+    }
+    .main {
+      border: 1px solid #000;
+      height: 20px;
+      overflow: hidden; /*新的BFC BFCY与BFC互不影响*/
+    }
+    .body {
+        border: 1px solid red;
+        overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+    <div class="body">
+        <div class="aside">aside</div>
+        <div class="main">
+            <div>
+                main main
+            </div> 
+        </div>
+    </div>
+</body>
+</html>

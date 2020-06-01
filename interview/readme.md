@@ -1441,7 +1441,6 @@ Function.prototype.bind = function (obj, arg) {
 三、函数节流（throttle）
 function throttle (func, wait) {
 	var timeout;
-	var previous = 0;
 	return function () {
 		context = this;
 		args = arguments;
@@ -1457,15 +1456,15 @@ function throttle (func, wait) {
 
 四、函数防抖（dobounce） 只输出最后一次
  function debounce (func, wait) {
-         var timeout;
-         return function() {
-             var context = this;
-             var args = arguments;
-             clearTimeout(timeout);
-             timeout = setTimeout(() => {
-                 func.apply(context,args)
-             }, wait);
-         }
+	var timeout;
+	return function() {
+		var context = this;
+		var args = arguments;
+		clearTimeout(timeout);
+		timeout = setTimeout(() => {
+			func.apply(context,args)
+		}, wait);
+	}
 }
 
 五、实现一个函数clone，可以对JavaScript中的5种主要的数据类型（包括Number、String、Object、Array、Boolean）进行值复制

@@ -6,5 +6,6 @@ type Hello {
 
 type Query {
   hellos: [Hello!],
+  hello(id: ID!): Hello,
   githubURL: String!
 }

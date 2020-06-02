@@ -1,0 +1,10 @@
+type Hello {
+  id: ID!
+  name: String!
+  job: String
+}
+
+type Query {
+  hellos: [Hello!],
+  githubURL: String!
+}

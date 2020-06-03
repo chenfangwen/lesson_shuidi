@@ -666,6 +666,17 @@ function shuffleArray(array) {
         [array[i], array[j]] = [array[j], array[i]];
     }
 }
+三十三、 千分位函数
+function fprice(s,n){   
+   s = parseFloat((s + "").replace(/[^\d\.-]/g, "")).toFixed(n) + "";    //n为小数点后保留小数位
+   var l = s.split(".")[0].split("").reverse(),   
+   r = s.split(".")[1];   
+   t = "";   
+   for(i = 0; i < l.length; i ++ ){   
+      t += l[i] + ((i + 1) % 3 == 0 && (i + 1) != l.length ? "," : "");   
+   }   
+   return t.split("").reverse().join("") + "." + r;   
+}
 
 								node面试
 一、koa中间件执行机制

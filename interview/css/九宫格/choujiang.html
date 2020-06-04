@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .float {
+            width: 292px;
+            height: 292px;
+        }
+
+        .float>li {
+            float: left;
+            margin-right: -4px;
+            margin-bottom: -4px;
+            box-sizing: border-box;
+            height: 100px;
+            width: 100px;
+            line-height: 100px;
+            text-align: center;
+            list-style: none;
+            border: 4px solid #f2f2f2;
+        }
+
+        .float>li:hover {
+            border: 4px solid red;
+            position: relative;
+        }
+
+        .now {
+            /* border: 4px solid red; */
+            background-color: red;
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="float">
+        <li id="1">1</li>
+        <li id="2">2</li>
+        <li id="3">3</li>
+        <li id="8">8</li>
+        <li id="9">开始</li>
+        <li id="4">4</li>
+        <li id="7">7</li>
+        <li id="6">6</li>
+        <li id="5">5</li>
+    </div>
+    <script>
+        let tag = true;
+        function begin() {
+            tag = false;
+            let time = Math.floor(Math.random() * 3 + 8)
+            let i = Math.floor(Math.random() * 8 + 1);
+            let id = setInterval(() => {
+                if (i > 1) {
+                    document.getElementById(i - 1).classList.remove('now')
+                }
+                if (i > 8) {
+                    i = 1
+                }
+                document.getElementById(i).classList.add('now')
+                i++
+            }, 500);
+            setTimeout(() => {
+                tag = true
+                clearInterval(id)
+            }, 1000 * time)
+        }
+        async function again() {
+            if(tag) {
+                begin()
+                let lis = document.querySelectorAll('li')
+                lis.forEach(item => {
+                    item.classList.remove('now')
+                })
+            }
+        }
+        document.getElementById('9').addEventListener('click',again)
+    </script>
+</body>
+
+</html>

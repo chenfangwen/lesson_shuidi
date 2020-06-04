@@ -3,10 +3,6 @@ import Context from './Context.jsx';
 const { Consumer } = Context;
 
 class Link extends React.Component {
-    handleClick = (e) => {
-        e.preventDefault();
-
-    }
     render() {
         return (
             <Consumer>

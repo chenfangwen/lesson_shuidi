@@ -30,3 +30,8 @@ relative
 fixed: 默认相对于viewport 创建的包含快来都定位，
 除非他的祖先元素设置了（4条属性），该祖先元素表现为包含块
 absolute: 相对于她的包含块确定盒子的定位和大小
+
+
+行内元素：a、b、span、img、input、strong、select、label、em、button、textarea
+
+块级元素：div、ul、li、dl、dt、dd、p、h1-h6、blockquote

@@ -2,6 +2,7 @@ const WebpackSystemRegister = require('webpack-system-register')
 const path = require('path');
 module.exports = {
   entry: {
+    // Goods: path.join(__dirname, './Goods.jsx'),
     Pay: path.join(__dirname, './Pay.jsx')
   },
   mode: 'development',
@@ -17,6 +18,8 @@ module.exports = {
     ],
   },
   plugins: [
-    new WebpackSystemRegister({})
+    new WebpackSystemRegister({
+
+    })
   ]
 };

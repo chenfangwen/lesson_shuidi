@@ -99,20 +99,20 @@ System.register([], function($__export) {
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./Pay.jsx");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./Goods.jsx");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./Pay.jsx":
-/*!*****************!*\
-  !*** ./Pay.jsx ***!
-  \*****************/
+/***/ "./Goods.jsx":
+/*!*******************!*\
+  !*** ./Goods.jsx ***!
+  \*******************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var React__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! React */ \"./node_modules/React/index.js\");\n/* harmony import */ var React__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(React__WEBPACK_IMPORTED_MODULE_0__);\n\n\nfunction Pay() {\n  return /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"h2\", null, \" Pay \");\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Pay);\n$__register__main__exports(__webpack_exports__);\n\n//# sourceURL=webpack:///./Pay.jsx?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var React__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! React */ \"./node_modules/React/index.js\");\n/* harmony import */ var React__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(React__WEBPACK_IMPORTED_MODULE_0__);\n\n\nfunction Goods() {\n  return /*#__PURE__*/React__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"h2\", null, \" goods \");\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Goods);\n$__register__main__exports(__webpack_exports__);\n\n//# sourceURL=webpack:///./Goods.jsx?");
 
 /***/ }),
 

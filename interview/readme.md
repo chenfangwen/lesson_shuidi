@@ -4,6 +4,19 @@
 		
 					css面试	
 
+行内元素：a、b、span、img、input、strong、select、label、em、textarea
+
+可变元素： 
+<button>	按钮
+<del>	定义文档中已被删除的文本
+<iframe>	创建包含另外一个文档的内联框架（即行内框架）
+<ins>	标签定义已经被插入文档中的文本
+<map>	客户端图像映射（即热区）
+<object>	object对象
+<script>	客户端脚本
+
+块级元素：div、ul、li、dl、dt、dd、p、h1-h6、blockquote
+
 一、css盒模型
 	css中的盒子模型包括IE盒子模型和标准的W3C盒子模型。
 	border-sizing: border-box, inherit, content-box

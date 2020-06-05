@@ -10,26 +10,24 @@
   <script>
   // 观察者模式
   function defineReactive(target, key, value) {
-    observer(value);
-    Object.defineProperty(target, key, {
-      get() {
-        // updateView();
-        return value;
-      },
-      set(newValue) {
-        observer(value); // 
-        if (newValue !== value) {
-          value = newValue
-          updateView(); // 更新视图
-        }
-      }
-    })
+    // observer(value);
+    // Object.defineProperty(target, key, {
+    //   get() {
+    //     return value;
+    //   },
+    //   set(newValue) {
+    //     if (newValue !== value) {
+    //       value = newValue
+    //     }
+    //   }
+    // })
   }
 
 
   function updateView() {
-      document.getElementById('app').innerHTML = data.nums
-    console.log('试图更新');
+    console.log(data)
+    document.getElementById('app').innerHTML = data.name + data.nums
+    // console.log('试图更新');
   }
 
 
@@ -44,10 +42,15 @@
     if (Array.isArray(target)) { //数组
       target.__proto__ = arrProto;
     } 
-
-
     for (let key in target) {
-      defineReactive(target, key, target[key])
+      if(typeof(target[key]) == 'object'){
+        // defineReactive(target, key, target[key])
+        observer(target[key])
+      } 
+      // else {
+      //   // observer(target[key])
+      //   defineReactive(target, key, target[key])
+      // }
     }
   }
   const oldArrayProperty = Array.prototype; // 
@@ -73,12 +76,12 @@
   // data.info.address = '深圳';
   // data.nums[0] = 11; //不需要响应
   // vue 框架满足开发者的需求
-  document.getElementById('app').innerHTML = data.nums
-  setTimeout(() => {
-    data.nums.push(40); // 请支持
-    console.log(data.nums)
-  }, 1000);
- 
+  document.getElementById('app').innerHTML =  data.name + data.nums
+  document.getElementById('app').addEventListener('click',() => {
+    // data.nums[1000] = 11; //不需要响应
+    data.nums.push(40); 
+    data.name = '陈方闻'
+  })
   </script>
 </body>
 </html>

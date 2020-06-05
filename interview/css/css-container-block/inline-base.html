@@ -4,8 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .relative{
+            position: relative;
+            width: 500px;
+            height: 500px;
+            background-color: red;
+            animation: big ease-in-out 2s;
+            border: 1px solid black;
+            margin: 20px;
+        }
+        .normal{
+            width: 450px;
+            height: 450px;
+            background-color:green;
+            animation: big ease-in-out 2s;
+            transform: scale(1);
+        }
+        .absolute{
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            animation: big ease-in-out 2s;
+            background-color: blue;
+            left: 0;
+            top: 0;
+        }
+        @keyframes big {
+            0%{
+                /* transform: scale(0) */
+                transform: translateY(-50px);
+            }
+            30%{
+                transform: translateY(0);
+                /* transform: scale(1.25); */
+            }
+            60%{
+                transform: translateY(-5px);
+                /* transform: scale(1); */
+            }
+            100%{
+                transform: translateY(0);
+                /* transform: scale(1.25); */
+            }
+        }
+    </style>
 </head>
 <body>
-    
+    <div class="relative">
+        relative
+        <div class="normal">
+            <div class="absolute">
+            </div>
+        </div>
+        
+    </div>
 </body>
 </html>

@@ -4,13 +4,55 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    .container{
+      position: absolute;
+      width: 300px;
+      height: 300px;
+	    top: 50%;
+      margin-top: -150px;
+      left: 50%;
+      margin-left: -150px;
+      /* background-color: red; */
+    }
+    #qrcode{
+      position: absolute;
+      width: 300px;
+      height: 300px;
+    }
+    #btn{
+      position: absolute;
+      height: 30px;
+      width: 70px;
+      top: 80px;
+      left: 50%;
+      margin-left: -35px;
+      /* background-color: aqua; */
+      /* border: 0px; */
+    }
+  </style>
 </head>
 <body>
-  <img  id="qrcode">
+  <div class="container">
+    <img  id="qrcode">
+  </div>
+  <button id="btn">扫码</button>
+
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script>
   let host = 'http://localhost:8888';
-  let qrcodeId;
+  let qrcodeId = '5eda03580f5ff9224cfee8d8';
+  let interval = null;
+  function checkQRCode() {
+    let url = `${host}/qrcode/check?qrcodeId=${qrcodeId}`;
+    return axios.get(url)
+      .then(res => {
+        return res.data
+      })
+      .catch(err => {
+        return err
+      })
+  }
   function geneQRCode() {
     let url = `${host}/qrcode/gene`;
     return axios.get(url)
@@ -21,21 +63,51 @@
         return err
       })
   }
-  function setImg() {
-    geneQRCode()
+  geneQRCode()
     .then(data => {
       // console.log(data);
       qrcodeId = data.data.qrcodeId;
+      console.log(qrcodeId)
       const oImg = document.getElementById('qrcode');
-      oImg.onload = function() {
-        // 等待用户来扫一扫
-      }
       oImg.src = data.data.qrcodeUrl
-
     })
-  }
-  setImg()
-  
+  // 手里有qrcodeId, 轮询 主动拉  去检查用户扫了码？ 授权了没， api
+  // 页面上动态变化
+  interval = setInterval(() => {
+    checkQRCode()
+      .then(data => {
+        console.log(data);
+        const qrcodeData = data.data;
+        if (qrcodeData.success) {
+          console.log('登录授权成功, 跳转中....');
+          clearInterval(interval)
+          localStorage.setItem('token', qrcodeData.userInfo.token);
+          const oImg = document.getElementById('qrcode');
+          oImg.src = qrcodeData.userInfo.avatar
+          return;
+        }
+        if (qrcodeData.scanned) {
+          console.log('扫码中, 头像， 用户名显示一下')
+
+        }
+        if (qrcodeData.expired) {
+          clearInterval(interval)
+          console.log('已过期， 请刷新');
+        }
+
+
+      })
+  }, 3000)
+
+  document.getElementById('btn').addEventListener('click',() => {
+    let url = `${host}/qrcode/confirm`
+    let params = {
+      qrcodeId
+    }
+    axios.post(url,params, {headers: {'authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJZCI6IjVlZDlmZTM1OWY2YjIyMmEzODRhOGM3ZCIsInVzZXJuYW1lIjoi6ZmI5pa56Ze7IiwiYXZhdGFyIjoiaHR0cHM6Ly91c2VyY29udGVudHMuYXV0aGluZy5jbi9hdXRoaW5nLWF2YXRhci5wbmcifSwiaWF0IjoxNTkxMzQ5Mjg0LCJleHAiOjE1OTI2NDUyODR9.ILEq0_WMYlWO5wifaevQIPwL1xbuKAly454D6r5rQ5s'}})
+    const oImg = document.getElementById('qrcode');
+    oImg.src = './loading.svg'
+  })
   </script>
 </body>
 </html>

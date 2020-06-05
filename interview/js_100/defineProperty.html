@@ -10,26 +10,26 @@
   <script>
   // 观察者模式
   function defineReactive(target, key, value) {
-    // observer(value);
-    // Object.defineProperty(target, key, {
-    //   get() {
-    //     return value;
-    //   },
-    //   set(newValue) {
-    //     if (newValue !== value) {
-    //       value = newValue
-    //     }
-    //   }
-    // })
+    observer(value);
+    Object.defineProperty(target, key, {
+      get() {
+        return value;
+      },
+      set(newValue) {
+        if (newValue !== value) {
+          value = newValue
+          observer(value);
+          updateView()
+        }
+      }
+    })
   }
-
 
   function updateView() {
     console.log(data)
     document.getElementById('app').innerHTML = data.name + data.nums
     // console.log('试图更新');
   }
-
 
   // MVVM  defineProperty  get set 能力  元编程
   function observer(target) {
@@ -43,14 +43,8 @@
       target.__proto__ = arrProto;
     } 
     for (let key in target) {
-      if(typeof(target[key]) == 'object'){
-        // defineReactive(target, key, target[key])
+        defineReactive(target, key, target[key])
         observer(target[key])
-      } 
-      // else {
-      //   // observer(target[key])
-      //   defineReactive(target, key, target[key])
-      // }
     }
   }
   const oldArrayProperty = Array.prototype; // 

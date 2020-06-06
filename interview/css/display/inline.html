@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .inline{
+            /* display: inline; */
+            background-color: red;
+            width: 20px;
+            text-align: center;
+            /* margin-right: -5px; */
+        }
+        .box1{
+            display: flex;
+            border: 1px solid black;
+            height: 120px;
+            flex-direction:row; /*row-reverse  column  column-reverse*/
+            /* flex-direction:row-reverse ;  */
+            flex-wrap: wrap; /* nowrap| wrap | wrap-reverse;*/
+            justify-content: space-between;/*flex-start| flex-end | center | space-between |space-around;*/
+            align-items:flex-start;/* flex-start| flex-end | center |baseline | stretch;*/
+            align-content:space-between ;/*flex-start| flex-end | center | spance-between | space-around |stretch;*/
+            /* flex-grow: ; */
+        }
+        .box1>div{
+            width: 400px;
+            height: 50px;
+            background-color: red;
+            margin: 0 20px;
+        }
+    </style>
+</head>
+<body>
+    <span class="inline">1</span><span class="inline">2</span>
+    <div>
+        3
+    </div>
+    <div class="box1">
+        <div class="">1</div>
+        <div class="">2</div>
+        <div class="">3</div>
+        <div class="">4</div>
+    </div>
+</body>
+</html>

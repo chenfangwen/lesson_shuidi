@@ -1,3 +1,5 @@
+
+
 function fprice(s,n){   
     s = parseFloat((s + "").replace(/[^\d\.-]/g, "")).toFixed(n) + "";    //n为小数点后保留小数位
     var l = s.split(".")[0].split("").reverse(),   
@@ -24,3 +26,19 @@ function fprice(s,n){
 
  console.log(fprice(1221312341234.213412341234,3))
  console.log(format(1221312341234))
+
+
+
+ function format2 ( num ) {
+    num = num + '';
+    var str = '' ;
+    for(var i = num.length-1,j = 1; i >= 0; j++,i--) {
+        if( j % 3 == 0 && i!=0) {
+            str += num[i] + ',';
+        }else{
+            str += num[i]
+        }
+    }
+    return str.split('').reverse().join('') //join分隔符''
+ }
+ console.log(format2(1234123423412341234))

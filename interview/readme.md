@@ -5,7 +5,8 @@
 					css面试	
 
 行内元素：a、b、span、img、input、strong、select、label、em、textarea
-
+宽度看出几个属性的优先级关系：
+max-width/min-width > flex-basis > width > box
 可变元素： 
 <button>	按钮
 <del>	定义文档中已被删除的文本

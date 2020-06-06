@@ -17,7 +17,7 @@ app.use(express.static('static'))
 // ejs jsp jade vue-template:  if for 
 app.get('*', (req, res) => {
   console.log(req.url);
-  // 入口组件 jsx 
+  // 入口组件 App.jsx 
   const App = (
     <StaticRouter location={req.url}>
       { renderRoutes(Routes) }

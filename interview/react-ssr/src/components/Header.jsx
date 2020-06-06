@@ -13,11 +13,13 @@ class Header extends Component {
   render() {
     return (
       <React.Fragment>
+        {/* js 为什么要在前端运行 */}
+        <button onClick={this.handleClick}> 123456 </button>
         <li>
           <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to="/login">Login</Link>
+          <Link to="/login">login</Link>
         </li>
       </React.Fragment>
     )

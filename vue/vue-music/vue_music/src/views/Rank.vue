@@ -87,6 +87,7 @@ export default {
                 }
                 setTimeout(()=>{
                     this.ListSomesong = arr
+                    console.log(this.ListSomesong)
                 },500)
             })
         })

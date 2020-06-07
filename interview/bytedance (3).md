@@ -10,7 +10,7 @@
 
 我说一篇介绍ES6到ES10新特性的文章(对这一块比较熟悉，就有了下面的追问)
 **跨域**
-- JSONP
+- JSONP   script src  cb  -> cb(参数)
 - CORS 
   简单请求     
     GET、HEAD、POST 请求&&
@@ -111,9 +111,9 @@ for (let i = 0; i <= 10; i++) {
 }
 ```
 
-**ES6异步解决方案**  1.promise
- co+Generator
-es7 async/await 
+**ES6异步解决方案**  promise
+  co+Generator
+  es7 async/await 
 
 
 **promise和async，await的区别**
@@ -128,7 +128,7 @@ await的本质是可以提供等同于”同步效果“的等待异步返回能
 
 
 **promise有哪些方法**
-then resolve reject all finally race
+resolve reject then all finally race
 
 **下面代码输出什么**
 
@@ -172,7 +172,7 @@ class PromisePool {
   }
 
   run(race) {
-    race.then((res) => {
+    race.then((res) => { 
       console.log(res);
       // 每当并发池跑完一个任务，就再塞入一个任务
       let task = this.tasks.shift();

@@ -46,4 +46,4 @@ function reactive(obj) {
     },
   })
   return observerObj;
-}
+} 

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { getCommentList } from '../../store/actions/homeAction.js';
 
 class Home extends React.Component {
+  
   componentDidMount() {
     const { getCommentList } = this.props
     getCommentList();
@@ -24,6 +25,10 @@ class Home extends React.Component {
       </div>
     )
   }
+}
+
+Home.loadData = function(dispatch) {
+  return dispatch(getCommentList())
 }
 const mapStateToProps = (state) => {
   const { commentList } = state.home;

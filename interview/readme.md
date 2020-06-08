@@ -980,7 +980,7 @@ npm包	vue-event-proxy
 一、webpack打包文件体积过大？（最终打包为一个js文件）
 	1.异步加载模块
 	2.提取第三库
-	3.代码压缩
+	3.代码压缩 用plugin
 	4.去除不必要的插件
 
 如何优化webpack构建的性能
@@ -1010,7 +1010,7 @@ npm包	vue-event-proxy
 	1.减少入口文件体积
 	2.静态资源本地缓存
 	3.开启Gzip压缩
-	4.使用SSR,nuxt.js
+	4.使用SSR,nuxt.js 
 
 五、移动端300ms延迟
 	由来：300毫米延迟解决的是双击缩放。双击缩放，手指在屏幕快速点击两次。safari浏览器就会将网页缩放值原始比例。
@@ -1685,25 +1685,26 @@ redux流程
 jquery 和 react 哪个操作dom快
 koa和express区别
 
-闭包 js 私有属性
+闭包 js 
+实现私有属性
 for ( i循环){
-	setTimeOut(输出不同i)  不用es6做法
+	setTimeOut(输出不同i)  不用es6做法（没听懂要做什么）
 }
 变量提升 let const 
 函数怎么运行
-垃圾回收
+js垃圾回收
 原型 原型链的起点
 sum(1)(2)(3) = 6 
-类的定义
+定义类 的方法
 深拷贝 
 怎么判断一个变量是不是数组？  
 js事件循环
 
-
-vue data 为什么retrun 
 veu双向数据绑定
+vue data 为什么retrun 
 性能优化
-http https tsl加密算法为什么更安全
+http https ssl加密算法为什么更安全
+浏览器缓存 协商缓存 强缓存 304缓存两种方式的比较
 浏览器输入url
 图片格式 各个特性
 tcp三次挥手四次握手详说

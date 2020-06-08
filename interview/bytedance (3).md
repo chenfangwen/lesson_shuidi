@@ -203,6 +203,12 @@ hash模式和history模式原理
 **Vue的生命周期**
 
 **详细讲下每个钩子函数干了什么**
+beforecreated：el 和 data 并未初始化 不能在这个阶段使用data中的数据和methods中的方法
+created:完成了 data 数据的初始化，el没有 如果要调用 methods 中的方法，或者操作 data 中的数据，最早可以在这个阶段中操作
+beforeMount：完成了 el 和 data 初始化,编译好了模板了。  el标签里data实际数据还未放进去,只是先占坑
+mounted ：完成挂载        el标签里data实际数据放进去了,现在就是后面要渲染的样子了,操作页面上的DOM节点，最早可以在和这个阶段中进行
+
+destory 执行了destroy操作，后续就不再受vue控制了。
 
 **keep-live原理** 缓存了虚拟dom
 

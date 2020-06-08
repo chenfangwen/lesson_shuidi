@@ -31,14 +31,19 @@ function fprice(s,n){
 
  function format2 ( num ) {
     num = num + '';
-    var str = '' ;
+    // var str = '' ;
+    var str = [] ;
     for(var i = num.length-1,j = 1; i >= 0; j++,i--) {
         if( j % 3 == 0 && i!=0) {
-            str += num[i] + ',';
+            // str += num[i] + ',';
+            str.unshift(num[i]);
+            str.unshift(',')
         }else{
-            str += num[i]
+            // str += num[i]
+            str.unshift(num[i]);
         }
     }
-    return str.split('').reverse().join('') //join分隔符''
+    // return str.split('').reverse().join('') //join分隔符''
+    return str.join('')
  }
  console.log(format2(1234123423412341234))

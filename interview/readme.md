@@ -1685,20 +1685,30 @@ redux流程
 jquery 和 react 哪个操作dom快
 koa和express区别
 
-js 私有属性
- 垃圾回收
-函数运行
-vue data 为什么retrun 
-原型
+闭包 js 私有属性
+for ( i循环){
+	setTimeOut(输出不同i)  不用es6做法
+}
+变量提升 let const 
+函数怎么运行
+垃圾回收
+原型 原型链的起点
 sum(1)(2)(3) = 6 
 类的定义
-事件循环
+深拷贝 
+怎么判断一个变量是不是数组？  
+js事件循环
+
+
+vue data 为什么retrun 
+veu双向数据绑定
 性能优化
-for (){
-	setTimeOut()
-}
-http https
-深拷贝
+http https tsl加密算法为什么更安全
+浏览器输入url
+图片格式 各个特性
+tcp三次挥手四次握手详说
+web安全
+
 
 
 

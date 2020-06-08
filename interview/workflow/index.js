@@ -1,22 +1,22 @@
 
-let p1 = new Promise((res,rej) => {
-  setTimeout(() => {
-    rej(1)
-  },1000)
-});
-let p2 = new Promise((res,rej) => {
-  setTimeout(() => {
-    res(2)
-  },900)
-});
+// let p1 = new Promise((res,rej) => {
+//   setTimeout(() => {
+//     rej(1)
+//   },1000)
+// });
+// let p2 = new Promise((res,rej) => {
+//   setTimeout(() => {
+//     res(2)
+//   },900)
+// });
 
-Promise.all([p1, p2])
-  .then((res) => console.log(res,'+++'))   //无打印
+// Promise.all([p1, p2])
+//   .then((res) => console.log(res,'+++'))   //无打印
   
-  .catch((err) => console.log(err,'+++'));  // 一秒后 1 +++
-Promise.race([p1, p2])
-  .then((res) => console.log(res,'---'))  // 2---
-  .catch((err) => console.log(err))   // 无打印  
+//   .catch((err) => console.log(err,'+++'));  // 一秒后 1 +++
+// Promise.race([p1, p2])
+//   .then((res) => console.log(res,'---'))  // 2---
+//   .catch((err) => console.log(err))   // 无打印  
   
 // let a = {
 //   name: 'cfw',
@@ -29,4 +29,21 @@ Promise.race([p1, p2])
 // var single = 2
 // const single = 4  //重定义
 // console.log(single)
+
+
+let p1 = new Promise((res, rej) => {
+  setTimeout(() => {
+    console.log('promis1')
+  }, 1000);
+  res(1)
+})
+console.log('mian')
+p1.then(res=> console.log(res))
+setTimeout(() => {
+  console.log('settime')
+}, 1000);
+
+
+
+
 

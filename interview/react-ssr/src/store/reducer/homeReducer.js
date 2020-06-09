@@ -7,11 +7,11 @@ const defaultState = {
 export default (state = defaultState, action) => {
 	switch(action.type) {
 		case HOME_CHANGE_COMMENT_LIST:
-			const { commentList } = action;
+      const { commentList } = action;
 			return {
-				...state,
-				commentList
-			}
+        ...state,
+        commentList
+      }
 		default:
 			return state;
 	}

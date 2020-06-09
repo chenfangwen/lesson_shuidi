@@ -1,10 +1,8 @@
 import { LOGIN_STATUS } from '../constants';
 
+let isLogin = null;
 
-let isLogin = false;
-
-
-export default (state = isLogin, action) =>{
+export default (state = isLogin, action) => {
   switch(action.type) {
     case LOGIN_STATUS:
       return action.isLogin;

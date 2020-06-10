@@ -1484,11 +1484,10 @@ function throttle (func, wait) {
 	var timeout;
 	return function () {
 		context = this;
-		args = arguments;
 		if (!timeout) {
 			timeout = setTimeout(() => {
 				timeout = null;
-				func.apply(context,args)
+				func.apply(context,arguments)
 			}, wait);
 		}
 	}
@@ -1500,10 +1499,9 @@ function throttle (func, wait) {
 	var timeout;
 	return function() {
 		var context = this;
-		var args = arguments;
 		clearTimeout(timeout);
 		timeout = setTimeout(() => {
-			func.apply(context,args)
+			func.apply(context,arguments)
 		}, wait);
 	}
 }

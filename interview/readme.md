@@ -26,17 +26,15 @@ max-width/min-width > flex-basis > width > box
 	inherit: 从父类继承box-sizing的值
 
 二、前端一像素问题（画一条0.5px的线）
-* transform: scaleY（0.5） 使用伪元素设置1px的边框，然后对边框进行缩放(s
-caleY)
-　实现思路：
-     1、设定目标元素的参考位置
-     2、给目标元素添加一个伪元素before或者after，并设置绝对定位
-     3、给伪元素添加1px的边框
-     4、用box-sizing: border-box 属性把边框都包进宽和高里面
-     5、宽和高设置为 200%
-     6、整个盒子模型缩小为0.5
-     7、调整盒子模型的位置，以左上角为基准 transform-origin: 0 0;
-* border-image 设置图片的边框
+采用meta viewport的方式
+//1px像素线条     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0"> 
+//0.5像素线条     <meta name="viewport" content="width=device-width,initial-scale=0.5,user-scalable=0">
+采用 border-image的方式
+首先需要自己制作一个0.5像素的线条作为线条背景图片。
+p{      border-width: 0 0 1px 0;      border-image: imageUrl 2 0 round; }
+采用transform: scale()的方式
+transform: scaleY(0.5);
+transform-origin: 50% 100%;
 
 三、4.transition和animation的区别
 	Animation和transition大部分属性是相同的，他们都是随时间改变元素的属性值，他们的主要区别是transition需要触发一个事件才能改变属性，

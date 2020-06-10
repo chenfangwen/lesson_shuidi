@@ -1,3 +1,3 @@
-import {consoleName} from './1.js'
+import user from './1.js'
 
-consoleName()
+user.consoleName()

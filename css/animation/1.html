@@ -7,36 +7,51 @@
     <style>
         .x {
             transform: perspective(300px) ;
-            animation: around 3s infinite ;
+            animation: around 1s; /**infinite ;**/
         }
         .y {
             transform: perspective(200px) rotateY(-60deg);
         }
         .z {
             transform: perspective(200px) rotateZ(60deg);
-        }
-        @keyframes around {
-            0%{
-                transform:  rotateX(0);
-            }
-            
-            100%{
-                transform:  rotateX(360deg);
-            }
-        }
+        }    
         
-img{
-    height:180px;
-    width:150px;
-}
+    img{
+        margin-top: 50px;
+        height:180px;
+        width:150px;
+    }
 
-img:hover{
-    height: 360px;
-    width: 300px;
-}
-img{
-    transition: 1s;
-}
+    img:hover{
+        height: 360px;
+        width: 300px;
+        opacity: 0;
+    }
+    
+    img{
+        transition: all 3s ease-in ;
+    }
+    @keyframes around {
+            0%{
+                transform:  translate(0,-20px);
+            }
+            20%{
+                transform: translate(0,-5px);
+            }
+            40%{
+                transform: translate(0,-10px);
+
+            }
+            60%{
+                transform: translate(0,-2px);
+            }
+            80%{
+                transform: translate(0,-5px);
+            }
+            100%{
+                transform: translate(0,0);
+            }
+        }
    
     </style>
 </head>

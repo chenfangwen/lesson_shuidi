@@ -37,8 +37,9 @@ transform: scaleY(0.5);
 transform-origin: 50% 100%;
 
 三、4.transition和animation的区别
-	Animation和transition大部分属性是相同的，他们都是随时间改变元素的属性值，他们的主要区别是transition需要触发一个事件才能改变属性，
-	而animation不需要触发任何事件的情况下才会随时间改变属性值，并且transition为2帧，从from .... to，而animation可以一帧一帧的。
+	transition是过度属性，强调过度，他的实现需要触发一个事件（比如鼠标移动上去，焦点，点击等）才执行动画。它类似于flash的补间动画，设置一个开始关键帧，一个结束关键帧。
+
+	animation是动画属性，他的实现不需要触发事件，设定好时间之后可以自己执行，且可以循环一个动画。他也类似于flash的补间动画，但是他可以设置多个关键帧（用@keyframe定义）完成动画。
 	
 	transition 规定动画的名字  规定完成过渡效果需要多少秒或毫秒  规定速度效果  定义过渡效果何时开始
 	animation  指定要绑定到选择器的关键帧的名称
@@ -459,12 +460,22 @@ content 清除浮动，并显示在中间。
 	好处：可以比较合适动态元素的绑定，新添加的子元素也会监听函数，也可以有事件触发机制
 	
 
-七、js的new操作符做了什么？
+七、js的new做了什么？
 	要创建 Person 的新实例，必须使用 new 操作符。以这种方式调用构造函数实际上会经历以下 4个步骤：
 	(1) 创建一个新对象；
 	(2) 将构造函数的作用域赋给新对象（因此 this 就指向了这个新对象） ；
 	(3) 执行构造函数中的代码（为这个新对象添加属性） ；
 	(4) 返回新对象。
+	var Obj = {};
+	Obj._proto_ =  Person.prototype();
+	Person.call(Obj);
+	return Obj
+## arguments和rest 区别
+1. arguments并不是数组，而是一个类数组对象，它包含length属性。我们可以通过Array.prototype.slice.call(arguments)将获取对应真实数组。
+1. arguments是参数的类数组化表现，它包含所有可用参数。
+2. rest是非定义的多余变量数组。
+2. rest是一个真实数组。
+
 
 八、改变函数内部this指针的指向函数(bind,apply,call)
 	通过apply和call改变函数的this指向，他们两个函数的第一个参数都是一样的表示要改变指向的那个对象，第二个参数，apply是数组，而call则是arg1,arg2...这种形式。

@@ -1,3 +1,5 @@
+import { h } from './h'
+
 const elementVNode = h(
     'div',  // tag  html tag
     {

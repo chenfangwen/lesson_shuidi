@@ -212,7 +212,7 @@ destory 执行了destroy操作，后续就不再受vue控制了。
 
 **keep-live原理** 缓存了虚拟dom
 
-- 原理：在create钩子函数调用时将需要缓存的VNode节点保存在cache中，在 render（页面渲染） 时，如果 VNode 的 name 符合缓存条件（可以用 include 以及 exclude 控制），则会从 this.cache 中取出之前缓存的 VNode 实例进行渲染。
+- 原理：在create钩子函数调用时将需要缓存的VNode节点保存在cache中，在 render（页面渲染） 时，如果 VNode(组件) 的 name 符合缓存条件（可以用 include 以及 exclude 控制），则会从 this.cache 中取出之前缓存的 VNode 实例进行渲染。
 
 **使用**
 
@@ -230,7 +230,7 @@ destory 执行了destroy操作，后续就不再受vue控制了。
 
 2. 根据条件缓存页面
 
-   ```vue
+  ```vue
    <template>
      <div id="app">
      	// 1. 将缓存 name 为 test 的组件

@@ -4,12 +4,12 @@
 
 ## 确定包含快
 - 如果 position 属性为 static 、 relative 或 sticky，包含块可能由它的最近的祖先块元素
-- 如果 position 属性为 absolute ，包含块就是由它的最近的 position 的值不是 static 的祖先元素的内边距区的边缘组成。
+- 如果 position 属性为 absolute ，包含块就是由它的最近的 position 的值不是 static 
+    的祖先元素的内边距区的边缘组成。
 - 如果 position 属性是 fixed，包含块是 viewport
 - 如果 position 属性是 absolute 或 fixed，包含块也可能是由满足以下条件的最近祖先元素：
   - transform/perspective 不是 none
   - will-change：transform/ perspective
-  - filter 不是 none 或者 will-change 是 filter(only works on Firefox).
   - contain 是 paint (例如: contain: paint;)
 
 ```html

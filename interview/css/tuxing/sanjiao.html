@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            position: relative;
+            width: 100px;
+            height: 400px;
+            border: 1px solid black;
+            margin-left: 100px;
+        }
+        .box::before{
+            position: absolute;
+            left: -20px;
+            top: 25px;
+            content: "";
+            width: 0;
+            height: 0;
+            /* top: 40px; */
+            border-left: solid 10px transparent ;
+            border-top: solid 10px transparent;
+            border-bottom: solid 10px transparent;
+            border-right: solid 10px black;
+        }
+        .box::after{
+            position: absolute;
+            left: -16px;
+            top: 27px;
+            content: "";
+            width: 0;
+            height: 0;
+            border-left: solid 8px transparent ;
+            border-top: solid 8px transparent;
+            border-bottom: solid 8px transparent;
+            border-right: solid 8px #fff;
+        }
+        .box2 {
+            position: relative;
+            width: 100px;
+            height: 400px;
+            margin-left: 100px;
+        }
+        .box2::before{
+            position: absolute;
+            left: -20px;
+            top: 25px;
+            content: "";
+            width: 0;
+            height: 0;
+            /* top: 40px; */
+            border-left: solid 10px transparent ;
+            border-top: solid 10px transparent;
+            border-bottom: solid 10px transparent;
+            border-right: solid 15px black;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        affsdfasdfas
+        sadfasdf
+        sadfasdfads
+        <br/>
+        asdfasdf
+    </div>
+    <div class="box2"></div>
+</body>
+</html>

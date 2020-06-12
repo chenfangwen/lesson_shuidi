@@ -1,0 +1,27 @@
+<body>
+    <img src="" alt=""  id="pic"/>
+       <script>
+            var arr = [
+                './http请求结构.jpg',
+                './http响应结构.jpg'
+            ];
+
+            var imgs =[]
+            preLoadImg(arr);
+
+            //图片预加载方法
+            function preLoadImg(pars){
+                for(let i=0;i<pars.length;i++){
+                    imgs[i] = new Image();
+                    imgs[i].src = pars[i];
+                }
+            }
+            // 5s之后显示出该图片
+            setInterval(function(){
+                var pic = document.querySelector('#pic');
+                pic.src = './http请求结构.jpg'
+
+            },5000);
+    
+       </script>
+</body> 

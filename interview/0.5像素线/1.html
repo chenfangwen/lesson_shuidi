@@ -1,24 +1,28 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>boardTest</title>
     <style>
-            p{
-                margin: 50px auto;
-                padding: 5px 10px 5px 10px;
-                color: red;
-                text-align: center;
-                width: 60px;
-            }
-            p:first-child{
-                border-bottom: 1px solid red;
-            }
-            p:last-child{
-                position: relative;
-            }
-        p:last-child:after {
+        p {
+            margin: 50px auto;
+            padding: 5px 10px 5px 10px;
+            /* color: red; */
+            text-align: center;
+            width: 60px;
+        }
+
+        p:first-child {
+            border-bottom: 1px solid red;
+        }
+
+        p:nth-child(2) {
+            position: relative;
+        }
+
+        p:nth-child(2):before {
             position: absolute;
             content: '';
             width: 100%;
@@ -26,19 +30,103 @@
             top: 0;
             height: 1px;
             background-color: red;
-            -webkit-transform: scale(1,0.5);
-            transform: scale(1,0.5);
+            -webkit-transform: scale(1, 0.5);
+            transform: scale(1, 0.5);
             -webkit-transform-origin: center bottom;
             transform-origin: center bottom
         }
-        
+
+        .thinLine {
+            margin-top: 100px;
+            content: '';
+            width: 100%;
+            height: 1px;
+            background-color: red;
+            -webkit-transform: scale(1, 0.5);
+            transform: scale(1, 0.5);
+            -webkit-transform-origin: center bottom;
+            transform-origin: center bottom
+        }
+
+        .con .mianli:nth-child(1) {
+            color: red;
+        }
+
+        .gou {
+            width: 9px;
+            height: 18px;
+            border-right: 2px solid #f39800;
+            border-bottom: 2px solid #f39800;
+            transform: rotate(40deg);
+        }
+
+        .cha {
+            width: 20px;
+            height: 20px;
+            /* margin: auto; */
+            position: relative;
+        }
+
+        .cha::before,
+        .cha::after {
+            content: "";
+            position: absolute;
+            /*方便进行定位*/
+            height: 20px;
+            width: 1.5px;
+            top: 2px;
+            /* right: 9px; */
+            /*设置top和right使图像在20*20框中居中*/
+            background: #f39800;
+        }
+
+        .cha::before {
+            transform: rotate(45deg);
+            /*进行旋转*/
+        }
+
+        .cha::after {
+            transform: rotate(-45deg);
+        }
+
+        .dayv {
+            position: relative;
+            width: 20px;
+            height: 20px;
+        }
+
+        .dayv:after {
+            content: '';
+            width: 12px;
+            height: 12px;
+            position: absolute;
+            left: 0;
+            right: 5px;
+            bottom: 5px;
+            border-left: 2px solid #000;
+            border-bottom: 2px solid #000;
+            -webkit-transform: rotate(-135deg);
+            transform:  rotate(-135deg);
+        }
     </style>
 </head>
+
 <body>
     <div>
         <p>点击1</p>
-        <p></p>
-        <div class="box"></div>
+        <p>333333</p>
+        <div class="thinLine"></div>
+        <div class="con">
+            <div class="mian">
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+            </div>
+        </div>
+        <div class="gou"></div>
+        <div class="cha"></div>
+        <div class="dayv"></div>
     </div>
 </body>
+
 </html>

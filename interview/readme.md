@@ -893,6 +893,10 @@ npm包	vue-event-proxy
 		4.开发风格：react推荐做法jsx + inline style把html和css都写在js了
 			    vue是采用webpack + vue-loader单文件组件格式，html, js, css同一个文件
 
+并没有React比Vue更适合大型应用之说，只要用得好，Vue也可以开发大型项目。
+**但是React更容易被大型项目使用。React和Typescript配合的非常好，同时有Redux和Sega进行状态管理（阿里的Dva）上手曲线虽然略高，但是代码规范度极高，状态管理效果极好，适合团队开发。**
+
+**同时React在新版的React 16中提出Hook的概念，可以全面替换原有的HOC机制，让组件开发极为便利，组件重用度进一步提高，同时代码量更少更清晰。如果考虑到响应式和函数式前端，便于测试，React配合RxJS也是极为理想的，可以将业务逻辑和脏操作进行全面的分离。**
 二、redux中的reducer（纯函数）
 	Redux数据流里，reduces其实是根据之前的状态（previous state）和现有的action（current action）更新state(这个state可以理解为上下累加器的结果）
 	每次redux reducer被执行时，state和action被传入，这个state根据action进行累加或者是'自身消减'(reduce),进而返回最新的state,这也就是典型reduce函数的用法：state ->  action ->  state 
@@ -900,6 +904,25 @@ npm包	vue-event-proxy
 三、react的refs 
 	refs就想一个逃生窗，允许我们之间访问dom元素或者组件实例，可以向组件添加一个ref属性的值是一个回调函数，
 	它将接受地城dom元素或组件的已挂在实例，作为第一个参数 
+## react生命周期
+- constructor()中完成了React数据的初始化，它接受两个参数：props和context，当想在函数内部使用这两个参数时，需使用super
+	()传入这两个参数。
+	注意：只要使用了constructor()就必须写super(),否则会导致this指向错误。
+- componentWillMount()一般用的比较少，它更多的是在服务端渲染时使用。它代表的过程是组件已经经历了constructor()初始化数据后，但是还未渲染DOM时。
+- render() 生成虚拟dom
+- componentDidMount()组件第一次渲染完成，此时dom节点已经生成，可以在这里调用ajax请求，返回数据setState后组件会重新渲染
+- componentWillReceiveProps (nextProps)
+	在接受父组件改变后的props需要重新渲染组件时用到的比较多
+	接受一个参数nextProps
+	通过对比nextProps和this.props，将nextProps的state为当前组件的state，从而重新渲染组件
+- shouldComponentUpdate(nextProps,nextState)
+	主要用于性能优化(部分更新)
+	唯一用于控制组件重新渲染的生命周期，由于在react中，setState以后，state发生变化，组件会进入重新渲染的流程，在这里return false可以阻止组件的更新
+	因为react父组件的重新渲染会导致其所有子组件的重新渲染，这个时候其实我们是不需要所有子组件都跟着重新渲染的，因此需要在子组件的该生命周期中做判断
+- componentWillUpdate (nextProps,nextState)
+	shouldComponentUpdate返回true以后，组件进入重新渲染的流程，进入componentWillUpdate,这里同样可以拿到nextProps和nextState。
+- componentDidUpdate(prevProps,prevState)
+	组件更新完毕后，react只会在第一次初始化成功会进入componentDidmount,之后每次重新渲染后都会进入这个生命周期，这里可以拿到prevProps和prevState，即更新前的props和state。
 
 四、react中的keys 
 	帮组我们跟踪哪些项目已更改、添加、从列表中删除，key是独一无二的，可以让我们高效的去定位元素，并且操作它

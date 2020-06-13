@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        'use strict'
+        function func() {
+            console.log(typeof this)
+        } 
+        func.call(1)  //非严格指向包装类Number {1}对象,严格指向1
+        func.call('1')  //非严格指向包装类String {"1"}对象, 严格指向'1'
+        func.call(null)  //非严格指向window对象, 严格指向null对象
+
+        var personLike = {
+            'a': 'sdf',
+            'b': 'dsf',
+            length: 2
+        }
+        Array.prototype.push.call(personLike, 'cfw', 'lzy') //借
+        console.log( personLike)
+    </script>
+</body>
+</html>

@@ -790,6 +790,16 @@ mvc和mvvm其实区别并不大。都是一种设计思想。主要就是mvc中C
 
 原理：eventbus 解决了兄弟组件之间事件传递问题,本质是订阅发布者模式，从而摆脱了兄弟之间需要父组件转而传递的复杂。还有一种方法是vuex数据流，单一状态树,rootState树根
 名词，专车。订阅者跟发布者都引用专车，这个vue实例，来完成订阅发布者。 emit（发布）  on(订阅一个组件)
+	官网中给出的解决方法：
+	有时，两个组件可能需要彼此通信，但它们不是彼此的父 / 子组件。 在简单的场景中，您可以使用一个空的 Vue 实例作为中心事件总线:
+var bus = new Vue()
+// in component A's method
+bus.$emit('id-selected', 1)
+// in component B's created hook
+bus.$on('id-selected', function (id) {
+// ...
+})
+
 npm包	vue-event-proxy
 
 	vuex 是将数据单独的抽离出来，一种状态管理工具，它借鉴的是Flux、redux的基本思想，将状态抽离到全局形成一个store

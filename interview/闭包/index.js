@@ -78,3 +78,24 @@ var id = setInterval(function () {//闭包
         clearInterval(id)
     }
 }, 1000)
+
+
+function bibao() {
+    var a = 1;
+    function set (v) {
+        a = v;
+    }
+    function get () {
+        console.log(a)
+    }
+    return {
+        set,
+        get
+    }
+}
+let instance = bibao()
+instance.set(2)
+instance.get()
+let instance2 = bibao()
+instance2.set(2)
+instance2.get()

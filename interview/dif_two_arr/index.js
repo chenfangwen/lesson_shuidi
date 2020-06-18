@@ -1,3 +1,4 @@
+
 function dif (a, b) {
     let res = []
     a.forEach(item => {
@@ -27,6 +28,13 @@ function getArrDifference(arr1, arr2) {
         return arr.indexOf(v) === arr.lastIndexOf(v);
     });
 }
+
+function getArrDifference2(arr1, arr2) {
+    let s = new Set(arr1.concat(arr2))
+    return Array.from(s)
+}
+
+
 console.time('start')
 dif([1, 2, 3],[2, 4])
 console.timeEnd('start')
@@ -36,6 +44,7 @@ getArrDifference([1, 2, 3],[2, 4])
 console.timeEnd('start')
 
 
-// console.log(dif([1, 2, 3],[2, 4]))
+console.log(dif([1, 2, 3],[2, 4]))
 
-// console.log(getArrDifference([1, 2, 3],[2, 4]))
+console.log(getArrDifference([1, 2, 3],[2, 4]))
+console.log(getArrDifference2([1, 2, 3],[2, 4]))

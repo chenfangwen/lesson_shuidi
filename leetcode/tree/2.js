@@ -37,9 +37,6 @@ function TreeNode(val) { //形成一棵树的结点
       } else { // 为空
         cur = stack.pop(); //出栈 4
         result.push(cur.val); //进入结果数组
-        if (cur.val == 4) {
-          console.log(cur,cur.right); 
-        }
         cur  = cur.right; // ?
         // console.log(cur);
       }

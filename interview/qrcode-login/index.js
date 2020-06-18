@@ -15,26 +15,6 @@ app.use(bodyParser.urlencoded({
   extended: true
 }))
 
-// jwt 生成token
-function generateToken(data, secret) {
-  // 有效性  7200 
-  let iat = Math.floor(Date.now() / 1000);   // 生成时间 
-  let exp = Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 15; // 有效期15天
-  // jsonwebtoken  将一个json 对象，  web  token 
-  let token = jwt.sign( // 给PC， 
-    {
-      data,
-      iat,
-      exp
-    },
-    secret
-  );
-  return token;
-}
-
-
-
-
 // 二维码生成接口
 app.get('/qrcode/gene', async (req, res) => {
   // qrcode_id
@@ -62,13 +42,23 @@ app.get('/qrcode/gene', async (req, res) => {
   })
 
 })
+// 解出token
+function decryptToken(token, secret) {
+  try {
+    let res = jwt.verify(token, secret);
+    console.log(res, '----------------');
+    return res;
+  } catch (e) {
+    return false
+  }
+}
 
 const authenticated = async (req, res, next) => {
   // console.log('判断登陆');
   const authorationToken = req.headers['authorization'];
   console.log(authorationToken, '_____________');
   const decoded = decryptToken(authorationToken, 's3cret');
-  if(!decoded) {
+  if (!decoded) {
     res.send({
       code: 403,
       message: '请先登录'
@@ -84,23 +74,12 @@ const authenticated = async (req, res, next) => {
   }
   await next();
 }
-function decryptToken(token, secret) {
-  try {
-    let res = jwt.verify(token, secret);
-    console.log(res, '----------------');
-    return res;
-  } catch(e) {
-    return false
-  }
-}
 
 // authenticated ? 是什么？ 鉴权中间件
-app.post('/qrcode/scanned', authenticated, async(req, res) => {
+app.post('/qrcode/scanned', authenticated, async (req, res) => {
   // console.log('扫码后该做的....', req);
   let { qrcodeId } = req.body;
   const qrcode = await QRCodeModel.findOne({ _id: qrcodeId });
-
-
   if (!qrcode) {
     res.send({
       code: 2241,
@@ -118,7 +97,7 @@ app.post('/qrcode/scanned', authenticated, async(req, res) => {
     }
   })
   res.send({
-    code: 200, 
+    code: 200,
     message: '扫描成功'
   })
 });
@@ -129,7 +108,7 @@ app.post('/qrcode/confirm', authenticated, async (req, res) => {
   // token 
   // token, qrcodeId
   const { qrcodeId } = req.body
-  console.log(qrcodeId,'000000')
+  console.log(qrcodeId, '000000')
   const qrcode = await QRCodeModel.findOne({ _id: qrcodeId });
   if (!qrcode) {
     res.send({
@@ -147,10 +126,10 @@ app.post('/qrcode/confirm', authenticated, async (req, res) => {
     message: '登录成功'
   })
 })
-
+//轮询
 app.get('/qrcode/check', async (req, res) => {
   const { qrcodeId } = req.query;
-  console.log(qrcodeId,']]]]')
+  console.log(qrcodeId, ']]]]')
   const qrcode = await QRCodeModel.findOne({ _id: qrcodeId });
 
   if (!qrcode) {
@@ -199,13 +178,30 @@ app.post('/register', async (req, res) => {
   })
 })
 
+// jwt 生成token
+function generateToken(data, secret) {
+  // 有效性  7200 
+  let iat = Math.floor(Date.now() / 1000);   // 生成时间 
+  let exp = Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 15; // 有效期15天
+  // jsonwebtoken  将一个json 对象，  web  token 
+  let token = jwt.sign( // 给PC， 
+    {
+      data,
+      iat,
+      exp
+    },
+    secret
+  );
+  return token;
+}
+
 app.post('/login', async (req, res) => {
   const { username, password } = req.body;
   const user = await UserModel.findOne({
     username,
     password
   });
-  console.log(user,'====')
+  console.log(user, '====')
   if (!user) {
     res.send({
       code: 403,
@@ -231,8 +227,6 @@ app.post('/login', async (req, res) => {
   })
 })
 
-connect();
-
 function listen() {
   app.listen(port);
   console.log('Express app started on port ' + port);
@@ -248,3 +242,5 @@ function connect() {
     useNewUrlParser: true
   })
 }
+
+connect();

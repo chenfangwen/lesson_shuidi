@@ -1,6 +1,4 @@
 System.register([], function($__export) {
-  
-
 
   function $__register__main__exports(exports) {
     for (var exportName in exports) {

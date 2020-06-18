@@ -31,19 +31,19 @@
 // console.log(single)
 
 
-let p1 = new Promise((res, rej) => {
-  setTimeout(() => {
-    console.log('promis1')
-  }, 1000);
-  res(1)
-})
-console.log('mian')
-p1.then(res=> console.log(res))
-setTimeout(() => {
-  console.log('settime')
-}, 1000);
+// let p1 = new Promise((res, rej) => {
+//   setTimeout(() => {
+//     console.log('promis1')
+//   }, 1000);
+//   res(1)
+// })
+// console.log('mian')
+// p1.then(res=> console.log(res))
+// setTimeout(() => {
+//   console.log('settime')
+// }, 1000);
 
-
+console.log(1);setTimeout(()=> {console.log(2)},0); let p = new Promise((res,rej)=> {res(2);console.log(3)}); p.then(res=>{})
 
 
 

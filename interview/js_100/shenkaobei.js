@@ -11,8 +11,11 @@ function deepCopy(obj) {
       })
     } else {
       cobj = {}
-      if (Object.prototype.toString.call(obj) == "[object Object]") { //只对Object进行深拷贝
-        // Reflect.ownKeys(obj) == Object.getOwnPropertyNames(obj).concat(Object.getOwnPropertySymbols(obj))
+      //只对Object进行深拷贝
+      if (Object.prototype.toString.call(obj) == "[object Object]") { 
+        // Reflect.ownKeys(obj) == 
+        // Object.getOwnPropertyNames(obj).
+        // concat(Object.getOwnPropertySymbols(obj))
         Object.getOwnPropertyNames(obj)
           .concat(Object.getOwnPropertySymbols(obj))
           .forEach(c => {

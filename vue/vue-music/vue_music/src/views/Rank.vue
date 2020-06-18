@@ -4,7 +4,7 @@
             <div class="playlist"  @click="toPlayList(playList.id)" v-for="(playList,index1) in TopList" :key="index1">
                 <img :src="playList.coverImgUrl" alt="">
                 <div class="songs">
-                    <div class="song" v-for="(song,index2) in ListSomesong[index1]" :key="index2">
+                    <div class="song" v-for="(song,index2) in playList.someSongs" :key="index2">
                         <div class="name">{{index2+1}}.{{song.name}}</div>
                         <div class="null">-</div>
                         <div class="singers">
@@ -69,28 +69,25 @@ export default {
             // console.log(list,'----')
             list.style.paddingBottom = 60 + 'px'
         }
+        let n_List = []
         await API.getTopList()
         .then(res => {
             console.log(res.data)
             let arr = []
-            this.TopList = res.data.list
-            this.$nextTick(() => {
-                for( let i = 0; i < this.TopList.length; i++){
-                    API2.getRecommendListDetail(this.TopList[i].id)
-                    .then(res2=>{
-                        // console.log(res.data,'+++')
-                        // if(res.data.playlist){
-                        //     console.log(res.data.playlist.tracks.slice(0,3))
-                            arr[i] = res2.data.playlist.tracks.slice(0,3)
-                        // }
-                    })
-                }
-                setTimeout(()=>{
-                    this.ListSomesong = arr
-                    console.log(this.ListSomesong)
-                },500)
-            })
+            n_List = res.data.list
+            for( let i = 0; i < n_List.length; i++){
+                API2.getRecommendListDetail(n_List[i].id)
+                .then(res2=>{
+                    // console.log(res.data,'+++')
+                    if(res2.data.playlist){
+                        n_List[i].someSongs = res2.data.playlist.tracks.slice(0,3)
+                    }
+                })
+            }
         })
+        setTimeout(() => {
+            this.TopList = n_List
+        },1000)
     }
 }
 </script>

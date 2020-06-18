@@ -15,8 +15,8 @@ let myModule = (function (window) {
   })(window)
 上面例子是Module模式的一种写法，它通过闭包的特性打开了一个新的作用域，缓解了全局作用域命名冲突和安全性的问题。但是，开发者并不能够用它来组织和拆分代码，于是乎便出现了以此为基石的模块化规范。
 
-## 模块化规化
-## CommonJS
+## 模块化规范
+## CommonJS    服务端 同步、拷贝
 CommonJS主要用在Node开发上，每个文件就是一个模块，没个文件都有自己的一个作用域。通过module.exports暴露public成员。例如：
 
 // 文件名：x.js
@@ -34,7 +34,7 @@ let xm = require('./x.js');
 console.log(xm.x);  // 1
 console.log(xm.add());  // 2
 console.log(xm.x);   // 1
-从上面代码我们可以看出，require函数同步加载了x.js，并且返回了module.exports输出字面量的拷贝值。可能有人会问module.exports.x = x;不是赋值吗，怎么肥事呢？我们说，Module模式是模块化规范的基石，CommonJS也是对Module模式的一种封装。我们完全可以用Module模式来实现上面的代码效果：
+从上面代码我们可以看出，require函数同步加载了x.js，并且返回了module.exports输出字面量的**拷贝值**。可能有人会问module.exports.x = x;不是赋值吗，怎么肥事呢？我们说，Module模式是模块化规范的基石，CommonJS也是对Module模式的一种封装。我们完全可以用Module模式来实现上面的代码效果：
 
 let xModule = (function (){
   let x = 1;
@@ -84,7 +84,7 @@ define(function(require, exports, module) {
 seajs.use('path');
 CMD集成了CommonJS和AMD的的特点，支持同步和异步加载模块。CMD加载完某个依赖模块后并不执行，只是下载而已，在所有依赖模块加载完成后进入主逻辑，遇到require语句的时候才执行对应的模块，这样模块的执行顺序和书写顺序是完全一致的。因此，在CMD中require函数同步加载模块时没有HTTP请求过程。
 
-## ES6 module
+## ES6 module 
 ES6的模块化已经不是规范了，而是JS语言的特性。随着ES6的推出，AMD和CMD也随之成为了历史。ES6模块与模块化规范相比，有两大特点：
 
 模块化规范输出的是一个值的拷贝，ES6 模块输出的是值的引用。

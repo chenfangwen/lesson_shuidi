@@ -21,8 +21,8 @@ const Rank = (resolve) => {
     resolve(module)
   })
 }
-const Singers = (resolve) => {
-  import('../views/Singers.vue').then((module) => {
+const Videos = (resolve) => {
+  import('../views/Videos.vue').then((module) => {
     resolve(module)
   })
 }
@@ -90,9 +90,9 @@ const routes = [
      }
   },
   {
-    path: '/singers',
-    name:'Singers',
-    component: Singers,
+    path: '/videos',
+    name:'Videos',
+    component: Videos,
     meta: {
       keepAlive: false,
       title: '歌手排行'

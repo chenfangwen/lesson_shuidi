@@ -22,8 +22,8 @@ export default {
         },
         {
           id:1,
-          content:'歌手榜',
-          to:'/singers'
+          content:'视频',
+          to:'/videos'
         }
       ]
     }

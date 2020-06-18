@@ -103,7 +103,6 @@ export default {
       console.log(res.data.result)
       this.playlists = res.data.result;
     })
-    
   }
 }
 </script>

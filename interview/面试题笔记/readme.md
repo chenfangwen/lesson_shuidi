@@ -1534,8 +1534,6 @@ function throttle (func, wait) {
 		}
 	}
 }
-     
-
 四、函数防抖（dobounce） 只输出最后一次
  function debounce (func, wait) {
 	var timeout;

@@ -1062,7 +1062,13 @@ npm包	vue-event-proxy
 		  2.fastclick.js
 			原理：FastClick的实现原理是在检查到touchend事件的时候，会通过dom自定义事件立即
 			      发出click事件，并把浏览器在300ms之后真正的click事件阻止掉
-	fastclick.js还可以解决穿透问题
+			fastclick.js还可以解决穿透问题
+			//代码
+			if('addEventListener' in document) {
+                document.addEventListener('DOMContentLoaded', function() {
+                    FastClick.attach(document.body);
+                }, false);
+            }
 
 六、页面的重构；在不改变外部行为的前提下，简化结构、添加可读性
 

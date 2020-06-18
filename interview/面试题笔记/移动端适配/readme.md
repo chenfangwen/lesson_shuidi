@@ -2,7 +2,7 @@
 所谓移动端适配，就是WebApp在不同尺寸的屏幕上等比显示
 
 ## 第一种方法：viewport适配
-原理：通过设置 initial-scale , 将所有设备布局视口的宽度调整为设计图的宽度.
+- 原理：通过设置 initial-scale , 将所有设备布局视口的宽度调整为设计图的宽度.
 
 //获取meta节点
 var metaNode = document.querySelector('meta[name=viewport]');
@@ -21,11 +21,9 @@ rem：CSS的长度单位， 根元素字体大小的倍数，只有根元素字�
 
 大部分浏览器的默认字体大小都是16px，所以1rem = 16px；
 
-rem适配原理:
-
-长度单位都是用 rem 设置
-当屏幕尺寸改变时，只需要修改 html 元素的 font-size 即可实现等比适配
-我们在制作页面的时候，只考虑跟设计稿相同的屏幕尺寸即可，其他尺寸屏幕自动适配
+- rem适配原理: 长度单位都是用 rem 设置
+    当屏幕尺寸改变时，只需要修改 html 元素的 font-size 即可实现等比适配
+    我们在制作页面的时候，只考虑跟设计稿相同的屏幕尺寸即可，其他尺寸屏幕自动适配
 //对屏幕大小划分了html不同的font-size
 @media screen and (min-width: 320px) {html{font-size:50px;}}
 @media screen and (min-width: 360px) {html{font-size:56.25px;}}

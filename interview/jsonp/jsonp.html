@@ -7,8 +7,7 @@
   <link rel="stylesheet" href="">
 </head>
 <body>
-  <img src="" alt="">
-  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <div id="text"></div>
   <script>
     // function onRes(res) {
 
@@ -57,7 +56,8 @@
       timeout: 3000
     })
     .then(res => {
-      console.log(res)
+      // console.log(res)
+      document.getElementById('text').innerHTML = res.data
     })
     .catch(err => {
       console.log(err)

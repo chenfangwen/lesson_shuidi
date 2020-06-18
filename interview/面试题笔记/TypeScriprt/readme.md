@@ -16,7 +16,7 @@ TypeScript 拥抱了 ES6 规范，也支持部分 ESNext 草案的规范
 vue3也是
 
 
-## 缺点
+## 缺点 
 任何事物都是有两面性的，我认为 TypeScript 的弊端在于：
 
 - 有一定的学习成本，需要理解接口（Interfaces）、泛型（Generics）、类（Classes）、枚举类型（Enums）等前端工程师可能不是很熟悉的概念

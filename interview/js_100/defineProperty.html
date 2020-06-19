@@ -50,7 +50,7 @@
   const oldArrayProperty = Array.prototype; // 
   // 截胡
   const arrProto = Object.create(oldArrayProperty);
-  ["push", "pop", "shift", "unshift", "spluce"].forEach(methodName => {
+  ["push", "pop", "shift", "unshift", "splice"].forEach(methodName => {
     arrProto[methodName] = function() {
       oldArrayProperty[methodName].call(this, ...arguments);
       updateView();

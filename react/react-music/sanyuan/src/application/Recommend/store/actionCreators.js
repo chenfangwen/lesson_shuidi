@@ -9,7 +9,7 @@ export const changeBannerList = (data) => ({
 
 export const getBannerList = () => {
     return (dispatch) => {
-        console.log('轮播图')
+        // console.log('轮播图')
       getBannerRequest().then(data => {
           console.log(data.banners,'/////')
         const action = changeBannerList(data.banners);

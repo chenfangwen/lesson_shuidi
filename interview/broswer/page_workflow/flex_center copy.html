@@ -1,29 +1,48 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <title></title>
-        <style>
-            .center{
-                /* position: relative; */
-                width: 500px;
-                height: 500px;
-                background-color: blue;
-                /* margin: 0 auto; */
-                display: flex;
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        .center {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            background-color: blue;
+            /* margin: 0 auto; */
+            /* display: flex;
                 align-items: center;
-                justify-content: space-around;
-            }
-            .item{
-                width: 100px;
-                height: 100px;
-                background-color: red;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="center">
-            <div class="item"></div>
-        </div>
-    </body>      
+                justify-content: center; */
+        }
+
+        .item {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+        }
+
+        #father {
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        #son {
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="center">
+        <div class="item"></div>
+    </div>
+</body>
+
 </html>

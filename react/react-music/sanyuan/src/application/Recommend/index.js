@@ -1,10 +1,11 @@
-
 import React, { useEffect } from 'react';
 // import { renderRoutes } from 'react-router-config'
+import {Content} from './style'
 import * as actionTypes from './store/actionCreators';
 import { connect } from 'react-redux'
 import Slider from '../../components/slider';
 import RecommendList from '../../components/list';
+import Scroll from '../../baseUI/scroll';
 function Recommend(props){
     // const {route} = props
     const { bannerList } = props;
@@ -24,10 +25,14 @@ function Recommend(props){
         }
       });
     return (
-        <div>
+        <Content >
+        <Scroll className="list" >
+          <div>
             <Slider bannerList={bannerListJS}></Slider>
-            <RecommendList recommendList={recommendList}></RecommendList> 
-        </div>
+            <RecommendList recommendList={recommendList}></RecommendList>
+          </div>
+        </Scroll>
+      </Content> 
     );
 }
 

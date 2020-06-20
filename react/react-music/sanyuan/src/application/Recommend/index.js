@@ -26,12 +26,12 @@ function Recommend(props){
       });
     return (
         <Content >
-        <Scroll className="list" >
-          <div>
-            <Slider bannerList={bannerListJS}></Slider>
-            <RecommendList recommendList={recommendList}></RecommendList>
-          </div>
-        </Scroll>
+          <Scroll className="list" >
+            <div>
+              <Slider bannerList={bannerListJS}></Slider>
+              <RecommendList recommendList={recommendList}></RecommendList>
+            </div>
+          </Scroll>
       </Content> 
     );
 }

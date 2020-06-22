@@ -7,6 +7,7 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import http from 'axios'
 import store from './store'
+import Store from 'store2'
 
 Vue.prototype.http = http
 Vue.use(ElementUI)

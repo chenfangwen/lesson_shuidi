@@ -44,6 +44,7 @@
 
 <script>
 import api from "../config";
+import Store from 'store2'
 import { mapState } from "vuex";
 export default {
   name: "users",
@@ -74,6 +75,9 @@ export default {
           }).then(res => {
 
           })
+          Store.set('username', '')
+           Store.set('isLogin', 0)
+          this.$router.push({path:'/'})
       },
       cacle() {
           this.ifUpdate = false
@@ -86,7 +90,7 @@ export default {
       this.http
         .get(`${api.userApi}/list`, {
           params: {
-            name: this.curUser
+            name: Store.get('username')
           }
         })
         .then(res => {
@@ -103,6 +107,10 @@ export default {
   },
   created() {
     this.getUserList();
+    if(window.localStorage.getItem('username')==null){
+          window.alert('请先完成登录');
+          this.$router.push("/")
+      }
   }
 };
 </script>

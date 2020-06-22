@@ -62,6 +62,7 @@
 <script>
 import api from '../config'
 import moment from 'moment'
+import Store from 'store2'
 import {mapState,mapActions} from "vuex"
 export default {
   name: "books",
@@ -110,20 +111,27 @@ export default {
     },
     borrow (title,image) {
         console.log(moment(Date.now()).format('YYYY-MM-DD HH:mm:ss'),'---')
-        this.http.post(api.borrowAdd, {
+        this.http.post(`${api.borrowApi}/add`, {
             title,
-            name: this.curUser,
+            name: Store.get('username'),
             borTime: moment(Date.now()).format('YYYY-MM-DD HH:mm:ss'),
             lendTime: moment(Date.now() + 2592000000).format('YYYY-MM-DD HH:mm:ss'),
             isLend: 0,
             image
         })
-        this.getBookData()
+        let t_id = setTimeout(() => {
+          this.getBookData()
+          clearTimeout(t_id)
+        }, 500);
+        
     },
-    searchStore() {}
   },
   mounted() {
       this.getBookData()
+      if(window.localStorage.getItem('username')==null){
+          window.alert('请先完成登录');
+          this.$router.push("/")
+      }
   }
 };
 </script>

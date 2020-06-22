@@ -114,6 +114,10 @@ export default {
   },
   created() {
     this.getRecordList();
+    if(window.localStorage.getItem('username')==null){
+          window.alert('请先完成登录');
+          this.$router.push("/")
+      }
   }
 };
 </script>

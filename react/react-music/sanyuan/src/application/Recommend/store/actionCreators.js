@@ -1,4 +1,4 @@
-import { getBannerRequest } from '../../../api/request';
+import { getBannerRequest,getRecommendListRequest } from '../../../api/request';
 import { fromJS } from 'immutable';
 import * as actionTypes from './constants';
 
@@ -6,7 +6,14 @@ export const changeBannerList = (data) => ({
     type: actionTypes.CHANGE_BANNER,
     data: fromJS(data)
 });
-
+export const changeRecommendList = (data) => ({
+  type: actionTypes.CHANGE_RECOMMEND_LIST,
+  data: fromJS(data)
+});
+export const changeEnterLoading = (data) => ({
+  type: actionTypes.CHANGE_ENTER_LOADING,
+  data
+});
 export const getBannerList = () => {
     return (dispatch) => {
         // console.log('轮播图')
@@ -18,4 +25,15 @@ export const getBannerList = () => {
         console.log("轮播图数据传输错误");
       }) 
     }
+};
+export const getRecommendList = () => {
+  return (dispatch) => {
+    getRecommendListRequest().then(data => {
+      console.log(data)
+      dispatch(changeRecommendList(data.result));
+      dispatch(changeEnterLoading(false));
+    }).catch(() => {
+      console.log("推荐歌单数据传输错误");
+    });
+  }
 };

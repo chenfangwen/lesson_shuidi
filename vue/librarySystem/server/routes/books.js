@@ -97,18 +97,24 @@ router.post('/offshelf', (req, res) => {
         }
     })
 })
+//录入
 router.post('/addBook', (req, res) => {
-    const {image, title,author,publisher,summary} = req.body
-    // console.log(image, title,author,publisher,summary)
-    BookSchema.find({image, title,author,publisher,summary,status:1}).exec((err, result) => {
+    const {image, title,author,publisher,summary,count} = req.body
+    BookSchema.find({image, title,author,publisher,summary}).exec((err, result) => {
         if(result.length){
-            res.json({
-                result: false,
-                msg: "书籍已存在"
+            let newcount = parseInt(result[0].count) + parseInt(count) 
+            BookSchema.findOneAndUpdate({title},{
+                count: newcount
+            }).exec()
+             res.json({
+                result: true,
+                msg: "书籍数量新增"
             });
         } else {
+            let newcount = parseInt(count)
             let book = new BookSchema({
                 image, title,author,publisher,summary,
+                count: newcount,
                 status:1
             })
             book.save(function (err, user) {

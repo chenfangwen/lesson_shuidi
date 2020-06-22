@@ -10,6 +10,7 @@ const BookSchema = new Schema({
     pages: String, // 页数
     summary: String, // 图书简介
     pubdate: String, // 出版时间
+    count: Number,
     publisher: String, // 出版社
     record_date: String, // 上架时间
     borrowCount: Number, // 被借阅次数

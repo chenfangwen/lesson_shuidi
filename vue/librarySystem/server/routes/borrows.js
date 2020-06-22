@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const BorrowSchema = require('../schema/borrow')
-
+const BookSchema = require('../schema/book')
 // 设置跨域
 router.all('*', (req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*')
@@ -20,6 +20,13 @@ router.post('/add', (req, res) => {
     // console.log(title, name, borTime, lendTime, isLend)
     let book = new BorrowSchema({
         title, name, borTime, lendTime,isLend,image
+    })
+    BookSchema.find({title}).exec((err, result) => {
+        console.log(result[0].count,'--')
+        BookSchema.findOneAndUpdate({title},{
+            count: result[0].count -1,
+            status: 2
+        }).exec()
     })
     book.save(function (err, user) {
         if (err) return console.error(err);

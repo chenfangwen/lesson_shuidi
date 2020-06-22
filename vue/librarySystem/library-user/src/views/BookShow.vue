@@ -39,13 +39,14 @@
             <el-table-column prop="author" label="作者"></el-table-column>
             <el-table-column prop="publisher" label="出版社"></el-table-column>
             <el-table-column prop="summary" label="简介" show-overflow-tooltip></el-table-column>
+            <el-table-column prop="count" label="库存" show-overflow-tooltip></el-table-column>
             <el-table-column prop="status" label="状态" width="80">
               <template slot-scope="scope">{{scope.row.status === 1 ? '在架' : '借出'}}</template>
             </el-table-column>
             <el-table-column width="80" label="操作">
               <template slot-scope="scope">
                 <el-button
-                  v-show="scope.row.status === 1"
+                  v-show="scope.row.count >= 1"
                   type="text"
                   @click="borrow(scope.row.title,scope.row.image)"
                 >借阅</el-button>
@@ -117,6 +118,7 @@ export default {
             isLend: 0,
             image
         })
+        this.getBookData()
     },
     searchStore() {}
   },

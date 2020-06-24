@@ -1,20 +1,67 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+  </style>
 </head>
 <body>
   <ul id="ul"></ul>
   <button id="btn">btn</button>
   <script>
     const ul  = document.getElementById('ul');
-    let i = 1
+    let i = 0;
+    function getReacts(doms) {
+      return [...doms].map((dom) => {
+        const { left, top } = dom.getBoundingClientRect()
+        return {
+          left, top
+        }
+      })
+    }
+    // first
     document.getElementById('btn').addEventListener('click', () => {
+      // 获取 起点状态
+      const preLis = ul.querySelectorAll('li');
+      const prePositioon = getReacts(ul.querySelectorAll('li'))
       const li = document.createElement('li');
-      li.innerText = i
-      i++
+      i ++;
+      li.innerHTML = i % 2 === 0 ? `<br />${i}<br />` : `<h2>${i}</h2>`;
+      // 插到 dom 树里面去了
       ul.insertBefore(li, ul.firstElementChild)
+      // 获取 终点状态
+
+      // forced layout：
+      // 为什么可以得到最新位置信息 insertBefore 完了之后浏览器
+      const currentPositioon = getReacts(preLis)
+      console.log(prePositioon, currentPositioon)
+
+      preLis.forEach((linode, i) => {
+        // 现在位置如果要回到以前的位置，那么 偏移这么多
+        let diffLeft = prePositioon[i].left - currentPositioon[i].left
+        let diffTop  = prePositioon[i].top - currentPositioon[i].top
+        // 1th frame: 回到原来的位置
+        // 2th frame：没有任何偏移，浏览器layout 完了之后的位置
+        const keyFrames = [
+          {
+            transform: `translate(${diffLeft}px, ${diffTop}px)`
+          },
+          {
+            transform: `translate(0)`
+          }
+        ]
+        // play：已经知道需要这么多可以回到以前的位置
+        // web animation: js 
+        linode.animate(keyFrames, {
+          duration: 300,
+          easing: 'ease-in-out',
+        })
+      })
+      
+
     })
   </script>
 </body>

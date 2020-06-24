@@ -1,0 +1,4 @@
+fist
+last 
+invert
+play

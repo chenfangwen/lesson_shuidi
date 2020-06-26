@@ -1,16 +1,12 @@
-# flex 布局
-图片挂了 flex ——掘金文章地址，方便阅读。
-# 一、flex容器基础概念
+## 一、flex容器基础概念
 
-
-# 如上图
 flex-container —— flex容器
 flex-item —— 子元素
 水平方向上有一条轴线（主轴） —— main axis
 垂直方向上有一条轴线（十字轴） —— cross axis
 先准备一下初始化代码， 只有三个文件。
 1、index.html
-
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,8 +26,9 @@ flex-item —— 子元素
   </div>
 </body>
 </html>
+```
 2、basic.css
-
+```css
 body{
   padding: 0;
   margin: 0;
@@ -53,55 +50,56 @@ body{
 .item span{
   font-size: 50px;
 }
-3、style.css
-
-这是用来改变一些属性来改变页面显示效果的样式文件,后面修改的样式都是在此文件中修改的
-页面初始效果如下图
-
+```
 
 接下来我们在 style.css 中改变一些属性来学习flex布局。
-# 二、flex-container（弹性布局父容器）属性
-#flex布局（将对象作为弹性伸缩盒显示）
+## 二、flex-container（弹性布局父容器）属性
+### flex布局（将对象作为弹性伸缩盒显示）
+```css
 .container{
   display: flex;
 }
+```
 
-
-#inline-flex布局（将对象作为内联弹性伸缩盒显示）
+### inline-flex布局（将对象作为内联弹性伸缩盒显示）
+```css
 .container{
   display: inline-flex;
 }
+```
 
-
-#flex-direction （子元素的排列方向）
+###  flex-direction （子元素的排列方向）
+```css
 默认是水平方向（flex-direction: row）
 .container{
   display: flex;
   flex-direction: column;
 }
+```
 
-
-#flex-wrap （是否要换行显示）
+### flex-wrap （是否要换行显示）
 我们先添加一些子元素，便于效果展示
 
 默认是不换行（flex-wrap: nowrap）
 
-
+```css
 .container{
   display: flex;
   flex-wrap: wrap;
 }
+```
 
-
-#flex-flow（同时控制flex-direction和flex-wrap）
+### flex-flow（同时控制flex-direction和flex-wrap）
+```css
 .container{
   display: flex;
   flex-flow: row-reverse wrap;
 }
 row-reverse 即水平反方向 还有column-reverse垂直反方向、wrap-reverse（反向换行）
+```
 
-
-#justify-content（子元素主轴方向间隔）
+### justify-content（子元素主轴方向间隔）
+```css
 默认是（justify-content: flex-start）
 .container{
   display: flex;
@@ -125,10 +123,10 @@ row-reverse 即水平反方向 还有column-reverse垂直反方向、wrap-revers
   display: flex;
   justify-content: space-around;
 }
-
+```
 
 space-around 和 space-between 的区别就是 space-between 只会在子元素之间添加间隔，space-around 会把父容器边界也视为子元素添加间隔
-#align-items（子元素侧轴方向对齐方式）
+### align-items（子元素侧轴方向对齐方式）
 现在我们把容器的高度设置一下
 .container{
   display: flex;
@@ -137,8 +135,8 @@ space-around 和 space-between 的区别就是 space-between 只会在子元素�
 }
 默认是（align-items: stretch）拉伸 
 
+```css
 flex-start（容器顶部）
-
 .container{
   display: flex;
   justify-content: space-around;
@@ -179,10 +177,11 @@ baseline（以子元素里面的内容作为基准线水平对齐）
 .item-2{
   padding-top: 99px;
 }
+```
 
 
-
-#align-content （子元素侧轴方向对齐方式）
+### align-content （子元素侧轴方向对齐方式）
+```css
 所有属性如下：（默认值为 stretch）
 align-content: stretch|center|flex-start
 |flex-end|space-between|space-around;
@@ -191,22 +190,14 @@ align-content: stretch|center|flex-start
   flex-wrap: wrap;
   height: 300px;
 }
-以上属性效果图依次如下：
+```
 
 
 
-
-
-
-
-
-
-
-
-
-# flex-item（子元素属性）
+### flex-item（子元素属性）
 #order（改变子元素的排列顺序）
 默认所有元素 order 属性值为 0，所以我们可以设置子元素的 order 属性来控制他们的顺序。
+```css
 .container{
   display: flex;
   height: 500px;
@@ -220,11 +211,12 @@ align-content: stretch|center|flex-start
 .item-6{
   order: -1;
 }
-如图，6 到了最前面，1 到了最后面 
-#flex（flex-grow，flex-shrink 和 flex-basis的缩写）
+```
+## flex（flex-grow，flex-shrink 和 flex-basis的缩写）
 默认是：flex: 0 1 auto
 关于这个属性我看到一篇文章讲的通俗易懂，奉上如下：
 CSS flex属性深入理解——张鑫旭
+```css
 #align-self（单个控制子元素侧轴方向布局）
 .container{
   display: flex;
@@ -244,9 +236,8 @@ CSS flex属性深入理解——张鑫旭
 .item-6{
   align-self: center;
 }
-
-
-# 结语：
+```
+## 结语：
 自己对弹性布局早已闻其名，但却一直一知半解，此文为自己做个小总结💦💦。
 重点
 

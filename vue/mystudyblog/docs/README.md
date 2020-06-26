@@ -4,7 +4,7 @@ heroImage: /home.jpg
 heroText: 努力是为了迎接更好的明天
 tagline: 加油
 actionText: 快速上手 →
-actionLink: /home/
+actionLink: /note/
 features:
 - title: 简洁至上
   details: 以 Markdown 为中心的项目结构，以最少的配置帮助你专注于写作。

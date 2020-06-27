@@ -23,7 +23,7 @@ function fprice(s,n){
   } 
 
  console.log(fprice(1221312341234.213412341234,3))
- console.log(format(1221312341234))
+ console.log(format(12341234234123412))
 
 
 

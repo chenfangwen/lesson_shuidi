@@ -6,7 +6,6 @@
   浅拷贝如果拷贝的是基本数据类型就直接拷贝值，如果拷贝的是对象，是拷贝一个指向对象堆内存的地址指针。也就是说它们引用的还是同一个对象，浅拷贝例如
     - Object.assign()
     - Array.slice(),Array.concat()
-    - 
     ```js
       function shallClone(target) {
         if(typeof(target) == 'object' && target !== null) {//拷贝的对象为引用类型
@@ -25,7 +24,7 @@
 
 3. 谈谈promise，promise的优缺点
   - 解决回调地狱，
-  - 一当
+  - 编写的难度比传统写法高，而且阅读代码也不是一眼可以看懂。你只会看到一堆then，必须自己在then的回调函数里面理清逻辑。
 4. jsonp的原理及缺点
   script可以跨域，通过回调里携带参数，请求服务器后，服务器给到相应的参数，就可以请求了
   缺点： 只能用get，安全问题(容易受到xss攻击)
@@ -55,8 +54,9 @@
     3. 使用缓存，express.static()
 2. 遇到了什么安全性问题？
 3. express的缓存了解吗
-express.static
+express.static(root, [options])
 4. promise解决异步的原理async的了解
+  三个状态
 5. 排序算法，复杂度怎么分析
 快排平均时间复杂度O(nlogn),空间复杂度O(logn)
 6. xss攻击怎么造成的，crsf攻击

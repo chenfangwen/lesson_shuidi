@@ -43,7 +43,7 @@ let iterate = asynctask();
 // for await 一系列的 promise then
 async function bar() {
   for await(let value of iterate) {
-    // console.log(value);
+    console.log(value);
   }
 }
 bar();

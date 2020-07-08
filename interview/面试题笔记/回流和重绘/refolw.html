@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="doma">doma</div>
+  <div id="domb">domb</div>
+  <div id="domc">domc</div>
+  <script>
+    const DomA = document.getElementById('doma');
+    const DomB = document.getElementById('domb');
+    const DomC = document.getElementById('domc');
+
+    // reflow ?次
+    function time() {
+        DomA.style.width = '1px';
+        DomB.style.width = "1px";
+        DomC.style.width = "1px";
+    }
+    setTimeout(() => {
+      time();
+    }, 2000);
+
+  </script>
+</body>
+</html>

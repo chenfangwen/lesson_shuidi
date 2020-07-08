@@ -1,0 +1,18 @@
+<script type="module">
+  // type="module"
+  // live-server
+  console.log('入口文件');
+  import { age } from './b.js';
+  console.log(age);
+  setTimeout(() => {
+    console.log(age);
+  }, 2000);
+// esmodule 特点：
+// 1. import/export 语句优先执行，tree-shaking, 
+// 方便JS 引擎做静态分析
+// (代码还没有运行的时候，我就知道 你引入了哪些模块）
+// 2. import 进来的是一个 引用
+
+// commonjs 特点：
+// 2. commonjs 引入的是一个 拷贝
+</script>

@@ -9,13 +9,10 @@ const defaultState = fromJS({
   pullUpLoading: false,
   pullDownLoading: false,
   listOffset: 0, // 请求列表的偏移不是page，是个数
-  loading: true
 })
 
 export default (state = defaultState, action) => {
   switch(action.type) {
-    case actionTypes.CHANGE_PAGE_COUNT:
-      return state.set('pageCount', action.data);
     case actionTypes.CHANGE_ALPHA:
       return state.merge({
         'alpha': action.data,
@@ -34,8 +31,6 @@ export default (state = defaultState, action) => {
       return state.set('listOffset', action.data);
     case actionTypes.CHANGE_ENTER_LOADING:
       return state.set('enterLoading', action.data);
-    case actionTypes.CHANGE_LOADING:
-      return state.set('loading', action.data);
     case actionTypes.CHANGE_PULLUP_LOADING:
       return state.set('pullUpLoading', action.data);
     case actionTypes.CHANGE_PULLDOWN_LOADING:

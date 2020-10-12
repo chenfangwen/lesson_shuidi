@@ -41,6 +41,7 @@ export default {
   },
   watch: {
       cur_music(value){
+          console.log(value, 'cur_music----')
           if(value!==''){
               // console.log('++++')
               let list = document.getElementById('list')

@@ -163,6 +163,14 @@ export default {
     }
   },
   watch:{
+    ifShow(newVal) {
+      if(newVal) {
+        console.log('qiqiqiqiiq')
+        let list = document.getElementById('list');
+        console.log(list, 'list')
+        list.style.paddingBottom = 60 + 'px';
+      }
+    },
     cur_music(newVal,oldVal){
        if (!newVal.id) {
         return

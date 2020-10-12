@@ -36,6 +36,7 @@ export default {
     },
     watch: {
         cur_music(value){
+            // console.log(value,'cur_music')
             if(value!==''){
                 // console.log('++++')
                 let list = document.getElementById('list')
@@ -66,7 +67,7 @@ export default {
         if(this.cur_music!==''){
             // console.log('++++')
             let list = document.getElementById('list')
-            // console.log(list,'----')
+            console.log(list,'----')
             list.style.paddingBottom = 60 + 'px'
         }
         let n_List = []

@@ -3,6 +3,7 @@ import thunk from 'redux-thunk';
 // redux-sage dva 支付宝
 import reducer from './reducer/index';
 import clientRequest from '../client/request';
+import serverRequest from '../server/request';
 
 // 既可以
 export const getClientStore = () => {

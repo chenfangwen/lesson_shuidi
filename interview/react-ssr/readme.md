@@ -15,8 +15,8 @@
 
 ## 前后端组件衔接起来
 1. react 组件在服务端生成了 html --'react-dom/server'; renderToString 
-2. 客户端代码(不用ReactDom.render全部组件，ReactDom.hydrate()) -> webpack -> static
-3. express 启动 static 静态资源的映射  
+2. 客户端代码(不用ReactDom.render全部组件， 把交互逻辑 ReactDom.hydrate()) -> webpack -> static文件夹
+3. express 启动 static 静态资源的映射  app.use(express.static('static'))
 4. express 返回html文件，也要前端打包完的 资源通过 script 返回回去了，前端打包完的代码执行，完成事件绑定等业务
 
 ## 同构路由
@@ -65,7 +65,7 @@ Home.loadData = (dispatch) => {
   return dispatch(getCommentList()) // 得到一个 Promise
 }
 loadData 里面放置我们当前组件依赖的 ajax 数据
-组件很多的，要匹配所有的组件，将依赖的数据都请求。
+组件很多的，要匹配所有的组件，将依赖的数据都请求。等所有的请求结果回来了，再生成html（promise.all）
 import { renderRoutes, matchRoutes } from 'react-router-config';
 const matchedRouters = matchRoutes(Routes, req.path); 
 
@@ -111,3 +111,5 @@ if (typeof window === 'object' && window.appData) {
 return createStore(reducer, defaultState, 
 applyMiddleware(thunk.withExtraArgument(clientRequest)))
 ```
+
+## 每个用户操作自己对应的后端的store，不共享，后端要给每个用户生成store

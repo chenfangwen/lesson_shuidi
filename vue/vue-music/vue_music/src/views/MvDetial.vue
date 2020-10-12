@@ -98,7 +98,11 @@ export default {
                 console.log(res.data)
                 this.mvInfo = res.data.data
                 this.duration = res.data.data.duration/1000
-                this.mvUrl = res.data.data.brs[1080]
+            }
+        })
+        mv.getMvUrl(id).then(res => {
+            if(res.data.data){
+                this.mvUrl = res.data.data.url;
             }
         })
     }

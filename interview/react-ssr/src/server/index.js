@@ -13,13 +13,13 @@ import { getClientStore } from '../store/index'
 
 
 const app = express();
-const store = getClientStore();
 // static 目录做了静态资源的一个映射
 // koa-static
 app.use(express.static('static'))
 // ejs jsp jade vue-template:  if for 
 app.get('*', (req, res) => {
-  console.log(req.url);
+  const store = getClientStore();
+  console.log(req.path,'----');
   const matchedRouters = matchRoutes(Routes, req.path);
   matchedRouters.forEach(mRouter => {
     // console.log()
@@ -36,7 +36,7 @@ app.get('*', (req, res) => {
         );
         // jsx -> babel -> React.createElement()
         const htmlStr = renderToString(App);
-        console.log(htmlStr);
+        // console.log(htmlStr);
         res.send(`<!DOCTYPE html>
         <html lang="en">
         <head>
@@ -56,7 +56,7 @@ app.get('*', (req, res) => {
     }
   })
   // promise.then
-  console.log(matchedRouters);
+  // console.log(matchedRouters);
   // 入口组件 jsx 
 })
 

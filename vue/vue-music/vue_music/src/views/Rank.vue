@@ -1,7 +1,7 @@
 <template>
     <div class="" id="rank">
-        <div class="list" id="list" >
-            <div class="playlist"  @click="toPlayList(playList.id)" v-for="(playList,index1) in TopList" :key="index1">
+        <div :class="['list', cur_music ? 'list-padding' : '']" id="list" >
+            <div v-if="TopList" class="playlist"  @click="toPlayList(playList.id)" v-for="(playList,index1) in TopList" :key="index1">
                 <img :src="playList.coverImgUrl" alt="">
                 <div class="songs">
                     <div class="song" v-for="(song,index2) in playList.someSongs" :key="index2">
@@ -27,33 +27,15 @@ export default {
     name:'Rank',
     data () {
         return {
-            TopList:[],
-            ListSomesong:[]
+            TopList: ''
         }
     },
     computed:{
         ...mapState(['cur_music','cur_music_pic'])
     },
     watch: {
-        cur_music(value){
-            // console.log(value,'cur_music')
-            if(value!==''){
-                // console.log('++++')
-                let list = document.getElementById('list')
-                // console.log(list,'----')
-                list.style.paddingBottom = 60 + 'px'
-                console.log('success')
-            }
-        },
         '$route':function(to,from){
           // document.body.scrollTop = 0
-            if(this.cur_music!==''){
-                // console.log('++++')
-                let list = document.getElementById('list')
-                // console.log(list,'----')
-                list.style.paddingBottom = 60 + 'px'
-                console.log('success')
-            }
         }
     },
     methods: {
@@ -63,7 +45,7 @@ export default {
             })
         }
     },
-    async mounted() {
+    mounted() {
         if(this.cur_music!==''){
             // console.log('++++')
             let list = document.getElementById('list')
@@ -71,7 +53,7 @@ export default {
             list.style.paddingBottom = 60 + 'px'
         }
         let n_List = []
-        await API.getTopList()
+        API.getTopList()
         .then(res => {
             console.log(res.data)
             let arr = []
@@ -88,7 +70,7 @@ export default {
         })
         setTimeout(() => {
             this.TopList = n_List
-        },1000)
+        },2000)
     }
 }
 </script>
@@ -100,12 +82,14 @@ export default {
     position: absolute;
     width 100vw
     // background-color #fff
+    .list-padding {
+      padding-bottom 60px
+    }
     .list{
         position absolute
         top 85px
         width: 98%;
         margin: 0 1%;
-        padding-bottom 1px
         
         .playlist{
             height 100px

@@ -1,6 +1,6 @@
 <template>
-    <transition name="confirm-fade">
-    <div class="confirm" v-show="query!=''" >
+  <transition name="confirm-fade">
+    <div class="confirm" v-show="query" >
       <p class="text">搜索 "{{query}}"</p>
       <div class="singers">
           <div @click="changeSearch(suggest)" class="singer" v-for="(suggest,index) in suggestList" :key="index">
@@ -25,7 +25,7 @@ export default {
     },
     methods:{
         changeSearch(suggest){
-            this.$emit('changeSearch',suggest)
+            this.$emit('changeSearch',suggest);
         }
     }
 }

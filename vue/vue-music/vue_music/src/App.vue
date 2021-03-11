@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    
-    <m-header/>
+    <m-header @showuser="changeUser"/>
     <tab/>
     <player/>
+    <user v-show="isShowUser" @hiddenuser="changeUser"/>
     <keep-alive :include="include" >
       <router-view v-if="$route.meta.keepAlive"/>
     </keep-alive>
@@ -13,18 +13,21 @@
 <script>
 import player from './components/player.vue'
 import mHeader from './components/m-header.vue'
-import Tab from './components/tab.vue'
+import tab from './components/tab.vue'
+import user from './components/user.vue'
 import {mapState,mapActions} from 'vuex'
 export default {
   data() {
     return {
-      include:[]
+      include:[],
+      isShowUser: false
     }
   },
   components:{
     player,
     mHeader,
-    Tab
+    tab,
+    user
   },
   computed: {
     ...mapState(['ifNomal','cur_music'])
@@ -42,6 +45,11 @@ export default {
         index !== -1 && this.include.splice(index,1)
       }
       // console.log(this.include,'----')
+    }
+  },
+  methods: {
+    changeUser() {
+      this.isShowUser = !this.isShowUser;
     }
   }
 }

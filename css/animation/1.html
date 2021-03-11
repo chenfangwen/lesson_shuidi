@@ -18,10 +18,19 @@
             top: 125px;
             animation: around3 1s;
         }
+        .X2 {
+            width: 300px;
+            height: 20px;
+            background-color: red;
+        }
         .x2 {
             /* transform: perspective(200px) ; */
-            margin-left: 200px;
-            animation: around2 3s;
+            /* margin-left: 200px; */
+            width: 10%;
+            height: 20px;
+            background-color: blue;
+            transition: 3s ease-in-out ;
+            /* animation: around2 3s; */
         }
         .y {
             transform: perspective(200px) rotateY(-60deg);
@@ -40,11 +49,11 @@
         width:150px;
     }
 
-    img:hover{
+    /* img:hover{
         height: 360px;
         width: 300px;
         opacity: 0;
-    }
+    } */
     
     img{
         transition: all 3s ease-in-out ;
@@ -114,12 +123,20 @@
         <div class="container">
             <image class="x" src="2.jpg">
             <div class="text">我爱刘姿依</div>
-            <image class="x2" src="2.jpg" />
+            <!-- <img class="x2" src="2.jpg"></img> -->
+            <div class="X2"><div class="x2"></div></div>
             <div class="img">
                 <img class="z" src="2.jpg" />
             </div>
             
         </div>
     </div>
+    <script>
+        let p = 10;
+        document.querySelector('.x2').addEventListener('click', () => {
+            document.querySelector('.x2').style.width = p + 10 + '%';
+            p = p+10;
+        })
+    </script>
 </body>
 </html>

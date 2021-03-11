@@ -7,12 +7,12 @@
           <van-image  :src="item.imageUrl" />
         </van-swipe-item>
       </van-swipe>
-      <div class="recommendList" id="list">
+      <div :class="['recommendList', cur_music ? 'list-padding' : '']" id="list">
         <div class="text">推荐歌单</div>
         <van-grid :column-num="3" :border="false">
           <van-grid-item @click="getplaylist(item)" v-for="(item,index) in playlists" :key="index">
             <div class="image">
-              <img class="van-image__img"  :src="item.picUrl" />
+              <img class="van-image__img"  v-lazy="item.picUrl" />
             </div>
             <div class="name">{{item.name}}</div>
           </van-grid-item>
@@ -40,16 +40,6 @@ export default {
   components: {
   },
   watch: {
-      cur_music(value){
-          console.log(value, 'cur_music----')
-          if(value!==''){
-              // console.log('++++')
-              let list = document.getElementById('list')
-              // console.log(list,'----')
-              list.style.paddingBottom = 60 + 'px'
-              // console.log('success')
-          }
-      },
       '$route':function(to,from){
           // document.body.scrollTop = 0
           // console.log(to,from)
@@ -145,6 +135,9 @@ export default {
     }
     
     // }
+    .list-padding {
+      padding-bottom 60px
+    }
     .recommendList{
         position relative
         width 98%

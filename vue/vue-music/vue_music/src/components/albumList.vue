@@ -21,7 +21,7 @@
             </div>
         </div>
         <singer-confirm ref="singerConfirm" :singers="albumSingers" />
-        <div class="list" id="list">
+        <div :class="['list', cur_music ? 'list-padding' : '']" id="list">
             <div class="m-head">
                 <div class="all">播放全部</div>
                 <div class="num">(共{{albumMusic.length}}首)</div>
@@ -67,16 +67,6 @@ export default {
             else{return []}
         }
     },
-    watch: {
-        cur_music(value){
-            if(value!==''){
-                // console.log('++++')
-                let list = document.getElementById('list')
-                console.log(list,'----')
-                list.style.paddingBottom = 60 + 'px'
-            }
-        }
-    },
     methods:{
         ...mapActions(['getCur_music','getCurIndex','getCurList']),
         showConfirm(){
@@ -90,7 +80,7 @@ export default {
         },
         getCur_music_m(item,index){
             this.getCur_music(item)
-            this.getCurIndex(index),
+            this.getCurIndex(index)
             this.getCurList(this.albumMusic)
         },
          back(){
@@ -213,6 +203,9 @@ export default {
                     }
                 }
             }
+        }
+        .list-padding {
+            padding-bottom 60px
         }
         .list{
             // border-radius 5px

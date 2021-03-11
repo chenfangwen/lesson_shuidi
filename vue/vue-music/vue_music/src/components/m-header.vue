@@ -1,11 +1,11 @@
 <template>
   <div class="header">
     <h1 class="text">VUE 音乐</h1>
-    <router-link to="/user" class="mine" tag="div">
-     <div class="">
+    <div class="mine" @click="showUser">
+     <div>
        <img  class="mine_img" src="../assets/mine.png" alt="">
      </div>
-    </router-link>
+    </div>
     <router-link to="/search" class="search" tag="div">
       <div class="">
         <img  class="search_img" src="../assets/search.png" alt="">
@@ -13,6 +13,16 @@
     </router-link>
   </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    showUser() {
+      this.$emit('showuser');
+    }
+  }
+}
+</script>
 
 <style lang="stylus" scoped>
 .header {

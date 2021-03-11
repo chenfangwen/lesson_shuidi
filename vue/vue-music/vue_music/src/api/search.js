@@ -29,7 +29,7 @@ export default{
         return axios.get(url)
     },
     getSearchHot (id) {
-        const url = "/api" + `/search/hot`
+        const url = "/api" + `/search/hot/detail`
       
         return axios.get(url)
     }

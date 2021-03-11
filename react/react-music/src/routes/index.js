@@ -74,6 +74,10 @@ export default [
             exact: true,
             key: "search",
             component: SuspenseComponent(SearchComponent)
+          },
+          {
+            path: "/singers/:id",
+            component: SuspenseComponent(SingerComponent)
           }
         ]
       }

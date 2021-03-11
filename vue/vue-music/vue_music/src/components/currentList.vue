@@ -141,13 +141,13 @@ export default {
     bottom: 0;
     z-index: 200;
     background-color: rgba(0, 0, 0, 0.3);
-    &.list-fade-enter-active, &.list-fade-leave-active {
+    &.currentList-enter-active, &.currentList-leave-active {
       transition: opacity 0.3s;
       .list-wrapper {
         transition: all 0.3s;
       }
     }
-    &.list-fade-enter, &.list-fade-leave-to {
+    &.currentList-enter, &.currentList-leave-to {
       opacity: 0;
       .list-wrapper {
         transform: translate3d(0, 100%, 0);

@@ -16,7 +16,7 @@ export default {
     placeholder: {
       type: String,
       default: '请输入关键词'
-    }
+    },
   },
   watch:{
     query(value){
@@ -32,6 +32,7 @@ export default {
   methods: {
     clear () {
       this.query = ''
+      this.$emit('searchClear');
     },
     searchSuggest(){
       this.$emit('searchSuggest',this.query)
@@ -41,6 +42,9 @@ export default {
     },
     setQuery () {
       console.log(this.query)
+    },
+    selectQuery(query) {
+      this.query = query;
     }
   },
   mounted(){

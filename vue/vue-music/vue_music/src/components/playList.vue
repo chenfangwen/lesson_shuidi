@@ -22,7 +22,7 @@
                 <div class="singer">{{playList.description}}</div>
             </div>
         </div>
-        <div class="list" id="list">
+        <div :class="['list', cur_music ? 'list-padding' : '']" id="list">
             <div class="m-head">
                 <div class="all">播放全部</div>
                 <div class="num">(共{{length}}首)</div>
@@ -65,16 +65,6 @@ export default {
         length(){
             if(this.playList.tracks){
                 return this.playList.tracks.length
-            }
-        }
-    },
-    watch: {
-        cur_music(value){
-            if(value!==''){
-                // console.log('++++')
-                let list = document.getElementById('list')
-                // console.log(list,'----')
-                list.style.paddingBottom = 60 + 'px'
             }
         }
     },
@@ -211,6 +201,9 @@ export default {
                 }
             }
         }
+        .list-padding {
+            padding-bottom 60px
+        }
         .list{
             // border-radius 5px
             border-radius 15px 15px 0 0
@@ -295,7 +288,11 @@ export default {
                             height 18px
                             line-height 18px
                             .singername{
-
+                                overflow: hidden;
+                                text-overflow:ellipsis;//文本溢出显示省略号
+                                display: -webkit-box;
+                                -webkit-line-clamp: 1; //控制文字行数
+                                -webkit-box-orient: vertical; //子元素数值排列
                             }
                             .null{
                                 width 10px

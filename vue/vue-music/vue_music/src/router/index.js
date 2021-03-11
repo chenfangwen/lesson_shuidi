@@ -41,6 +41,11 @@ const MvDetial = (resolve) => {
     resolve(module)
   })
 }
+const VideoDetail = (resolve) => {
+  import('../views/VideoDetail.vue').then((module) => {
+    resolve(module)
+  })
+}
 
 Vue.use(VueRouter)
 
@@ -94,8 +99,9 @@ const routes = [
     name:'Videos',
     component: Videos,
     meta: {
-      keepAlive: false,
-      title: '歌手排行'
+      keepAlive: true,
+      title: '歌手排行',
+      deepth: 0.5
     }
   },
   {
@@ -124,6 +130,16 @@ const routes = [
     meta: {
       keepAlive: false,
       title: 'mv',
+      deepth: 3
+    }
+  },
+  {
+    path: '/videoDetail/:id',
+    name:'viedoDetail',
+    component: VideoDetail,
+    meta: {
+      keepAlive: false,
+      title: 'viedo',
       deepth: 3
     }
   }

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+import {addPlayHistory} from '../common/js/util'
 
 Vue.use(Vuex) 
 
@@ -56,10 +57,23 @@ export default new Vuex.Store({
   },
   actions: {
     getCur_music(context,cur){
-      // console.log(cur)
+      console.log(cur, 'curr')
       axios.get(`/api/song/detail?ids=${cur.id}`)
       .then(res => {
-        console.log(res.data.songs);
+        // console.log(res.data.songs, 'cursong');
+        let song = {
+          id: res.data.songs[0].id,
+          name: res.data.songs[0].name,
+          ar: res.data.songs[0].ar.map(item => {
+            return {
+              name: item.name
+            }
+          }),
+          al: {
+            name: res.data.songs[0].al.name
+          }
+        }
+        addPlayHistory(JSON.stringify(song));
         context.commit('setCur_music_pic',res.data.songs[0].al.picUrl)
         // context.commit('setIfNomal',true);
       })

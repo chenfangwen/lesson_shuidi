@@ -4,6 +4,9 @@ import animations from "create-keyframe-animation";
 import ProgressBar from "../../../baseUI/progress-bar/index";
 import Scroll from "../../../baseUI/scroll/index";
 import { playMode, list } from "../../../api/config";
+import { withRouter } from 'react-router-dom';
+import { renderRoutes } from 'react-router-config';
+import routes from '../../../routes'
 import { prefixStyle, formatPlayTime, getName } from "../../../api/utils";
 import {
   NormalPlayerContainer,
@@ -154,7 +157,9 @@ function NormalPlayer(props) {
   const clickPlayingCB = useCallback((e) => {
     clickPlaying(e, !playing);
   }, [clickPlaying, playing]);
-
+  const toSinger = (id) => {
+    props.history.push(`/singers/${id}`);
+  }
   return (
     <CSSTransition
       classNames="normal"
@@ -182,7 +187,7 @@ function NormalPlayer(props) {
           </div>
           <div className="text">
             <h1 className="title">{song.name}</h1>
-            <h1 className="subtitle">{getName(song.ar)}</h1>
+            <h1 className="subtitle" onClick={() => toSinger(song.ar[0].id)}>{getName(song.ar)}</h1>
           </div>
         </Top>
         <Middle ref={cdWrapperRef} onClick={toggleCurrentState}>
@@ -303,8 +308,9 @@ function NormalPlayer(props) {
           </Operators>
         </Bottom>
       </NormalPlayerContainer>
+      {/* { renderRoutes (routes) } */}
     </CSSTransition>
   );
 }
 
-export default React.memo(NormalPlayer);
+export default withRouter(React.memo(NormalPlayer));

@@ -3,12 +3,20 @@
       <div  @click="getCur_music_m(item,index)" class="music_item" v-for="(item, index) in musicList" :key="index">
         <div class="music_item_box">
           <div class="song">{{ item.name }}</div>
-          <div class="singers">
+          <div v-if="item.artists" class="singers">
             <div class="singer" v-for="(singer,index) in item.artists" :key="index">
               <div class="singername">{{ singer.name }}</div> <div class="null" v-if="index<item.artists.length-1">\</div>
             </div>
             <div class="singer">
                 <div class="null">-</div><div class="singername" >{{ item.album.name }}</div>
+            </div>
+          </div>
+          <div v-else class="singers">
+            <div class="singer" v-for="(singer,index) in item.ar" :key="index">
+              <div class="singername">{{ singer.name }}</div> <div class="null" v-if="index<item.ar.length-1">\</div>
+            </div>
+            <div class="singer">
+                <div class="null">-</div><div class="singername" >{{ item.al.name }}</div>
             </div>
           </div>
         </div>
@@ -42,6 +50,9 @@ export default {
           // this.getCurList(this.musicsList)
           // this.getCurIndex(index)
         }
+    },
+    mounted() {
+      // alert(this.musicList)
     }
 }
 </script>
@@ -54,7 +65,7 @@ export default {
         .music_item{
             position: relative;
             // background-color: #f2f3f4;
-            width: 97vw;
+            width: 97%;
             height: 47px;
             margin-left 1.5%
             text-align left 

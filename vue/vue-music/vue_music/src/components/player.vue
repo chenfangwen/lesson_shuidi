@@ -1,5 +1,5 @@
 <template>
-  <div class="player" v-show="ifShow">
+  <div class="player" v-show="ifShow" @touchmove="stop">
     <transition name="mini">
       <div class="info" v-show="!ifNomal" @click="getIfNomal(true)">
         <div class="avator"><img class="vatoar" :class="stopPlaying" :src="cur_music_pic" alt=""></div>
@@ -227,6 +227,10 @@ export default {
     }
   },
   methods:{
+    stop(e) {
+      e.preventDefault();
+      return;
+    },
     ...mapActions(['getIfNomal','getIfPlaying','getCur_music','getCurIndex','getPlayType']),
     showConfirm(){
         if(this.artistsNmae.length>1){

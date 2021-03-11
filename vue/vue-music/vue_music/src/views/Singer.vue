@@ -436,6 +436,7 @@ export default {
                 .detial{
                     font-size 13px
                     display flex
+                    align-items: center;
                     .num{
                         margin 0px 10px
                         color #2E3030;

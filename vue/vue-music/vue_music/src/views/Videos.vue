@@ -27,7 +27,7 @@ export default {
     API.login();
     Promise.all([API.getAllVideo(), API.getAllVideo(1)])
       .then(res => {
-        // console.log(res, 'all')
+        console.log(res, 'all')
         this.allVideo = res[0].data.datas.concat(res[1].data.datas);
       })
   },

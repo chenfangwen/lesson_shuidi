@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .scroll {
+        position: absolute;
+        white-space: nowrap;
+        animation: rowup 10s linear infinite normal;
+    }
+    @keyframes rowup {
+        0% {
+            transform: translateX(0);
+            -ms-transform: translateX(0);
+            -moz-transform: translateX(0);
+            -webkit-transform: translateX(0);
+            -o-transform: translateX(0);
+        }
+        99% {
+            transform: translateX(-505.8828125px);
+            -ms-transform: translateX(-505.8828125px);
+            -moz-transform: translateX(-505.8828125px);
+            -webkit-transform: translateX(-505.8828125px);
+            -o-transform: translateX(-505.8828125px);
+        }
+        100% {
+            transform: translateX(-0%);
+            -ms-transform: translateX(-0%);
+            -moz-transform: translateX(-0%);
+            -webkit-transform: translateX(-0%);
+            -o-transform: translateX(-0%);
+        }
+    }
+</style>
+<body>
+    <div  class="scroll">
+    <span id="scroll">阿fafafafafafafafafafafafafafafafafafafafafafafafafaafafafafafafa饭</span>
+    <span >阿fafafafafafafafafafafafafafafafafafafafafafafafafaafafafafafafa饭</span>
+    </div>
+</body>
+<script>
+    let scrollDomWidth = document.querySelector('.scroll').getBoundingClientRect().width  / 2;
+    console.log(scrollDomWidth)
+</script>
+</html>

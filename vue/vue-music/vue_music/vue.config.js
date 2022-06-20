@@ -8,6 +8,14 @@ module.exports = {
         pathRewrite: {
           '^/api': ''
         }
+      },
+      '/mysql': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+        ws: true,
+        pathRewrite: {
+          '^/mysql': ''
+        }
       }
     }
   }

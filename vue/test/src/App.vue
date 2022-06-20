@@ -1,53 +1,82 @@
 <template>
-  <div id="app">
-    时间 {{t | format_date}}
-    <div>{{moment()}}</div>
-    <div>{{moment().format('YY-MM-DD HH:mm:ss')}}</div>
-    <div>过去多少时间 {{moment().diff(moment(t), 'minutes')}}分钟前</div>
-    <!-- 优惠卷 -->
-    <div>{{moment('2020-02-29').add(2, 'day').format('YY-MM-DD')}}</div>
+  <div class="masonry" @click="click">
+    <!-- <div class="colmun">
+      <img class="item" :src="i.img" :key="i.id" v-for="i in data1">
+    </div>
+    <div class="colmun">
+      <img class="item" :src="i.img" :key="i.id" v-for="i in data2">
+    </div>
+    <div class="colmun">
+      <img class="item" :src="i.img" :key="i.id" v-for="i in data3">
+    </div> -->
+    <div v-for="(item, index) in listnew" :key="index" class="item">{{item}}</div>
+    <test-solt>
+      <p><div slot="two">hhhhh</div></p>
+      
+    </test-solt>
   </div>
 </template>
 
 <script>
-
-import moment from 'moment';
-
+import data from "./data.json";
+import testSolt from './components/testSolt.vue';
 export default {
-  name: 'App',
-  // 过滤器 人民币， =》 美元  12345  12,345
-  // filters: {
-  //   // format_data(value) {
-  //   //   console.log(value);
-  //   //   const date = new Date(value);
-  //   //   console.log(date)
-  //   //   return  `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`;
-  //   // }
-  // },
+  components: {
+    testSolt
+  },
   data() {
+    let data1 = [], //第一列
+      data2 = [], //第二列
+      data3 = [], //第三列
+      i = 0;
+
+    while (i < data.length) {
+      data1.push(data[i++]);
+      if (i < data.length) {
+        data2.push(data[i++]);
+      }
+      if (i < data.length) {
+        data3.push(data[i++]);
+      }
+    }
     return {
-      // 后端小哥哥
-      t: 1583393185121, //时间戳
-      moment
+      //第一列
+      data1,
+      //第二列
+      data2,
+      //第三列
+      data3,
+      obj: {
+        list: [1,2,3,4]
+      }
+    };
+  },
+  computed: {
+    listnew() {
+      return this.obj.list.map(item => item+1);
     }
   },
-  // 计算属性
-  computed: {
-
-  },
-  components: {
-    // HelloWorld
+  methods: {
+    click() {
+      this.obj.list = [1,2]
+    }
   }
-}
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style lang="stylus" scoped>
+.masonry {
+  display: flex;
+  flex-direction: row;
+  .colmun {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 0 2px;
+    .item {
+      margin-bottom: 5px;
+      width: 100%;
+    }
+  }
 }
 </style>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="tutorial" width="300" height="300"></canvas>
+</body>
+<script type="text/javascript">
+let ctx;
+function init(){
+ 
+    let canvas = document.querySelector("#tutorial");
+    if(!canvas.getContext) return;
+    ctx = canvas.getContext("2d");
+    draw();
+}
+var cp1x = 20, cp1y = 100;  //控制点1
+var cp2x = 100, cp2y = 120;  //控制点2
+var tag = true;
+init();
+    function draw(){
+        ctx.clearRect(0, 0, 300, 300);
+
+        // // 直线
+        // ctx.moveTo(50, 50); //把画笔移动到指定的坐标
+        // ctx.lineTo(200, 50);  //绘制一条从当前位置到指定坐标(200, 50)的直线.
+        // // ctx.moveTo(200, 50); //把画笔移动到指定的坐标
+        // ctx.lineTo(250, 55);
+        // //闭合路径。会拉一条从当前点到path起始点的直线。如果当前点与起始点重合，则什么都不做
+        // // ctx.closePath();
+        // ctx.stroke(); //绘制路径。
+
+        // // 圆弧
+        // ctx.beginPath();
+        // ctx.moveTo(50, 50);
+        // ctx.arc(50, 50, 50, 0, Math.PI / 3, false);
+        // ctx.closePath();
+        // ctx.fill();
+        // ctx.stroke();
+
+        // 贝塞尔曲线
+        ctx.beginPath();
+        ctx.moveTo(40, 200); //起始点
+        
+        var x = 200, y = 200; // 结束点
+        //绘制二次贝塞尔曲线
+        ctx.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y);
+        ctx.stroke();
+        ctx.moveTo(40, 200);
+        ctx.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y);
+        ctx.stroke();
+        if (cp2x >= 300) {
+            tag = false;
+        }
+        if (cp1x <= 0) {
+            tag = true;
+        }
+        if (tag) {
+            cp1x += 3;
+            cp2x += 3;
+        }
+        else {
+            cp1x -= 3;
+            cp2x -= 3;
+        }
+        requestAnimationFrame(draw);
+    }
+</script>
+</html>

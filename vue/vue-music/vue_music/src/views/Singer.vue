@@ -15,7 +15,7 @@
                             <div class="hot">近期热门</div>
                             <div @click="getCur_music_m(item,index)" class="song" v-for="(item,index) in someHot" :key="index">
                                 <div class="index" v-show="curIndex!=index||curIndex===''||curList!=hotSongs">
-                                    <img :src="item.al.picUrl" alt="">
+                                    <img v-lazy="item.al.picUrl" alt="">
                                 </div>
                                 <div class="index" v-show="curIndex==index&&curIndex!==''&&curList==hotSongs">
                                     <img class="laba" src="../assets/laba.png" alt="">
@@ -81,7 +81,7 @@
                         <div class="lists">
                             <div class="album" @click="toAlbum(item.id)" v-for="(item,index) in albums " :key="index">
                                 <div class="image">
-                                    <img :src="item.picUrl" alt="">
+                                    <img v-lazy="item.picUrl" alt="">
                                 </div>
                                 <div class="info">
                                     <div class="name">

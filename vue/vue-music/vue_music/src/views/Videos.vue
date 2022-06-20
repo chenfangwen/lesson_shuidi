@@ -67,6 +67,7 @@ export default {
 #videos{
     position absolute
     top 87px
+    padding: 0px 6px;
     .van-grid{
       .van-grid-item{
         .van-grid-item__content {

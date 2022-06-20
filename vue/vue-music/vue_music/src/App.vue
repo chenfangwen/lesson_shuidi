@@ -2,8 +2,8 @@
   <div id="app">
     <m-header @showuser="changeUser"/>
     <tab/>
-    <player/>
-    <user v-show="isShowUser" @hiddenuser="changeUser"/>
+    <player @hideUser="hideUser"/>
+    <user ref="user" v-show="isShowUser" @hiddenuser="changeUser"/>
     <keep-alive :include="include" >
       <router-view v-if="$route.meta.keepAlive"/>
     </keep-alive>
@@ -48,8 +48,12 @@ export default {
     }
   },
   methods: {
+    hideUser() {
+      this.isShowUser = false;
+    },
     changeUser() {
       this.isShowUser = !this.isShowUser;
+      this.$refs.user.switchItem(this.$refs.user.currentIndex);
     }
   }
 }

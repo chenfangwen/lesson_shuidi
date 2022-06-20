@@ -24,6 +24,8 @@
 
 <script>
 import API2 from '../api/search'
+import API3 from '../api/mysqlreq'
+import {getUser} from '../common/js/util'
 import {mapState,mapActions} from 'vuex'
 import API from "../api/recommend"
 export default {
@@ -35,9 +37,7 @@ export default {
     }
   },
   computed:{
-    ...mapState(['cur_music','cur_music_pic'])
-  },
-  components: {
+    ...mapState(['cur_music','cur_music_pic','curUser'])
   },
   watch: {
       '$route':function(to,from){
@@ -53,7 +53,7 @@ export default {
       }
   },
   methods:{
-    ...mapActions(['getCur_music','getCurList']),
+    ...mapActions(['getCur_music','getCurList','getCurUser']),
     getbanner(item){
       console.log(item)
       if(item.targetType==10||item.targetType==1000){
@@ -84,9 +84,14 @@ export default {
     }
   },
   mounted(){
+    // alert(getUser())
+    if(getUser()) {
+      // console.log(getUser(), 'curUser')
+      this.getCurUser(getUser());
+    }
     API.getBanner()
     .then(res=>{
-      console.log(res.data.banners,'-----')
+      // console.log(res.data.banners,'-----')
       this.banners = res.data.banners
     })
     API.getRecommendList()

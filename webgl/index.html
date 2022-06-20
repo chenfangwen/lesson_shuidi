@@ -42,7 +42,7 @@
             group = new THREE.Group();
             scene.add(group);
             var loader = new THREE.TextureLoader();
-            loader.load('land_ocean_ice_cloud_2048.jpg', function(texture) {
+            loader.load('./land_ocean_ice_cloud_2048.jpg', function(texture) {
                 //图片已加载完
                    var geometry = new THREE.SphereGeometry(200,20,20); //形状
                    var material = new THREE.MeshBasicMaterial ({

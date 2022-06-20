@@ -58,19 +58,25 @@ export default {
             console.log(res.data)
             let arr = []
             n_List = res.data.list
+            let PromiseList = [];
             for( let i = 0; i < n_List.length; i++){
-                API2.getRecommendListDetail(n_List[i].id)
+                let promise = API2.getRecommendListDetail(n_List[i].id)
                 .then(res2=>{
                     // console.log(res.data,'+++')
                     if(res2.data.playlist){
                         n_List[i].someSongs = res2.data.playlist.tracks.slice(0,3)
                     }
-                })
+                });
+                PromiseList.push(promise);
             }
+            Promise.all(PromiseList).then(res => {
+                this.TopList = n_List;
+            });
         })
-        setTimeout(() => {
-            this.TopList = n_List
-        },2000)
+        // setTimeout(() => {
+        //     this.TopList = n_List
+        // },3000)
+
     }
 }
 </script>

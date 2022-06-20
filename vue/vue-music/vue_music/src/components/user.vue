@@ -2,9 +2,9 @@
     <transition name="user">
         <div class="user" @touchmove="stop">
             <div :class="['user-popup']" @click="hiddenUser"></div>
-            <div class="content">
+            <div v-if="curUser" class="content">
                 <div class="switches-wrapper">
-                <switches @switch="switchItem" :switches="switches" :currentIndex="currentIndex"></switches>
+                <switches @switch="switchItem" :switches="switchess" :currentIndex="currentIndex"></switches>
                 </div>
                 <div class="sequence-play">
                 <i class="iconfont icon-bofangicon"></i>
@@ -18,23 +18,52 @@
                 <div v-else class="no-result-wrapper">
                     暂无历史记录
                 </div>
+                <div class="unlogin">
+                    <van-button round block type="info" @click="unlogin">退出登录</van-button>
+                </div>
+            </div>
+            <div v-else class="content">
+                <van-form>
+                    <van-field
+                        v-model="username"
+                        name="用户名"
+                        label="用户名"
+                        placeholder="用户名"
+                        :rules="[{ required: true, message: '请填写用户名' }]"
+                    />
+                    <van-field
+                        v-model="password"
+                        type="password"
+                        name="密码"
+                        label="密码"
+                        placeholder="密码"
+                        :rules="[{ required: true, message: '请填写密码' }]"
+                    />
+                    <div style="margin: 16px; display: flex;">
+                        <van-button round block type="info" @click="login">登录</van-button>
+                        <van-button round block type="info" @click="sigin">注册</van-button>
+                    </div>
+                </van-form>
             </div>
         </div>
     </transition>
 </template>
 <script>
-import {getPlayHistory} from '../common/js/util'
+import {getPlayHistory, setUser, getUser, clearLogin} from '../common/js/util'
+import {mapState, mapActions} from 'vuex'
+import api from '../api/mysqlreq'
 import Scroll from './scroll.vue'
 import Switches from './common/switches'
 import  MusicList from './musicList'
-import {mapActions} from 'vuex'
 export default {
   data() {
     return {
+        username: '',
+        password: '',
         currentIndex: 0,
         noResult: false,
         refreshDelay: 100,
-        switches: [
+        switchess: [
             {name: '最近播放'},
             {name: '我的收藏'}
         ],
@@ -47,22 +76,70 @@ export default {
       MusicList,
       Scroll
   },
+  computed:{
+    ...mapState(['curUser'])
+  },
   methods: {
-      ...mapActions(['getCurList']),
+    ...mapActions(['getCurList', 'getCurUser']),
+    unlogin() {
+        clearLogin();
+        this.getCurUser('');
+    },
+    login() {
+        // console.log(this.username, this.password)；
+        api.login({
+            userId: this.username,
+            passward: this.password
+        }).then(res => {
+            // console.log(res.data, 'login');
+            if(res.data.msg === '登录失败') {
+                this.$toast('用户名或密码错误');
+            }
+            else {
+                this.$toast('登录成功');
+                setUser(this.username);
+                setTimeout(() => {
+                    this.switchItem(this.currentIndex)
+                }, 500);
+                this.getCurUser(this.username);
+            }
+        })
+    },
+    sigin() {
+        api.addUser({
+            userId: this.username,
+            passward: this.password
+        }).then(res => {
+            // console.log(res.data, 'asdfasd')
+            if(res.data.msg === '重复插入') {
+                this.$toast('此用户名已存在');
+            }
+            else {
+                this.$toast('注册成功，请登录');
+            }
+        })
+    },
     setCurList() {
-        this.getCurList(this.playHistoryList);
-        console.log(this.playHistoryList, 'this.playHistoryList')
+        setTimeout(() => {
+            this.switchItem(this.currentIndex);
+        }, 1000);
+        // console.log(this.playHistoryList, 'this.playHistoryList')
     },
     switchItem (index) {
       this.currentIndex = index;
       if (!index) {
         // this.playHistoryList = getPlayHistory();
         // this.playHistoryList = getPlayHistory().split('*/*');
-
-        this.playHistoryList =  getPlayHistory() ? getPlayHistory().split('*/*').map((item, index) => {
-            return JSON.parse(item);
-        }) : '';
-        this.count = this.playHistoryList.length;
+        let playHistoryList = '';
+        getPlayHistory(getUser()).then(res => {
+            // console.log(res, 'res')
+            this.playHistoryList =  res.data.data[0] && res.data.data[0].lastPlay ? res.data.data[0].lastPlay.split('*/*').map((item, index) => {
+                // console.log(item+'---', 'item')
+                return JSON.parse(item);
+            }) : '';
+            this.count = this.playHistoryList.length;
+            this.getCurList(this.playHistoryList);
+        })
         // console.log(this.playHistoryList,'playHistoryList');
       }
       else {
@@ -96,7 +173,7 @@ export default {
     position: fixed;
     width: 100%;
     height: 100%;
-    z-index: 5;
+    z-index: 2;
     .user-popup {
         position: absolute;
         width: 100%;
@@ -164,6 +241,11 @@ export default {
         }
         .no-result-wrapper {
             margin-top: 60%;
+        }
+        .unlogin {
+            position: absolute;
+            bottom: 60px;
+            right: 0;
         }
     }
     .hidden {

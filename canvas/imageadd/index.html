@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .canvas-img {
+        width: 947px;
+        height: 486px;
+    }
+</style>
+<body>
+    <img id="specImg" class="canvas-img" src=""/>
+</body>
+<script>
+    function buildImage(src) {
+        return new Promise(function (resovle, reject) {
+            let img = new Image();
+            img.setAttribute('crossOrigin', 'Anonymous');
+            img.onload = () => {
+                resovle(img);
+            };
+            img.onerror = img.onabort = () => {
+                reject('err');
+            };
+            img.src = src;
+        });
+    }
+    let canvas = document.createElement('canvas');
+    canvas.width = 947;
+    canvas.height = 486;
+    let ctx = canvas.getContext('2d');
+    Promise.all([buildImage('https://search-operate.cdn.bcebos.com/dbd602d99d7c861e8ede5ee24a2698ce.jpg'), buildImage('https://search-operate.cdn.bcebos.com/7ac07513cd01f2548b07ca67789d499f.png')]).then(images => {
+        ctx.drawImage(images[0], 0, 0, canvas.width, canvas.height);
+        // ctx.fillStyle = '#000000';
+        ctx.textBaseline = 'middle';
+        ctx.textAlign = 'left';
+        ctx.font = "100px sans-serif"
+        ctx.strokeText('这是一张合成图', 0, 100, 1000);
+        ctx.drawImage(images[1], 947-149, 486-154, 149, 154);
+        let imageDom = document.querySelector('#specImg');
+        imageDom.src = canvas.toDataURL();
+    });
+</script>
+</html>

@@ -18,9 +18,13 @@ export default new Vuex.Store({
     ifPlaying:false,
     ifP:false,
     playType:1,
-    currentLyric:[]
+    currentLyric:[],
+    curUser: ''
   },
   mutations: {
+    setCurUser(state, cur) {
+      state.curUser = cur;
+    },
     setCur_music(state,cur){
       state.cur_music = cur;
     },
@@ -56,17 +60,21 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    getCurUser(context,cur) {
+      context.commit('setCurUser',cur);
+    },
     getCur_music(context,cur){
       console.log(cur, 'curr')
       axios.get(`/api/song/detail?ids=${cur.id}`)
       .then(res => {
-        // console.log(res.data.songs, 'cursong');
+        console.log(res.data.songs, 'cursong');
         let song = {
           id: res.data.songs[0].id,
           name: res.data.songs[0].name,
           ar: res.data.songs[0].ar.map(item => {
             return {
-              name: item.name
+              name: item.name,
+              id: item.id
             }
           }),
           al: {

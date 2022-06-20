@@ -20,7 +20,7 @@ module.exports = {
                     title: "css",
                     collapsable: true,
                     children:[
-                        ['/note/css/flex布局.md', 'flex布局'],
+                        ['/note/css/flex布局.md', 'flex布局但是发送到发'],
                         ['/note/css/水平垂直居中.md', '水平垂直居中']
                     ]
                 },
@@ -53,7 +53,7 @@ module.exports = {
                     title: "掘金",
                     collapsable: true,
                     children:[
-                        ['', 'computed和watcher'],
+                        ['computed.md', 'computed和watcher'],
                         ['/article/async await 的实现.md', 'async await 的实现']
                     ]
                 },

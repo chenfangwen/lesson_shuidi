@@ -28,7 +28,7 @@
       </div>
       <div v-if="searchResult" class="search-result">
         <div class="firstSinger" v-if="ifSinger" @click="toSinger">
-          <img class="singer_img" :src="firstSinger.picUrl" alt="">
+          <img class="singer_img" v-lazy="firstSinger.picUrl" alt="">
           <div class="name">
             <div class="text">歌手 ：</div>
             <div class="singername">{{firstSinger.name}}</div>
@@ -45,6 +45,7 @@
 // import axios from 'axios'
 import API from "../api/search"
 import {mapState, mapActions} from 'vuex'
+import {getUser} from '../common/js/util'
 import {addSearchHistory, clearHistory, getHistory} from '../common/js/util'
 import searchBox from '../components/searchBox.vue'
 import musicList from '../components/musicList.vue'
@@ -68,7 +69,8 @@ export default {
     ...mapState({
         cur_music:(state) => state.cur_music,
         cur_music_pic:(state) => state.cur_music_pic,
-        musicsList:(state) => state.musicsList
+        musicsList:(state) => state.musicsList,
+        curUser:(state) => state.curUser,
     }),
     ifSinger(){
       return this.firstSinger!=''?true:false;
@@ -87,21 +89,23 @@ export default {
     confirm
   },
   methods:{
-    ...mapActions(['getCur_music','getMusicList']),
+    ...mapActions(['getCur_music','getMusicList','getCurUser']),
     hide(){
       this.query = ''
     },
     updatedHistory() {
-      let historyList = getHistory() ? getHistory().split('*/*') : '';
-      if (historyList) {
-        historyList.forEach((item,index) => {
-          if (item === '') {
-            historyList.splice(index, 1);
-          }
-        });
-        this.historyList = historyList;
-      }
-
+      let historyList = '';
+      getHistory(this.curUser).then(res => {
+        historyList = res.data.data[0].lastSearch ? res.data.data[0].lastSearch.split('*/*') : '';
+        if (historyList) {
+          historyList.forEach((item,index) => {
+            if (item === '') {
+              historyList.splice(index, 1);
+            }
+          });
+          this.historyList = historyList;
+        }
+      })
     },
     searchClear() {
       this.searchResult = '';
@@ -110,8 +114,8 @@ export default {
       this.updatedHistory();
     },
     confirmClear() {
-      clearHistory();
-      this.updatedHistory();
+      clearHistory(this.curUser);
+      this.historyList = '';
     },
     clearAllHistory() {
       if(this.historyList!='') {
@@ -121,7 +125,10 @@ export default {
     search(query) {
         this.query = ''
         if(query){
-          addSearchHistory(query);
+          addSearchHistory({
+            userId: this.curUser,
+            lastSearch: query
+          });
           API.searchResult(query)
             .then(res=>{
                 console.log(res.data)
@@ -176,6 +183,10 @@ export default {
     }
   },
   mounted(){
+    if(getUser()) {
+      // console.log(getUser(), 'curUser')
+      this.getCurUser(getUser());
+    }
     this.updatedHistory();
     API.getSearchHot().then(res => {
       if (+res.data.code === 200) {

@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="zn">
+
+<head>
+    <meta charset="UTF-8">
+    <title>动画精灵</title>
+</head>
+
+<body>
+    <div id="px-render" style="width: 100%; background: url(./thorn_lazur.png) no-repeat;"></div>
+
+    <script src="https://www.kkkk1000.com/js/pixi4.8.2.js"></script>
+    <script src="https://www.kkkk1000.com/js/spriteUtilities.js"></script>
+    <script>
+        //创建一个 Pixi应用 需要的一些参数
+        let option = {
+            width: 400,
+            height: 300,
+            transparent: true
+        }
+        console.log(PIXI)
+        //创建一个 Pixi应用
+        let app = new PIXI.Application(option);
+        //获取渲染器
+        let renderer = app.renderer;
+        console.log(app)
+        let playground = document.getElementById('px-render');
+        //把 Pixi 创建的 canvas 添加到页面上
+        playground.appendChild(app.view);
+
+        let su = new SpriteUtilities(PIXI);
+        //需要加载的雪碧图的地址（该图片服务器端已做跨域处理）
+        let imgURL2 = "https://search-operate.cdn.bcebos.com/552f21e7403d8655cc5d19d7da05d050.png";
+        let imgURL = "https://search-operate.cdn.bcebos.com/2184cb7cc290db0a4ca226a92eb2d541.png";
+        PIXI.loader.add([imgURL, imgURL2]).load(setup);
+
+        function setup() {
+
+            // 图形绘制
+            let rectangle = new PIXI.Graphics();
+            rectangle.lineStyle(4, 0xFF3300, 1);
+            rectangle.beginFill(0x66CCFF);
+            rectangle.drawRect(0, 0, 64, 64);
+            rectangle.endFill();
+            rectangle.position.set(170, 170);
+            rectangle.vx = 0;
+            rectangle.vy = 0;
+            app.stage.addChild(rectangle);
+            
+            //创建纹理数组
+            let frames2 = su.filmstrip(imgURL2, 80, 143);
+            // let frames = su.filmstrip(imgURL, 37, 45);
+            let frames = su.frames(imgURL, [
+                [0, 0], [37, 0], [74, 0],[111, 0],[148, 0],
+                [0, 45], [37, 45], [74, 45],[111, 45],[148, 45],
+                [0, 90], [37, 90], [74, 90],[111, 90],[148, 90],
+                [0, 135], [37, 135], [74, 135]
+            ], 37, 45);
+            //创建动画精灵
+            let pixie = new PIXI.extras.AnimatedSprite(frames);
+            let pixie2 = new PIXI.extras.AnimatedSprite(frames2);
+            console.log(pixie)
+            pixie.x = 0;
+            pixie.y = 20;
+            pixie.vx = 0;
+            pixie.vy = 0;
+            pixie2.position.set(170, 170);
+            pixie2.vx = 0;
+            pixie2.vy = 0;
+            // function sport(){
+            //     if(pixie.x > 400) {
+            //         pixie.x = 0;
+            //     }
+            //     pixie.x++;
+            //     requestAnimationFrame(sport);
+            // }
+            // sport();
+
+            let left = keyboard("ArrowLeft"),
+                up = keyboard("ArrowUp"),
+                right = keyboard("ArrowRight"),
+                down = keyboard("ArrowDown");
+            let pleft = keyboard("a"),
+                pup = keyboard("w"),
+                pright = keyboard("d"),
+                pdown = keyboard("s");
+            left.press = () => {
+                //Change the cat's velocity when the key is pressed
+                pixie.vx = -5;
+                pixie.vy = 0;
+            };
+            pleft.press = () => {
+                //Change the cat's velocity when the key is pressed
+                pixie2.vx = -5;
+                pixie2.vy = 0;
+            };
+            
+            //Left arrow key `release` method
+            left.release = () => {
+                //If the left arrow has been released, and the right arrow isn't down,
+                //and the pixie isn't moving vertically:
+                //Stop the pixie
+                if (!right.isDown && pixie.vy === 0) {
+                pixie.vx = 0;
+                }
+            };
+            pleft.release = () => {
+                //If the left arrow has been released, and the right arrow isn't down,
+                //and the pixie isn't moving vertically:
+                //Stop the pixie
+                if (!pright.isDown) {
+                pixie2.vx = 0;
+                }
+            };
+
+            //Up
+            up.press = () => {
+                pixie.vy = -5;
+                pixie.vx = 0;
+            };
+            pup.press = () => {
+                pixie2.vy = -5;
+                pixie2.vx = 0;
+            };
+            
+            up.release = () => {
+                if (!down.isDown) {
+                pixie.vy = 0;
+                }
+            };
+            pup.release = () => {
+                if (!pdown.isDown) {
+                pixie2.vy = 0;
+                }
+            };
+
+            //Right
+            right.press = () => {
+                pixie.vx = 5;
+                pixie.vy = 0;
+            };
+            pright.press = () => {
+                pixie2.vx = 5;
+                pixie2.vy = 0;
+            };
+            right.release = () => {
+                if (!left.isDown) {
+                pixie.vx = 0;
+                }
+            };
+            pright.release = () => {
+                if (!pleft.isDown) {
+                pixie2.vx = 0;
+                }
+            };
+
+            //Down
+            down.press = () => {
+                pixie.vy = 5;
+                pixie.vx = 0;
+            };
+            pdown.press = () => {
+                pixie2.vy = 5;
+                pixie2.vx = 0;
+            };
+            down.release = () => {
+                if (!up.isDown) {
+                pixie.vy = 0;
+                }
+            };
+            pdown.release = () => {
+                if (!pup.isDown) {
+                pixie2.vy = 0;
+                }
+            };
+            
+            //设置动画精灵的速度
+            pixie.animationSpeed = 0.5;
+            pixie2.animationSpeed = 0.05;
+            // pixie.loop = false;
+
+            //把动画精灵添加到舞台
+            app.stage.addChild(pixie);
+            app.stage.addChild(pixie2);
+            app.ticker.add(delta => gameLoop(delta));
+            let state = play;
+            function gameLoop(delta){
+                //Update the current game state:
+                state(delta);
+            }
+            let tag = true;
+
+            function play(delta) {
+                //Use the cat's velocity to make it move
+                pixie.x += pixie.vx;
+                pixie.y += pixie.vy;
+                pixie2.x += pixie2.vx;
+                pixie2.y += pixie2.vy;
+                if (tag && hitTestRectangle(pixie, pixie2)) {
+                    if (confirm('game over! 重来')) {
+                        location.replace(location.href);
+                    }
+                    pixie.vy = 0;
+                    pixie.vx = 0;
+                    pixie2.vy = 0;
+                    pixie2.vx = 0;
+                    tag = false;
+                }
+            }
+            //播放动画精灵
+            pixie.play();
+            pixie2.play();
+        }
+        function keyboard(value) {
+            let key = {};
+            key.value = value;
+            key.isDown = false;
+            key.isUp = true;
+            key.press = undefined;
+            key.release = undefined;
+            //The `downHandler`
+            key.downHandler = event => {
+                console.log(event.key)
+                if (event.key === key.value) {
+                if (key.isUp && key.press) key.press();
+                key.isDown = true;
+                key.isUp = false;
+                event.preventDefault();
+                }
+            };
+
+            //The `upHandler`
+            key.upHandler = event => {
+                if (event.key === key.value) {
+                if (key.isDown && key.release) key.release();
+                key.isDown = false;
+                key.isUp = true;
+                event.preventDefault();
+                }
+            };
+
+            //Attach event listeners
+            const downListener = key.downHandler.bind(key);
+            const upListener = key.upHandler.bind(key);
+            
+            window.addEventListener(
+                "keydown", downListener, false
+            );
+            window.addEventListener(
+                "keyup", upListener, false
+            );
+            
+            // Detach event listeners
+            key.unsubscribe = () => {
+                window.removeEventListener("keydown", downListener);
+                window.removeEventListener("keyup", upListener);
+            };
+            
+            return key;
+        }
+        function hitTestRectangle(r1, r2) {
+
+            //Define the variables we'll need to calculate
+            let hit, combinedHalfWidths, combinedHalfHeights, vx, vy;
+
+            //hit will determine whether there's a collision
+            hit = false;
+
+            //Find the center points of each sprite
+            r1.centerX = r1.x + r1.width / 2;
+            r1.centerY = r1.y + r1.height / 2;
+            r2.centerX = r2.x + r2.width / 2;
+            r2.centerY = r2.y + r2.height / 2;
+
+            //Find the half-widths and half-heights of each sprite
+            r1.halfWidth = r1.width / 2;
+            r1.halfHeight = r1.height / 2;
+            r2.halfWidth = r2.width / 2;
+            r2.halfHeight = r2.height / 2;
+
+            //Calculate the distance vector between the sprites
+            vx = r1.centerX - r2.centerX;
+            vy = r1.centerY - r2.centerY;
+
+            //Figure out the combined half-widths and half-heights
+            combinedHalfWidths = r1.halfWidth + r2.halfWidth;
+            combinedHalfHeights = r1.halfHeight + r2.halfHeight;
+
+            //Check for a collision on the x axis
+            if (Math.abs(vx) < combinedHalfWidths) {
+
+            //A collision might be occurring. Check for a collision on the y axis
+            if (Math.abs(vy) < combinedHalfHeights) {
+
+                //There's definitely a collision happening
+                hit = true;
+            } else {
+
+                //There's no collision on the y axis
+                hit = false;
+            }
+            } else {
+
+            //There's no collision on the x axis
+            hit = false;
+            }
+
+            //`hit` will be either `true` or `false`
+            return hit;
+        };
+    </script>
+</body>
+
+</html>

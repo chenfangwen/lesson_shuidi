@@ -1,0 +1,23 @@
+<template>
+    <div>
+        <div class="{{ $style['text123'] }}">这是一个开始123</div>
+        <!-- <router-link to="/list">list</router-link> -->
+    </div>
+</template>
+
+<script lang="ts">
+import {Component} from 'san';
+import {Link} from 'san-router';
+console.log(Link)
+export default class Card extends Component {
+    components = {
+        'router-link': Link
+    }
+}
+</script>
+
+<style module>
+.text123 {
+    background-color: #000;
+}
+</style>

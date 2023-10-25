@@ -1,0 +1,149 @@
+<template>
+  <div class="masonry">
+    <!-- <img ref="moveHeader" src="https://search-operate.cdn.bcebos.com/a75047ff4e2c9336fd6c32f26bd419c9.jpg" alt=""> -->
+    <div class="img-wrap">
+      <img id="bg1" :src="img.bg1" alt="">
+      <img id="time" :src="img.time" alt="">
+      <img id="bg2" :src="img.bg2" alt="">
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  components: {
+  },
+  data() {
+    return {
+      img: {
+        time: 'https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/57193979ce7a465abd8a770ac6901dd0~tplv-k3u1fbpfcp-zoom-1.awebp',
+        bg1: 'https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c80096ea62994846b394032694b4d2e1~tplv-k3u1fbpfcp-zoom-1.awebp',
+        bg2: 'https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3b120da49dce474eb2997cf9c748960b~tplv-k3u1fbpfcp-zoom-1.awebp'
+      },
+      canChange: true
+      // gamma: 0,
+      // beta: 0,
+      // canMove: true
+    };
+  },
+  computed: {
+  },
+  mounted() {
+    const width = window.innerWidth; 
+    const moveWidth = width * 0.1;
+    this.scale = moveWidth / 30;
+    this.init();
+  },
+  methods: {
+    init() {
+        if (window.DeviceOrientationEvent && typeof DeviceOrientationEvent.requestPermission === 'function') {
+            // IOS13以上
+            
+            DeviceOrientationEvent.requestPermission()
+            .then(permissionState => {
+                if (permissionState === 'granted') {
+                    window.addEventListener('deviceorientation', this.updateGravity, false);
+                }
+                else {
+                    this.permission();
+                }
+            })
+            .catch(() => {
+                this.permission();
+            });
+        } else {
+            // IOS 13以下 或者 安卓
+            let timer = setTimeout(function(){ alert('未开启动作与方向权限')}, 1000);
+
+            window.addEventListener('deviceorientation', () => { clearTimeout(timer);}, {once: true});
+
+            window.addEventListener('deviceorientation', this.updateGravity, false);
+        }
+    },
+    permission() {
+        window.addEventListener('touchend', ()=>{
+            DeviceOrientationEvent.requestPermission()
+            .then(permissionState => {
+                if (permissionState === 'granted') { 
+                    window.addEventListener('deviceorientation', this.updateGravity);
+                }
+            })
+        },{once: true})
+    },
+    updateGravity(event){
+        // if (Math.abs(this.gamma - event.gamma) > 30 && !this.canMove) {
+        //   this.canMove = true;
+        //   return;
+        // }
+        let {beta, gamma} = event;
+        // if (gamma === 0) {
+        //   this.canChange = true;
+        // }
+        // if ((this.gamma > 0 && gamma < 0 && !this.canChange) || (this.gamma < 0 && gamma > 0 && !this.canChange)) {
+        //   return;
+        // }
+        // if (Math.abs(gamma) >= 89 || Math.abs(gamma) <= -89) {
+        //     // alert(1)
+        //     this.canChange = false;
+        // }
+        // if (gamma === 0) {
+        //   this.canChange = true;
+        // }
+        // this.canMove = false;
+        // this.gamma = event.gamma;
+        // this.beta = event.beta;
+        // if (Math.abs(gamma) > 30) {
+        //   return;
+        // }
+        if (Math.abs(gamma) > 30) {
+          gamma = this.lastX;
+        }
+        if (Math.abs(beta) > 80) {
+          beta = this.lastY;
+        }
+
+        this.gamma = event.gamma;
+        this.beta = event.beta;
+        this.lastX = gamma
+        this.lastY = beta;
+        // const dom = this.$refs.moveHeader;
+        // dom.style.transform = `translateX(${gamma}px)`;
+        const bg1 = document.querySelector('#bg1');
+        const bg2 = document.querySelector('#bg2');
+        const time = document.querySelector('#time');
+        // bg1.style.transform = `translateX(${gamma * this.scale}px)`;
+        // bg2.style.transform = `translateX(${-gamma * this.scale * 0.3}px)`;
+        // time.style.transform = `translateX(${gamma * this.scale * 0.3}px)`;
+
+        bg1.style.transform = `translate(${gamma * this.scale}px, ${-beta / 12}px)`;
+        bg2.style.transform = `translate(${-gamma * this.scale * 0.3}px, ${beta / 12}px)`;
+        time.style.transform = `translate(${gamma * this.scale * 0.3}px, ${-beta / 12}px)`;
+    }
+  }
+};
+</script>
+
+<style lang="stylus" scoped>
+.masonry {
+  display flex
+  flex-direction: column
+  justify-content center
+  align-items: center
+  width 100%
+  .img-wrap {
+    width 100%;
+    height 60vw;
+    overflow: hidden
+    display flex
+    position: relative;
+    img {
+      width 120%
+      position: absolute
+      left -10%
+      top -15px
+      // transform: translateX(-50%)
+    }
+
+  }
+}
+</style>

@@ -12,16 +12,15 @@
         console.log('1')
     }
     function debounce (func, wait) {
-         var timeout;
-         return function() {
-             var context = this;
-             var args = arguments;
-             clearTimeout(timeout);
-             timeout = setTimeout(() => {
-                //  console.log(timeout,'----')
-                 func.apply(context,args)
-             }, wait);
-         }
+        let timeId = null;
+        return function() {
+            if (timeId) {
+                clearTimeout(timeId);
+            }
+            timeId = setTimeout(() => {
+                func();
+            }, wait);
+        }
      }
     const con1 = debounce(con,1000)
     </script>

@@ -6,23 +6,18 @@
     <title>throttle节流</title>
 </head>
 <body>
-    <button onclick="con1()">按钮</button>
+    <button onclick="con1('cfw', 24)">按钮</button>
     <script>
-    function con() {
-        console.log('1')
+    function con(name, age) {
+        console.log('1' + name + age)
     }
     function throttle (func, wait) {
-        var timeout;
-        var previous = 0;
-        return function () {
-            context = this;
-            args = arguments;
-            if (!timeout) {
-                console.log(timeout,'---')
-                timeout = setTimeout(() => {
-                    timeout = null;
-                    func.apply(context,args)
-                }, wait);
+        let lastTime = 0;
+        return function() {
+            let context = this;
+            if (Date.now() - lastTime >= wait) {
+                lastTime = Date.now();
+                func.call(context, ...arguments);
             }
         }
     }

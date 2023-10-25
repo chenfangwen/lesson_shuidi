@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .img-amis {
+            width: 200px;
+            display: block;
+        }
+        .img-himg {
+            width: 200px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <img class="img-amis" src="./images/09041d1886faceea0da1e84f9eab4c8b.jpeg" alt="">
+    </div>
+    <div>
+        <img class="img-himg" src="./images/public.1.e2674fd.l3Pbya9uZTaTm43mKUVfeg.jpg" alt="">
+    </div>
+</body>
+<script>
+    const amisImg = 'https://search-operate.cdn.bcebos.com/09041d1886faceea0da1e84f9eab4c8b.jpg';
+    const himgImg = 'https://himg.bdimg.com/sys/portrait/item/public.1.e2674fd.l3Pbya9uZTaTm43mKUVfeg.jpg';
+    const amisImgDom = document.querySelector('.img-amis');
+    const himgImgDom = document.querySelector('.img-himg');
+    getShareImage(
+        'https://search-operate.cdn.bcebos.com/b0e3c5f3fd6ddc9d7f859ad7a7ce2b67.jpg',
+        amisImg,
+        'amis图片'
+    ).then(res => {
+        console.log(res, 'amisImg');
+        amisImgDom.src = res;
+    });
+
+    getShareImage(
+        'https://search-operate.cdn.bcebos.com/b0e3c5f3fd6ddc9d7f859ad7a7ce2b67.jpg',
+        himgImg,
+        'amis图片'
+    ).then(res => {
+        console.log(res, 'amisImg');
+        himgImgDom.src = res;
+    });
+
+    function getShareImage(poster, avatar, name) {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        if (!ctx) { return null; }
+
+        // 图片尺寸
+        canvas.width = 1242;
+        canvas.height = 2688;
+        return new Promise(function (resolve, reject) {
+            Promise.all([
+                buildImage(poster),
+                buildImage(avatar),
+            ]).then(values => {
+                ctx?.drawImage(values[0], 0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = '#fff';
+                ctx.font = '48px sans-serif';
+                name = name.length > 7 ? name.slice(0, 6) + '...' : name;
+                ctx?.fillText(name, (canvas.width - ctx?.measureText(name).width) / 2, 910);
+
+                circleImg(ctx, values[1], 547, 696, 74);
+                resolve(canvas.toDataURL());
+            });
+        });
+    }
+    function circleImg(ctx, img, x, y, r) {
+        ctx.save();
+        const d = 2 * r;
+        const cx = x + r;
+        const cy = y + r;
+        ctx.arc(cx, cy, r, 0, 2 * Math.PI);
+        ctx.clip();
+        ctx.drawImage(img, x, y, d, d);
+        ctx.restore();
+    }
+    function buildImage(src) {
+        return new Promise(function (resolve, reject) {
+            const img = new Image();
+            img.setAttribute('crossOrigin', 'Anonymous');
+            img.onload = () => {
+                resolve(img);
+            };
+            img.onerror = img.onabort = () => {
+                reject('err');
+            };
+            img.src = src;
+        });
+    }
+</script>
+</html>

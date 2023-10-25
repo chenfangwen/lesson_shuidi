@@ -13,23 +13,23 @@ export default {
     PAGInit().then((PAG) => {
       const url = '/api/file/like.pag';
       axios.get(url, {
-            responseType: 'arraybuffer'
-        })
-        .then((response) => {
-          console.log(response); 
-          return response.data;
-        })
-        .then(async (blob) => {
-          const file = new window.File([blob], url.replace(/(.*\/)*([^.]+)/i, '$2'));
-          console.log(file, 'file')
-          const pagFile = await PAG.PAGFile.load(file);
-          console.log(pagFile, 'pagFile')
-          document.getElementById('pag').width = pagFile.width();
-          document.getElementById('pag').height = pagFile.height();
-          const pagView = await PAG.PAGView.init(pagFile, '#pag');
-          pagView.setRepeatCount(0);
-          await pagView.play();
-        });
+          responseType: 'arraybuffer'
+      })
+      .then((response) => {
+        console.log(response); 
+        return response.data;
+      })
+      .then(async (blob) => {
+        const file = new window.File([blob], url.replace(/(.*\/)*([^.]+)/i, '$2'));
+        console.log(file, 'file')
+        const pagFile = await PAG.PAGFile.load(file);
+        console.log(pagFile, 'pagFile')
+        document.getElementById('pag').width = pagFile.width();
+        document.getElementById('pag').height = pagFile.height();
+        const pagView = await PAG.PAGView.init(pagFile, '#pag');
+        pagView.setRepeatCount(0);
+        await pagView.play();
+      });
     });
   },
 };
